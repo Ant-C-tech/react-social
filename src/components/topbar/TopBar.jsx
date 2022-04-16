@@ -3,15 +3,15 @@ import './topbar.css';
 import { Person, Chat, Notifications } from '@material-ui/icons';
 import { BigHead } from '@bigheads/core';
 
-import { Link } from '../Common/link/Link';
-import { Icon } from '../Common/icon/Icon';
-import { SearchBar } from '../Common/searchbar/SearchBar';
+import { Link } from '../common/link/Link';
+import { Icon } from '../common/icon/Icon';
+import { SearchBar } from '../common/searchbar/SearchBar';
 
 export const TopBar = () => {
 	return (
 		<div className='topbar-container'>
 			<div className='topbar-left'>
-				<span className='logo'>React Social</span>
+				<h1 className='logo'>React Social</h1>
 			</div>
 			<div className='topbar-center'>
 				<SearchBar placeholder='Happy hacking...' />
@@ -26,7 +26,7 @@ export const TopBar = () => {
 					<Icon icon={<Chat />} counter='2' />
 					<Icon icon={<Notifications />} counter='1' />
 					<div className='profile-image-container'>
-						<BigHead />
+						<BigHead className="profile-image"/>
 					</div>
 				</div>
 			</div>
