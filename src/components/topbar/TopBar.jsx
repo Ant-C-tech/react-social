@@ -1,10 +1,11 @@
 import './topbar.css';
 
-import { Search, Person, Chat, Notifications } from '@material-ui/icons';
+import { Person, Chat, Notifications } from '@material-ui/icons';
 import { BigHead } from '@bigheads/core';
 
 import { Link } from '../Common/link/Link';
 import { Icon } from '../Common/icon/Icon';
+import { SearchBar } from '../Common/searchbar/SearchBar';
 
 export const TopBar = () => {
 	return (
@@ -13,10 +14,7 @@ export const TopBar = () => {
 				<span className='logo'>React Social</span>
 			</div>
 			<div className='topbar-center'>
-				<div className='search-bar'>
-					<Search />
-					<input type='text' className='search-input' placeholder='Happy hacking...' />
-				</div>
+				<SearchBar placeholder='Happy hacking...' />
 			</div>
 			<div className='topbar-right'>
 				<div className='topbar-links'>
