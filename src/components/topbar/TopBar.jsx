@@ -4,6 +4,7 @@ import { Search, Person, Chat, Notifications } from '@material-ui/icons';
 import { BigHead } from '@bigheads/core';
 
 import { Link } from '../Common/link/Link';
+import { Icon } from '../Common/icon/Icon';
 
 export const TopBar = () => {
 	return (
@@ -23,20 +24,11 @@ export const TopBar = () => {
 					<Link text='Time Line' />
 				</div>
 				<div className='topbar-icons'>
-					<div className='topbar-icon'>
-						<Person />
-						<span className='topbar-icon-badge'>1</span>
-					</div>
-					<div className='topbar-icon'>
-						<Chat />
-						<span className='topbar-icon-badge'>2</span>
-					</div>
-					<div className='topbar-icon'>
-						<Notifications />
-						<span className='topbar-icon-badge'>1</span>
-						<div className='profile-image-container'>
-							<BigHead />
-						</div>
+					<Icon icon={<Person />} counter='1' />
+					<Icon icon={<Chat />} counter='2' />
+					<Icon icon={<Notifications />} counter='1' />
+					<div className='profile-image-container'>
+						<BigHead />
 					</div>
 				</div>
 			</div>
