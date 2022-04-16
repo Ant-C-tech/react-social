@@ -3,6 +3,8 @@ import './topbar.css';
 import { Search, Person, Chat, Notifications } from '@material-ui/icons';
 import { BigHead } from '@bigheads/core';
 
+import { Link } from '../Common/link/Link';
+
 export const TopBar = () => {
 	return (
 		<div className='topbar-container'>
@@ -17,8 +19,8 @@ export const TopBar = () => {
 			</div>
 			<div className='topbar-right'>
 				<div className='topbar-links'>
-					<span className='topbar-link'>Home Page</span>
-					<span className='topbar-link'>Time Line</span>
+					<Link text='Home Page' />
+					<Link text='Time Line' />
 				</div>
 				<div className='topbar-icons'>
 					<div className='topbar-icon'>
