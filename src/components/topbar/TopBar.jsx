@@ -28,7 +28,7 @@ export const TopBar = () => {
 						href='notifications'
 						target='_blank'
 						modification='icon'
-						counter=''
+						counter='6'
 					/>
 					<div className='profile-image-container'>
 						<BigHead className='profile-image' />
