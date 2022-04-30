@@ -1,9 +1,10 @@
 {
 	"name": "socializer",
-	"homepage": "https://socializer.github.io",
+	"homepage": "https://ant-c-tech.github.io/socializer/",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"-": "^0.0.1",
 		"@bigheads/core": "^0.3.3",
 		"@material-ui/core": "^4.12.4",
 		"@material-ui/icons": "^4.11.3",
