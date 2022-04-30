@@ -1,10 +1,13 @@
 import './icon.css';
 
-export const Icon = ({ icon, counter }) => {
+export const Icon = (props) => {
+	const { content, href, target, counter } = props;
 	return (
-		<div className='topbar-icon'>
-			{icon}
-			<span className='topbar-icon-badge'>{counter}</span>
-		</div>
+		<>
+			<span className={'icon-image'} href={href} target={target}>
+				{content}
+			</span>
+			{counter ? <span span className='icon-badge'>{counter}</span> : null}
+		</>
 	);
 };

@@ -1,5 +1,12 @@
 import './link.css';
 
-export const Link = ({ text }) => {
-	return <span className='topbar-link'>{text}</span>;
+import { Icon } from '../icon/Icon';
+
+export const Link = (props) => {
+	const { content, href, target, modification } = props;
+	return (
+		<a className={`link ${modification}`} href={href} target={target}>
+			{modification === 'icon' ? <Icon { ...props } /> : content}
+		</a>
+	);
 };

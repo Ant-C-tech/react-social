@@ -1,0 +1,19 @@
+.icon {
+	margin: 0 7px;
+}
+
+.icon-image {
+	margin: 0;
+}
+
+.icon-badge {
+	padding: 0 4px;
+
+	background-color: #e0004d;
+
+	border-radius: 3px;
+
+	font-size: 16px;
+	line-height: 1;
+	color: #f3f3f3;
+}
