@@ -1,8 +1,8 @@
-import './link.css';
+import './customLink.css';
 
 import { Icon } from '../icon/Icon';
 
-export const Link = (props) => {
+export const CustomLink = (props) => {
 	const { content, href, target, modification } = props;
 	return (
 		<a className={`link ${modification}`} href={href} target={target}>
