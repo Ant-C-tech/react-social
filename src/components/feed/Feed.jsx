@@ -1,5 +1,5 @@
 import './feed.css';
 
 export const Feed = () => {
-	return <div className='feed'>Feed</div>;
+	return <section className='feed'>Feed</section>;
 };
