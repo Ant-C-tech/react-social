@@ -4,9 +4,13 @@
 
 .icon-image {
 	margin: 0;
+	vertical-align: middle;
 }
 
 .icon-badge {
+	position: relative;
+	bottom: -8px;
+
 	padding: 0 4px;
 
 	background-color: #e0004d;
