@@ -69,12 +69,12 @@
 }
 
 .profile-image-container {
-	height: 50px;
+	/* position: relative;
+	bottom: 5px; */
 
 	border-radius: 50%;
 
 	background: #f3f3f3;
-
 	-webkit-box-shadow: 4px 1px 3px 1px rgba(243, 243, 243, 0.57);
 	box-shadow: 4px 1px 3px 1px rgba(243, 243, 243, 0.57);
 }
@@ -82,5 +82,5 @@
 .profile-image {
 	display: block;
 
-	height: 50px;
+	height: 40px;
 }
