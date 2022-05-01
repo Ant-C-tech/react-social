@@ -4,16 +4,21 @@
 
 .icon-image {
 	margin: 0;
+	vertical-align: middle;
 }
 
 .icon-badge {
+	position: relative;
+	bottom: -8px;
+
 	padding: 0 4px;
 
 	background-color: #e0004d;
 
 	border-radius: 3px;
 
-	font-size: 16px;
+	font-size: 14px;
+	font-weight: bold;
 	line-height: 1;
 	color: #f3f3f3;
 }

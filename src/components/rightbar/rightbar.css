@@ -1,0 +1,11 @@
+.rightbar {
+	flex: 3;
+	height: calc(100vh - 80px);
+
+	position: relative;
+	z-index: 10;
+
+	background: #dfdfdf;
+	-webkit-box-shadow: -7px 1px 7px -4px #707070;
+	box-shadow: -7px 1px 7px -4px #707070;
+}

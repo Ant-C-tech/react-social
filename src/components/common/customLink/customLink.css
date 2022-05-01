@@ -13,6 +13,7 @@
 /* Modification */
 /* ************************** */
 .topbar-link {
+	font-weight: bold;
 	text-transform: uppercase;
 }
 
@@ -44,17 +45,21 @@
 	width: 80%;
 }
 /* ************************** */
-.icon:after {
+.icon:after,
+.profile-image-container:after {
 	width: 1px;
 	height: 0;
 	bottom: 50%;
-	left: -2px;
+	left: -4px;
 	transform: translate(50%, 50%);
 }
 
 .icon:hover:after,
 .icon:focus:after,
-.icon:active:after {
+.icon:active:after,
+.profile-image-container:hover:after,
+.profile-image-container:focus:after,
+.profile-image-container:active:after {
 	height: 100%;
 }
 /* ************************** */
