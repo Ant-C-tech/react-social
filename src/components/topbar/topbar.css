@@ -1,5 +1,4 @@
-.topbar-container {
-	display: flex;
+.topbar {
 	align-items: center;
 
 	position: -webkit-sticky;

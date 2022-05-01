@@ -8,7 +8,7 @@ import { SearchBar } from '../common/searchbar/SearchBar';
 
 export const TopBar = () => {
 	return (
-		<div className='topbar-container'>
+		<header className='topbar container-flex'>
 			<div className='topbar-left'>
 				<CustomLink content='SocialiZeR' href='homePage' target='_self' modification='logo' />
 			</div>
@@ -31,11 +31,8 @@ export const TopBar = () => {
 						counter='6'
 					/>
 					<CustomLink content={<BigHead className='profile-image' />} href='profile' target='_self' modification='profile-image-container' />
-					{/* <div className='profile-image-container'>
-						<BigHead className='profile-image' />
-					</div> */}
 				</div>
 			</div>
-		</div>
+		</header>
 	);
 };
