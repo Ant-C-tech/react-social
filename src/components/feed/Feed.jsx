@@ -1,11 +1,11 @@
 import './feed.css';
 
-import { Share } from './share/Share';
+import { Post } from './share/Post';
 
 export const Feed = () => {
 	return (
 		<section className='feed'>
-			<Share />
+			<Post />
 		</section>
 	);
 };

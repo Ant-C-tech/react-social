@@ -25,7 +25,7 @@ export const TopBar = () => {
 			<div className='topbar-right'>
 				<div className='topbar-links'>
 					{topBarLinks.map((link, index) => (
-						<CustomLink content={link.text} href={link.path} target='_self' modification='topbar-link' />
+						<CustomLink key={index} content={link.text} href={link.path} target='_self' modification='topbar-link' />
 					))}
 				</div>
 				<div className='topbar-icons'>
@@ -33,6 +33,7 @@ export const TopBar = () => {
 						const Icon = iconLink['icon'];
 						return (
 							<CustomLink
+								key={index}
 								content={<Icon />}
 								href={iconLink.path}
 								target='_self'

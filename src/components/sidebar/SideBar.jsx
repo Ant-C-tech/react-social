@@ -12,7 +12,7 @@ import {
 	School,
 } from '@material-ui/icons';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Button from '@mui/material/Button';
+import { Button } from '@mui/material';
 import { BigHead } from '@bigheads/core';
 
 import { CustomLink } from '../common/customLink/CustomLink';
