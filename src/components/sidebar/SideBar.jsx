@@ -13,7 +13,6 @@ import {
 } from '@material-ui/icons';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
-
 import { BigHead } from '@bigheads/core';
 
 import { CustomLink } from '../common/customLink/CustomLink';
@@ -27,7 +26,7 @@ const theme = createTheme({
 	},
 });
 
-const navItems = [
+const sideBarNavItems = [
 	{ icon: RssFeed, path: 'feed', text: 'Feed' },
 	{ icon: Chat, path: 'chat', text: 'Chats' },
 	{ icon: VideoLibrary, path: 'videos', text: 'Videos' },
@@ -39,6 +38,7 @@ const navItems = [
 	{ icon: School, path: 'courses', text: 'Courses' },
 ];
 
+// Mock data for friends list
 const rug = require('random-username-generator');
 rug.setSeperator(' ');
 
@@ -57,12 +57,13 @@ const friends = [];
 for (let index = 0; index < friendsCounter; index++) {
 	friends.push(getRandomNameToUpper());
 }
+// End of Mock data for friends list
 
 export const SideBar = () => {
 	return (
 		<nav className='sidebar'>
 			<ul className='sidebar-nav'>
-				{navItems.map((navItem, index) => {
+				{sideBarNavItems.map((navItem, index) => {
 					const Icon = navItem['icon'];
 					return (
 						<li key={index} className='sidebar-nav-item'>

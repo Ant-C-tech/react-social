@@ -6,6 +6,13 @@ import { BigHead } from '@bigheads/core';
 import { CustomLink } from '../common/customLink/CustomLink';
 import { SearchBar } from '../common/searchbar/SearchBar';
 
+const topBarLinks = [ { text: 'Home Page', path: 'homePage' }, { text: 'Time Line', path: 'timeLine' } ];
+const topBarIconLinks = [
+	{ icon: Person, path: 'person', messageCounter: '1' },
+	{ icon: Chat, path: 'chat', messageCounter: '2' },
+	{ icon: Notifications, path: 'notifications', messageCounter: '6' },
+];
+
 export const TopBar = () => {
 	return (
 		<header className='topbar container-flex'>
@@ -17,20 +24,29 @@ export const TopBar = () => {
 			</div>
 			<div className='topbar-right'>
 				<div className='topbar-links'>
-					<CustomLink content='Home Page' href='homePage' target='_self' modification='topbar-link' />
-					<CustomLink content='Time Line' href='timeLine' target='_self' modification='topbar-link' />
+					{topBarLinks.map((link, index) => (
+						<CustomLink content={link.text} href={link.path} target='_self' modification='topbar-link' />
+					))}
 				</div>
 				<div className='topbar-icons'>
-					<CustomLink content={<Person />} href='person' target='_self' modification='icon' counter='1' />
-					<CustomLink content={<Chat />} href='chat' target='_self' modification='icon' counter='2' />
+					{topBarIconLinks.map((iconLink, index) => {
+						const Icon = iconLink['icon'];
+						return (
+							<CustomLink
+								content={<Icon />}
+								href={iconLink.path}
+								target='_self'
+								modification='icon'
+								counter={iconLink.messageCounter}
+							/>
+						);
+					})}
 					<CustomLink
-						content={<Notifications />}
-						href='notifications'
+						content={<BigHead className='profile-image' />}
+						href='profile'
 						target='_self'
-						modification='icon'
-						counter='6'
+						modification='profile-image-container'
 					/>
-					<CustomLink content={<BigHead className='profile-image' />} href='profile' target='_self' modification='profile-image-container' />
 				</div>
 			</div>
 		</header>
