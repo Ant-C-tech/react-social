@@ -52,7 +52,7 @@ const getRandomNameToUpper = () => {
 		.join(' ');
 };
 
-const friendsCounter = 4;
+const friendsCounter = 8;
 const friends = [];
 for (let index = 0; index < friendsCounter; index++) {
 	friends.push(getRandomNameToUpper());
