@@ -10,6 +10,13 @@
 	transition: width ease-in-out .3s, height ease-in-out .3s;
 }
 
+.link-add-text {
+	margin-left: 15px;
+
+	line-height: 1;
+	vertical-align: middle;
+}
+
 /* Modification */
 /* ************************** */
 .topbar-link {

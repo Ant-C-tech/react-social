@@ -13,25 +13,18 @@
 }
 
 .sidebar hr {
-  margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 
-.sidebar-list {
+.sidebar-nav {
 	list-style: none;
 
-  margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 
-.sidebar-list-item {
-	display:flex;
-  align-items:center;
+.sidebar-nav-item {
+	display: flex;
+	align-items: center;
 
-  margin-bottom: 10px;
-}
-
-.sidebar-list-item-text{
-  margin-left: 15px;
-
-  line-height: 1;
-  vertical-align: middle;
+	margin-bottom: 10px;
 }

@@ -28,14 +28,14 @@ const theme = createTheme({
 export const SideBar = () => {
 	return (
 		<nav className='sidebar'>
-			<ul className='sidebar-list'>
-				<li className='sidebar-list-item'>
+			<ul className='sidebar-nav'>
+				<li className='sidebar-nav-item'>
 					<CustomLink content={<RssFeed />} href='feed' target='_self' modification='icon' text='Feed' />
 				</li>
-				<li className='sidebar-list-item'>
+				<li className='sidebar-nav-item'>
 					<CustomLink content={<Chat />} href='chat' target='_self' modification='icon' text='Chats' />
 				</li>
-				<li className='sidebar-list-item'>
+				<li className='sidebar-nav-item'>
 					<CustomLink
 						content={<VideoLibrary />}
 						href='videos'
@@ -44,10 +44,10 @@ export const SideBar = () => {
 						text='Videos'
 					/>
 				</li>
-				<li className='sidebar-list-item'>
+				<li className='sidebar-nav-item'>
 					<CustomLink content={<Group />} href='groups' target='_self' modification='icon' text='Groups' />
 				</li>
-				<li className='sidebar-list-item'>
+				<li className='sidebar-nav-item'>
 					<CustomLink
 						content={<Bookmark />}
 						href='bookmarks'
@@ -56,7 +56,7 @@ export const SideBar = () => {
 						text='Bookmarks'
 					/>
 				</li>
-				<li className='sidebar-list-item'>
+				<li className='sidebar-nav-item'>
 					<CustomLink
 						content={<HelpOutline />}
 						href='questions'
@@ -65,7 +65,7 @@ export const SideBar = () => {
 						text='Questions'
 					/>
 				</li>
-				<li className='sidebar-list-item'>
+				<li className='sidebar-nav-item'>
 					<CustomLink
 						content={<WorkOutline />}
 						href='bookmarks'
@@ -74,10 +74,10 @@ export const SideBar = () => {
 						text='Jobs'
 					/>
 				</li>
-				<li className='sidebar-list-item'>
+				<li className='sidebar-nav-item'>
 					<CustomLink content={<Event />} href='events' target='_self' modification='icon' text='Events' />
 				</li>
-				<li className='sidebar-list-item'>
+				<li className='sidebar-nav-item'>
 					<CustomLink content={<School />} href='courses' target='_self' modification='icon' text='Courses' />
 				</li>
 			</ul>

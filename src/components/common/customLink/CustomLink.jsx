@@ -7,7 +7,7 @@ export const CustomLink = (props) => {
 	return (
 		<a className={`link ${modification}`} href={href} target={target}>
 			{modification === 'icon' ? <Icon {...props} /> : content}
-			{text && <span className='sidebar-list-item-text'>{text}</span>}
+			{text && <span className='link-add-text'>{text}</span>}
 		</a>
 	);
 };
