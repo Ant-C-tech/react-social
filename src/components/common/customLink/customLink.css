@@ -10,6 +10,13 @@
 	transition: width ease-in-out .3s, height ease-in-out .3s;
 }
 
+.link-add-text {
+	margin-left: 15px;
+
+	line-height: 1;
+	vertical-align: middle;
+}
+
 /* Modification */
 /* ************************** */
 .topbar-link {
@@ -46,7 +53,8 @@
 }
 /* ************************** */
 .icon:after,
-.profile-image-container:after {
+.profile-image-container:after,
+.sidebar-friend-image-container:after {
 	width: 1px;
 	height: 0;
 	bottom: 50%;
@@ -59,7 +67,10 @@
 .icon:active:after,
 .profile-image-container:hover:after,
 .profile-image-container:focus:after,
-.profile-image-container:active:after {
+.profile-image-container:active:after,
+.sidebar-friend-image-container:hover:after,
+.sidebar-friend-image-container:focus:after,
+.sidebar-friend-image-container:active:after  {
 	height: 100%;
 }
 /* ************************** */

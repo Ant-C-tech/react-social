@@ -8,30 +8,71 @@
 	z-index: 10;
 
 	background: #dfdfdf;
-	-webkit-box-shadow: 7px 1px 7px -4px #707070;
 	box-shadow: 7px 1px 7px -4px #707070;
+
+	overflow-y: auto;
+
+	color: rgba(0, 0, 0, 0);
+	-webkit-text-fill-color: black;
+	transition: color .3s ease;
+}
+
+.sidebar:hover {
+	color: rgba(0, 0, 0, 0.3);
+}
+
+.sidebar::-webkit-scrollbar,
+.sidebar::-webkit-scrollbar-thumb {
+	width: 26px;
+	border-radius: 13px;
+	background-clip: padding-box;
+	border: 10px solid transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+	box-shadow: inset 0 0 0 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+	border: 7px solid transparent;
 }
 
 .sidebar hr {
-  margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 
-.sidebar-list {
+.sidebar-nav {
 	list-style: none;
 
-  margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 
-.sidebar-list-item {
-	display:flex;
-  align-items:center;
+.sidebar-nav-item {
+	display: flex;
+	align-items: center;
 
-  margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
-.sidebar-list-item-text{
-  margin-left: 15px;
+.sidebar-friend {
+	display: flex;
+	align-items: center;
+}
 
-  line-height: 1;
-  vertical-align: middle;
+.sidebar-friend-image-container {
+	display: flex;
+	align-items: center;
+
+	margin-bottom: 15px;
+}
+
+.sidebar-friend-image {
+	display: block;
+
+	height: 40px;
+
+	border-radius: 50%;
+
+	background: #f3f3f3;
+	box-shadow: 4px 1px 3px 1px rgba(243, 243, 243, 0.57);
 }
