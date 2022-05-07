@@ -14,7 +14,12 @@ import {
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Button from '@mui/material/Button';
 
+import { BigHead } from '@bigheads/core';
+
 import { CustomLink } from '../common/customLink/CustomLink';
+
+const rug = require('random-username-generator');
+rug.setSeperator(' ');
 
 const theme = createTheme({
 	palette: {
@@ -26,6 +31,16 @@ const theme = createTheme({
 });
 
 export const SideBar = () => {
+	const getRandomNameToUpper = () => {
+		const randomName = rug.generate();
+		return randomName
+			.split(' ')
+			.map((word) => {
+				return `${word[0].toUpperCase()}${word.slice(1)}`;
+			})
+			.join(' ');
+	};
+
 	return (
 		<nav className='sidebar'>
 			<ul className='sidebar-nav'>
@@ -97,6 +112,17 @@ export const SideBar = () => {
 					Show More
 				</Button>
 			</ThemeProvider>
+			<ul className='sidebar-friends'>
+				<li className='sidebar-friend'>
+					<CustomLink
+						content={<BigHead className='sidebar-friend-image' />}
+						href='friend-page'
+						target='_self'
+						modification='sidebar-friend-image-container'
+						text={getRandomNameToUpper()}
+					/>
+				</li>
+			</ul>
 		</nav>
 	);
 };

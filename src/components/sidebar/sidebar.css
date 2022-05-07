@@ -28,3 +28,25 @@
 
 	margin-bottom: 10px;
 }
+
+.sidebar-friend {
+	display: flex;
+	align-items: center;
+}
+
+.sidebar-friend-image-container {
+	display: flex;
+	align-items: center;
+}
+
+.sidebar-friend-image {
+	display: block;
+
+	height: 40px;
+
+	border-radius: 50%;
+
+	background: #f3f3f3;
+	-webkit-box-shadow: 4px 1px 3px 1px rgba(243, 243, 243, 0.57);
+	box-shadow: 4px 1px 3px 1px rgba(243, 243, 243, 0.57);
+}
