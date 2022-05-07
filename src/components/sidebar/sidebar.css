@@ -37,6 +37,8 @@
 .sidebar-friend-image-container {
 	display: flex;
 	align-items: center;
+
+	margin-bottom: 15px;
 }
 
 .sidebar-friend-image {

@@ -18,9 +18,6 @@ import { BigHead } from '@bigheads/core';
 
 import { CustomLink } from '../common/customLink/CustomLink';
 
-const rug = require('random-username-generator');
-rug.setSeperator(' ');
-
 const theme = createTheme({
 	palette: {
 		neutral: {
@@ -30,71 +27,55 @@ const theme = createTheme({
 	},
 });
 
-export const SideBar = () => {
-	const getRandomNameToUpper = () => {
-		const randomName = rug.generate();
-		return randomName
-			.split(' ')
-			.map((word) => {
-				return `${word[0].toUpperCase()}${word.slice(1)}`;
-			})
-			.join(' ');
-	};
+const navItems = [
+	{ icon: RssFeed, path: 'feed', text: 'Feed' },
+	{ icon: Chat, path: 'chat', text: 'Chats' },
+	{ icon: VideoLibrary, path: 'videos', text: 'Videos' },
+	{ icon: Group, path: 'groups', text: 'Groups' },
+	{ icon: Bookmark, path: 'bookmarks', text: 'Bookmarks' },
+	{ icon: HelpOutline, path: 'questions', text: 'Questions' },
+	{ icon: WorkOutline, path: 'jobs', text: 'Jobs' },
+	{ icon: Event, path: 'events', text: 'Events' },
+	{ icon: School, path: 'courses', text: 'Courses' },
+];
 
+const rug = require('random-username-generator');
+rug.setSeperator(' ');
+
+const getRandomNameToUpper = () => {
+	const randomName = rug.generate();
+	return randomName
+		.split(' ')
+		.map((word) => {
+			return `${word[0].toUpperCase()}${word.slice(1)}`;
+		})
+		.join(' ');
+};
+
+const friendsCounter = 4;
+const friends = [];
+for (let index = 0; index < friendsCounter; index++) {
+	friends.push(getRandomNameToUpper());
+}
+
+export const SideBar = () => {
 	return (
 		<nav className='sidebar'>
 			<ul className='sidebar-nav'>
-				<li className='sidebar-nav-item'>
-					<CustomLink content={<RssFeed />} href='feed' target='_self' modification='icon' text='Feed' />
-				</li>
-				<li className='sidebar-nav-item'>
-					<CustomLink content={<Chat />} href='chat' target='_self' modification='icon' text='Chats' />
-				</li>
-				<li className='sidebar-nav-item'>
-					<CustomLink
-						content={<VideoLibrary />}
-						href='videos'
-						target='_self'
-						modification='icon'
-						text='Videos'
-					/>
-				</li>
-				<li className='sidebar-nav-item'>
-					<CustomLink content={<Group />} href='groups' target='_self' modification='icon' text='Groups' />
-				</li>
-				<li className='sidebar-nav-item'>
-					<CustomLink
-						content={<Bookmark />}
-						href='bookmarks'
-						target='_self'
-						modification='icon'
-						text='Bookmarks'
-					/>
-				</li>
-				<li className='sidebar-nav-item'>
-					<CustomLink
-						content={<HelpOutline />}
-						href='questions'
-						target='_self'
-						modification='icon'
-						text='Questions'
-					/>
-				</li>
-				<li className='sidebar-nav-item'>
-					<CustomLink
-						content={<WorkOutline />}
-						href='bookmarks'
-						target='_self'
-						modification='icon'
-						text='Jobs'
-					/>
-				</li>
-				<li className='sidebar-nav-item'>
-					<CustomLink content={<Event />} href='events' target='_self' modification='icon' text='Events' />
-				</li>
-				<li className='sidebar-nav-item'>
-					<CustomLink content={<School />} href='courses' target='_self' modification='icon' text='Courses' />
-				</li>
+				{navItems.map((navItem, index) => {
+					const Icon = navItem['icon'];
+					return (
+						<li key={index} className='sidebar-nav-item'>
+							<CustomLink
+								content={<Icon />}
+								href={navItem.path}
+								target='_self'
+								modification='icon'
+								text={navItem.text}
+							/>
+						</li>
+					);
+				})}
 			</ul>
 			<hr />
 			<ThemeProvider theme={theme}>
@@ -105,7 +86,7 @@ export const SideBar = () => {
 						fontFamily: 'inherit',
 						fontSize: '14px',
 						fontWeight: 'bold',
-						margin: '0 auto',
+						margin: '0 auto 30px',
 						display: 'block',
 					}}
 				>
@@ -113,15 +94,17 @@ export const SideBar = () => {
 				</Button>
 			</ThemeProvider>
 			<ul className='sidebar-friends'>
-				<li className='sidebar-friend'>
-					<CustomLink
-						content={<BigHead className='sidebar-friend-image' />}
-						href='friend-page'
-						target='_self'
-						modification='sidebar-friend-image-container'
-						text={getRandomNameToUpper()}
-					/>
-				</li>
+				{friends.map((friend, index) => (
+					<li key={index} className='sidebar-friend'>
+						<CustomLink
+							content={<BigHead className='sidebar-friend-image' />}
+							href='friend-page'
+							target='_self'
+							modification='sidebar-friend-image-container'
+							text={friend}
+						/>
+					</li>
+				))}
 			</ul>
 		</nav>
 	);
