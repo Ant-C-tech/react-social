@@ -5,16 +5,16 @@
 	position: sticky;
 	top: 0;
 
-	height: 80px;
+	height: fit-content;
 	width: 100%;
 
 	background-color: #3f3f3f;
 }
 
 .topbar-left {
-	flex: 2;
+	width: calc(25% - 20px);
 
-	margin: 0 10px;
+	margin: 10px;
 }
 
 .logo {
@@ -37,13 +37,13 @@
 }
 
 .topbar-center {
-	flex: 5;
+	width: calc(30% - 20px);
 
-	margin: 0 10px;
+	margin: 10px;
 }
 
 .topbar-right {
-	flex: 5;
+	width: calc(45% - 20px);
 
 	display: flex;
 	align-items: center;
@@ -51,7 +51,7 @@
 
 	height: 50px;
 
-	margin: 0 10px;
+	margin: 10px;
 
 	border-radius: 25px;
 
@@ -79,4 +79,47 @@
 	display: block;
 
 	height: 40px;
+}
+
+@media screen and (max-width: 1200px) {
+	.topbar-center {
+		width: calc(30% - 20px);
+	}
+
+	.topbar-right {
+		width: calc(50% - 20px);
+	}
+}
+
+@media screen and (max-width: 1000px) {
+	.topbar {
+		flex-wrap: wrap;
+	}
+
+	.topbar-left {
+		width: 100%;
+	}
+
+	.topbar-center {
+		width: calc(30% - 20px);
+	}
+
+	.topbar-right {
+		width: calc(70% - 20px);
+	}
+}
+
+@media screen and (max-width: 720px) {
+	.topbar-center,
+	.topbar-right {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 500px) {
+	.topbar-right {
+		flex-wrap: wrap;
+		height: 70px;
+		border-radius: 35px;
+	}
 }
