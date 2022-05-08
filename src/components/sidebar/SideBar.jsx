@@ -1,15 +1,15 @@
 import './sidebar.css';
 
 import {
-	RssFeed,
+	Announcement,
 	Chat,
 	VideoLibrary,
-	Group,
+	Notes,
 	Bookmark,
-	HelpOutline,
 	WorkOutline,
 	Event,
 	School,
+	Translate
 } from '@material-ui/icons';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Button } from '@mui/material';
@@ -27,14 +27,14 @@ const theme = createTheme({
 });
 
 const sideBarNavItems = [
-	{ icon: RssFeed, path: 'feed', text: 'Feed' },
+	{ icon: Announcement, path: 'news', text: 'News' },
 	{ icon: Chat, path: 'chat', text: 'Chats' },
-	{ icon: VideoLibrary, path: 'videos', text: 'Videos' },
-	{ icon: Group, path: 'groups', text: 'Groups' },
-	{ icon: Bookmark, path: 'bookmarks', text: 'Bookmarks' },
-	{ icon: HelpOutline, path: 'questions', text: 'Questions' },
-	{ icon: WorkOutline, path: 'jobs', text: 'Jobs' },
 	{ icon: Event, path: 'events', text: 'Events' },
+	{ icon: Notes, path: 'notes', text: 'Notes' },
+	{ icon: Bookmark, path: 'bookmarks', text: 'Bookmarks' },
+	{ icon: Translate, path: 'translation', text: 'Translation' },
+	{ icon: VideoLibrary, path: 'videos', text: 'Videos' },
+	{ icon: WorkOutline, path: 'jobs', text: 'Jobs' },
 	{ icon: School, path: 'courses', text: 'Courses' },
 ];
 

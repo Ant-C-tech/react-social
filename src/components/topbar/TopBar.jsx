@@ -17,7 +17,7 @@ export const TopBar = () => {
 	return (
 		<header className='topbar container-flex'>
 			<div className='topbar-left'>
-				<CustomLink content='SocialiZeR' href='homePage' target='_self' modification='logo' />
+				<CustomLink content='OrganiZeR' href='homePage' target='_self' modification='logo' />
 			</div>
 			<div className='topbar-center'>
 				<SearchBar placeholder='Happy hacking...' />
