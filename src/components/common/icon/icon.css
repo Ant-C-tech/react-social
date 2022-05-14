@@ -8,10 +8,12 @@
 }
 
 .icon-badge {
+	display: inline-block;
 	position: relative;
 	bottom: -8px;
 
-	padding: 0 4px;
+	padding: 5px 5px 3px;
+	min-width: 18px;
 
 	background-color: #e0004d;
 
@@ -21,4 +23,5 @@
 	font-weight: bold;
 	line-height: 1;
 	color: #f3f3f3;
+	text-align: center;
 }

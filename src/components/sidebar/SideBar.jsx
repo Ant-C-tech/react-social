@@ -9,33 +9,28 @@ import {
 	WorkOutline,
 	Event,
 	School,
-	Translate
+	Translate,
+	FormatListNumbered,
+	MusicNote
 } from '@material-ui/icons';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Button } from '@mui/material';
+
 import { BigHead } from '@bigheads/core';
 
 import { CustomLink } from '../common/customLink/CustomLink';
-
-const theme = createTheme({
-	palette: {
-		neutral: {
-			main: '#3f3f3f',
-			contrastText: '#f3f3f3',
-		},
-	},
-});
+import { Button } from '../common/button/Button';
 
 const sideBarNavItems = [
-	{ icon: Announcement, path: 'news', text: 'News' },
-	{ icon: Chat, path: 'chat', text: 'Chats' },
-	{ icon: Event, path: 'events', text: 'Events' },
-	{ icon: Notes, path: 'notes', text: 'Notes' },
-	{ icon: Bookmark, path: 'bookmarks', text: 'Bookmarks' },
-	{ icon: Translate, path: 'translation', text: 'Translation' },
-	{ icon: VideoLibrary, path: 'videos', text: 'Videos' },
-	{ icon: WorkOutline, path: 'jobs', text: 'Jobs' },
-	{ icon: School, path: 'courses', text: 'Courses' },
+	{ icon: Announcement, path: 'news', text: 'My News' },
+	{ icon: FormatListNumbered, path: 'todos', text: 'My ToDo' },
+	{ icon: Notes, path: 'notes', text: 'My Notes' },
+	{ icon: Event, path: 'events', text: 'My Events' },
+	{ icon: Translate, path: 'translation', text: 'My Translation' },
+	{ icon: Bookmark, path: 'bookmarks', text: 'My Bookmarks' },
+	{ icon: VideoLibrary, path: 'videos', text: 'My Videos' },
+	{ icon: MusicNote, path: 'music', text: 'My Music' },
+	{ icon: WorkOutline, path: 'jobs', text: 'My Jobs' },
+	{ icon: School, path: 'courses', text: 'My Courses' },
+	{ icon: Chat, path: 'chat', text: 'My Chats' },
 ];
 
 // Mock data for friends list
@@ -79,21 +74,7 @@ export const SideBar = () => {
 				})}
 			</ul>
 			<hr />
-			<ThemeProvider theme={theme}>
-				<Button
-					variant='outlined'
-					color='neutral'
-					style={{
-						fontFamily: 'inherit',
-						fontSize: '14px',
-						fontWeight: 'bold',
-						margin: '0 auto 30px',
-						display: 'block',
-					}}
-				>
-					Show More
-				</Button>
-			</ThemeProvider>
+			<Button text='Show More'/>
 			<ul className='sidebar-friends'>
 				{friends.map((friend, index) => (
 					<li key={index} className='sidebar-friend'>

@@ -48,6 +48,8 @@
 
 .logo:before {
 	content: "";
+	position: relative;
+	top: -2px;
 	width: 30px;
 	height: 30px;
 	margin-right: 15px;
