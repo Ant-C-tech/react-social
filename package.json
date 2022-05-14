@@ -1,6 +1,6 @@
 {
-	"name": "socializer",
-	"homepage": "https://ant-c-tech.github.io/socializer/",
+	"name": "organizer",
+	"homepage": "https://ant-c-tech.github.io/organizer/",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
