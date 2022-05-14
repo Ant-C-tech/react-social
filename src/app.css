@@ -7,13 +7,14 @@
 }
 
 body {
-	font-family: 'Noto Serif', serif;
+	font-family: 'Koulen', cursive;
 	font-size: 16px;
 	color: #3f3f3f;
 }
 
 a,
-a:visited {
+a:visited,
+a:active {
 	text-decoration: none;
 	color: #3f3f3f;
 }
