@@ -6,7 +6,7 @@ import { BigHead } from '@bigheads/core';
 import { CustomLink } from '../../../components/common/customLink/CustomLink';
 import { SearchBar } from '../../../components/common/searchbar/SearchBar';
 
-const topBarLinks = [ { text: 'Home Page', path: 'homePage' }, { text: 'Time Line', path: 'timeLine' } ];
+const topBarLinks = [{ text: 'Home Page', path: 'homePage' }, { text: 'Time Line', path: 'timeLine' }];
 const topBarIconLinks = [
 	{ icon: Person, path: 'person', messageCounter: '1' },
 	{ icon: Chat, path: 'chat', messageCounter: '2' },
@@ -20,12 +20,9 @@ export const TopBar = () => {
 				<CustomLink content='OrganiZeR' href='homePage' target='_self' modification='logo' active='' />
 			</div>
 			<div className='topbar-center'>
-				<SearchBar placeholder='Happy hacking...' />
-			</div>
-			<div className='topbar-right'>
 				<div className='topbar-links'>
 					{topBarLinks.map((link, index) => (
-						<CustomLink key={index} content={link.text} href={link.path} target='_self' modification='topbar-link' active=''/>
+						<CustomLink key={index} content={link.text} href={link.path} target='_self' modification='topbar-link' active='' />
 					))}
 				</div>
 				<div className='topbar-icons'>
@@ -50,6 +47,9 @@ export const TopBar = () => {
 						modification='profile-image-container'
 					/>
 				</div>
+			</div>
+			<div className='topbar-right'>
+				<SearchBar placeholder='Happy hacking...' />
 			</div>
 		</header>
 	);
