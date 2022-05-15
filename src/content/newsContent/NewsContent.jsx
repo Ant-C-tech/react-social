@@ -1,29 +1,48 @@
 import './newsContent.css';
 
-import { News } from './news/News';
+import { useState, useEffect } from 'react'
+import Axios from 'axios'
 
-// Mock news content
-const newsItems = [
-	{ title: "My First News", image: 'https://picsum.photos/200/400', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' },
-	{ title: "My Second News", image: 'https://picsum.photos/400/300', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' },
-	{ title: "My Third News", image: 'https://picsum.photos/600/400', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' }, { title: "My Fourth News", image: 'https://picsum.photos/550/200', text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' }
-];
-// End of Mock news content
+import { News } from './news/News';
+import { ApiKeyInput } from '../../components/common/apiKeyInput/ApiKeyInput';
 
 export const NewsContent = () => {
+	const [apiKey, setApiKey] = useState('')
+	const [news, setNews] = useState([])
+
+	useEffect(() => {
+		const getNews = async () => {
+			const news = await Axios.get(`https://newsdata.io/api/1/news?apikey=${apiKey}`)
+			setNews(news.data.results)
+		}
+
+		if (apiKey.length > 0 && news.length === 0) {
+			getNews()
+		}
+	}, [apiKey, news]);
+
+	useEffect(() => {
+		if (news.length > 0) {
+			console.log(news);
+		}
+	}, [news]);
+
 	return (
 		<section className='news-content'>
-			{newsItems.length > 0 && <ul className='news-list'>
-				{newsItems.map((news, index) => (
+			{news.length > 0 ? <ul className='news-list'>
+				{news.map((news, index) => (
 					<li key={index} className='news-list-item'>
 						<News
+							category={news.category}
+							countries={news.country}
 							title={news.title}
-							image={news.image}
-							text={news.text}
+							image={news.image_url}
+							text={news.description}
+							pubDate={news.pubDate}
 						/>
 					</li>
 				))}
-			</ul>
+			</ul> : <ApiKeyInput APIkeyFor='news' apiKey={apiKey} setApiKey={setApiKey} />
 			}
 		</section>
 	);
