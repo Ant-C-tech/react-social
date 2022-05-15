@@ -1,9 +1,10 @@
 import './app.css';
 
-import { Home } from './pages/home/Home';
+import { Page } from './pages/Page/Page';
+import { NewsContent } from './content/newsContent/NewsContent';
 
 function App() {
-	return <Home />;
+	return <Page content={<NewsContent />} />;
 }
 
 export default App;

@@ -71,6 +71,7 @@
 	height: 40px;
 
 	border-radius: 50%;
+	border: 1px solid #707070;
 
 	background: #f3f3f3;
 	box-shadow: 4px 1px 3px 1px rgba(243, 243, 243, 0.57);

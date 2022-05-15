@@ -1,0 +1,13 @@
+main {
+	overflow-y: hidden;
+}
+
+.content-container {
+	flex: 6;
+	height: calc(100vh - 80px);
+
+	padding: 15px 30px ;
+
+	font-family: 'Rubik', sans-serif;
+	background: #F7F7F7;
+}
