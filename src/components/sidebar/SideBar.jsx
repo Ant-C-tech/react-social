@@ -16,8 +16,8 @@ import {
 
 import { BigHead } from '@bigheads/core';
 
-import { CustomLink } from '../../../components/common/customLink/CustomLink';
-import { Button } from '../../../components/common/button/Button';
+import { CustomLink } from '../common/customLink/CustomLink';
+import { Button } from '../common/button/Button';
 
 const sideBarNavItems = [
 	{ icon: Announcement, path: 'news', text: 'My News' },
@@ -47,7 +47,7 @@ const getRandomNameToUpper = () => {
 		.join(' ');
 };
 
-const friendsCounter = 7;
+const friendsCounter = 8;
 const friends = [];
 for (let index = 0; index < friendsCounter; index++) {
 	friends.push(getRandomNameToUpper());
@@ -68,15 +68,14 @@ export const SideBar = () => {
 								target='_self'
 								modification='icon'
 								text={navItem.text}
-								active={index === 0 ? 'active' : ''}
 							/>
 						</li>
 					);
 				})}
 			</ul>
 			<hr />
-			<Button text='Show More' />
-			{friends.length > 0 && <ul className='sidebar-friends'>
+			<Button text='Show More'/>
+			<ul className='sidebar-friends'>
 				{friends.map((friend, index) => (
 					<li key={index} className='sidebar-friend'>
 						<CustomLink
@@ -85,12 +84,10 @@ export const SideBar = () => {
 							target='_self'
 							modification='sidebar-friend-image-container'
 							text={friend}
-							active=''
 						/>
 					</li>
 				))}
 			</ul>
-			}
 		</nav>
 	);
 };

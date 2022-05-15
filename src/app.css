@@ -10,7 +10,6 @@ body {
 	font-family: 'Koulen', cursive;
 	font-size: 16px;
 	color: #3f3f3f;
-	overflow-y: hidden;
 }
 
 a,
@@ -22,21 +21,5 @@ a:active {
 
 .container-flex {
 	display: flex;
-	justify-content: space-between;
-}
-
-*::-webkit-scrollbar,
-*::-webkit-scrollbar-thumb {
-	width: 26px;
-	border-radius: 13px;
-	background-clip: padding-box;
-	border: 10px solid transparent;
-}
-
-*::-webkit-scrollbar-thumb {
-	box-shadow: inset 0 0 0 10px;
-}
-
-*::-webkit-scrollbar-thumb:hover {
-	border: 7px solid transparent;
+	justify-content: space-around;
 }

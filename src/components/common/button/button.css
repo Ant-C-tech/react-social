@@ -5,18 +5,16 @@
 	padding: 2px 16px 0;
 
 	font-family: 'Koulen', cursive;
-	color: #707070;
+	color: #3f3f3f;
 
 	background: #f3f3f3;
 	border: 1px solid;
-	border-color: #707070;
+	border-color: #3f3f3f;
 
 	transition: color ease-in-out 0.3s, border-color ease-in-out 0.3s;
 }
 
-.button:hover, .button:focus {
+.button:hover {
 	color: #e0004d;
 	border-color: #e0004d;
-
-	outline: none;
 }
