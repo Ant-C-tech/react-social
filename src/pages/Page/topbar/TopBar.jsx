@@ -3,10 +3,10 @@ import './topbar.css';
 import { Person, Chat, Notifications } from '@material-ui/icons';
 import { BigHead } from '@bigheads/core';
 
-import { CustomLink } from '../common/customLink/CustomLink';
-import { SearchBar } from '../common/searchbar/SearchBar';
+import { CustomLink } from '../../../components/common/customLink/CustomLink';
+import { SearchBar } from '../../../components/common/searchbar/SearchBar';
 
-const topBarLinks = [ { text: 'Home Page', path: 'homePage' }, { text: 'Time Line', path: 'timeLine' } ];
+const topBarLinks = [{ text: 'Home Page', path: 'homePage' }, { text: 'Time Line', path: 'timeLine' }];
 const topBarIconLinks = [
 	{ icon: Person, path: 'person', messageCounter: '1' },
 	{ icon: Chat, path: 'chat', messageCounter: '2' },
@@ -17,15 +17,12 @@ export const TopBar = () => {
 	return (
 		<header className='topbar container-flex'>
 			<div className='topbar-left'>
-				<CustomLink content='OrganiZeR' href='homePage' target='_self' modification='logo' />
+				<CustomLink content='OrganiZeR' href='homePage' target='_self' modification='logo' active='' />
 			</div>
 			<div className='topbar-center'>
-				<SearchBar placeholder='Happy hacking...' />
-			</div>
-			<div className='topbar-right'>
 				<div className='topbar-links'>
 					{topBarLinks.map((link, index) => (
-						<CustomLink key={index} content={link.text} href={link.path} target='_self' modification='topbar-link' />
+						<CustomLink key={index} content={link.text} href={link.path} target='_self' modification='topbar-link' active='' />
 					))}
 				</div>
 				<div className='topbar-icons'>
@@ -39,6 +36,7 @@ export const TopBar = () => {
 								target='_self'
 								modification='icon'
 								counter={iconLink.messageCounter}
+								active=''
 							/>
 						);
 					})}
@@ -49,6 +47,9 @@ export const TopBar = () => {
 						modification='profile-image-container'
 					/>
 				</div>
+			</div>
+			<div className='topbar-right'>
+				<SearchBar placeholder='Happy hacking...' />
 			</div>
 		</header>
 	);

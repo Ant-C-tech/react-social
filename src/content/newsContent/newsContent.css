@@ -1,0 +1,16 @@
+.news-content {
+	flex: 8;
+	height: calc(100vh - 80px);
+
+	padding: 15px 30px;
+
+	background: #f7f7f7;
+
+	overflow-y: auto;
+	color: rgba(0, 0, 0, 0);
+	transition: color .3s ease;
+}
+
+.news-content:hover {
+	color: rgba(0, 0, 0, 0.3);
+}

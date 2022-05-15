@@ -1,5 +1,5 @@
 .sidebar {
-	flex: 3;
+	flex: 2;
 	height: calc(100vh - 80px);
 
 	padding: 30px 15px;
@@ -18,22 +18,6 @@
 
 .sidebar:hover {
 	color: rgba(0, 0, 0, 0.3);
-}
-
-.sidebar::-webkit-scrollbar,
-.sidebar::-webkit-scrollbar-thumb {
-	width: 26px;
-	border-radius: 13px;
-	background-clip: padding-box;
-	border: 10px solid transparent;
-}
-
-.sidebar::-webkit-scrollbar-thumb {
-	box-shadow: inset 0 0 0 10px;
-}
-
-.sidebar::-webkit-scrollbar-thumb:hover {
-	border: 7px solid transparent;
 }
 
 .sidebar hr {
@@ -71,6 +55,7 @@
 	height: 40px;
 
 	border-radius: 50%;
+	border: 1px solid #707070;
 
 	background: #f3f3f3;
 	box-shadow: 4px 1px 3px 1px rgba(243, 243, 243, 0.57);
