@@ -10,6 +10,10 @@
 	transition: width ease-in-out .3s, height ease-in-out .3s;
 }
 
+.link:focus {
+	outline: none;
+}
+
 .link-add-text {
 	margin-left: 15px;
 

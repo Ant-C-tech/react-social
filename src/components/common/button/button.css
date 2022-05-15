@@ -14,7 +14,9 @@
 	transition: color ease-in-out 0.3s, border-color ease-in-out 0.3s;
 }
 
-.button:hover {
+.button:hover, .button:focus {
 	color: #e0004d;
 	border-color: #e0004d;
+
+	outline: none;
 }
