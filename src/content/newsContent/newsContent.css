@@ -14,3 +14,7 @@
 .news-content:hover {
 	color: rgba(0, 0, 0, 0.3);
 }
+
+.news-list-item{
+	list-style-type: none;
+}
