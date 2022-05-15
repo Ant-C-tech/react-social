@@ -1,6 +1,40 @@
-.news{
-  padding: 15px;
+.news {
+	margin-bottom: 15px;
+	padding: 15px;
 
-  border: 1px solid #dedede;
-  border-radius: 5px;
+	border: 1px solid #dedede;
+	border-radius: 5px;
+
+	color: #707070;
+}
+
+.news header {
+	display: flex;
+
+	margin-bottom: 15px;
+}
+
+.news-title {
+	font-weight: bold;
+	line-height: 30px;
+}
+
+.news-title-icon {
+	position: relative;
+	top: -2px;
+
+	margin-right: 15px;
+
+  color: #e0004d;
+}
+
+.news-image {
+	display: block;
+	margin: 0 auto 15px;
+
+	border-radius: 5px;
+}
+
+.news-text {
+	line-height: 30px;
 }

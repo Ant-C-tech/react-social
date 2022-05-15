@@ -37,8 +37,7 @@
 }
 
 .topbar-link:hover:after,
-.topbar-link:focus:after,
-.topbar-link:active:after {
+.topbar-link:focus:after {
 	width: 100%;
 }
 /* ************************** */
@@ -56,7 +55,7 @@
 	top: -2px;
 	width: 30px;
 	height: 30px;
-	margin-right: 15px;
+	margin: 0 20px;
 	background-image: url(../../../assets/logo.png);
 	background-repeat: no-repeat;
 	background-position: 0 50%;
@@ -64,8 +63,7 @@
 }
 
 .logo:hover:after,
-.logo:focus:after,
-.logo:active:after {
+.logo:focus:after{
 	width: 80%;
 }
 /* ************************** */
@@ -81,14 +79,11 @@
 
 .icon:hover:after,
 .icon:focus:after,
-.icon:active:after,
 .icon.active:after,
 .profile-image-container:hover:after,
 .profile-image-container:focus:after,
-.profile-image-container:active:after,
 .sidebar-friend-image-container:hover:after,
-.sidebar-friend-image-container:focus:after,
-.sidebar-friend-image-container:active:after {
+.sidebar-friend-image-container:focus:after {
 	height: 100%;
 }
 /* ************************** */

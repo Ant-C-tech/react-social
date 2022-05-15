@@ -17,7 +17,7 @@ export const TopBar = () => {
 	return (
 		<header className='topbar container-flex'>
 			<div className='topbar-left'>
-				<CustomLink content='OrganiZeR' href='homePage' target='_self' modification='logo' />
+				<CustomLink content='OrganiZeR' href='homePage' target='_self' modification='logo' active='' />
 			</div>
 			<div className='topbar-center'>
 				<SearchBar placeholder='Happy hacking...' />
@@ -25,7 +25,7 @@ export const TopBar = () => {
 			<div className='topbar-right'>
 				<div className='topbar-links'>
 					{topBarLinks.map((link, index) => (
-						<CustomLink key={index} content={link.text} href={link.path} target='_self' modification='topbar-link' />
+						<CustomLink key={index} content={link.text} href={link.path} target='_self' modification='topbar-link' active=''/>
 					))}
 				</div>
 				<div className='topbar-icons'>
@@ -39,6 +39,7 @@ export const TopBar = () => {
 								target='_self'
 								modification='icon'
 								counter={iconLink.messageCounter}
+								active=''
 							/>
 						);
 					})}
