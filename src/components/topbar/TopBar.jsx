@@ -3,8 +3,8 @@ import './topbar.css';
 import { Person, Chat, Notifications } from '@material-ui/icons';
 import { BigHead } from '@bigheads/core';
 
-import { CustomLink } from '../../../components/common/customLink/CustomLink';
-import { SearchBar } from '../../../components/common/searchbar/SearchBar';
+import { CustomLink } from '../common/customLink/CustomLink';
+import { SearchBar } from '../common/searchbar/SearchBar';
 
 const topBarLinks = [{ text: 'Home Page', path: 'homePage' }, { text: 'Time Line', path: 'timeLine' }];
 const topBarIconLinks = [

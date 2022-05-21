@@ -1,9 +1,4 @@
-.api-key-input-title,
-.api-input-description-section {
-	margin-bottom: 35px;
-}
-
-.api-key-input {
+input {
 	width: 100%;
 	height: 40px;
 
@@ -20,7 +15,7 @@
 	transition: color ease-in-out 0.3s, border-color ease-in-out 0.3s;
 }
 
-.api-key-input:hover, .api-key-input:focus {
+input:hover, input:focus {
 	color: #e0004d;
 	border-color: #e0004d;
 

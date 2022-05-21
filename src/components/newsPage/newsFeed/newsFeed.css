@@ -1,4 +1,4 @@
-.news-content {
+.news-feed {
 	flex: 8;
 	height: calc(100vh - 80px);
 
@@ -11,7 +11,7 @@
 	transition: color .3s ease;
 }
 
-.news-content:hover {
+.news-feed:hover {
 	color: rgba(0, 0, 0, 0.3);
 }
 

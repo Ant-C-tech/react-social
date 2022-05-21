@@ -13,21 +13,27 @@
 	box-shadow: 7px 15px 7px -5px #707070;
 }
 
-.news-header {
+.news-header, .news-footer {
 	display: flex;
-	align-items: center;
+	align-items: stretch;
 	justify-content: space-around;
 
 	margin-bottom: 15px;
 	padding: 10px;
+}
 
+.news-header {
 	text-transform: uppercase;
-
 	border-bottom: 1px solid #707070;
 }
 
 .news-category {
-	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	width: calc(50% - 30px);
 
 	text-align: center;
 
@@ -35,9 +41,12 @@
 }
 
 .news-country {
-	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 
-	margin: 0 auto;
+	width: calc(50% - 30px);
 
 	text-align: center;
 }
@@ -58,11 +67,10 @@
 
 .news-title-icon {
 	margin-right: 15px;
+	position: relative;
+	top: 5px;
 
-	color: #82dbd8;
-
-	border: 1px solid #707070;
-	border-radius: 50%;
+	color: #707070;
 }
 
 .news-image {

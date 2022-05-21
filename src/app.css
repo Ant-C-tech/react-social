@@ -38,14 +38,28 @@ a:active {
 }
 
 *::-webkit-scrollbar-thumb:hover {
-	border: 7px solid transparent;
+	border: 8px solid transparent;
 }
 
-.warning {
+.message {
 	padding: 15px;
 
 	color: #707070;
 
-	background-color: rgba(224, 0, 77, 0.2);
+	border: 1px solid #707070;
 	border-radius: 5px;
+}
+
+.info {
+	background-color: rgba(204, 243, 238, 0.3);
+}
+
+.warning {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	color: #3f3f3f;
+
+	background-color: #fff198;
 }
