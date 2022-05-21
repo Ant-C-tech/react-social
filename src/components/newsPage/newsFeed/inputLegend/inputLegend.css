@@ -1,0 +1,13 @@
+.input-legend-title,
+.input-legend-subtitle,
+.input-legend-description-list {
+	margin-bottom: 30px;
+}
+
+.input-legend-description-list {
+	margin-left: 15px;
+}
+
+.input-legend-description-list-item {
+	margin-bottom: 5px;
+}

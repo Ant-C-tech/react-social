@@ -16,8 +16,8 @@ import {
 
 import { BigHead } from '@bigheads/core';
 
-import { CustomLink } from '../../../components/common/customLink/CustomLink';
-import { Button } from '../../../components/common/button/Button';
+import { CustomLink } from '../common/customLink/CustomLink';
+import { Button } from '../common/button/Button';
 
 const sideBarNavItems = [
 	{ icon: Announcement, path: 'news', text: 'My News' },

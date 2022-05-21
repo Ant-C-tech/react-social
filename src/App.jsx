@@ -1,10 +1,9 @@
 import './app.css';
 
-import { Page } from './pages/Page/Page';
-import { NewsContent } from './content/newsContent/NewsContent';
+import { Page } from './pages/Page';
 
 function App() {
-	return <Page content={<NewsContent />} />;
+	return <Page />;
 }
 
 export default App;
