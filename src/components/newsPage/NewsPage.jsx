@@ -5,13 +5,15 @@ import axios from 'axios';
 
 import { RightBar } from '../rightbar/RightBar';
 import { NewsFeed } from './newsFeed/NewsFeed';
+import { NewsControl } from './newsControl/NewsControl';
 
 export const NewsPage = () => {
 	const [apiKey, setApiKey] = useState('')
 	const [news, setNews] = useState([])
 	const [message, setMessage] = useState({})
+	const [selectedCountry, setSelectedCountry] = useState("");
 
-	const fetchNews =	useCallback( async () => {
+	const fetchNews = useCallback(async () => {
 		try {
 			const response = await axios.get('news', {
 				baseURL: 'https://newsdata.io/api/1',
@@ -33,9 +35,9 @@ export const NewsPage = () => {
 		}
 	}, [apiKey])
 
-		useEffect(() => {
-			setMessage({})
-		}, [apiKey])
+	useEffect(() => {
+		setMessage({})
+	}, [apiKey])
 
 	useEffect(() => {
 		if (apiKey && news.length === 0) {
@@ -53,6 +55,6 @@ export const NewsPage = () => {
 		<section className='content-container'>
 			<NewsFeed news={news} apiKey={apiKey} setApiKey={setApiKey} />
 		</section>
-		<RightBar message={message} />
+		<RightBar content={<NewsControl message={message} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />} />
 	</>)
 };

@@ -1,0 +1,28 @@
+.news-control-title-icon {
+	display: block !important;
+	margin: 0 auto 15px;
+
+	color: #3f3f3f;
+}
+
+.news-control-title {
+	margin-bottom: 15px;
+	padding-bottom: 10px;
+
+	text-align: center;
+	color: #3f3f3f;
+	border-bottom: 1px solid #707070;
+}
+
+.country-select-title {
+	color: #707070;
+}
+
+.country-select {
+	color: #707070;
+}
+
+.ReactFlagsSelect-module_selectOptions__3LNBJ {
+	border-radius: 5px !important;
+	background-color: rgba(204, 243, 238, 0.3) !important;
+}
