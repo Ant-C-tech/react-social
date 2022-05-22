@@ -17,12 +17,12 @@ export const TopBar = () => {
 	return (
 		<header className='topbar container-flex'>
 			<div className='topbar-left'>
-				<CustomLink content='OrganiZeR' href='homePage' target='_self' modification='logo' active='' />
+				<CustomLink content='OrganiZeR' href='homePage' target='_self' modification='logo hover-underline' active='' />
 			</div>
 			<div className='topbar-center'>
 				<div className='topbar-links'>
 					{topBarLinks.map((link, index) => (
-						<CustomLink key={index} content={link.text} href={link.path} target='_self' modification='topbar-link' active='' />
+						<CustomLink key={index} content={link.text} href={link.path} target='_self' modification='hover-underline' active='' />
 					))}
 				</div>
 				<div className='topbar-icons'>
@@ -31,11 +31,10 @@ export const TopBar = () => {
 						return (
 							<CustomLink
 								key={index}
-								content={<Icon />}
+								content={<><Icon /><span className='icon-badge'>{iconLink.messageCounter}</span></>}
 								href={iconLink.path}
 								target='_self'
-								modification='icon'
-								counter={iconLink.messageCounter}
+								modification='hover-left-line'
 								active=''
 							/>
 						);
@@ -44,12 +43,12 @@ export const TopBar = () => {
 						content={<BigHead className='profile-image' />}
 						href='profile'
 						target='_self'
-						modification='profile-image-container'
+						modification='hover-left-line'
 					/>
 				</div>
 			</div>
 			<div className='topbar-right'>
-				<SearchBar placeholder='Happy hacking...' />
+				<SearchBar />
 			</div>
 		</header>
 	);
