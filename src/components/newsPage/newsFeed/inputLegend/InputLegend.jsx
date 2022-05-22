@@ -11,7 +11,7 @@ export const InputLegend = () => {
     <>
       <h2 className="input-legend-title">You need API key for getting news.</h2>
       <p className="input-legend-subtitle">Please, go to
-        <CustomLink content={<><Bookmark /><span>NEWSDATA.IO</span></>} href='https://newsdata.io/' target='_blank' modification='hover-underline' active='' />
+        <CustomLink content={<><Bookmark /><span className='link-add-text'>NEWSDATA.IO</span></>} href='https://newsdata.io/' target='_blank' modification='hover-underline' active='' />
       </p>
       <ul className="input-legend-description-list">
         <li className="input-legend-description-list-item">Click to the "GET API KEY" button.</li>
