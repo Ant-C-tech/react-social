@@ -2,8 +2,13 @@ import './news.css';
 
 import { FiberNew } from '@material-ui/icons';
 
+import {Button} from '../../../common/button/Button'
+
 export const News = ({ categories, countries, title, image, text, pubDate, creators }) => {
-	console.log(creators);
+	const addDefaultSrc = (event) => {
+		event.target.src = '../../../../assets/logo.png'
+		event.target.className = 'news-default-image'
+	}
 
 	return (
 		<article className="news">
@@ -23,8 +28,9 @@ export const News = ({ categories, countries, title, image, text, pubDate, creat
 				<FiberNew className="news-title-icon" />
 				<h2 className="news-title-text">{title}</h2>
 			</div>
-			{image && <img className="news-image" src={image} alt={title} />}
+			{image && <img onError={addDefaultSrc} className="news-image" src={image} alt={title} />}
 			<p className="news-text">{text}</p>
+			<Button text='Read More'/>
 			<footer className="news-footer">
 				<p className="news-date">{pubDate}</p>
 				{creators && <div className="news-creators">

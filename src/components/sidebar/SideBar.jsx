@@ -63,11 +63,10 @@ export const SideBar = () => {
 					return (
 						<li key={index} className='sidebar-nav-item'>
 							<CustomLink
-								content={<Icon />}
+								content={<><Icon /><span className='link-add-text'>{navItem.text}</span></>}
 								href={navItem.path}
 								target='_self'
-								modification='icon'
-								text={navItem.text}
+								modification='hover-left-line'
 								active={index === 0 ? 'active' : ''}
 							/>
 						</li>
@@ -80,10 +79,10 @@ export const SideBar = () => {
 				{friends.map((friend, index) => (
 					<li key={index} className='sidebar-friend'>
 						<CustomLink
-							content={<BigHead className='sidebar-friend-image' />}
+							content={<><BigHead className='sidebar-friend-image' /><span className='link-add-text'>{friend}</span></>}
 							href='friend-page'
 							target='_self'
-							modification='sidebar-friend-image-container'
+							modification='hover-left-line'
 							text={friend}
 							active=''
 						/>
