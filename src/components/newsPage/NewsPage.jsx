@@ -55,6 +55,6 @@ export const NewsPage = () => {
 		<section className='content-container'>
 			<NewsFeed news={news} apiKey={apiKey} setApiKey={setApiKey} />
 		</section>
-		<RightBar content={<NewsControl message={message} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />} />
+		<RightBar content={news.length > 0 ? <NewsControl message={message} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} /> : null} />
 	</>)
 };

@@ -26,3 +26,13 @@
 	border-radius: 5px !important;
 	background-color: rgba(204, 243, 238, 0.3) !important;
 }
+
+.ReactFlagsSelect-module_selectOption__3pcgW {
+	margin-left: 10px !important;
+}
+
+.ReactFlagsSelect-module_selectOption__3pcgW:hover,
+.ReactFlagsSelect-module_selectOption__3pcgW:focus {
+	background: #f7f7f7 !important;
+	border-radius: 3px;
+}
