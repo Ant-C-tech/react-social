@@ -18,6 +18,8 @@ export const NewsFeed = ({ news, apiKey, setApiKey }) => {
 							text={news.description}
 							pubDate={news.pubDate}
 							creators={news.creator}
+							link={news.link}
+							video={news.video_url}
 						/>
 					</li>
 				))}
