@@ -1,7 +1,6 @@
 import './newsPage.css';
 
 import { useState, useEffect, useCallback } from 'react'
-// import axios from 'axios';
 
 import { isMessage } from "../../services/isMessage"
 import { apiClient } from '../../services/apiClient';
@@ -16,37 +15,6 @@ export const NewsPage = () => {
 
 	const [news, setNews] = useState([])
 	const [selectedCountry, setSelectedCountry] = useState("");
-
-	// const fetchNews = useCallback(async () => {
-	// 	try {
-	// 		const response = await axios({
-	// 			method: 'get',
-	// 			baseURL: 'https://newsdata.io/api/1/news',
-	// 			params: {
-	// 				'apikey': apiKey,
-	// 				'country': selectedCountry ? selectedCountry.toLowerCase() : null
-	// 			}
-	// 		})
-	// 		if (response && response.data) {
-	// 			setNews(response.data.results)
-	// 		}
-	// 	} catch (error) {
-	// 		if (error.response) {
-	// 			console.log(error.response.status);
-	// 			console.log(error.response.statusText);
-	// 			console.log(error.message);
-	// 			console.log(error.response.headers);
-	// 			console.log(error.response.data);
-	// 			console.log({...error});
-
-	// 			setMessage({ type: 'warning', title: error.code, text: error.message })
-	// 		} else if (error.request) {
-	// 			setMessage({ type: 'warning', title: error.code, text: error.message })
-	// 		} else {
-	// 			setMessage({ type: 'warning', title: error.code, text: error.message })
-	// 		}
-	// 	}
-	// }, [apiKey, selectedCountry])
 
 	const fetchNews = useCallback(async () => {
 		try {
@@ -65,8 +33,7 @@ export const NewsPage = () => {
 				setNews(response.data.results)
 			}
 		} catch (error) {
-			console.log('error from News', error.toJSON())
-			setMessage({ type: 'warning', title: error.code, text: error.message })
+			setMessage({ type: 'warning', title: error.message, text: 'Please, use correct API Key' })
 		}
 	}, [apiKey, selectedCountry])
 
@@ -84,10 +51,6 @@ export const NewsPage = () => {
 			console.log(news);
 		}
 	}, [news]);
-
-	useEffect(() => {
-		console.log(selectedCountry);
-	}, [selectedCountry]);
 	// End of In develop purpose
 
 	return (<>
