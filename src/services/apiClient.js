@@ -21,7 +21,6 @@ export const apiClient = (requestParams) => {
 		},
 		function(error) {
 			// Do something with request error
-			console.log('request error');
 			return Promise.reject(error);
 		},
 	);
@@ -36,7 +35,6 @@ export const apiClient = (requestParams) => {
 		function(error) {
 			// Any status codes that falls outside the range of 2xx cause this function to trigger
 			// Do something with response error
-			console.log('response error');
 			return Promise.reject(error);
 		},
 	);

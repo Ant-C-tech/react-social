@@ -14,7 +14,7 @@ export const NewsPage = () => {
 	const [error, setError] = useState('')
 
 	const [news, setNews] = useState([])
-	const [selectedCountry, setSelectedCountry] = useState("us");
+	const [selectedCountry, setSelectedCountry] = useState(["US"]);
 
 	//Avoid multiple requests for
 	const [requestCounter, setRequestCounter] = useState(0)
@@ -38,6 +38,7 @@ export const NewsPage = () => {
 
 	useEffect(() => {
 		apiKey && fetchNews()
+		console.log('work fetchNews');
 	}, [apiKey, selectedCountry, fetchNews]);
 
 	// In develop purpose
