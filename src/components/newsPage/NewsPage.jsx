@@ -3,6 +3,7 @@ import './newsPage.css';
 import { useState, useEffect, useCallback } from 'react'
 
 import { getNews } from '../../businessLogic/news/getNews';
+import { createErrorMessage } from '../../businessLogic/news/createErrorMessage';
 
 import { RightBar } from '../rightbar/RightBar';
 import { NewsFeed } from './newsFeed/NewsFeed';
@@ -18,18 +19,9 @@ export const NewsPage = () => {
 	//Avoid multiple requests for
 	const [requestCounter, setRequestCounter] = useState(0)
 
-	const createErrorMessage = () => {
-		if (news.length === 0) {
-			return { type: 'warning', title: error, text: 'Please, use correct API Key' }
-		} else {
-			return { type: 'warning', title: error, text: 'Please, use correct parameters' }
-		}
-	}
-
 	const fetchNews = useCallback(async () => {
 		try {
 			const response = await getNews(apiKey, selectedCountry)
-
 			if (response) {
 				//Avoid multiple requests for
 				setRequestCounter(requestCounter => requestCounter + 1)
@@ -68,6 +60,6 @@ export const NewsPage = () => {
 		<section className='content-container'>
 			<NewsFeed news={news} apiKey={apiKey} setApiKey={setApiKey} />
 		</section>
-		<RightBar content={news.length > 0 || error ? <NewsControl news={news} message={error && createErrorMessage()} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} /> : null} />
+		<RightBar content={news.length > 0 || error ? <NewsControl news={news} message={error && createErrorMessage(news, error)} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} /> : null} />
 	</>)
 };
