@@ -3,8 +3,9 @@ import './newsControl.css';
 import { Help } from '@material-ui/icons';
 import ReactFlagsSelect from "react-flags-select";
 
-import { isEmptyObject } from "../../../services/isEmptyObject"
+import { isEmptyObject } from "../../../utils/isEmptyObject"
 import { Message } from '../../common/message/Message';
+import { newsAvailableCountry } from '../../../constants/newsAvailableCountry';
 
 export const NewsControl = ({ news, message, selectedCountry, setSelectedCountry }) => {
   return (
@@ -16,8 +17,10 @@ export const NewsControl = ({ news, message, selectedCountry, setSelectedCountry
         <h4 className='country-select-title'>Select country...</h4>
         <ReactFlagsSelect
           className='country-select'
+          countries={newsAvailableCountry}
           selected={selectedCountry}
           onSelect={(code) => setSelectedCountry(code)}
+          placeholder="United States"
         /></>)}
     </section>
   );

@@ -11,11 +11,10 @@ import { NewsControl } from './newsControl/NewsControl';
 
 export const NewsPage = () => {
 	const [apiKey, setApiKey] = useState('')
-	// const [message, setMessage] = useState({})
 	const [error, setError] = useState('')
 
 	const [news, setNews] = useState([])
-	const [selectedCountry, setSelectedCountry] = useState("");
+	const [selectedCountry, setSelectedCountry] = useState("us");
 
 	//Avoid multiple requests for
 	const [requestCounter, setRequestCounter] = useState(0)
@@ -51,7 +50,6 @@ export const NewsPage = () => {
 	}, [apiKey, selectedCountry])
 
 	useEffect(() => {
-		// setMessage({})
 		setError('')
 	}, [apiKey, selectedCountry])
 
