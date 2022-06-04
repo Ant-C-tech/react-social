@@ -2,8 +2,7 @@ import './newsPage.css';
 
 import { useState, useEffect, useCallback } from 'react'
 
-// import { isEmptyObject } from "../../services/isEmptyObject"
-import { apiClient } from '../../services/apiClient';
+import { getNews } from '../../businessLogic/news/getNews';
 
 import { RightBar } from '../rightbar/RightBar';
 import { NewsFeed } from './newsFeed/NewsFeed';
@@ -29,15 +28,7 @@ export const NewsPage = () => {
 
 	const fetchNews = useCallback(async () => {
 		try {
-			const client = apiClient({
-				method: 'get',
-				baseURL: 'https://newsdata.io/api/1/news',
-				params: {
-					'apikey': apiKey,
-					'country': selectedCountry ? selectedCountry.toLowerCase() : null
-				}
-			})
-			const response = await client()
+			const response = await getNews(apiKey, selectedCountry)
 
 			if (response) {
 				//Avoid multiple requests for
