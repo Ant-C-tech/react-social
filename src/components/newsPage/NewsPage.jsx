@@ -1,6 +1,6 @@
 import './newsPage.css';
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 
 import { getNews } from '../../businessLogic/news/getNews';
 import { createErrorMessage } from '../../businessLogic/news/createErrorMessage';
@@ -12,34 +12,62 @@ import { NewsControl } from './newsControl/NewsControl';
 export const NewsPage = () => {
 	const [apiKey, setApiKey] = useState('')
 	const [error, setError] = useState('')
+	const [loading, setLoading] = useState(false)
+	const [needMoreNews, setNeedMoreNews] = useState(false)
 
 	const [news, setNews] = useState([])
 	const [selectedCountries, setSelectedCountries] = useState(["US"]);
+	const [nextPage, setNextPage] = useState(0)
 
 	//Avoid multiple requests for
 	const [requestCounter, setRequestCounter] = useState(0)
-
-	const fetchNews = useCallback(async () => {
-		try {
-			const response = await getNews(apiKey, selectedCountries)
-			if (response) {
-				//Avoid multiple requests for
-				setRequestCounter(requestCounter => requestCounter + 1)
-				setNews(response.data.results)
-			}
-		} catch (error) {
-			setError(error.message)
-		}
-	}, [apiKey, selectedCountries])
 
 	useEffect(() => {
 		setError('')
 	}, [apiKey, selectedCountries])
 
 	useEffect(() => {
-		apiKey && fetchNews()
-		console.log('work fetchNews');
-	}, [apiKey, selectedCountries, fetchNews]);
+		const getDefaultNews = async () => {
+			try {
+				setLoading(true)
+				const response = await getNews(apiKey, selectedCountries)
+				if (response) {
+					//Avoid multiple requests for
+					setRequestCounter(requestCounter => requestCounter + 1)
+					setNews(response.data.results)
+					setNextPage(response.data.nextPage)
+				}
+				setLoading(false)
+			} catch (error) {
+				setError(error.message)
+			}
+		}
+
+		apiKey && getDefaultNews()
+	}, [apiKey, selectedCountries]);
+
+	useEffect(() => {
+		const getMoreNews = async () => {
+			try {
+				setLoading(true)
+				const response = await getNews(apiKey, selectedCountries, nextPage)
+				if (response) {
+					//Avoid multiple requests for
+					setRequestCounter(requestCounter => requestCounter + 1)
+					setNews((news) => { return [...new Set([...news, ...response.data.results])] })
+					setNextPage(response.data.nextPage)
+				}
+				setLoading(false)
+				setNeedMoreNews(false)
+			} catch (error) {
+				setError(error.message)
+			}
+		}
+
+		if (needMoreNews) {
+			getMoreNews()
+		}
+	}, [apiKey, selectedCountries, nextPage, needMoreNews])
 
 	// In develop purpose
 	useEffect(() => {
@@ -57,9 +85,21 @@ export const NewsPage = () => {
 	}, [requestCounter])
 	// End of In develop purpose
 
+	const observer = useRef()
+	const lastNewsRef = useCallback(node => {
+		if (loading) return
+		if (observer.current) observer.current.disconnect()
+		observer.current = new IntersectionObserver(entries => {
+			if (entries[0].isIntersecting) {
+				setNeedMoreNews(true);
+			};
+		})
+		if (node) observer.current.observe(node)
+	}, [loading])
+
 	return (<>
 		<section className='content-container'>
-			<NewsFeed news={news} apiKey={apiKey} setApiKey={setApiKey} />
+			<NewsFeed newsSet={news} apiKey={apiKey} setApiKey={setApiKey} lastNewsRef={lastNewsRef} />
 		</section>
 		<RightBar content={news.length > 0 || error ? <NewsControl news={news} message={error && createErrorMessage(news, error)} selectedCountries={selectedCountries} setSelectedCountries={setSelectedCountries} /> : null} />
 	</>)
