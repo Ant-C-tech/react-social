@@ -24,6 +24,10 @@
 	color: #707070;
 }
 
+.country-select button {
+	overflow: hidden;
+}
+
 .ReactFlagsSelect-module_selectOptions__3LNBJ {
 	border-radius: 5px !important;
 	background-color: rgb(240, 240, 240) !important;
@@ -39,8 +43,15 @@
 	border-radius: 3px;
 }
 
+.ReactFlagsSelect-module_filterBox__3m8EU {
+	padding-bottom: 8px;
+	background-color: rgb(240, 240, 240) !important;
+	border-radius: 3px;
+}
+
 .country-controls {
 	display: flex;
+	justify-content: center;
 	margin: 0 -5px;
 }
 

@@ -5,22 +5,47 @@ import ReactFlagsSelect from "react-flags-select";
 import { countries } from 'country-data';
 
 import { isEmptyObject } from "../../../utils/isEmptyObject"
-import { newsAvailableCountry } from '../../../constants/newsAvailableCountry';
+import { newsAvailableCountries } from '../../../constants/newsAvailableCountries';
 
 import { Message } from '../../common/message/Message';
 import { Button } from '../../common/button/Button'
 
-export const NewsControl = ({ news, message, selectedCountry, setSelectedCountry }) => {
+export const NewsControl = ({ news, message, selectedCountries, setSelectedCountries }) => {
+  const minCountriesQuantity = 1
+  const maxCountriesQuantity = 5
+
+  var rn = require('random-number');
+  var gen = rn.generator({
+    min: 0
+    , max: newsAvailableCountries.length
+    , integer: true
+  })
+
+  const getCountriesAvailableForSelecting = (currentCountry) => {
+    const countriesAvailableForSelecting = newsAvailableCountries.filter(newsAvailableCountry => selectedCountries.indexOf(newsAvailableCountry) === -1);
+    countriesAvailableForSelecting.push(currentCountry)
+    return countriesAvailableForSelecting
+  }
+
   const addCountry = () => {
-    setSelectedCountry(selectedCountry => [...selectedCountry, 'UA'])
+    const indexesOfSelectedCountries = selectedCountries.map(country => newsAvailableCountries.indexOf(country))
+    let indexOfRandomCountry
+    do {
+      indexOfRandomCountry = gen()
+    }
+    while (indexesOfSelectedCountries.indexOf(indexOfRandomCountry) !== -1);
+    setSelectedCountries(selectedCountries => [...selectedCountries, newsAvailableCountries[indexOfRandomCountry]])
   }
 
   const changeCountry = (index, code) => {
-    const updatedSelectedCountry = [...selectedCountry]
-    updatedSelectedCountry[index] = code
-    setSelectedCountry([...updatedSelectedCountry])
+    const updatedSelectedCountries = [...selectedCountries]
+    updatedSelectedCountries[index] = code
+    setSelectedCountries([...updatedSelectedCountries])
   }
 
+  const removeCountry = () => {
+    setSelectedCountries(selectedCountries => selectedCountries.splice(0, selectedCountries.length - 1))
+  }
 
   return (
     <section className='news-control'>
@@ -29,19 +54,21 @@ export const NewsControl = ({ news, message, selectedCountry, setSelectedCountry
         <h3 className='news-control-title'>What are you interesting in?</h3>
 
         <h4 className='country-select-title'>Selected country:</h4>
-        {selectedCountry.map((country, index) => (
+        {selectedCountries.map((country, index) => (
           <ReactFlagsSelect
             key={index}
             className='country-select'
-            countries={newsAvailableCountry}
+            countries={getCountriesAvailableForSelecting(country)}
             selected={country}
             onSelect={(code) => changeCountry(index, code)}
-            searchPlaceholder={countries[country].name}
+            placeholder={countries[country].name}
+            searchPlaceholder='Search country...'
+            searchable
           />
         ))}
         <div className="country-controls">
-          <Button text='Add More Countries' onClick={addCountry} />
-          <Button text='Remove Country' />
+          {selectedCountries.length !== maxCountriesQuantity && <Button text='Add More Countries' onClick={addCountry} />}
+          {selectedCountries.length !== minCountriesQuantity && <Button text='Remove Country' onClick={removeCountry} />}
         </div>
       </>)
       }

@@ -14,14 +14,14 @@ export const NewsPage = () => {
 	const [error, setError] = useState('')
 
 	const [news, setNews] = useState([])
-	const [selectedCountry, setSelectedCountry] = useState(["US"]);
+	const [selectedCountries, setSelectedCountries] = useState(["US"]);
 
 	//Avoid multiple requests for
 	const [requestCounter, setRequestCounter] = useState(0)
 
 	const fetchNews = useCallback(async () => {
 		try {
-			const response = await getNews(apiKey, selectedCountry)
+			const response = await getNews(apiKey, selectedCountries)
 			if (response) {
 				//Avoid multiple requests for
 				setRequestCounter(requestCounter => requestCounter + 1)
@@ -30,16 +30,16 @@ export const NewsPage = () => {
 		} catch (error) {
 			setError(error.message)
 		}
-	}, [apiKey, selectedCountry])
+	}, [apiKey, selectedCountries])
 
 	useEffect(() => {
 		setError('')
-	}, [apiKey, selectedCountry])
+	}, [apiKey, selectedCountries])
 
 	useEffect(() => {
 		apiKey && fetchNews()
 		console.log('work fetchNews');
-	}, [apiKey, selectedCountry, fetchNews]);
+	}, [apiKey, selectedCountries, fetchNews]);
 
 	// In develop purpose
 	useEffect(() => {
@@ -50,7 +50,7 @@ export const NewsPage = () => {
 
 	//Avoid multiple requests for
 	useEffect(() => {
-		if (requestCounter > 3) {
+		if (requestCounter > 5) {
 			setApiKey('')
 			console.log('Multiple Request Happened!');
 		}
@@ -61,6 +61,6 @@ export const NewsPage = () => {
 		<section className='content-container'>
 			<NewsFeed news={news} apiKey={apiKey} setApiKey={setApiKey} />
 		</section>
-		<RightBar content={news.length > 0 || error ? <NewsControl news={news} message={error && createErrorMessage(news, error)} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} /> : null} />
+		<RightBar content={news.length > 0 || error ? <NewsControl news={news} message={error && createErrorMessage(news, error)} selectedCountries={selectedCountries} setSelectedCountries={setSelectedCountries} /> : null} />
 	</>)
 };
