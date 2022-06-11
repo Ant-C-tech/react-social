@@ -1,7 +1,9 @@
 .message-title {
 	margin: 10px 0;
+	text-align: center;
 }
 
 .message-text{
 	margin: 15px 0;
+	text-align: center;
 }

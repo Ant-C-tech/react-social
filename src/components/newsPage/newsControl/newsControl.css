@@ -1,0 +1,60 @@
+.news-control-title-icon {
+	display: block !important;
+	margin: 0 auto 15px;
+
+	color: #3f3f3f;
+}
+
+.news-control-title {
+	margin-bottom: 15px;
+	padding-bottom: 10px;
+
+	text-align: center;
+	color: #3f3f3f;
+	border-bottom: 1px solid #707070;
+}
+
+.country-select-title {
+	margin-bottom: 5px;
+	color: #707070;
+}
+
+.country-select {
+	margin-bottom: 15px;
+	color: #707070;
+}
+
+.country-select button {
+	overflow: hidden;
+}
+
+.ReactFlagsSelect-module_selectOptions__3LNBJ {
+	border-radius: 5px !important;
+	background-color: rgb(230, 250, 230) !important;
+}
+
+.ReactFlagsSelect-module_selectOption__3pcgW {
+	margin-left: 10px !important;
+}
+
+.ReactFlagsSelect-module_selectOption__3pcgW:hover,
+.ReactFlagsSelect-module_selectOption__3pcgW:focus {
+	background: #fcd1d1 !important;
+	border-radius: 3px;
+}
+
+.ReactFlagsSelect-module_filterBox__3m8EU {
+	padding-bottom: 8px;
+	background-color: rgb(240, 240, 240) !important;
+	border-radius: 3px;
+}
+
+.country-controls {
+	display: flex;
+	justify-content: center;
+	margin: 0 -5px;
+}
+
+.country-controls > * {
+	margin: 0 5px;
+}

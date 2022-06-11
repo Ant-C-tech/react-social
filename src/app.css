@@ -34,6 +34,7 @@ a:active {
 }
 
 *::-webkit-scrollbar-thumb {
+	min-height: 20px;
 	box-shadow: inset 0 0 0 10px;
 }
 
@@ -51,7 +52,7 @@ a:active {
 }
 
 .info {
-	background-color: rgba(204, 243, 238, 0.3);
+	background-color: rgb(230, 250, 230);
 }
 
 .warning {
