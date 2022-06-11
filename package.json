@@ -23,6 +23,7 @@
 		"react-flags-select": "^2.2.3",
 		"react-lazy-load-image-component": "^1.5.4",
 		"react-scripts": "^5.0.1",
+		"react-uuid": "^1.0.2",
 		"save-dev": "^0.0.1-security",
 		"styled-components": "^5.3.5"
 	},

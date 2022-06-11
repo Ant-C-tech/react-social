@@ -3,39 +3,63 @@ import './newsPage.css';
 import { useState, useEffect, useRef, useCallback } from 'react'
 
 import { getNews } from '../../businessLogic/news/getNews';
-import { createErrorMessage } from '../../businessLogic/news/createErrorMessage';
 
 import { RightBar } from '../rightbar/RightBar';
 import { NewsFeed } from './newsFeed/NewsFeed';
 import { NewsControl } from './newsControl/NewsControl';
 
+const defaultCountry = 'US';
+
 export const NewsPage = () => {
 	const [apiKey, setApiKey] = useState('')
+
+	const [nextPage, setNextPage] = useState(0)
+	const [totalResults, setTotalResults] = useState(0)
+	const [needMoreNews, setNeedMoreNews] = useState(false)
+	const [hasMoreNews, setHasMoreNews] = useState(true)
+
+	const [selectedCountries, setSelectedCountries] = useState([defaultCountry]);
+
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
-	const [needMoreNews, setNeedMoreNews] = useState(false)
 
 	const [news, setNews] = useState([])
-	const [selectedCountries, setSelectedCountries] = useState(["US"]);
-	const [nextPage, setNextPage] = useState(0)
+
 
 	//Avoid multiple requests for
 	const [requestCounter, setRequestCounter] = useState(0)
 
 	useEffect(() => {
 		setError('')
+		setNextPage(0)
 	}, [apiKey, selectedCountries])
+
+	const newsFeedRef = useRef(null)
+	useEffect(() => {
+		newsFeedRef.current && newsFeedRef.current.scrollIntoView({ block: "start" });
+	}, [selectedCountries])
+
+	useEffect(() => {
+		if (news.length < totalResults) {
+			setHasMoreNews(true)
+		} else {
+			setHasMoreNews(false)
+		}
+	}, [news, totalResults]);
 
 	useEffect(() => {
 		const getDefaultNews = async () => {
 			try {
 				setLoading(true)
-				const response = await getNews(apiKey, selectedCountries)
+				const response = await getNews(apiKey, selectedCountries, 0)
 				if (response) {
 					//Avoid multiple requests for
 					setRequestCounter(requestCounter => requestCounter + 1)
+
 					setNews(response.data.results)
+
 					setNextPage(response.data.nextPage)
+					setTotalResults(response.data.totalResults)
 				}
 				setLoading(false)
 			} catch (error) {
@@ -48,26 +72,30 @@ export const NewsPage = () => {
 
 	useEffect(() => {
 		const getMoreNews = async () => {
+			setNeedMoreNews(false)
 			try {
 				setLoading(true)
 				const response = await getNews(apiKey, selectedCountries, nextPage)
 				if (response) {
 					//Avoid multiple requests for
 					setRequestCounter(requestCounter => requestCounter + 1)
-					setNews((news) => { return [...new Set([...news, ...response.data.results])] })
+
 					setNextPage(response.data.nextPage)
+					setTotalResults(response.data.totalResults)
+
+					setNews((news) => { return [...new Set([...news, ...response.data.results])] })
 				}
 				setLoading(false)
-				setNeedMoreNews(false)
+
 			} catch (error) {
 				setError(error.message)
 			}
 		}
 
-		if (needMoreNews) {
+		if (needMoreNews && hasMoreNews) {
 			getMoreNews()
 		}
-	}, [apiKey, selectedCountries, nextPage, needMoreNews])
+	}, [apiKey, selectedCountries, nextPage, needMoreNews, hasMoreNews])
 
 	// In develop purpose
 	useEffect(() => {
@@ -99,8 +127,8 @@ export const NewsPage = () => {
 
 	return (<>
 		<section className='content-container'>
-			<NewsFeed newsSet={news} apiKey={apiKey} setApiKey={setApiKey} lastNewsRef={lastNewsRef} />
+			<NewsFeed newsSet={news} apiKey={apiKey} setApiKey={setApiKey} lastNewsRef={lastNewsRef} newsFeedRef={newsFeedRef} />
 		</section>
-		<RightBar content={news.length > 0 || error ? <NewsControl news={news} message={error && createErrorMessage(news, error)} selectedCountries={selectedCountries} setSelectedCountries={setSelectedCountries} /> : null} />
+		<RightBar content={(news.length > 0 || error) && <NewsControl news={news} error={error} selectedCountries={selectedCountries} setSelectedCountries={setSelectedCountries} />} />
 	</>)
 };

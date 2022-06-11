@@ -4,13 +4,13 @@ import { Help } from '@material-ui/icons';
 import ReactFlagsSelect from "react-flags-select";
 import { countries } from 'country-data';
 
-import { isEmptyObject } from "../../../utils/isEmptyObject"
+import { createErrorMessage } from '../../../businessLogic/news/createErrorMessage';
 import { newsAvailableCountries } from '../../../constants/newsAvailableCountries';
 
 import { Message } from '../../common/message/Message';
 import { Button } from '../../common/button/Button'
 
-export const NewsControl = ({ news, message, selectedCountries, setSelectedCountries }) => {
+export const NewsControl = ({ news, error, selectedCountries, setSelectedCountries }) => {
   const minCountriesQuantity = 1
   const maxCountriesQuantity = 5
 
@@ -47,9 +47,12 @@ export const NewsControl = ({ news, message, selectedCountries, setSelectedCount
     setSelectedCountries(selectedCountries => selectedCountries.splice(0, selectedCountries.length - 1))
   }
 
+  const errorMessage = error && createErrorMessage(news, error)
+  console.log("Render");
+
   return (
     <section className='news-control'>
-      {!isEmptyObject(message) && <Message type={message.type} title={message.title} text={message.text} />} :
+      {error && <Message type={errorMessage.type} title={errorMessage.title} text={errorMessage.text} />}
       {news.length > 0 && (<><Help className='news-control-title-icon' />
         <h3 className='news-control-title'>What are you interesting in?</h3>
 

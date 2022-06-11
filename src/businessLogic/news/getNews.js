@@ -1,6 +1,6 @@
 import { apiClient } from '../../services/apiClient';
 
-export const getNews = (apiKey, selectedCountry, nextPage=0) => {
+export const getNews = (apiKey, selectedCountry, nextPage) => {
 		return (apiClient({
 			method: 'get',
 			baseURL: 'https://newsdata.io/api/1/news',

@@ -1,19 +1,20 @@
 import './newsFeed.css';
 
+import uuid from 'react-uuid'
+
 import { News } from './news/News';
 import { Input } from '../../common/input/Input';
 import { InputLegend } from './inputLegend/InputLegend';
 
-export const NewsFeed = ({ newsSet, apiKey, setApiKey, lastNewsRef }) => {
-
+export const NewsFeed = ({ newsSet, apiKey, setApiKey, lastNewsRef, newsFeedRef }) => {
 	return (
-		<section className='news-feed'>
-			{newsSet.length > 0 ? <ul className='news-list'>
+		<section className='news-feed' >
+			{newsSet.length > 0 ? <ul className='news-list' ref={newsFeedRef} >
 				{newsSet.map((news, index) => {
 					return <li
-						key={`${news.pubDate}_${news.source_id}_${news.title}`}
+						key={uuid()}
 						className='news-list-item'
-						ref={index === newsSet.length - 1 ? lastNewsRef : null}>
+						ref={ index === newsSet.length - 1 ? lastNewsRef : null}>
 						<News
 							categories={news.category}
 							countries={news.country}
