@@ -1,24 +1,29 @@
 import './newsPage.css';
 
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { DebounceInput } from 'react-debounce-input';
 
-import { getNews } from '../../businessLogic/news/getNews';
+import { getNews } from './businessLogic/getNews';
 
 import { RightBar } from '../rightbar/RightBar';
 import { NewsFeed } from './newsFeed/NewsFeed';
-import { NewsControl } from './newsControl/NewsControl';
+import { NewsControls } from './newsControls/NewsControls';
+import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
+import { Message } from '../common/message/Message';
 
 const defaultCountry = 'US';
+const defaultCategory = 'top';
 
 export const NewsPage = () => {
 	const [apiKey, setApiKey] = useState('')
 
 	const [nextPage, setNextPage] = useState(0)
-	const [totalResults, setTotalResults] = useState(0)
+	const [totalResults, setTotalResults] = useState(1)
 	const [needMoreNews, setNeedMoreNews] = useState(false)
 	const [hasMoreNews, setHasMoreNews] = useState(true)
 
 	const [selectedCountries, setSelectedCountries] = useState([defaultCountry]);
+	const [selectedCategories, setSelectedCategories] = useState([defaultCategory]);
 
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
@@ -51,7 +56,7 @@ export const NewsPage = () => {
 		const getDefaultNews = async () => {
 			try {
 				setLoading(true)
-				const response = await getNews(apiKey, selectedCountries, 0)
+				const response = await getNews(apiKey, selectedCountries, selectedCategories, 0)
 				if (response) {
 					//Avoid multiple requests for
 					setRequestCounter(requestCounter => requestCounter + 1)
@@ -68,14 +73,14 @@ export const NewsPage = () => {
 		}
 
 		apiKey && getDefaultNews()
-	}, [apiKey, selectedCountries]);
+	}, [apiKey, selectedCountries, selectedCategories]);
 
 	useEffect(() => {
 		const getMoreNews = async () => {
 			setNeedMoreNews(false)
 			try {
 				setLoading(true)
-				const response = await getNews(apiKey, selectedCountries, nextPage)
+				const response = await getNews(apiKey, selectedCountries, selectedCategories, nextPage)
 				if (response) {
 					//Avoid multiple requests for
 					setRequestCounter(requestCounter => requestCounter + 1)
@@ -95,7 +100,7 @@ export const NewsPage = () => {
 		if (needMoreNews && hasMoreNews) {
 			getMoreNews()
 		}
-	}, [apiKey, selectedCountries, nextPage, needMoreNews, hasMoreNews])
+	}, [apiKey, selectedCountries, selectedCategories, nextPage, needMoreNews, hasMoreNews])
 
 	// In develop purpose
 	useEffect(() => {
@@ -125,10 +130,35 @@ export const NewsPage = () => {
 		if (node) observer.current.observe(node)
 	}, [loading])
 
+	console.log(selectedCountries, selectedCategories);
+
 	return (<>
 		<section className='content-container'>
-			<NewsFeed newsSet={news} apiKey={apiKey} setApiKey={setApiKey} lastNewsRef={lastNewsRef} newsFeedRef={newsFeedRef} />
+			{apiKey && !error ?
+				<NewsFeed newsSet={news}
+					lastNewsRef={lastNewsRef}
+					newsFeedRef={newsFeedRef} />
+				:
+				<Message type={'info'} title={'You need API key for getting news.'}>
+					<NoApiKeyTextMessage />
+					<DebounceInput
+						type="text"
+						minLength={2}
+						debounceTimeout={500}
+						placeholder={"Please, input your API key"}
+						value={apiKey}
+						onChange={(event) => setApiKey(event.target.value)} />
+				</Message>
+			}
 		</section>
-		<RightBar content={(news.length > 0 || error) && <NewsControl news={news} error={error} selectedCountries={selectedCountries} setSelectedCountries={setSelectedCountries} />} />
+		<RightBar
+			content={(apiKey || error) &&
+				<NewsControls
+					news={news}
+					error={error}
+					selectedCountries={selectedCountries}
+					setSelectedCountries={setSelectedCountries}
+					selectedCategories={selectedCategories}
+					setSelectedCategories={setSelectedCategories} />} />
 	</>)
 };

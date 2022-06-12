@@ -1,15 +1,15 @@
 import './message.css';
 
 import {
-Error
+	Error
 } from '@material-ui/icons';
 
-export const Message = ({ type, title, text }) => {
+export const Message = ({ type, title, children }) => {
 	return (
 		<article className={`${type} message`} >
 			<h2 className="message-title">{title}</h2>
-			<Error />
-			<p className="message-text">{text}</p>
+			<Error className="message-icon" />
+			{children}
 		</article >
 	)
 };

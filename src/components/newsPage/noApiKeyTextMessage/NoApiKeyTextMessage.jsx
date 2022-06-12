@@ -1,15 +1,14 @@
-import './inputLegend.css';
+import './noApiKeyTextMessage.css';
 
 import {
   Bookmark
 } from '@material-ui/icons';
 
-import { CustomLink } from '../../../common/customLink/CustomLink';
+import { CustomLink } from '../../common/customLink/CustomLink';
 
-export const InputLegend = () => {
+export const NoApiKeyTextMessage = () => {
   return (
     <>
-      <h2 className="input-legend-title">You need API key for getting news.</h2>
       <p className="input-legend-subtitle">Please, go to
         <CustomLink content={<><Bookmark /><span className='link-add-text'>NEWSDATA.IO</span></>} href='https://newsdata.io/' target='_blank' modification='hover-underline' active='' />
       </p>

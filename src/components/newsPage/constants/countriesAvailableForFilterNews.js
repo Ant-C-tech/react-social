@@ -1,4 +1,4 @@
-export const newsAvailableCountries = [
+export const countriesAvailableForFilterNews = [
 	'ar',
 	'au',
 	'at',

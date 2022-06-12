@@ -14,9 +14,19 @@
 	border-bottom: 1px solid #707070;
 }
 
-.country-select-title {
+.news-control {
+	margin-bottom: 15px;
+}
+
+.select-title {
 	margin-bottom: 5px;
-	color: #707070;
+	color: #3f3f3f;
+}
+
+.select-controls {
+	display: flex;
+	justify-content: center;
+	margin: 0 -5px;
 }
 
 .country-select {
@@ -45,16 +55,15 @@
 
 .ReactFlagsSelect-module_filterBox__3m8EU {
 	padding-bottom: 8px;
-	background-color: rgb(240, 240, 240) !important;
+	background-color: rgb(230, 250, 230) !important;
 	border-radius: 3px;
 }
 
-.country-controls {
+.category-option-item {
 	display: flex;
-	justify-content: center;
-	margin: 0 -5px;
+	align-items: center;
 }
 
-.country-controls > * {
-	margin: 0 5px;
+.category-option-item-text {
+	margin-left: 10px;
 }
