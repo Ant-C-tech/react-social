@@ -1,12 +1,15 @@
 import './newsPage.css';
 
 import { useState, useEffect, useRef, useCallback } from 'react'
+import { DebounceInput } from 'react-debounce-input';
 
 import { getNews } from './businessLogic/getNews';
 
 import { RightBar } from '../rightbar/RightBar';
 import { NewsFeed } from './newsFeed/NewsFeed';
 import { NewsControls } from './newsControls/NewsControls';
+import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
+import { Message } from '../common/message/Message';
 
 const defaultCountry = 'US';
 const defaultCategory = 'top';
@@ -15,7 +18,7 @@ export const NewsPage = () => {
 	const [apiKey, setApiKey] = useState('')
 
 	const [nextPage, setNextPage] = useState(0)
-	const [totalResults, setTotalResults] = useState(0)
+	const [totalResults, setTotalResults] = useState(1)
 	const [needMoreNews, setNeedMoreNews] = useState(false)
 	const [hasMoreNews, setHasMoreNews] = useState(true)
 
@@ -127,10 +130,35 @@ export const NewsPage = () => {
 		if (node) observer.current.observe(node)
 	}, [loading])
 
+	console.log(selectedCountries, selectedCategories);
+
 	return (<>
 		<section className='content-container'>
-			<NewsFeed newsSet={news} apiKey={apiKey} setApiKey={setApiKey} lastNewsRef={lastNewsRef} newsFeedRef={newsFeedRef} />
+			{apiKey && !error ?
+				<NewsFeed newsSet={news}
+					lastNewsRef={lastNewsRef}
+					newsFeedRef={newsFeedRef} />
+				:
+				<Message type={'info'} title={'You need API key for getting news.'}>
+					<NoApiKeyTextMessage />
+					<DebounceInput
+						type="text"
+						minLength={2}
+						debounceTimeout={500}
+						placeholder={"Please, input your API key"}
+						value={apiKey}
+						onChange={(event) => setApiKey(event.target.value)} />
+				</Message>
+			}
 		</section>
-		<RightBar content={(news.length > 0 || error) && <NewsControls news={news} error={error} selectedCountries={selectedCountries} setSelectedCountries={setSelectedCountries} selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />} />
+		<RightBar
+			content={(apiKey || error) &&
+				<NewsControls
+					news={news}
+					error={error}
+					selectedCountries={selectedCountries}
+					setSelectedCountries={setSelectedCountries}
+					selectedCategories={selectedCategories}
+					setSelectedCategories={setSelectedCategories} />} />
 	</>)
 };

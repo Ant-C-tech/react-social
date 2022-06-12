@@ -18,3 +18,7 @@
 	color: rgba(0, 0, 0, 0);
 	transition: color .3s ease;
 }
+
+.rightbar:hover {
+	color: rgba(0, 0, 0, 0.3);
+}
