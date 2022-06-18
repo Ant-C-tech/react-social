@@ -1,3 +1,4 @@
+
 export const countriesAvailableForFilterNews = [
 	'ar',
 	'au',
@@ -42,7 +43,6 @@ export const countriesAvailableForFilterNews = [
 	'sa',
 	'rs',
 	'sg',
-	'sk',
 	'si',
 	'za',
 	'kr',
@@ -57,4 +57,4 @@ export const countriesAvailableForFilterNews = [
 	'gb',
 	'us',
 	've',
-].map((code) => code.toUpperCase());
+];

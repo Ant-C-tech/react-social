@@ -1,4 +1,4 @@
-export const addSelectWithRandomItem = (selectedItems, itemBase, setSelectedItems) => {
+export const addSelectWithRandomNotSelectedValue = (selectedItems, itemBase, setSelectedItems) => {
 	const rn = require('random-number');
 	const gen = rn.generator({
 		min: 0,
