@@ -31,7 +31,7 @@ export const SelectComponent = ({ valueOptions, labelOptions = null, labelIconOp
     styles={selectStyles}
     defaultValue={{
       value: defaultValue,
-      label: <span className='category-option-item'>{labelIconOptions && labelIconOptions[defaultValue]} <span className='category-option-item-text'>{labelOptions ? labelOptions[defaultValue] : defaultValue}</span></span>,
+      label: <span className='option-item'>{labelIconOptions && labelIconOptions[defaultValue]} <span className='option-item-text'>{labelOptions ? labelOptions[defaultValue] : defaultValue}</span></span>,
     }}
     isSearchable={isSearchable}
     filterOption={customFilter}
