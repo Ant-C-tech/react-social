@@ -13,6 +13,7 @@ import { Message } from '../common/message/Message';
 
 const defaultCountry = 'us';
 const defaultCategory = 'top';
+const defaultLanguage = 'en';
 
 export const NewsPage = () => {
 	const [apiKey, setApiKey] = useState('')
@@ -24,6 +25,7 @@ export const NewsPage = () => {
 
 	const [selectedCountries, setSelectedCountries] = useState([defaultCountry]);
 	const [selectedCategories, setSelectedCategories] = useState([defaultCategory]);
+	const [selectedLanguages, setSelectedLanguages] = useState([defaultLanguage]);
 
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
@@ -56,7 +58,7 @@ export const NewsPage = () => {
 		const getDefaultNews = async () => {
 			try {
 				setLoading(true)
-				const response = await getNews(apiKey, selectedCountries, selectedCategories, 0)
+				const response = await getNews(apiKey, selectedCountries, selectedCategories, selectedLanguages, 0)
 				if (response) {
 					//Avoid multiple requests for
 					setRequestCounter(requestCounter => requestCounter + 1)
@@ -73,14 +75,14 @@ export const NewsPage = () => {
 		}
 
 		apiKey && getDefaultNews()
-	}, [apiKey, selectedCountries, selectedCategories]);
+	}, [apiKey, selectedCountries, selectedCategories, selectedLanguages]);
 
 	useEffect(() => {
 		const getMoreNews = async () => {
 			setNeedMoreNews(false)
 			try {
 				setLoading(true)
-				const response = await getNews(apiKey, selectedCountries, selectedCategories, nextPage)
+				const response = await getNews(apiKey, selectedCountries, selectedCategories, selectedLanguages, nextPage)
 				if (response) {
 					//Avoid multiple requests for
 					setRequestCounter(requestCounter => requestCounter + 1)
@@ -100,7 +102,7 @@ export const NewsPage = () => {
 		if (needMoreNews && hasMoreNews) {
 			getMoreNews()
 		}
-	}, [apiKey, selectedCountries, selectedCategories, nextPage, needMoreNews, hasMoreNews])
+	}, [apiKey, selectedCountries, selectedCategories, selectedLanguages, nextPage, needMoreNews, hasMoreNews])
 
 	// In develop purpose
 	useEffect(() => {
@@ -157,6 +159,8 @@ export const NewsPage = () => {
 					selectedCountries={selectedCountries}
 					setSelectedCountries={setSelectedCountries}
 					selectedCategories={selectedCategories}
-					setSelectedCategories={setSelectedCategories} />} />
+					setSelectedCategories={setSelectedCategories}
+					selectedLanguages={selectedLanguages}
+					setSelectedLanguages={setSelectedLanguages} />} />
 	</>)
 };

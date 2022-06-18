@@ -1,29 +1,31 @@
 import './newsControls.css';
 
 import { Help } from '@material-ui/icons';
-import { countries } from 'country-data';
 import uuid from 'react-uuid'
 
 import { createErrorMessage } from '../businessLogic/createErrorMessage';
 
 import { countriesAvailableForFilterNews } from '../constants/countriesAvailableForFilterNews';
-import { iconsForCategories } from '../constants/iconsForCategories';
 import { categoriesAvailableForFilterNews } from '../constants/categoriesAvailableForFilterNews';
+import { languagesAvailableForFilterNews } from '../constants/languagesAvailableForFilterNews';
 
 import { getNotSelectedItems } from './utils/getNotSelectedItems';
 import { addSelectWithRandomNotSelectedValue } from './utils/addSelectWithRandomNotSelectedValue';
 import { removeLastSelect } from './utils/removeLastSelect';
 import { updateSelectedItems } from './utils/updateSelectedItems'
+import { getAdditionalDataForNewsControls } from './utils/getAdditionalDataForNewsControls';
 
 import { Message } from '../../common/message/Message';
 import { Button } from '../../common/button/Button'
 import { SelectComponent } from '../../common/selectComponent/selectComponent';
 
-export const NewsControls = ({ news, error, selectedCountries, setSelectedCountries, selectedCategories, setSelectedCategories }) => {
+export const NewsControls = ({ news, error, selectedCountries, setSelectedCountries, selectedCategories, setSelectedCategories, selectedLanguages, setSelectedLanguages }) => {
   const minParametersLength = 1
   const maxParametersLength = 5
 
   const errorMessage = error && createErrorMessage(news, error)
+
+  const { labelOptions, labelIconOptionsForCountry, labelIconOptionsForLanguage } = getAdditionalDataForNewsControls()
 
   // In developing purpose
   console.log("Render");
@@ -41,19 +43,11 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
           {selectedCountries.map((country, index) => {
             const availableCountries = getNotSelectedItems(country, countriesAvailableForFilterNews, selectedCountries)
 
-            const labelOptions = {}
-            const labelIconOptions = {}
-
-            countries.all.forEach((country) => {
-              labelOptions[country.alpha2.toLowerCase()] = country.name
-              labelIconOptions[country.alpha2.toLowerCase()] = <span>{country.emoji}</span>
-            })
-
             return <SelectComponent
               key={uuid()}
               valueOptions={availableCountries}
               labelOptions={labelOptions}
-              labelIconOptions={labelIconOptions}
+              labelIconOptions={labelIconOptionsForCountry}
               defaultValue={country}
               onChange={({ value }) => {
                 updateSelectedItems(index, value, selectedCountries, setSelectedCountries)
@@ -76,11 +70,11 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
         <div className="news-control">
           <h4 className='select-title'>Selected category:</h4>
           {selectedCategories.map((category, index) => {
-            const availableCategories = getNotSelectedItems(category, categoriesAvailableForFilterNews, selectedCategories)
+            const availableCategories = getNotSelectedItems(category, Object.keys(categoriesAvailableForFilterNews), selectedCategories)
             return <SelectComponent
               key={uuid()}
               valueOptions={availableCategories}
-              labelIconOptions={iconsForCategories}
+              labelIconOptions={categoriesAvailableForFilterNews}
               defaultValue={category}
               onChange={({ value }) => {
                 updateSelectedItems(index, value, selectedCategories, setSelectedCategories)
@@ -94,8 +88,36 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
                 onClick={() => addSelectWithRandomNotSelectedValue(selectedCategories, categoriesAvailableForFilterNews, setSelectedCategories)} />}
             {selectedCategories.length !== minParametersLength &&
               <Button
-                text='Remove Categories'
+                text='Remove Category'
                 onClick={() => removeLastSelect(selectedCategories, setSelectedCategories)} />}
+          </div>
+        </div>
+
+        <div className="news-control">
+          <h4 className='select-title'>Selected languages:</h4>
+          {selectedLanguages.map((language, index) => {
+            const availableLanguages = getNotSelectedItems(language, Object.keys(languagesAvailableForFilterNews), selectedLanguages)
+
+            return <SelectComponent
+              key={uuid()}
+              valueOptions={availableLanguages}
+              labelOptions={languagesAvailableForFilterNews}
+              labelIconOptions={labelIconOptionsForLanguage}
+              defaultValue={language}
+              onChange={({ value }) => {
+                updateSelectedItems(index, value, selectedLanguages, setSelectedLanguages)
+              }}
+              isSearchable={true} />
+          })}
+          <div className="select-controls">
+            {selectedCategories.length !== maxParametersLength &&
+              <Button
+                text='Add More Languages'
+                onClick={() => addSelectWithRandomNotSelectedValue(selectedLanguages, Object.keys(languagesAvailableForFilterNews), setSelectedLanguages)} />}
+            {selectedLanguages.length !== minParametersLength &&
+              <Button
+                text='Remove Language'
+                onClick={() => removeLastSelect(selectedLanguages, setSelectedLanguages)} />}
           </div>
         </div>
 
