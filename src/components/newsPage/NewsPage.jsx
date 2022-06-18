@@ -11,7 +11,7 @@ import { NewsControls } from './newsControls/NewsControls';
 import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
 import { Message } from '../common/message/Message';
 
-const defaultCountry = 'US';
+const defaultCountry = 'us';
 const defaultCategory = 'top';
 
 export const NewsPage = () => {
@@ -129,8 +129,6 @@ export const NewsPage = () => {
 		})
 		if (node) observer.current.observe(node)
 	}, [loading])
-
-	console.log(selectedCountries, selectedCategories);
 
 	return (<>
 		<section className='content-container'>

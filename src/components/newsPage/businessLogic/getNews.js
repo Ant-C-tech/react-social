@@ -6,7 +6,7 @@ export const getNews = (apiKey, selectedCountry, selectedCategory, nextPage) => 
 			baseURL: 'https://newsdata.io/api/1/news',
 			params: {
 				apikey: apiKey,
-				country: selectedCountry.join().toLowerCase(),
+				country: selectedCountry.join(),
 				category: selectedCategory.join(),
 				page: nextPage
 			},
