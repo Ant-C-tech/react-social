@@ -9,7 +9,9 @@ export const Message = ({ type, title, children }) => {
 		<article className={`${type} message`} >
 			<h2 className="message-title">{title}</h2>
 			<Error className="message-icon" />
-			{children}
+			<div className="message-text">
+				{children}
+			</div>
 		</article >
 	)
 };
