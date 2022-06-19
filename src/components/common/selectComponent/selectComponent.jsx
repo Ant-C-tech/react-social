@@ -2,17 +2,22 @@ import './selectComponent.css';
 
 import Select from 'react-select'
 
+import { AllInclusive } from '@material-ui/icons';
+
 import { selectStyles } from './selectStyles';
 import { selectTheme } from './selectTheme'
 
 export const SelectComponent = ({ valueOptions, labelOptions = null, labelIconOptions = null, defaultValue, onChange, isSearchable }) => {
-  const options = valueOptions.map((currentOption) => {
-    const filterData = labelOptions ? labelOptions[currentOption] : currentOption
 
+  const getIcon = (item) => {
+    return item === 'all' ? <AllInclusive /> : labelIconOptions ? labelIconOptions[item] : null
+  }
+
+  const options = valueOptions.map((currentOption) => {
     return {
       'value': currentOption,
-      'label': <span className='category-option-item'>{labelIconOptions && labelIconOptions[currentOption]} <span className='category-option-item-text'>{labelOptions ? labelOptions[currentOption] : currentOption}</span></span>,
-      'filterData': filterData
+      'label': <span className='category-option-item'>{getIcon(currentOption)} <span className='category-option-item-text'>{labelOptions && currentOption !== 'all' ? labelOptions[currentOption] : currentOption}</span></span>,
+      'filterData': labelOptions && currentOption !== 'all' ? labelOptions[currentOption] : currentOption
     }
   })
 
@@ -31,7 +36,7 @@ export const SelectComponent = ({ valueOptions, labelOptions = null, labelIconOp
     styles={selectStyles}
     defaultValue={{
       value: defaultValue,
-      label: <span className='option-item'>{labelIconOptions && labelIconOptions[defaultValue]} <span className='option-item-text'>{labelOptions ? labelOptions[defaultValue] : defaultValue}</span></span>,
+      label: <span className='option-item'>{getIcon(defaultValue)} <span className='option-item-text'>{labelOptions && defaultValue !== 'all' ? labelOptions[defaultValue] : defaultValue}</span></span>,
     }}
     isSearchable={isSearchable}
     filterOption={customFilter}
