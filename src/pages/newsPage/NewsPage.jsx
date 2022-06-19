@@ -4,12 +4,12 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 
 import { getNews } from './businessLogic/getNews';
 
-import { RightBar } from '../rightbar/RightBar';
+import { RightBar } from '../../components/rightbar/RightBar';
 import { NewsFeed } from './newsFeed/NewsFeed';
 import { NewsControls } from './newsControls/NewsControls';
 import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
-import { Message } from '../common/message/Message';
-import { InputComponent } from '../common/inputComponent/InputComponent';
+import { Message } from '../../components/common/message/Message';
+import { InputComponent } from '../../components/common/inputComponent/InputComponent';
 
 const defaultCountry = 'all';
 const defaultCategory = 'all';
@@ -33,7 +33,6 @@ export const NewsPage = () => {
 
 	const [news, setNews] = useState([])
 
-
 	//Avoid multiple requests for
 	const [requestCounter, setRequestCounter] = useState(0)
 
@@ -41,11 +40,6 @@ export const NewsPage = () => {
 		setError('')
 		setNextPage(0)
 	}, [apiKey, selectedCountries])
-
-	// useEffect(() => {
-	// 	setFocusNewsIndex((prevIndex) => news.length - prevIndex)
-		// focusNewsRef.current && focusNewsRef.current.scrollIntoView({ block: "start" });
-	// }, [news])
 
 	useEffect(() => {
 		if (news.length < totalResults) {
@@ -58,6 +52,7 @@ export const NewsPage = () => {
 	useEffect(() => {
 		const getDefaultNews = async () => {
 			try {
+				setLoading(true)
 				const response = await getNews(apiKey, selectedCountries, selectedCategories, selectedLanguages, 0)
 				if (response) {
 					//Avoid multiple requests for
@@ -77,7 +72,6 @@ export const NewsPage = () => {
 		}
 
 		if (apiKey) {
-			setLoading(true)
 			getDefaultNews()
 		}
 	}, [apiKey, selectedCountries, selectedCategories, selectedLanguages]);
@@ -108,7 +102,6 @@ export const NewsPage = () => {
 		}
 
 		if (needMoreNews && hasMoreNews) {
-			setLoading(true)
 			getMoreNews()
 		}
 	}, [apiKey, selectedCountries, selectedCategories, selectedLanguages, nextPage, needMoreNews, hasMoreNews])
@@ -166,6 +159,7 @@ export const NewsPage = () => {
 					selectedCategories={selectedCategories}
 					setSelectedCategories={setSelectedCategories}
 					selectedLanguages={selectedLanguages}
-					setSelectedLanguages={setSelectedLanguages} />} />
+					setSelectedLanguages={setSelectedLanguages}
+					loading={loading} />} />
 	</>)
 };
