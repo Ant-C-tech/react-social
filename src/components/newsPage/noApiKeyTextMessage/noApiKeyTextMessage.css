@@ -1,13 +1,17 @@
-.input-legend-title,
-.input-legend-subtitle,
-.input-legend-description-list {
+.no-api-key{
+	text-align: left;
+}
+
+.no-api-key-title,
+.no-api-key-subtitle,
+.no-api-key-description-list {
 	margin-bottom: 30px;
 }
 
-.input-legend-description-list {
+.no-api-key-description-list {
 	margin-left: 15px;
 }
 
-.input-legend-description-list-item {
+.no-api-key-description-list-item {
 	margin-bottom: 5px;
 }

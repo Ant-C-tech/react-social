@@ -1,7 +1,6 @@
 import './newsPage.css';
 
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { DebounceInput } from 'react-debounce-input';
 
 import { getNews } from './businessLogic/getNews';
 
@@ -10,6 +9,7 @@ import { NewsFeed } from './newsFeed/NewsFeed';
 import { NewsControls } from './newsControls/NewsControls';
 import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
 import { Message } from '../common/message/Message';
+import { InputComponent } from '../common/inputComponent/InputComponent';
 
 const defaultCountry = 'all';
 const defaultCategory = 'all';
@@ -55,9 +55,9 @@ export const NewsPage = () => {
 	}, [news, totalResults]);
 
 	useEffect(() => {
+		setLoading(true)
 		const getDefaultNews = async () => {
 			try {
-				setLoading(true)
 				const response = await getNews(apiKey, selectedCountries, selectedCategories, selectedLanguages, 0)
 				if (response) {
 					//Avoid multiple requests for
@@ -71,6 +71,7 @@ export const NewsPage = () => {
 				setLoading(false)
 			} catch (error) {
 				setError(error.message)
+				setLoading(false)
 			}
 		}
 
@@ -78,6 +79,7 @@ export const NewsPage = () => {
 	}, [apiKey, selectedCountries, selectedCategories, selectedLanguages]);
 
 	useEffect(() => {
+		setLoading(true)
 		const getMoreNews = async () => {
 			setNeedMoreNews(false)
 			try {
@@ -96,6 +98,7 @@ export const NewsPage = () => {
 
 			} catch (error) {
 				setError(error.message)
+				setLoading(false)
 			}
 		}
 
@@ -128,14 +131,15 @@ export const NewsPage = () => {
 	return (<>
 		<section className='content-container'>
 			{apiKey && !error ?
-				<NewsFeed newsSet={news}
+				<NewsFeed
+					loading={loading}
+					newsSet={news}
 					lastNewsRef={lastNewsRef}
 					newsFeedRef={newsFeedRef} />
 				:
 				<Message type={'info'} title={'You need API key for getting news.'}>
 					<NoApiKeyTextMessage />
-					<DebounceInput
-						type="text"
+					<InputComponent type="text"
 						minLength={2}
 						debounceTimeout={500}
 						placeholder={"Please, input your API key"}
