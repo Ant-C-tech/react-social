@@ -2,7 +2,7 @@ import './page.css';
 
 import { TopBar } from '../components/topbar/TopBar';
 import { SideBar } from '../components/sidebar/SideBar';
-import { NewsPage } from '../components/newsPage/NewsPage';
+import { NewsPage } from './newsPage/NewsPage';
 
 export const Page = () => {
   return (<>

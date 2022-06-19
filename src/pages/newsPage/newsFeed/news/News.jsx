@@ -8,7 +8,7 @@ import {
 } from '@material-ui/icons';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { CustomLink } from '../../../common/customLink/CustomLink';
+import { CustomLink } from '../../../../components/common/customLink/CustomLink';
 
 export const News = ({ categories, countries, title, image, text, pubDate, creators, link, video }) => {
 	return (

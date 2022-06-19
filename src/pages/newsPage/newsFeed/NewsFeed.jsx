@@ -6,8 +6,8 @@ import uuid from 'react-uuid'
 import { useScrollTo } from '../hooks/useScrollTo';
 
 import { News } from './news/News';
-import { Message } from '../../common/message/Message';
-import { Loader } from '../../common/loader/Loader';
+import { Message } from '../../../components/common/message/Message';
+import { Loader } from '../../../components/common/loader/Loader';
 
 export const NewsFeed = ({ newsSet, lastNewsRef, focusNewsIndex, loading }) => {
 	const [targetScrollRef, scrollToRef] = useScrollTo()

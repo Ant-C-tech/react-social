@@ -10,16 +10,26 @@ import { categoriesAvailableForFilterNews } from '../constants/categoriesAvailab
 import { languagesAvailableForFilterNews } from '../constants/languagesAvailableForFilterNews';
 
 import { getNotSelectedItems } from '../utils/getNotSelectedItems';
-import { addSelectWithRandomNotSelectedValue } from '../utils/addSelectWithRandomNotSelectedValue';
+import { addSelectWithNotSelectedValue } from '../utils/addSelectWithNotSelectedValue';
 import { removeLastSelect } from '../utils/removeLastSelect';
 import { updateSelectedItems } from '../utils/updateSelectedItems'
 import { getAdditionalDataForNewsControls } from '../utils/getAdditionalDataForNewsControls';
 
-import { Message } from '../../common/message/Message';
-import { Button } from '../../common/button/Button'
-import { SelectComponent } from '../../common/selectComponent/selectComponent';
+import { Message } from '../../../components/common/message/Message';
+import { Button } from '../../../components/common/button/Button'
+import { SelectComponent } from '../../../components/common/selectComponent/selectComponent';
 
-export const NewsControls = ({ news, error, selectedCountries, setSelectedCountries, selectedCategories, setSelectedCategories, selectedLanguages, setSelectedLanguages }) => {
+export const NewsControls = ({
+  news,
+  error,
+  selectedCountries,
+  setSelectedCountries,
+  selectedCategories,
+  setSelectedCategories,
+  selectedLanguages,
+  setSelectedLanguages,
+  loading }) => {
+
   const minParametersLength = 1
   const maxParametersLength = 5
 
@@ -50,7 +60,9 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
               labelIconOptions={labelIconOptionsForCountries}
               defaultValue={country}
               onChange={({ value }) => {
-                updateSelectedItems(index, value, selectedCountries, setSelectedCountries)
+                if (!loading) {
+                  updateSelectedItems(index, value, setSelectedCountries)
+                }
               }}
               isSearchable={true} />
           }
@@ -58,11 +70,17 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
           <div className="select-controls">
             {selectedCountries.length !== maxParametersLength && selectedCountries[0] !== 'all' &&
               <Button text='Add More Countries'
-                onClick={() => addSelectWithRandomNotSelectedValue(selectedCountries, countriesAvailableForFilterNews, setSelectedCountries)} />}
+                onClick={() => {
+                  if (!loading) {
+                    addSelectWithNotSelectedValue(selectedCountries, countriesAvailableForFilterNews, setSelectedCountries)
+                  }
+                }} />}
             {selectedCountries.length !== minParametersLength &&
               <Button text='Remove Country'
                 onClick={() => {
-                  removeLastSelect(selectedCountries, setSelectedCountries)
+                  if (!loading) {
+                    removeLastSelect( setSelectedCountries)
+                  }
                 }} />}
           </div>
         </div>
@@ -77,7 +95,9 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
               labelIconOptions={categoriesAvailableForFilterNews}
               defaultValue={category}
               onChange={({ value }) => {
-                updateSelectedItems(index, value, selectedCategories, setSelectedCategories)
+                if (!loading) {
+                  updateSelectedItems(index, value, setSelectedCategories)
+                }
               }}
               isSearchable={true} />
           })}
@@ -85,11 +105,19 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
             {selectedCategories.length !== maxParametersLength && selectedCategories[0] !== 'all' &&
               <Button
                 text='Add More Categories'
-                onClick={() => addSelectWithRandomNotSelectedValue(selectedCategories, categoriesAvailableForFilterNews, setSelectedCategories)} />}
+                onClick={() => {
+                  if (!loading) {
+                    addSelectWithNotSelectedValue(selectedCategories, Object.keys(categoriesAvailableForFilterNews), setSelectedCategories)
+                  }
+                }} />}
             {selectedCategories.length !== minParametersLength &&
               <Button
                 text='Remove Category'
-                onClick={() => removeLastSelect(selectedCategories, setSelectedCategories)} />}
+                onClick={() => {
+                  if (!loading) {
+                    removeLastSelect( setSelectedCategories)
+                  }
+                }} />}
           </div>
         </div>
 
@@ -105,7 +133,9 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
               labelIconOptions={labelIconOptionsForLanguages}
               defaultValue={language}
               onChange={({ value }) => {
-                updateSelectedItems(index, value, selectedLanguages, setSelectedLanguages)
+                if (!loading) {
+                  updateSelectedItems(index, value, setSelectedLanguages)
+                }
               }}
               isSearchable={true} />
           })}
@@ -113,11 +143,19 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
             {selectedLanguages.length !== maxParametersLength && selectedLanguages[0] !== 'all' &&
               <Button
                 text='Add More Languages'
-                onClick={() => addSelectWithRandomNotSelectedValue(selectedLanguages, Object.keys(languagesAvailableForFilterNews), setSelectedLanguages)} />}
+                onClick={() => {
+                  if (!loading) {
+                    addSelectWithNotSelectedValue(selectedLanguages, Object.keys(languagesAvailableForFilterNews), setSelectedLanguages)
+                  }
+                }} />}
             {selectedLanguages.length !== minParametersLength &&
               <Button
                 text='Remove Language'
-                onClick={() => removeLastSelect(selectedLanguages, setSelectedLanguages)} />}
+                onClick={() => {
+                  if (!loading) {
+                    removeLastSelect( setSelectedLanguages)
+                  }
+                }} />}
           </div>
         </div>
 

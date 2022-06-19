@@ -2,7 +2,7 @@ import './noApiKeyTextMessage.css';
 
 import { Bookmark } from '@material-ui/icons';
 
-import { CustomLink } from '../../common/customLink/CustomLink';
+import { CustomLink } from '../../../components/common/customLink/CustomLink';
 
 export const NoApiKeyTextMessage = () => {
   return (
