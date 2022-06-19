@@ -9,11 +9,11 @@ import { countriesAvailableForFilterNews } from '../constants/countriesAvailable
 import { categoriesAvailableForFilterNews } from '../constants/categoriesAvailableForFilterNews';
 import { languagesAvailableForFilterNews } from '../constants/languagesAvailableForFilterNews';
 
-import { getNotSelectedItems } from './utils/getNotSelectedItems';
-import { addSelectWithRandomNotSelectedValue } from './utils/addSelectWithRandomNotSelectedValue';
-import { removeLastSelect } from './utils/removeLastSelect';
-import { updateSelectedItems } from './utils/updateSelectedItems'
-import { getAdditionalDataForNewsControls } from './utils/getAdditionalDataForNewsControls';
+import { getNotSelectedItems } from '../utils/getNotSelectedItems';
+import { addSelectWithRandomNotSelectedValue } from '../utils/addSelectWithRandomNotSelectedValue';
+import { removeLastSelect } from '../utils/removeLastSelect';
+import { updateSelectedItems } from '../utils/updateSelectedItems'
+import { getAdditionalDataForNewsControls } from '../utils/getAdditionalDataForNewsControls';
 
 import { Message } from '../../common/message/Message';
 import { Button } from '../../common/button/Button'

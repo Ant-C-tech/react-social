@@ -22,6 +22,7 @@ export const NewsPage = () => {
 	const [totalResults, setTotalResults] = useState(1)
 	const [needMoreNews, setNeedMoreNews] = useState(false)
 	const [hasMoreNews, setHasMoreNews] = useState(true)
+	const [focusNewsIndex, setFocusNewsIndex] = useState(0)
 
 	const [selectedCountries, setSelectedCountries] = useState([defaultCountry]);
 	const [selectedCategories, setSelectedCategories] = useState([defaultCategory]);
@@ -41,10 +42,10 @@ export const NewsPage = () => {
 		setNextPage(0)
 	}, [apiKey, selectedCountries])
 
-	const newsFeedRef = useRef(null)
-	useEffect(() => {
-		newsFeedRef.current && newsFeedRef.current.scrollIntoView({ block: "start" });
-	}, [selectedCountries])
+	// useEffect(() => {
+	// 	setFocusNewsIndex((prevIndex) => news.length - prevIndex)
+		// focusNewsRef.current && focusNewsRef.current.scrollIntoView({ block: "start" });
+	// }, [news])
 
 	useEffect(() => {
 		if (news.length < totalResults) {
@@ -55,7 +56,6 @@ export const NewsPage = () => {
 	}, [news, totalResults]);
 
 	useEffect(() => {
-		setLoading(true)
 		const getDefaultNews = async () => {
 			try {
 				const response = await getNews(apiKey, selectedCountries, selectedCategories, selectedLanguages, 0)
@@ -64,6 +64,7 @@ export const NewsPage = () => {
 					setRequestCounter(requestCounter => requestCounter + 1)
 
 					setNews(response.data.results)
+					setFocusNewsIndex(0)
 
 					setNextPage(response.data.nextPage)
 					setTotalResults(response.data.totalResults)
@@ -75,11 +76,13 @@ export const NewsPage = () => {
 			}
 		}
 
-		apiKey && getDefaultNews()
+		if (apiKey) {
+			setLoading(true)
+			getDefaultNews()
+		}
 	}, [apiKey, selectedCountries, selectedCategories, selectedLanguages]);
 
 	useEffect(() => {
-		setLoading(true)
 		const getMoreNews = async () => {
 			setNeedMoreNews(false)
 			try {
@@ -93,6 +96,8 @@ export const NewsPage = () => {
 					setTotalResults(response.data.totalResults)
 
 					setNews((news) => { return [...new Set([...news, ...response.data.results])] })
+
+					setFocusNewsIndex((prevIndex) => prevIndex + response.data.results.length)
 				}
 				setLoading(false)
 
@@ -103,6 +108,7 @@ export const NewsPage = () => {
 		}
 
 		if (needMoreNews && hasMoreNews) {
+			setLoading(true)
 			getMoreNews()
 		}
 	}, [apiKey, selectedCountries, selectedCategories, selectedLanguages, nextPage, needMoreNews, hasMoreNews])
@@ -135,7 +141,9 @@ export const NewsPage = () => {
 					loading={loading}
 					newsSet={news}
 					lastNewsRef={lastNewsRef}
-					newsFeedRef={newsFeedRef} />
+					focusNewsIndex={focusNewsIndex}
+				// newsFeedRef={newsFeedRef}
+				/>
 				:
 				<Message type={'info'} title={'You need API key for getting news.'}>
 					<NoApiKeyTextMessage />
