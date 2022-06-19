@@ -25,7 +25,7 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
 
   const errorMessage = error && createErrorMessage(news, error)
 
-  const { labelOptions, labelIconOptionsForCountry, labelIconOptionsForLanguage } = getAdditionalDataForNewsControls()
+  const { labelOptionForCountries, labelIconOptionsForCountries, labelIconOptionsForLanguages } = getAdditionalDataForNewsControls()
 
   // In developing purpose
   console.log("Render");
@@ -46,8 +46,8 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
             return <SelectComponent
               key={uuid()}
               valueOptions={availableCountries}
-              labelOptions={labelOptions}
-              labelIconOptions={labelIconOptionsForCountry}
+              labelOptions={labelOptionForCountries}
+              labelIconOptions={labelIconOptionsForCountries}
               defaultValue={country}
               onChange={({ value }) => {
                 updateSelectedItems(index, value, selectedCountries, setSelectedCountries)
@@ -56,7 +56,7 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
           }
           )}
           <div className="select-controls">
-            {selectedCountries.length !== maxParametersLength &&
+            {selectedCountries.length !== maxParametersLength && selectedCountries[0] !== 'all' &&
               <Button text='Add More Countries'
                 onClick={() => addSelectWithRandomNotSelectedValue(selectedCountries, countriesAvailableForFilterNews, setSelectedCountries)} />}
             {selectedCountries.length !== minParametersLength &&
@@ -82,7 +82,7 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
               isSearchable={true} />
           })}
           <div className="select-controls">
-            {selectedCategories.length !== maxParametersLength &&
+            {selectedCategories.length !== maxParametersLength && selectedCategories[0] !== 'all' &&
               <Button
                 text='Add More Categories'
                 onClick={() => addSelectWithRandomNotSelectedValue(selectedCategories, categoriesAvailableForFilterNews, setSelectedCategories)} />}
@@ -102,7 +102,7 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
               key={uuid()}
               valueOptions={availableLanguages}
               labelOptions={languagesAvailableForFilterNews}
-              labelIconOptions={labelIconOptionsForLanguage}
+              labelIconOptions={labelIconOptionsForLanguages}
               defaultValue={language}
               onChange={({ value }) => {
                 updateSelectedItems(index, value, selectedLanguages, setSelectedLanguages)
@@ -110,7 +110,7 @@ export const NewsControls = ({ news, error, selectedCountries, setSelectedCountr
               isSearchable={true} />
           })}
           <div className="select-controls">
-            {selectedCategories.length !== maxParametersLength &&
+            {selectedLanguages.length !== maxParametersLength && selectedLanguages[0] !== 'all' &&
               <Button
                 text='Add More Languages'
                 onClick={() => addSelectWithRandomNotSelectedValue(selectedLanguages, Object.keys(languagesAvailableForFilterNews), setSelectedLanguages)} />}

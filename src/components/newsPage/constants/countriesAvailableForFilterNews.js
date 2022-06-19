@@ -1,5 +1,6 @@
 
 export const countriesAvailableForFilterNews = [
+	'all',
 	'ar',
 	'au',
 	'at',

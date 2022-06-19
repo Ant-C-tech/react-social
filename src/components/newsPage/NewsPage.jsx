@@ -11,9 +11,9 @@ import { NewsControls } from './newsControls/NewsControls';
 import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
 import { Message } from '../common/message/Message';
 
-const defaultCountry = 'us';
-const defaultCategory = 'top';
-const defaultLanguage = 'en';
+const defaultCountry = 'all';
+const defaultCategory = 'all';
+const defaultLanguage = 'all';
 
 export const NewsPage = () => {
 	const [apiKey, setApiKey] = useState('')
@@ -104,16 +104,9 @@ export const NewsPage = () => {
 		}
 	}, [apiKey, selectedCountries, selectedCategories, selectedLanguages, nextPage, needMoreNews, hasMoreNews])
 
-	// In develop purpose
-	useEffect(() => {
-		if (news.length > 0) {
-			console.log(news);
-		}
-	}, [news]);
-
 	//Avoid multiple requests for
 	useEffect(() => {
-		if (requestCounter > 5) {
+		if (requestCounter > 10) {
 			setApiKey('')
 			console.log('Multiple Request Happened!');
 		}

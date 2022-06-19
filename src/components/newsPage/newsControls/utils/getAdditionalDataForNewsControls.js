@@ -1,13 +1,13 @@
 import { countries } from 'country-data';
 
 export const getAdditionalDataForNewsControls = () => {
-	const labelOptions = {};
-	const labelIconOptionsForCountry = {};
-	const labelIconOptionsForLanguage = {};
+	const labelOptionForCountries = {};
+	const labelIconOptionsForCountries = {};
+	const labelIconOptionsForLanguages = {};
 
 	countries.all.forEach((country) => {
-		labelOptions[country.alpha2.toLowerCase()] = country.name;
-		labelIconOptionsForCountry[country.alpha2.toLowerCase()] = <span>{country.emoji}</span>;
+		labelOptionForCountries[country.alpha2.toLowerCase()] = country.name;
+		labelIconOptionsForCountries[country.alpha2.toLowerCase()] = <span>{country.emoji}</span>;
 
 		let languageCode;
 		switch (country.alpha2.toLowerCase()) {
@@ -44,12 +44,12 @@ export const getAdditionalDataForNewsControls = () => {
 			default:
 				languageCode = country.alpha2.toLowerCase();
 		}
-		labelIconOptionsForLanguage[languageCode] = <span>{country.emoji}</span>;
+		labelIconOptionsForLanguages[languageCode] = <span>{country.emoji}</span>;
 	});
 
 	return {
-		labelOptions,
-		labelIconOptionsForCountry,
-		labelIconOptionsForLanguage,
+		labelOptionForCountries,
+		labelIconOptionsForCountries,
+		labelIconOptionsForLanguages,
 	};
 };

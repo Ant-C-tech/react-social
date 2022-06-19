@@ -1,4 +1,5 @@
 export const languagesAvailableForFilterNews = {
+	all: 'All',
 	ar: 'Arabic',
 	bs: 'Bosnian',
 	bg: 'Bulgarian',

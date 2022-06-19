@@ -1,4 +1,5 @@
 import {
+	AllInclusive,
 	BusinessCenter,
 	SportsEsports,
 	Nature,
@@ -13,6 +14,7 @@ import {
 } from '@material-ui/icons';
 
 export const categoriesAvailableForFilterNews = {
+	all: <AllInclusive/>,
 	business: <BusinessCenter />,
 	entertainment: <SportsEsports />,
 	environment: <Nature />,
