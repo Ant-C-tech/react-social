@@ -1,6 +1,10 @@
 .link {
 	position: relative;
 	margin: 0 7px;
+
+	font-family: 'Amatic SC', cursive;
+	font-weight: bold;
+	font-size: 25px;
 }
 
 .link:after {
@@ -33,7 +37,7 @@
 
 	border-radius: 3px;
 
-	font-size: 14px;
+	font-size: 18px;
 	font-weight: bold;
 	line-height: 1;
 	color: #f3f3f3;
@@ -56,7 +60,7 @@
 .hover-underline:after {
 	width: 0;
 	height: 1px;
-	bottom: -2px;
+	bottom: 0;
 	left: 50%;
 	transform: translate(-50%, 0);
 }
@@ -74,7 +78,7 @@
 	text-transform: uppercase;
 }
 
-.hover-left-line:after{
+.hover-left-line:after {
 	width: 1px;
 	height: 0;
 	bottom: 50%;
@@ -87,26 +91,3 @@
 .hover-left-line.active:after {
 	height: 100%;
 }
-
-
-/* ************************** */
-/* .icon:after,
-.profile-image-container:after,
-.sidebar-friend-image-container:after {
-	width: 1px;
-	height: 0;
-	bottom: 50%;
-	left: -4px;
-	transform: translate(50%, 50%);
-}
-
-.icon:hover:after,
-.icon:focus:after,
-.icon.active:after,
-.profile-image-container:hover:after,
-.profile-image-container:focus:after,
-.sidebar-friend-image-container:hover:after,
-.sidebar-friend-image-container:focus:after {
-	height: 100%;
-} */
-/* ************************** */

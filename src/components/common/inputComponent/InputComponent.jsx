@@ -1,3 +1,5 @@
+import './inputComponent.css'
+
 import { DebounceInput } from 'react-debounce-input';
 
 export const InputComponent = ({ type, minLength, debounceTimeout, placeholder, value, onChange}) => {

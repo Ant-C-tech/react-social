@@ -135,7 +135,6 @@ export const NewsPage = () => {
 					newsSet={news}
 					lastNewsRef={lastNewsRef}
 					focusNewsIndex={focusNewsIndex}
-				// newsFeedRef={newsFeedRef}
 				/>
 				:
 				<Message type={'info'} title={'You need API key for getting news.'}>
