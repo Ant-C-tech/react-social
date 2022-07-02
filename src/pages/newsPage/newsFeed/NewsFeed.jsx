@@ -34,6 +34,7 @@ export const NewsFeed = ({ newsSet, lastNewsRef, focusNewsIndex, loading }) => {
 							creators={news.creator}
 							link={news.link}
 							video={news.video_url}
+							language={ news.language}
 						/>
 					</li>
 				})}

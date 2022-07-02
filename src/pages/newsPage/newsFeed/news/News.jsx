@@ -10,9 +10,9 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { CustomLink } from '../../../../components/common/customLink/CustomLink';
 
-export const News = ({ categories, countries, title, image, text, pubDate, creators, link, video }) => {
+export const News = ({ categories, countries, title, image, text, pubDate, creators, link, video, language }) => {
 	return (
-		<article className="news">
+		<article className='news' >
 			<header className="news-header">
 				{categories && <div className="news-category">
 					{categories.map((category, index) => (
@@ -26,22 +26,24 @@ export const News = ({ categories, countries, title, image, text, pubDate, creat
 				</div>}
 			</header>
 
-			<div className="news-title">
-				<FiberNew className="news-title-icon" />
-				<h2 className="news-title-text">{title}</h2>
+			<div className={`news-content ${language}`}>
+				<div className="news-title">
+					<FiberNew className="news-title-icon" />
+					<h2 className="news-title-text">{title}</h2>
+				</div>
+
+				<LazyLoadImage
+					className="news-image"
+					wrapperClassName="news-image-wrapper"
+					effect="blur"
+					src={image}
+					alt={title}
+				/>
+
+				<p className="news-text">{text}<CustomLink content={<><Bookmark /><span className='link-add-text'>Read More...</span></>} href={link} target='_blank' modification='hover-underline' active='' /></p>
+
+				{video && <CustomLink content={<><OndemandVideo /><span className='link-add-text'>Watch Now</span></>} href={video} target='_blank' modification='hover-left-line' active='' />}
 			</div>
-
-			<LazyLoadImage
-				className="news-image"
-				wrapperClassName="news-image-wrapper"
-				effect="blur"
-				src={image}
-				alt={title}
-			/>
-
-			<p className="news-text">{text}<CustomLink content={<><Bookmark /><span className='link-add-text'>Read More...</span></>} href={link} target='_blank' modification='hover-underline' active='' /></p>
-
-			{video && <CustomLink content={<><OndemandVideo /><span className='link-add-text'>Watch Now</span></>} href={video} target='_blank' modification='hover-left-line' active='' />}
 
 			<footer className="news-footer">
 				<p className="news-date">{pubDate}</p>

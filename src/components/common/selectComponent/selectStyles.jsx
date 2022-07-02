@@ -4,13 +4,13 @@ export const selectStyles = {
     position: 'relative',
     left: '0px',
     marginBottom: '15px',
-    color: '#3f3f3f',
+    color: '#323e42',
     border: '1px solid',
-    borderColor: '#707070',
-    boxShadow: '12px 15px 10px -5px #707070',
+    borderColor: ' #323e42',
+    boxShadow: '12px 15px 10px -5px #718b93',
     transition: 'box-shadow ease-in-out 0.2s, left ease-in-out 0.2s',
     "&:hover": {
-      boxShadow: '0px 0px 0px 0px #707070',
+      boxShadow: '0px 0px 0px 0px #718b93',
       left: '3px'
     },
   }),
@@ -18,11 +18,12 @@ export const selectStyles = {
     ...styles,
     position: 'relative',
     left: '0px',
-    color: '#3f3f3f',
-    boxShadow: "12px 15px 10px -5px #707070",
+    color: ' #323e42',
+    boxShadow: "12px 15px 10px -5px #718b93",
     transition: 'box-shadow ease-in-out 0.2s, left ease-in-out 0.2s',
+    border: '1px solid #323e42',
     "&:hover": {
-      boxShadow: '0px 0px 0px 0px #707070',
+      boxShadow: '0px 0px 0px 0px #718b93',
       left: '3px'
     }
   }),
@@ -32,6 +33,7 @@ export const selectStyles = {
   }),
   option: (styles) => ({
     ...styles,
-    borderRadius: '4px'
+    borderRadius: '4px',
+    fontWeight: 'bold',
   }),
 }
