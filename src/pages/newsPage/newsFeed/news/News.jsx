@@ -40,7 +40,10 @@ export const News = ({ categories, countries, title, image, text, pubDate, creat
 					alt={title}
 				/>
 
-				<p className="news-text">{text}<CustomLink content={<><Bookmark /><span className='link-add-text'>Read More...</span></>} href={link} target='_blank' modification='hover-underline' active='' /></p>
+				<p className="news-description">
+					{text}
+					<CustomLink content={<><Bookmark /><span className='link-add-text'>Visit original source...</span></>} href={link} target='_blank' modification='hover-underline' active='' />
+				</p>
 
 				{video && <CustomLink content={<><OndemandVideo /><span className='link-add-text'>Watch Now</span></>} href={video} target='_blank' modification='hover-left-line' active='' />}
 			</div>

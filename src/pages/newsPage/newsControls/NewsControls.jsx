@@ -18,6 +18,7 @@ import { getAdditionalDataForNewsControls } from '../utils/getAdditionalDataForN
 import { Message } from '../../../components/common/message/Message';
 import { Button } from '../../../components/common/button/Button'
 import { SelectComponent } from '../../../components/common/selectComponent/selectComponent';
+import { InputComponent } from '../../../components/common/inputComponent/InputComponent';
 
 export const NewsControls = ({
   news,
@@ -28,6 +29,8 @@ export const NewsControls = ({
   setSelectedCategories,
   selectedLanguages,
   setSelectedLanguages,
+  keyword,
+  setKeyword,
   loading }) => {
 
   const minParametersLength = 1
@@ -45,7 +48,7 @@ export const NewsControls = ({
       {error && <Message type={errorMessage.type} title={errorMessage.title} >
         <p>{errorMessage.text}</p>
       </Message>}
-      {(<><Help className='news-control-title-icon' />
+      {!error && !loading && (<><Help className='news-control-title-icon' />
         <h3 className='news-control-title'>What are you interesting in?</h3>
 
         <div className="news-control">
@@ -79,7 +82,7 @@ export const NewsControls = ({
               <Button text='Remove Country'
                 onClick={() => {
                   if (!loading) {
-                    removeLastSelect( setSelectedCountries)
+                    removeLastSelect(setSelectedCountries)
                   }
                 }} />}
           </div>
@@ -115,7 +118,7 @@ export const NewsControls = ({
                 text='Remove Category'
                 onClick={() => {
                   if (!loading) {
-                    removeLastSelect( setSelectedCategories)
+                    removeLastSelect(setSelectedCategories)
                   }
                 }} />}
           </div>
@@ -153,12 +156,31 @@ export const NewsControls = ({
                 text='Remove Language'
                 onClick={() => {
                   if (!loading) {
-                    removeLastSelect( setSelectedLanguages)
+                    removeLastSelect(setSelectedLanguages)
                   }
                 }} />}
           </div>
         </div>
+        <div className="news-control">
+          <h4 className='select-title'>Keywords or phrases to search for in the news</h4>
+          <InputComponent type="text"
+            minLength={2}
+            debounceTimeout={1000}
+            placeholder={"Keyword or phrase..."}
+            value={keyword}
+            onChange={(event) => { setKeyword(event.target.value) }} />
 
+          <div className="input-control">
+            {keyword &&
+              <Button
+                text='Clear Keywords'
+                onClick={() => {
+                  if (!loading) {
+                    setKeyword('')
+                  }
+                }} />}
+          </div>
+        </div>
       </>)
       }
     </section>

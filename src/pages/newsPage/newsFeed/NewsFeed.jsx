@@ -20,7 +20,7 @@ export const NewsFeed = ({ newsSet, lastNewsRef, focusNewsIndex, loading }) => {
 	return (
 		<section className='news-feed' >
 			{loading ?
-				<SkeletonTheme baseColor="#dce2e4" highlightColor="#96a9af">
+				<SkeletonTheme baseColor="#dce2e4" highlightColor="#b2c0c4">
 					<NewsSkeleton skeletons={3} />
 				</SkeletonTheme>
 				: newsSet.length > 0 ? <ul className='news-list' >

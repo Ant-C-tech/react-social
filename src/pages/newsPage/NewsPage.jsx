@@ -27,6 +27,7 @@ export const NewsPage = () => {
 	const [selectedCountries, setSelectedCountries] = useState([defaultCountry]);
 	const [selectedCategories, setSelectedCategories] = useState([defaultCategory]);
 	const [selectedLanguages, setSelectedLanguages] = useState([defaultLanguage]);
+	const [keyword, setKeyword] = useState('')
 
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
@@ -53,7 +54,7 @@ export const NewsPage = () => {
 		const getDefaultNews = async () => {
 			try {
 				setLoading(true)
-				const response = await getNews(apiKey, selectedCountries, selectedCategories, selectedLanguages, 0)
+				const response = await getNews(apiKey, selectedCountries, selectedCategories, selectedLanguages, keyword, 0)
 				if (response) {
 					//Avoid multiple requests for
 					setRequestCounter(requestCounter => requestCounter + 1)
@@ -74,14 +75,14 @@ export const NewsPage = () => {
 		if (apiKey) {
 			getDefaultNews()
 		}
-	}, [apiKey, selectedCountries, selectedCategories, selectedLanguages]);
+	}, [apiKey, selectedCountries, selectedCategories, selectedLanguages, keyword]);
 
 	useEffect(() => {
 		const getMoreNews = async () => {
 			setNeedMoreNews(false)
 			try {
 				setLoading(true)
-				const response = await getNews(apiKey, selectedCountries, selectedCategories, selectedLanguages, nextPage)
+				const response = await getNews(apiKey, selectedCountries, selectedCategories, selectedLanguages, keyword, nextPage)
 				if (response) {
 					//Avoid multiple requests for
 					setRequestCounter(requestCounter => requestCounter + 1)
@@ -104,11 +105,11 @@ export const NewsPage = () => {
 		if (needMoreNews && hasMoreNews) {
 			getMoreNews()
 		}
-	}, [apiKey, selectedCountries, selectedCategories, selectedLanguages, nextPage, needMoreNews, hasMoreNews])
+	}, [apiKey, selectedCountries, selectedCategories, selectedLanguages, nextPage, needMoreNews, hasMoreNews, keyword])
 
 	//Avoid multiple requests for
 	useEffect(() => {
-		if (requestCounter > 10) {
+		if (requestCounter > 20) {
 			setApiKey('')
 			console.log('Multiple Request Happened!');
 		}
@@ -159,6 +160,8 @@ export const NewsPage = () => {
 					setSelectedCategories={setSelectedCategories}
 					selectedLanguages={selectedLanguages}
 					setSelectedLanguages={setSelectedLanguages}
+					keyword={keyword}
+					setKeyword={setKeyword}
 					loading={loading} />} />
 	</>)
 };

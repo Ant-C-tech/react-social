@@ -23,7 +23,7 @@
 	color: #3f3f3f;
 }
 
-.select-controls {
+.select-controls, .input-control {
 	display: flex;
 	justify-content: center;
 	margin: 0 -5px;
