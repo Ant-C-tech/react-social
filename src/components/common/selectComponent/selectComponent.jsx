@@ -1,13 +1,15 @@
 import './selectComponent.css';
 
-import Select from 'react-select'
+import { useState } from 'react'
 
+import Select from 'react-select'
 import { AllInclusive } from '@material-ui/icons';
 
 import { selectStyles } from './selectStyles';
 import { selectTheme } from './selectTheme'
 
 export const SelectComponent = ({ valueOptions, labelOptions = null, labelIconOptions = null, defaultValue, onChange, isSearchable }) => {
+  const [isFocused, setIsFocused] = useState(false)
 
   const getIcon = (item) => {
     return item === 'all' ? <AllInclusive /> : labelIconOptions ? labelIconOptions[item] : null
@@ -41,6 +43,8 @@ export const SelectComponent = ({ valueOptions, labelOptions = null, labelIconOp
     isSearchable={isSearchable}
     filterOption={customFilter}
     theme={(theme) => selectTheme(theme)}
-    className='select'
-    onChange={onChange} />
+    className={`select ${isFocused ? 'withFocus' : ''}`}
+    onChange={onChange}
+    onFocus={() => setIsFocused(true)}
+    onBlur={() => setIsFocused(false)} />
 };

@@ -1,3 +1,15 @@
+.select {
+	box-shadow: 12px 15px 10px -5px #718b93;
+	transition: box-shadow ease-in-out 0.2s, left ease-in-out 0.2s;
+}
+
+.select.withFocus, .select:hover {
+	outline: none;
+
+	box-shadow: 0px 0px 0px 0px #718b93;
+	/* left: 3px; */
+}
+
 .option-item {
 	display: flex;
 	align-items: center;
