@@ -1,4 +1,4 @@
-.rightbar {
+.controlbar {
 	position: relative;
 	z-index: 10;
 
@@ -19,6 +19,6 @@
 	transition: color .3s ease;
 }
 
-.rightbar:hover {
+.controlbar:hover {
 	color: rgba(0, 0, 0, 0.3);
 }

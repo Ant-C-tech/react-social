@@ -1,5 +1,6 @@
-import './sidebar.css';
+import './navbar.css';
 
+import { useState } from 'react'
 import {
 	Announcement,
 	FolderSpecial,
@@ -20,7 +21,7 @@ import { BigHead } from '@bigheads/core';
 import { CustomLink } from '../common/customLink/CustomLink';
 import { Button } from '../common/button/Button';
 
-const sideBarNavItems = [
+const navBarItems = [
 	{ icon: Announcement, path: 'news', text: 'News' },
 	{ icon: FolderSpecial, path: 'favorite_news', text: 'My Favorite News' },
 	{ icon: FormatListNumbered, path: 'todos', text: 'ToDo' },
@@ -56,14 +57,16 @@ for (let index = 0; index < friendsCounter; index++) {
 }
 // End of Mock data for friends list
 
-export const SideBar = () => {
+export const NavBar = () => {
+	const [isContactsShown, setIsContactsShown] = useState(false)
+
 	return (
-		<nav className='sidebar'>
-			<ul className='sidebar-nav'>
-				{sideBarNavItems.map((navItem, index) => {
+		<nav className='navbar'>
+			<ul className='navbar-nav'>
+				{navBarItems.map((navItem, index) => {
 					const Icon = navItem['icon'];
 					return (
-						<li key={index} className='sidebar-nav-item'>
+						<li key={index} className='navbar-nav-item'>
 							<CustomLink
 								content={<><Icon /><span className='link-add-text'>{navItem.text}</span></>}
 								href={navItem.path}
@@ -76,13 +79,16 @@ export const SideBar = () => {
 				})}
 			</ul>
 			<hr />
-			<Button text='Show More' />
-			{friends.length > 0 && <ul className='sidebar-friends'>
+			<Button
+				text={isContactsShown ? 'Hide Contacts' : 'Show Contacts'}
+				className='read-more-button'
+				onClick={() => setIsContactsShown((prevState) => !prevState)} />
+			{isContactsShown && <ul className='navbar-contacts'>
 				{friends.map((friend, index) => (
-					<li key={index} className='sidebar-friend'>
+					<li key={index} className='navbar-contact'>
 						<CustomLink
-							content={<><BigHead className='sidebar-friend-image' /><span className='link-add-text'>{friend}</span></>}
-							href='friend-page'
+							content={<><BigHead className='navbar-contact-image' /><span className='link-add-text'>{friend}</span></>}
+							href='contact-page'
 							target='_self'
 							modification='hover-left-line'
 							text={friend}
