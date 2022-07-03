@@ -17,16 +17,11 @@ export const NewsFeed = ({ newsSet, lastNewsRef, focusNewsIndex, loading }) => {
 		scrollToRef()
 	}, [scrollToRef])
 
-	// Develop purpose
-	useEffect(() => {
-		console.log(newsSet)
-	}, [newsSet])
-
 	return (
 		<section className='news-feed' >
 			{loading ?
 				<SkeletonTheme baseColor="#dce2e4" highlightColor="#b2c0c4">
-					<NewsCardSkeleton skeletons={3} />
+					<NewsCardSkeleton skeletons={2} />
 				</SkeletonTheme>
 				: newsSet.length > 0 ? <ul className='news-list' >
 					{newsSet.map((news, index) => {
