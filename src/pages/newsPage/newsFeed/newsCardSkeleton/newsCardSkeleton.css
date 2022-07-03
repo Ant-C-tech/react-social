@@ -1,67 +1,87 @@
-.news-skeleton {
+.news-card-skeleton {
 	margin-bottom: 30px;
 	padding: 0 15px;
 
 	border: 1px solid #96a9af;
-  background-color: #f8f9f9;
+	background-color: #f8f9f9;
 }
 
-.news-skeleton-header {
+.news-card-skeleton-header {
 	display: flex;
 	justify-content: space-around;
 	padding: 30px;
 	border-bottom: 1px solid #96a9af;
 }
 
-.news-skeleton-category,
-.news-skeleton-country,
-.news-skeleton-data,
-.news-skeleton-author {
+.news-card-skeleton-category,
+.news-card-skeleton-country {
 	width: 50%;
 	margin: 0 15px;
 }
 
-.news-skeleton-category {
-  padding-right: 30px;
+.news-card-skeleton-category {
+	padding-right: 30px;
 	border-right: 1px solid #96a9af;
 }
 
-.news-skeleton-title {
+.news-card-skeleton-title {
 	margin: 15px 0;
 }
 
-.news-skeleton-title-first-line {
+.news-card-skeleton-title-first-line {
 	display: flex;
 }
 
-.news-skeleton-title-icon,
-.news-skeleton-read-more-icon {
+.news-card-skeleton-title-icon,
+.news-card-skeleton-go-to-source-icon {
 	width: 30px;
-	margin-right: 15px;
+	margin-right: 5px;
 }
 
-.news-skeleton-title-icon-text,
-.news-skeleton-title-text {
+.news-card-skeleton-title-icon-text,
+.news-card-skeleton-title-text {
 	width: 100%;
 }
 
-.news-skeleton-img {
+.news-card-skeleton-img {
 	width: 50%;
 	margin: 0 auto 15px;
 }
 
-.news-skeleton-read-more {
-	display: flex;
-	margin-bottom: 15px;
+.news-card-skeleton-description {
+	padding: 0 0 30px;
+	border-bottom: 1px solid #96a9af;
 }
 
-.news-skeleton-read-more-text {
+.news-card-skeleton-controls {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 15px 0;
+	border-bottom: 1px solid #96a9af;
+}
+
+.news-card-skeleton-read-more,
+.news-card-skeleton-read-later {
+	width: 30%;
+}
+
+.news-card-skeleton-go-to-source {
+	display: flex;
+}
+
+.news-card-skeleton-go-to-source-text {
 	width: 100px;
 }
 
-.news-skeleton-footer {
+.news-card-skeleton-footer {
 	display: flex;
-	justify-content: space-around;
-	padding: 15px;
-	border-top: 1px solid #96a9af;
+	justify-content: space-between;
+	padding: 15px 0;
+}
+
+.news-card-skeleton-data,
+.news-card-skeleton-author {
+	width: 30%;
+	margin: 0 15px;
 }
