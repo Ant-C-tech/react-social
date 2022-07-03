@@ -1,12 +1,19 @@
 import './customLink.css';
 
-// import { Icon } from '../icon/Icon';
+import { Link } from 'react-router-dom';
 
-export const CustomLink = (props) => {
-	const { content, href, target, modification, active } = props;
-	return (
-		<a className={`link ${modification} ${active}`} href={href} target={target} active={ active}>
+export const CustomLink = ({ type, content, href, modification, active }) => {
+	return type === 'external' ?
+		<a className={`link ${modification} ${active}`}
+			href={href}
+			target='_blank'
+			rel='noopener noreferrer'
+			active={active}>
 			{content}
 		</a>
-	);
+		: <Link className={`link ${modification} ${active}`}
+			to={href}
+			active={active}>
+			{content}
+		</Link>
 };
