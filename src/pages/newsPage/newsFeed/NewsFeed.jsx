@@ -6,9 +6,9 @@ import { SkeletonTheme } from 'react-loading-skeleton'
 
 import { useScrollTo } from '../hooks/useScrollTo';
 
-import { News } from './news/News';
+import { NewsCard } from './newsCard/NewsCard';
 import { Message } from '../../../components/common/message/Message';
-import { NewsSkeleton } from './newsSkeleton/NewsSkeleton';
+import { NewsCardSkeleton } from './newsCardSkeleton/NewsCardSkeleton';
 
 export const NewsFeed = ({ newsSet, lastNewsRef, focusNewsIndex, loading }) => {
 	const [targetScrollRef, scrollToRef] = useScrollTo()
@@ -17,11 +17,16 @@ export const NewsFeed = ({ newsSet, lastNewsRef, focusNewsIndex, loading }) => {
 		scrollToRef()
 	}, [scrollToRef])
 
+	// Develop purpose
+	useEffect(() => {
+		console.log(newsSet)
+	}, [newsSet])
+
 	return (
 		<section className='news-feed' >
 			{loading ?
 				<SkeletonTheme baseColor="#dce2e4" highlightColor="#b2c0c4">
-					<NewsSkeleton skeletons={3} />
+					<NewsCardSkeleton skeletons={3} />
 				</SkeletonTheme>
 				: newsSet.length > 0 ? <ul className='news-list' >
 					{newsSet.map((news, index) => {
@@ -29,12 +34,13 @@ export const NewsFeed = ({ newsSet, lastNewsRef, focusNewsIndex, loading }) => {
 							key={uuid()}
 							className='news-list-item'
 							ref={index === newsSet.length - 1 ? lastNewsRef : index === focusNewsIndex - 2 ? targetScrollRef : null}>
-							<News
+							<NewsCard
 								categories={news.category}
 								countries={news.country}
 								title={news.title}
 								image={news.image_url}
-								text={news.description}
+								description={news.description}
+								content={news.content}
 								pubDate={news.pubDate}
 								creators={news.creator}
 								link={news.link}

@@ -1,10 +1,10 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 
-import './newsSkeleton.css';
+import './newsCardSkeleton.css';
 
 import Skeleton from 'react-loading-skeleton'
 
-export const NewsSkeleton = ({ skeletons }) => {
+export const NewsCardSkeleton = ({ skeletons }) => {
 	return (
 		Array(skeletons).fill(0).map((_, index) =>
 			<div className="news-skeleton" key={index}>

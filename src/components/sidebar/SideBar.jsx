@@ -2,6 +2,7 @@ import './sidebar.css';
 
 import {
 	Announcement,
+	FolderSpecial,
 	Chat,
 	VideoLibrary,
 	Notes,
@@ -20,17 +21,18 @@ import { CustomLink } from '../common/customLink/CustomLink';
 import { Button } from '../common/button/Button';
 
 const sideBarNavItems = [
-	{ icon: Announcement, path: 'news', text: 'My News' },
-	{ icon: FormatListNumbered, path: 'todos', text: 'My ToDo' },
-	{ icon: Notes, path: 'notes', text: 'My Notes' },
-	{ icon: Event, path: 'events', text: 'My Events' },
-	{ icon: Translate, path: 'translation', text: 'My Translation' },
-	{ icon: Bookmark, path: 'bookmarks', text: 'My Bookmarks' },
-	{ icon: VideoLibrary, path: 'videos', text: 'My Videos' },
-	{ icon: MusicNote, path: 'music', text: 'My Music' },
-	{ icon: WorkOutline, path: 'jobs', text: 'My Jobs' },
-	{ icon: School, path: 'courses', text: 'My Courses' },
-	{ icon: Chat, path: 'chat', text: 'My Chats' },
+	{ icon: Announcement, path: 'news', text: 'News' },
+	{ icon: FolderSpecial, path: 'favorite_news', text: 'My Favorite News' },
+	{ icon: FormatListNumbered, path: 'todos', text: 'ToDo' },
+	{ icon: Notes, path: 'notes', text: 'Notes' },
+	{ icon: Event, path: 'events', text: 'Events' },
+	{ icon: Translate, path: 'translation', text: 'Translation' },
+	{ icon: Bookmark, path: 'bookmarks', text: 'Bookmarks' },
+	{ icon: VideoLibrary, path: 'videos', text: 'Videos' },
+	{ icon: MusicNote, path: 'music', text: 'Music' },
+	{ icon: WorkOutline, path: 'jobs', text: ' Jobs' },
+	{ icon: School, path: 'courses', text: ' Courses' },
+	{ icon: Chat, path: 'chat', text: ' Chats' },
 ];
 
 // Mock data for friends list

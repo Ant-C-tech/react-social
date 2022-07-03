@@ -1,4 +1,4 @@
-.news {
+.news-card {
 	position: relative;
 	left: 0;
 
@@ -11,19 +11,19 @@
 	font-family: 'Special Elite', cursive;
 }
 
-.news-content.russian,
-.news-content.ukrainian,
-.news-content.bulgarian {
+.news-card-content.russian,
+.news-card-content.ukrainian,
+.news-card-content.bulgarian {
 	font-family: 'Pangolin', cursive;
 }
 
-.news-content.greek {
+.news-card-content.greek {
 	font-family: 'JetBrains Mono', monospace;
 	font-weight: bold;
 }
 
-.news-header,
-.news-footer {
+.news-card-header,
+.news-card-footer {
 	display: flex;
 	align-items: stretch;
 
@@ -31,17 +31,17 @@
 	padding: 10px;
 }
 
-.news-header {
+.news-card-header {
 	justify-content: space-around;
 	text-transform: uppercase;
 	border-bottom: 1px solid #323e42;
 }
 
-.news-footer {
+.news-card-footer {
 	justify-content: space-between;
 }
 
-.news-category {
+.news-card-category {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -54,7 +54,7 @@
 	border-right: 1px solid #323e42;
 }
 
-.news-country {
+.news-card-country {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -65,11 +65,11 @@
 	text-align: center;
 }
 
-.news-title {
+.news-card-title {
 	margin-bottom: 15px;
 }
 
-.news-title-text {
+.news-card-title-text {
 	display: inline;
 
 	font-weight: bold;
@@ -79,7 +79,7 @@
 	text-transform: uppercase;
 }
 
-.news-title-icon {
+.news-card-title-icon {
 	margin-right: 15px;
 	position: relative;
 	top: 5px;
@@ -87,7 +87,7 @@
 	color: #323e42;
 }
 
-.news-image-wrapper {
+.news-card-image-wrapper {
 	width: 100%;
 	margin: 0 auto 15px;
 
@@ -95,32 +95,52 @@
 	text-align: center;
 }
 
-.news-image {
+.news-card-image {
 	display: block;
 	max-width: 100%;
 	height: auto;
 	margin: 0 auto 15px;
 	border: 1px solid #323e42;
-
-	/* border-radius: 5px; */
 }
 
-.news-description {
-	margin-bottom: 15px;
+.news-card-description {
 	padding: 10px;
+	margin-bottom: 20px;
 
 	line-height: 30px;
 
 	border-bottom: 1px solid #323e42;
 }
 
-.news-date {
+.news-card-controls {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	margin-bottom: 15px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #323e42;
+}
+
+.news-card-controls .link {
+	min-width: 40%;
+	margin-bottom: 15px;
+	justify-content: center;
+}
+
+.news-card-full-text {
+	margin-bottom: 20px;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #323e42;
+}
+
+.news-card-date {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 }
 
-.news-creators {
+.news-card-creators {
 	display: flex;
 	flex-direction: column;
 	align-items: flex-end;
