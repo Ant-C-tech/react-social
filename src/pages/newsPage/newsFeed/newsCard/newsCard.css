@@ -110,6 +110,7 @@
 	line-height: 30px;
 
 	border-bottom: 1px solid #323e42;
+	word-break: break-all;
 }
 
 .news-card-controls {
@@ -132,6 +133,7 @@
 	margin-bottom: 20px;
 	padding-bottom: 10px;
 	border-bottom: 1px solid #323e42;
+	word-break: break-all;
 }
 
 .news-card-date {

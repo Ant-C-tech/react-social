@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 
 import { getNews } from './businessLogic/getNews';
 
-import { RightBar } from '../../components/rightbar/RightBar';
+import { ControlBar } from '../../components/controlbar/ControlBar';
 import { NewsFeed } from './newsFeed/NewsFeed';
 import { NewsControls } from './newsControls/NewsControls';
 import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
@@ -149,7 +149,7 @@ export const NewsPage = () => {
 				</Message>
 			}
 		</section>
-		<RightBar
+		<ControlBar
 			content={(apiKey || error) &&
 				<NewsControls
 					news={news}

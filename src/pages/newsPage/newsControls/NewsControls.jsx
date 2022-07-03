@@ -1,5 +1,7 @@
 import './newsControls.css';
 
+import { useState, useEffect } from 'react'
+
 import { Help } from '@material-ui/icons';
 import uuid from 'react-uuid'
 
@@ -32,6 +34,11 @@ export const NewsControls = ({
   keyword,
   setKeyword,
   loading }) => {
+  const [receivedFirstNews, setReceivedFirstNews] = useState(false)
+
+  useEffect(() => {
+    if (news.length > 0 && !receivedFirstNews) setReceivedFirstNews(true)
+  }, [news, receivedFirstNews])
 
   const minParametersLength = 1
   const maxParametersLength = 5
@@ -48,7 +55,7 @@ export const NewsControls = ({
       {error && <Message type={errorMessage.type} title={errorMessage.title} >
         <p>{errorMessage.text}</p>
       </Message>}
-      {!error && !loading && (<><Help className='news-control-title-icon' />
+      {receivedFirstNews && (<><Help className='news-control-title-icon' />
         <h3 className='news-control-title'>What are you interesting in?</h3>
 
         <div className="news-control">
@@ -162,7 +169,7 @@ export const NewsControls = ({
           </div>
         </div>
         <div className="news-control">
-          <h4 className='select-title'>Keywords or phrases to search for in the news</h4>
+          <h4 className='select-title'>Keywords or phrases you are interested in:</h4>
           <InputComponent type="text"
             minLength={2}
             debounceTimeout={1000}

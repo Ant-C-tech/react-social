@@ -1,4 +1,4 @@
-.sidebar {
+.navbar {
 	flex: 2;
 	height: calc(100vh - 70px);
 
@@ -7,7 +7,7 @@
 	position: relative;
 	z-index: 10;
 
-	background: #EFF1DB;
+	background: #eff1db;
 	box-shadow: 7px 15px 7px -5px #718b93;
 
 	overflow-y: auto;
@@ -16,41 +16,38 @@
 	transition: color .3s ease;
 }
 
-.sidebar:hover {
+.navbar:hover {
 	color: rgba(0, 0, 0, 0.3);
 }
 
-.sidebar hr {
+.navbar hr {
 	margin-bottom: 30px;
 }
 
-.sidebar-nav {
+.navbar-nav {
 	list-style: none;
 
 	margin-bottom: 30px;
 }
 
-.sidebar-nav-item {
+.navbar-nav-item {
 	display: flex;
 	align-items: center;
 
 	margin-bottom: 10px;
 }
 
-.sidebar-friend {
+.navbar-contacts {
+	margin-top: 30px;
+}
+
+.navbar-contact {
 	display: flex;
 	align-items: center;
 	margin-bottom: 15px;
 }
 
-.sidebar-friend-image-container {
-	display: flex;
-	align-items: center;
-
-	margin-bottom: 15px;
-}
-
-.sidebar-friend-image {
+.navbar-contact-image {
 	display: block;
 
 	height: 40px;
