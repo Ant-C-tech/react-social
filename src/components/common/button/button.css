@@ -23,7 +23,7 @@
 
 	box-shadow: 12px 15px 10px -5px #718b93;
 
-	transition: box-shadow ease-in-out 0.2s, left ease-in-out 0.2s;
+	transition: box-shadow ease-in-out 0.2s, color ease-in-out 0.2s;
 }
 
 .button:hover,

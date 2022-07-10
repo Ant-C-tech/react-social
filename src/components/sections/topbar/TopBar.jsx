@@ -1,32 +1,43 @@
 import './topbar.css';
 
-import { Person, Chat, Notifications } from '@material-ui/icons';
+import {
+	Chat, Notifications, MeetingRoom
+} from '@material-ui/icons';
 import { BigHead } from '@bigheads/core';
 
 import { CustomLink } from '../../common/customLink/CustomLink';
-import { SearchBar } from '../../common/searchbar/SearchBar';
+import { IconButtonComponent } from '../../common/iconButtonComponent/iconButtonComponent';
+// import { Button } from '../../common/button/Button';
 
-const topBarLinks = [{ type: 'internal', text: 'Settings', path: '/settings' }, { type: 'internal', text: 'Help', path: '/help' }];
-const topBarIconLinks = [
-	{ type: 'internal', icon: Person, path: 'person', messageCounter: '1' },
-	{ type: 'internal', icon: Chat, path: 'chat', messageCounter: '2' },
-	{ type: 'internal',  icon: Notifications, path: 'notifications', messageCounter: '6' },
+const topBarCenterLinks = [
+	{ type: 'internal', text: 'Settings', path: '/settings' },
+	{ type: 'internal', text: 'Help', path: '/help' }
 ];
 
-export const TopBar = () => {
+const topBarNotifications = [
+	{ type: 'internal', icon: Chat, path: '/chats', messageCounter: '2' },
+	{ type: 'internal', icon: Notifications, path: '/events', messageCounter: '6' },
+];
+
+const topBarRightLinks = [
+	{ type: 'internal', text: 'SignUp', path: '/signup' },
+	{ type: 'internal', text: 'LogIn', path: '/login' }
+];
+
+export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
 	return (
 		<header className='topbar container-flex'>
 			<div className='topbar-left'>
-				<CustomLink type='internal' content='OrganiZeR' href='/' modification='logo hover-underline'/>
+				<CustomLink type='internal' content='OrganiZeR' href='/' modification='logo hover-underline' />
 			</div>
 			<div className='topbar-center'>
 				<div className='topbar-links'>
-					{topBarLinks.map((link, index) => (
-						<CustomLink key={index} type={link.type} content={link.text} href={link.path} modification='hover-underline'/>
+					{topBarCenterLinks.map((link, index) => (
+						<CustomLink key={index} type={link.type} content={link.text} href={link.path} modification='hover-underline' />
 					))}
 				</div>
-				<div className='topbar-icons'>
-					{topBarIconLinks.map((iconLink, index) => {
+				<div className='topbar-notifications'>
+					{topBarNotifications.map((iconLink, index) => {
 						const Icon = iconLink['icon'];
 						return (
 							<CustomLink
@@ -38,16 +49,32 @@ export const TopBar = () => {
 							/>
 						);
 					})}
-					<CustomLink
-						type='internal'
-						content={<BigHead className='profile-image' />}
-						href='/profile'
-						modification='hover-left-line'
-					/>
+
 				</div>
 			</div>
 			<div className='topbar-right'>
-				<SearchBar />
+				<div className='topbar-links'>
+					{topBarRightLinks.map((link, index) =>
+						!isAuthorized
+						&& (
+							<CustomLink
+								key={index}
+								type={link.type}
+								content={link.text}
+								href={link.path}
+								modification='hover-underline' />
+						))}
+					{isAuthorized && <IconButtonComponent onClick={() => setIsAuthorized(false)} >
+						<MeetingRoom/>
+					</IconButtonComponent>}
+				</div>
+
+				<CustomLink
+					type='internal'
+					content={<BigHead className='profile-image' />}
+					href='/profile'
+					modification='hover-left-line'
+				/>
 			</div>
 		</header>
 	);
