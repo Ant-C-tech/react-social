@@ -4,7 +4,6 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 
 import { getNews } from './businessLogic/getNews';
 
-import { PageLayout } from '../PageLayout';
 import { ControlBar } from '../../components/sections/controlbar/ControlBar';
 import { NewsFeed } from './newsFeed/NewsFeed';
 import { NewsControls } from './newsControls/NewsControls';
@@ -129,7 +128,8 @@ export const News = () => {
 		if (node) observer.current.observe(node)
 	}, [loading])
 
-	return (<PageLayout>
+	return (
+		<>
 		<section className='content-container'>
 			{apiKey && !error ?
 				<NewsFeed
@@ -163,6 +163,7 @@ export const News = () => {
 					setSelectedLanguages={setSelectedLanguages}
 					keyword={keyword}
 					setKeyword={setKeyword}
-					loading={loading} />} />
-	</PageLayout>)
+						loading={loading} />} />
+		</>
+	)
 };

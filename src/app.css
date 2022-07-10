@@ -13,6 +13,10 @@ body {
 	overflow-y: hidden;
 }
 
+main {
+	overflow-y: hidden;
+}
+
 a,
 a:visited,
 a:active {

@@ -24,7 +24,7 @@ import { Button } from '../../common/button/Button';
 const navBarItems = [
 	{ type: 'internal', icon: Announcement, path: '/', text: 'News' },
 	{ type: 'internal', icon: FolderSpecial, path: '/favorite_news', text: 'My Favorite News' },
-	{ type: 'internal', icon: FormatListNumbered, path: '/todos', text: 'ToDo' },
+	{ type: 'internal', icon: FormatListNumbered, path: '/todo', text: 'ToDo' },
 	{ type: 'internal', icon: Notes, path: '/notes', text: 'Notes' },
 	{ type: 'internal', icon: Event, path: '/events', text: 'Events' },
 	{ type: 'internal', icon: Translate, path: '/translation', text: 'Translation' },
@@ -33,7 +33,7 @@ const navBarItems = [
 	{ type: 'internal', icon: MusicNote, path: '/music', text: 'Music' },
 	{ type: 'internal', icon: WorkOutline, path: '/jobs', text: ' Jobs' },
 	{ type: 'internal', icon: School, path: '/courses', text: ' Courses' },
-	{ type: 'internal', icon: Chat, path: '/chat', text: ' Chats' },
+	{ type: 'internal', icon: Chat, path: '/chats', text: ' Chats' },
 ];
 
 // Mock data for friends list
@@ -72,7 +72,6 @@ export const NavBar = () => {
 								content={<><Icon /><span className='link-add-text'>{navItem.text}</span></>}
 								href={navItem.path}
 								modification='hover-left-line'
-								active={index === 0 ? 'active' : ''}
 							/>
 						</li>
 					);

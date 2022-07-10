@@ -1,19 +1,24 @@
 import './customLink.css';
 
-import { Link } from 'react-router-dom';
+import {
+	Link,
+	useMatch,
+	useResolvedPath,
+} from 'react-router-dom';
 
-export const CustomLink = ({ type, content, href, modification, active }) => {
+export const CustomLink = ({ type, content, href, modification }) => {
+	let resolved = useResolvedPath(href);
+	let match = useMatch({ path: resolved.pathname, end: true });
+
 	return type === 'external' ?
-		<a className={`link ${modification} ${active}`}
+		<a className={`link ${modification}`}
 			href={href}
 			target='_blank'
-			rel='noopener noreferrer'
-			active={active}>
+			rel='noopener noreferrer'>
 			{content}
 		</a>
-		: <Link className={`link ${modification} ${active}`}
-			to={href}
-			active={active}>
+		: <Link className={`link ${modification} ${match ? "active" : ""}`}
+			to={href}>
 			{content}
 		</Link>
 };

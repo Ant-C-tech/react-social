@@ -17,12 +17,12 @@ export const TopBar = () => {
 	return (
 		<header className='topbar container-flex'>
 			<div className='topbar-left'>
-				<CustomLink type='internal' content='OrganiZeR' href='/' modification='logo hover-underline' active='' />
+				<CustomLink type='internal' content='OrganiZeR' href='/' modification='logo hover-underline'/>
 			</div>
 			<div className='topbar-center'>
 				<div className='topbar-links'>
 					{topBarLinks.map((link, index) => (
-						<CustomLink key={index} type={link.type} content={link.text} href={link.path} modification='hover-underline' active='' />
+						<CustomLink key={index} type={link.type} content={link.text} href={link.path} modification='hover-underline'/>
 					))}
 				</div>
 				<div className='topbar-icons'>
@@ -35,7 +35,6 @@ export const TopBar = () => {
 								content={<><Icon /><span className='icon-badge'>{iconLink.messageCounter}</span></>}
 								href={iconLink.path}
 								modification='hover-left-line'
-								active=''
 							/>
 						);
 					})}
