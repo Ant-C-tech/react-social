@@ -18,22 +18,22 @@ import {
 
 import { BigHead } from '@bigheads/core';
 
-import { CustomLink } from '../common/customLink/CustomLink';
-import { Button } from '../common/button/Button';
+import { CustomLink } from '../../common/customLink/CustomLink';
+import { Button } from '../../common/button/Button';
 
 const navBarItems = [
-	{ icon: Announcement, path: 'news', text: 'News' },
-	{ icon: FolderSpecial, path: 'favorite_news', text: 'My Favorite News' },
-	{ icon: FormatListNumbered, path: 'todos', text: 'ToDo' },
-	{ icon: Notes, path: 'notes', text: 'Notes' },
-	{ icon: Event, path: 'events', text: 'Events' },
-	{ icon: Translate, path: 'translation', text: 'Translation' },
-	{ icon: Bookmark, path: 'bookmarks', text: 'Bookmarks' },
-	{ icon: VideoLibrary, path: 'videos', text: 'Videos' },
-	{ icon: MusicNote, path: 'music', text: 'Music' },
-	{ icon: WorkOutline, path: 'jobs', text: ' Jobs' },
-	{ icon: School, path: 'courses', text: ' Courses' },
-	{ icon: Chat, path: 'chat', text: ' Chats' },
+	{ type: 'internal', icon: Announcement, path: '/', text: 'News' },
+	{ type: 'internal', icon: FolderSpecial, path: '/favorite_news', text: 'My Favorite News' },
+	{ type: 'internal', icon: FormatListNumbered, path: '/todo', text: 'ToDo' },
+	{ type: 'internal', icon: Notes, path: '/notes', text: 'Notes' },
+	{ type: 'internal', icon: Event, path: '/events', text: 'Events' },
+	{ type: 'internal', icon: Translate, path: '/translation', text: 'Translation' },
+	{ type: 'internal', icon: Bookmark, path: '/bookmarks', text: 'Bookmarks' },
+	{ type: 'internal', icon: VideoLibrary, path: '/videos', text: 'Videos' },
+	{ type: 'internal', icon: MusicNote, path: '/music', text: 'Music' },
+	{ type: 'internal', icon: WorkOutline, path: '/jobs', text: ' Jobs' },
+	{ type: 'internal', icon: School, path: '/courses', text: ' Courses' },
+	{ type: 'internal', icon: Chat, path: '/chats', text: ' Chats' },
 ];
 
 // Mock data for friends list
@@ -68,11 +68,10 @@ export const NavBar = () => {
 					return (
 						<li key={index} className='navbar-nav-item'>
 							<CustomLink
+								type={navItem.type}
 								content={<><Icon /><span className='link-add-text'>{navItem.text}</span></>}
 								href={navItem.path}
-								target='_self'
 								modification='hover-left-line'
-								active={index === 0 ? 'active' : ''}
 							/>
 						</li>
 					);
@@ -87,9 +86,12 @@ export const NavBar = () => {
 				{friends.map((friend, index) => (
 					<li key={index} className='navbar-contact'>
 						<CustomLink
-							content={<><BigHead className='navbar-contact-image' /><span className='link-add-text'>{friend}</span></>}
-							href='contact-page'
-							target='_self'
+							type='internal'
+							content={<>
+								<BigHead className='navbar-contact-image' />
+								<span className='link-add-text'>{friend}</span>
+							</>}
+							href='/contacts'
 							modification='hover-left-line'
 							text={friend}
 							active=''

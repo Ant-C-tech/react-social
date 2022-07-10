@@ -3,26 +3,26 @@ import './topbar.css';
 import { Person, Chat, Notifications } from '@material-ui/icons';
 import { BigHead } from '@bigheads/core';
 
-import { CustomLink } from '../common/customLink/CustomLink';
-import { SearchBar } from '../common/searchbar/SearchBar';
+import { CustomLink } from '../../common/customLink/CustomLink';
+import { SearchBar } from '../../common/searchbar/SearchBar';
 
-const topBarLinks = [{ text: 'Home Page', path: 'homePage' }, { text: 'Time Line', path: 'timeLine' }];
+const topBarLinks = [{ type: 'internal', text: 'Settings', path: '/settings' }, { type: 'internal', text: 'Help', path: '/help' }];
 const topBarIconLinks = [
-	{ icon: Person, path: 'person', messageCounter: '1' },
-	{ icon: Chat, path: 'chat', messageCounter: '2' },
-	{ icon: Notifications, path: 'notifications', messageCounter: '6' },
+	{ type: 'internal', icon: Person, path: 'person', messageCounter: '1' },
+	{ type: 'internal', icon: Chat, path: 'chat', messageCounter: '2' },
+	{ type: 'internal',  icon: Notifications, path: 'notifications', messageCounter: '6' },
 ];
 
 export const TopBar = () => {
 	return (
 		<header className='topbar container-flex'>
 			<div className='topbar-left'>
-				<CustomLink content='OrganiZeR' href='homePage' target='_self' modification='logo hover-underline' active='' />
+				<CustomLink type='internal' content='OrganiZeR' href='/' modification='logo hover-underline'/>
 			</div>
 			<div className='topbar-center'>
 				<div className='topbar-links'>
 					{topBarLinks.map((link, index) => (
-						<CustomLink key={index} content={link.text} href={link.path} target='_self' modification='hover-underline' active='' />
+						<CustomLink key={index} type={link.type} content={link.text} href={link.path} modification='hover-underline'/>
 					))}
 				</div>
 				<div className='topbar-icons'>
@@ -31,18 +31,17 @@ export const TopBar = () => {
 						return (
 							<CustomLink
 								key={index}
+								type={iconLink.type}
 								content={<><Icon /><span className='icon-badge'>{iconLink.messageCounter}</span></>}
 								href={iconLink.path}
-								target='_self'
 								modification='hover-left-line'
-								active=''
 							/>
 						);
 					})}
 					<CustomLink
+						type='internal'
 						content={<BigHead className='profile-image' />}
-						href='profile'
-						target='_self'
+						href='/profile'
 						modification='hover-left-line'
 					/>
 				</div>

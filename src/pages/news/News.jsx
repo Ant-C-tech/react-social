@@ -1,10 +1,10 @@
-import './newsPage.css';
+import './news.css';
 
 import { useState, useEffect, useRef, useCallback } from 'react'
 
 import { getNews } from './businessLogic/getNews';
 
-import { ControlBar } from '../../components/controlbar/ControlBar';
+import { ControlBar } from '../../components/sections/controlbar/ControlBar';
 import { NewsFeed } from './newsFeed/NewsFeed';
 import { NewsControls } from './newsControls/NewsControls';
 import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
@@ -15,7 +15,7 @@ const defaultCountry = 'all';
 const defaultCategory = 'all';
 const defaultLanguage = 'all';
 
-export const NewsPage = () => {
+export const News = () => {
 	const [apiKey, setApiKey] = useState('')
 
 	const [nextPage, setNextPage] = useState(0)
@@ -128,7 +128,8 @@ export const NewsPage = () => {
 		if (node) observer.current.observe(node)
 	}, [loading])
 
-	return (<>
+	return (
+		<>
 		<section className='content-container'>
 			{apiKey && !error ?
 				<NewsFeed
@@ -162,6 +163,7 @@ export const NewsPage = () => {
 					setSelectedLanguages={setSelectedLanguages}
 					keyword={keyword}
 					setKeyword={setKeyword}
-					loading={loading} />} />
-	</>)
+						loading={loading} />} />
+		</>
+	)
 };

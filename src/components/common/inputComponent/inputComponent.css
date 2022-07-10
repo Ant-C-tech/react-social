@@ -1,4 +1,6 @@
 .input-component {
+	display: flex;
+
 	width: 100%;
 	height: 55px;
 
@@ -14,16 +16,30 @@
 	color: #323e42;
 	font-weight: bold;
 
+	background-color: #fff;
 	box-shadow: 12px 15px 10px -5px #718b93;
 
 	transition: color ease-in-out 0.3s, border-color ease-in-out 0.3s, box-shadow ease-in-out 0.2s,
 		left ease-in-out 0.2s;
 }
 
-.input-component:hover,
-.input-component:focus {
-	outline: none;
+.input-icon {
+	margin-right: 15px;
+}
 
+.debounce-input {
+	width: 80%;
+
+	font-family: 'Indie Flower', cursive;
+
+	border: none;
+}
+
+.debounce-input:focus {
+	outline: none;
+}
+
+.input-component:hover,
+.input-component.withFocus {
 	box-shadow: 0px 0px 0px 0px #718b93;
-	/* left: 3px; */
 }

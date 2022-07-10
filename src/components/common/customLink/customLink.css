@@ -66,8 +66,13 @@
 }
 
 .hover-underline:hover:after,
-.hover-underline:focus:after {
+.hover-underline:focus:after,
+.hover-underline.active:after {
 	width: 100%;
+}
+
+.logo.hover-underline.active:after {
+	width: 0;
 }
 /* ************************** */
 .hover-left-line {
