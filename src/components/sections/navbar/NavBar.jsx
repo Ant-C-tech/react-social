@@ -1,6 +1,7 @@
 import './navbar.css';
 
 import { useState } from 'react'
+import { BigHead } from '@bigheads/core';
 import {
 	Announcement,
 	FolderSpecial,
@@ -15,8 +16,6 @@ import {
 	FormatListNumbered,
 	MusicNote
 } from '@material-ui/icons';
-
-import { BigHead } from '@bigheads/core';
 
 import { CustomLink } from '../../common/customLink/CustomLink';
 import { Button } from '../../common/button/Button';
@@ -36,28 +35,8 @@ const navBarItems = [
 	{ type: 'internal', icon: Chat, path: '/chats', text: ' Chats' },
 ];
 
-// Mock data for friends list
-const rug = require('random-username-generator');
-rug.setSeperator(' ');
 
-const getRandomNameToUpper = () => {
-	const randomName = rug.generate();
-	return randomName
-		.split(' ')
-		.map((word) => {
-			return `${word[0].toUpperCase()}${word.slice(1)}`;
-		})
-		.join(' ');
-};
-
-const friendsCounter = 7;
-const friends = [];
-for (let index = 0; index < friendsCounter; index++) {
-	friends.push(getRandomNameToUpper());
-}
-// End of Mock data for friends list
-
-export const NavBar = () => {
+export const NavBar = ({contacts}) => {
 	const [isContactsShown, setIsContactsShown] = useState(false)
 
 	return (
@@ -83,18 +62,17 @@ export const NavBar = () => {
 				className='read-more-button'
 				onClick={() => setIsContactsShown((prevState) => !prevState)} />
 			{isContactsShown && <ul className='navbar-contacts'>
-				{friends.map((friend, index) => (
+				{contacts.map((contact, index) => (
 					<li key={index} className='navbar-contact'>
 						<CustomLink
 							type='internal'
 							content={<>
 								<BigHead className='navbar-contact-image' />
-								<span className='link-add-text'>{friend}</span>
+								<span className='link-add-text'>{contact}</span>
 							</>}
-							href='/contacts'
+							href={`/contact/${index}`}
 							modification='hover-left-line'
-							text={friend}
-							active=''
+							text={contact}
 						/>
 					</li>
 				))}

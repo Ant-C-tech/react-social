@@ -6,14 +6,14 @@ import {
 	useResolvedPath,
 } from 'react-router-dom';
 
-export const CustomLink = ({ type, content, href, modification }) => {
+export const CustomLink = ({ type, content, href, modification, target = '_blank' }) => {
 	let resolved = useResolvedPath(href);
 	let match = useMatch({ path: resolved.pathname, end: true });
 
 	return type === 'external' ?
 		<a className={`link ${modification}`}
 			href={href}
-			target='_blank'
+			target={target}
 			rel='noopener noreferrer'>
 			{content}
 		</a>
