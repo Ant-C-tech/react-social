@@ -10,7 +10,7 @@ import { NewsCard } from './newsCard/NewsCard';
 import { Message } from '../../../components/common/message/Message';
 import { NewsCardSkeleton } from './newsCardSkeleton/NewsCardSkeleton';
 
-export const NewsFeed = ({ newsSet, lastNewsRef, focusNewsIndex, loading }) => {
+export const NewsFeed = ({ newsSet, keywords, lastNewsRef, focusNewsIndex, loading }) => {
 	const [targetScrollRef, scrollToRef] = useScrollTo()
 
 	useEffect(() => {
@@ -41,6 +41,7 @@ export const NewsFeed = ({ newsSet, lastNewsRef, focusNewsIndex, loading }) => {
 								link={news.link}
 								video={news.video_url}
 								language={news.language}
+								keywords={keywords}
 							/>
 						</li>
 					})}
