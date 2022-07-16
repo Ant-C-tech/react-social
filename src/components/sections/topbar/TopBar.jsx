@@ -7,33 +7,41 @@ import { BigHead } from '@bigheads/core';
 
 import { CustomLink } from '../../common/customLink/CustomLink';
 import { IconButtonComponent } from '../../common/iconButtonComponent/iconButtonComponent';
-// import { Button } from '../../common/button/Button';
 
 const topBarCenterLinks = [
-	{ type: 'internal', text: 'Settings', path: '/settings' },
-	{ type: 'internal', text: 'Help', path: '/help' }
+	{ type: 'internal', text: 'Settings', path: 'organizer/settings' },
+	{ type: 'internal', text: 'Help', path: 'organizer/help' }
 ];
 
 const topBarNotifications = [
-	{ type: 'internal', icon: Chat, path: '/chats', messageCounter: '2' },
-	{ type: 'internal', icon: Notifications, path: '/events', messageCounter: '6' },
+	{ type: 'internal', icon: Chat, path: 'organizer/chats', messageCounter: '2' },
+	{ type: 'internal', icon: Notifications, path: 'organizer/events', messageCounter: '6' },
 ];
 
 const topBarRightLinks = [
-	{ type: 'internal', text: 'SignUp', path: '/signup' },
-	{ type: 'internal', text: 'LogIn', path: '/login' }
+	{ type: 'internal', text: 'SignUp', path: 'organizer/signup' },
+	{ type: 'internal', text: 'LogIn', path: 'organizer/login' }
 ];
 
 export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
 	return (
 		<header className='topbar container-flex'>
 			<div className='topbar-left'>
-				<CustomLink type='internal' content='OrganiZeR' href='/' modification='logo hover-underline' />
+				<CustomLink
+					type='internal'
+					content='OrganiZeR'
+					href='organizer/'
+					modification='logo hover-underline' />
 			</div>
 			<div className='topbar-center'>
 				<div className='topbar-links'>
 					{topBarCenterLinks.map((link, index) => (
-						<CustomLink key={index} type={link.type} content={link.text} href={link.path} modification='hover-underline' />
+						<CustomLink
+						key={index}
+						type={link.type}
+						content={link.text}
+						href={link.path}
+						modification='hover-underline' />
 					))}
 				</div>
 				<div className='topbar-notifications'>

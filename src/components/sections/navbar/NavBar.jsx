@@ -21,18 +21,18 @@ import { CustomLink } from '../../common/customLink/CustomLink';
 import { Button } from '../../common/button/Button';
 
 const navBarItems = [
-	{ type: 'internal', icon: Announcement, path: '/', text: 'News' },
-	{ type: 'internal', icon: FolderSpecial, path: '/favorite_news', text: 'My Favorite News' },
-	{ type: 'internal', icon: FormatListNumbered, path: '/todo', text: 'ToDo' },
-	{ type: 'internal', icon: Notes, path: '/notes', text: 'Notes' },
-	{ type: 'internal', icon: Event, path: '/events', text: 'Events' },
-	{ type: 'internal', icon: Translate, path: '/translation', text: 'Translation' },
-	{ type: 'internal', icon: Bookmark, path: '/bookmarks', text: 'Bookmarks' },
-	{ type: 'internal', icon: VideoLibrary, path: '/videos', text: 'Videos' },
-	{ type: 'internal', icon: MusicNote, path: '/music', text: 'Music' },
-	{ type: 'internal', icon: WorkOutline, path: '/jobs', text: ' Jobs' },
-	{ type: 'internal', icon: School, path: '/courses', text: ' Courses' },
-	{ type: 'internal', icon: Chat, path: '/chats', text: ' Chats' },
+	{ type: 'internal', icon: Announcement, path: 'organizer/', text: 'News' },
+	{ type: 'internal', icon: FolderSpecial, path: 'organizer/favorite_news', text: 'My Favorite News' },
+	{ type: 'internal', icon: FormatListNumbered, path: 'organizer/todo', text: 'ToDo' },
+	{ type: 'internal', icon: Notes, path: 'organizer/notes', text: 'Notes' },
+	{ type: 'internal', icon: Event, path: 'organizer/events', text: 'Events' },
+	{ type: 'internal', icon: Translate, path: 'organizer/translation', text: 'Translation' },
+	{ type: 'internal', icon: Bookmark, path: 'organizer/bookmarks', text: 'Bookmarks' },
+	{ type: 'internal', icon: VideoLibrary, path: 'organizer/videos', text: 'Videos' },
+	{ type: 'internal', icon: MusicNote, path: 'organizer/music', text: 'Music' },
+	{ type: 'internal', icon: WorkOutline, path: 'organizer/jobs', text: ' Jobs' },
+	{ type: 'internal', icon: School, path: 'organizer/courses', text: ' Courses' },
+	{ type: 'internal', icon: Chat, path: 'organizer/chats', text: ' Chats' },
 ];
 
 
@@ -70,7 +70,7 @@ export const NavBar = ({contacts}) => {
 								<BigHead className='navbar-contact-image' />
 								<span className='link-add-text'>{contact}</span>
 							</>}
-							href={`/contact/${index}`}
+							href={`organizer/contact/${index}`}
 							modification='hover-left-line'
 							text={contact}
 						/>

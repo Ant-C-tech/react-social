@@ -56,30 +56,30 @@ const App = () => {
 			<main className="container-flex">
 				<NavBar contacts={contacts} />
 				<Routes>
-					<Route exact path='/' element={<News />} />
-					<Route path='/favorite_news' element={<FavoriteNews />} />
-					<Route path='/todo' element={<ToDo />} />
-					<Route path='/notes' element={<Notes />} />
-					<Route path='/events' element={<Events />} />
-					<Route path='/translation' element={<Translation />} />
-					<Route path='/bookmarks' element={<Bookmarks />} />
-					<Route path='/videos' element={<Videos />} />
-					<Route path='/music' element={<Music />} />
-					<Route path='/jobs' element={<Jobs />} />
-					<Route path='/courses' element={<Courses />} />
-					<Route path='/chats' element={<Chats />} />
+					<Route exact path='organizer/' element={<News />} />
+					<Route path='organizer/favorite_news' element={<FavoriteNews />} />
+					<Route path='organizer/todo' element={<ToDo />} />
+					<Route path='organizer/notes' element={<Notes />} />
+					<Route path='organizer/events' element={<Events />} />
+					<Route path='organizer/translation' element={<Translation />} />
+					<Route path='organizer/bookmarks' element={<Bookmarks />} />
+					<Route path='organizer/videos' element={<Videos />} />
+					<Route path='organizer/music' element={<Music />} />
+					<Route path='organizer/jobs' element={<Jobs />} />
+					<Route path='organizer/courses' element={<Courses />} />
+					<Route path='organizer/chats' element={<Chats />} />
 					{contacts.map((_contact, index) => <Route
 						key={index}
-						path={`/contact/${index}`}
+						path={`organizer/contact/${index}`}
 						element={<Contact />}
 					/>)}
 
 
-					<Route path='/settings' element={<Settings />} />
-					<Route path='/help' element={<Help />} />
+					<Route path='organizer/settings' element={<Settings />} />
+					<Route path='organizer/help' element={<Help />} />
 
-					{!isAuthorized && <Route path='/signup' element={<SignUp />} />}
-					{!isAuthorized && <Route path='/login' element={<LogIn />} />}
+					{!isAuthorized && <Route path='organizer/signup' element={<SignUp />} />}
+					{!isAuthorized && <Route path='organizer/login' element={<LogIn />} />}
 
 					<Route path="*" element={<NoMatch />} />
 				</Routes>
