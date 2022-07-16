@@ -47,9 +47,6 @@ export const NewsControls = ({
 
   const { labelOptionForCountries, labelIconOptionsForCountries, labelIconOptionsForLanguages } = getAdditionalDataForNewsControls()
 
-  // In developing purpose
-  console.log("Render");
-
   return (
     <section className='news-controls'>
       {error && <Message type={errorMessage.type} title={errorMessage.title} >
@@ -71,7 +68,7 @@ export const NewsControls = ({
               defaultValue={country}
               onChange={({ value }) => {
                 if (!loading) {
-                  updateSelectedItems(index, value, setSelectedCountries)
+                  updateSelectedItems(index, value, selectedCountries, setSelectedCountries)
                 }
               }}
               isSearchable={true} />
@@ -89,7 +86,7 @@ export const NewsControls = ({
               <Button text='Remove Country'
                 onClick={() => {
                   if (!loading) {
-                    removeLastSelect(setSelectedCountries)
+                    removeLastSelect(selectedCountries, setSelectedCountries)
                   }
                 }} />}
           </div>
@@ -106,7 +103,7 @@ export const NewsControls = ({
               defaultValue={category}
               onChange={({ value }) => {
                 if (!loading) {
-                  updateSelectedItems(index, value, setSelectedCategories)
+                  updateSelectedItems(index, value, selectedCategories, setSelectedCategories)
                 }
               }}
               isSearchable={true} />
@@ -125,7 +122,7 @@ export const NewsControls = ({
                 text='Remove Category'
                 onClick={() => {
                   if (!loading) {
-                    removeLastSelect(setSelectedCategories)
+                    removeLastSelect(selectedCategories,setSelectedCategories)
                   }
                 }} />}
           </div>
@@ -144,7 +141,7 @@ export const NewsControls = ({
               defaultValue={language}
               onChange={({ value }) => {
                 if (!loading) {
-                  updateSelectedItems(index, value, setSelectedLanguages)
+                  updateSelectedItems(index, value, selectedLanguages, setSelectedLanguages)
                 }
               }}
               isSearchable={true} />
@@ -163,7 +160,7 @@ export const NewsControls = ({
                 text='Remove Language'
                 onClick={() => {
                   if (!loading) {
-                    removeLastSelect(setSelectedLanguages)
+                    removeLastSelect(selectedLanguages, setSelectedLanguages)
                   }
                 }} />}
           </div>
@@ -173,22 +170,10 @@ export const NewsControls = ({
           <InputComponent type="text"
             minLength={2}
             debounceTimeout={1000}
-            placeholder={"Keyword or phrase..."}
+            placeholder={"Keyword..."}
             value={keyword}
-            // onChange={(event) => { setKeyword(event.target.value) }}
             setValue={setKeyword}
           />
-
-          {/* <div className="input-control">
-            {keyword &&
-              <Button
-                text='Clear Keywords'
-                onClick={() => {
-                  if (!loading) {
-                    setKeyword('')
-                  }
-                }} />}
-          </div> */}
         </div>
       </>)
       }

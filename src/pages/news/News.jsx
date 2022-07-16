@@ -10,13 +10,14 @@ import { NewsControls } from './newsControls/NewsControls';
 import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
 import { Message } from '../../components/common/message/Message';
 import { InputComponent } from '../../components/common/inputComponent/InputComponent';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 const defaultCountry = 'all';
 const defaultCategory = 'all';
 const defaultLanguage = 'all';
 
 export const News = () => {
-	const [apiKey, setApiKey] = useState('')
+	const [apiKey, setApiKey] = useLocalStorage('apiKey', '')
 
 	const [nextPage, setNextPage] = useState(0)
 	const [totalResults, setTotalResults] = useState(1)
@@ -24,10 +25,10 @@ export const News = () => {
 	const [hasMoreNews, setHasMoreNews] = useState(true)
 	const [focusNewsIndex, setFocusNewsIndex] = useState(0)
 
-	const [selectedCountries, setSelectedCountries] = useState([defaultCountry]);
-	const [selectedCategories, setSelectedCategories] = useState([defaultCategory]);
-	const [selectedLanguages, setSelectedLanguages] = useState([defaultLanguage]);
-	const [keyword, setKeyword] = useState('')
+	const [selectedCountries, setSelectedCountries] = useLocalStorage('defaultCountry', [defaultCountry]);
+	const [selectedCategories, setSelectedCategories] = useLocalStorage('defaultCategory', [defaultCategory]);
+	const [selectedLanguages, setSelectedLanguages] = useLocalStorage('defaultLanguage', [defaultLanguage]);
+	const [keyword, setKeyword] = useLocalStorage('keyword', '')
 
 	const [error, setError] = useState('')
 	const [loading, setLoading] = useState(false)
@@ -113,7 +114,7 @@ export const News = () => {
 			setApiKey('')
 			console.log('Multiple Request Happened!');
 		}
-	}, [requestCounter])
+	}, [requestCounter, setApiKey])
 	// End of In develop purpose
 
 	const observer = useRef()
@@ -144,7 +145,7 @@ export const News = () => {
 						<NoApiKeyTextMessage />
 						<InputComponent type="text"
 							minLength={2}
-							debounceTimeout={500}
+							debounceTimeout={1000}
 							placeholder={"Please, input your API key"}
 							value={apiKey}
 							setValue={setApiKey} />

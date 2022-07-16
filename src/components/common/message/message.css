@@ -8,6 +8,7 @@
 
 .message-title {
 	text-align: center;
+	word-break: break-word;
 }
 
 .message-icon{

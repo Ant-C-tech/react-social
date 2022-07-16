@@ -7,7 +7,7 @@ import { Search, Lock, Backspace } from '@material-ui/icons';
 
 const inputIcons = {
   'Please, input your API key': Lock,
-  'Keyword or phrase...': Search,
+  'Keyword...': Search,
 }
 
 export const InputComponent = ({ type, minLength, debounceTimeout, placeholder, value, setValue }) => {
