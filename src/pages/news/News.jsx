@@ -146,7 +146,7 @@ export const News = () => {
 						debounceTimeout={500}
 						placeholder={"Please, input your API key"}
 						value={apiKey}
-						onChange={(event) => setApiKey(event.target.value)} />
+						setValue={setApiKey} />
 				</Message>
 			}
 		</section>

@@ -175,9 +175,11 @@ export const NewsControls = ({
             debounceTimeout={1000}
             placeholder={"Keyword or phrase..."}
             value={keyword}
-            onChange={(event) => { setKeyword(event.target.value) }} />
+            // onChange={(event) => { setKeyword(event.target.value) }}
+            setValue={setKeyword}
+          />
 
-          <div className="input-control">
+          {/* <div className="input-control">
             {keyword &&
               <Button
                 text='Clear Keywords'
@@ -186,7 +188,7 @@ export const NewsControls = ({
                     setKeyword('')
                   }
                 }} />}
-          </div>
+          </div> */}
         </div>
       </>)
       }

@@ -112,6 +112,12 @@
 	height: 40px;
 }
 
+@media screen and (max-width: 1300px) {
+	.topbar-right {
+		padding: 0 15px;
+	}
+}
+
 @media screen and (max-width: 1200px) {
 	.topbar-left {
 		width: calc(25% - 20px);
