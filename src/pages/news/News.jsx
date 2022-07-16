@@ -135,7 +135,7 @@ export const News = () => {
 					<NewsFeed
 						loading={loading}
 						newsSet={news}
-						keywords={keyword.split(' ')}
+						keywords={[keyword]}
 						lastNewsRef={lastNewsRef}
 						focusNewsIndex={focusNewsIndex}
 					/>
