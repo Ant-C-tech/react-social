@@ -35,12 +35,15 @@ export const NewsCard = ({ categories, countries, title, image, description, con
 				<div className="news-card-title">
 					<FiberNew className="news-card-title-icon" />
 					<h2 className="news-card-title-text">
-						<Highlighter
-							highlightClassName="news-card-highlight"
-							searchWords={keywords}
-							autoEscape={true}
-							textToHighlight={title}
-						/>
+						{keywords[0] === '' ?
+							title :
+							<Highlighter
+								highlightClassName="news-card-highlight"
+								searchWords={keywords}
+								autoEscape={true}
+								textToHighlight={title || ''}
+							/>
+						}
 					</h2>
 				</div>
 
@@ -55,21 +58,27 @@ export const NewsCard = ({ categories, countries, title, image, description, con
 				{video && <CustomLink content={<><OndemandVideo /><span className='link-add-text'>Watch Now</span></>} href={video} target='_blank' modification='hover-left-line' active='' />}
 
 				<p className="news-card-description">
-					<Highlighter
-						highlightClassName="news-card-highlight"
-						searchWords={keywords}
-						autoEscape={true}
-						textToHighlight={description}
-					/>
+					{keywords[0] === '' ?
+						description :
+						<Highlighter
+							highlightClassName="news-card-highlight"
+							searchWords={keywords}
+							autoEscape={true}
+							textToHighlight={description || ''}
+						/>
+					}
 				</p>
 
 				{isContentShown && <p className="news-card-full-text">
-					<Highlighter
-						highlightClassName="news-card-highlight"
-						searchWords={keywords}
-						autoEscape={true}
-						textToHighlight={content}
-					/>
+					{keywords[0] === '' ?
+						content :
+						<Highlighter
+							highlightClassName="news-card-highlight"
+							searchWords={keywords}
+							autoEscape={true}
+							textToHighlight={content || ''}
+						/>
+					}
 				</p>}
 
 				<div className="news-card-controls">
