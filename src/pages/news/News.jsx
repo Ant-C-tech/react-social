@@ -130,39 +130,40 @@ export const News = () => {
 
 	return (
 		<>
-		<section className='content-container'>
-			{apiKey && !error ?
-				<NewsFeed
-					loading={loading}
-					newsSet={news}
-					lastNewsRef={lastNewsRef}
-					focusNewsIndex={focusNewsIndex}
-				/>
-				:
-				<Message type={'info'} title={'You need API key for getting news.'}>
-					<NoApiKeyTextMessage />
-					<InputComponent type="text"
-						minLength={2}
-						debounceTimeout={500}
-						placeholder={"Please, input your API key"}
-						value={apiKey}
-						setValue={setApiKey} />
-				</Message>
-			}
-		</section>
-		<ControlBar
-			content={(apiKey || error) &&
-				<NewsControls
-					news={news}
-					error={error}
-					selectedCountries={selectedCountries}
-					setSelectedCountries={setSelectedCountries}
-					selectedCategories={selectedCategories}
-					setSelectedCategories={setSelectedCategories}
-					selectedLanguages={selectedLanguages}
-					setSelectedLanguages={setSelectedLanguages}
-					keyword={keyword}
-					setKeyword={setKeyword}
+			<section className='content-container'>
+				{apiKey && !error ?
+					<NewsFeed
+						loading={loading}
+						newsSet={news}
+						keywords={keyword.split(' ')}
+						lastNewsRef={lastNewsRef}
+						focusNewsIndex={focusNewsIndex}
+					/>
+					:
+					<Message type={'info'} title={'You need API key for getting news.'}>
+						<NoApiKeyTextMessage />
+						<InputComponent type="text"
+							minLength={2}
+							debounceTimeout={500}
+							placeholder={"Please, input your API key"}
+							value={apiKey}
+							setValue={setApiKey} />
+					</Message>
+				}
+			</section>
+			<ControlBar
+				content={(apiKey || error) &&
+					<NewsControls
+						news={news}
+						error={error}
+						selectedCountries={selectedCountries}
+						setSelectedCountries={setSelectedCountries}
+						selectedCategories={selectedCategories}
+						setSelectedCategories={setSelectedCategories}
+						selectedLanguages={selectedLanguages}
+						setSelectedLanguages={setSelectedLanguages}
+						keyword={keyword}
+						setKeyword={setKeyword}
 						loading={loading} />} />
 		</>
 	)

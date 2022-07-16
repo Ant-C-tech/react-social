@@ -3,6 +3,7 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import './newsCard.css';
 
 import { useState } from 'react'
+import Highlighter from "react-highlight-words";
 import { FiberNew } from '@material-ui/icons';
 import {
 	Bookmark, OndemandVideo
@@ -12,7 +13,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CustomLink } from '../../../../components/common/customLink/CustomLink';
 import { Button } from '../../../../components/common/button/Button';
 
-export const NewsCard = ({ categories, countries, title, image, description, content, pubDate, creators, link, video, language }) => {
+export const NewsCard = ({ categories, countries, title, image, description, content, pubDate, creators, link, video, language, keywords }) => {
 	const [isContentShown, setIsContentShown] = useState(false)
 
 	return (
@@ -33,7 +34,14 @@ export const NewsCard = ({ categories, countries, title, image, description, con
 			<div className={`news-card-content ${language}`}>
 				<div className="news-card-title">
 					<FiberNew className="news-card-title-icon" />
-					<h2 className="news-card-title-text">{title}</h2>
+					<h2 className="news-card-title-text">
+						<Highlighter
+							highlightClassName="news-card-highlight"
+							searchWords={keywords}
+							autoEscape={true}
+							textToHighlight={title}
+						/>
+					</h2>
 				</div>
 
 				<LazyLoadImage
@@ -47,11 +55,21 @@ export const NewsCard = ({ categories, countries, title, image, description, con
 				{video && <CustomLink content={<><OndemandVideo /><span className='link-add-text'>Watch Now</span></>} href={video} target='_blank' modification='hover-left-line' active='' />}
 
 				<p className="news-card-description">
-					{description}
+					<Highlighter
+						highlightClassName="news-card-highlight"
+						searchWords={keywords}
+						autoEscape={true}
+						textToHighlight={description}
+					/>
 				</p>
 
 				{isContentShown && <p className="news-card-full-text">
-					{content}
+					<Highlighter
+						highlightClassName="news-card-highlight"
+						searchWords={keywords}
+						autoEscape={true}
+						textToHighlight={content}
+					/>
 				</p>}
 
 				<div className="news-card-controls">

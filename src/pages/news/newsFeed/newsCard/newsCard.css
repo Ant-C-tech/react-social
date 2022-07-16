@@ -11,6 +11,10 @@
 	font-family: 'Special Elite', cursive;
 }
 
+.news-card-highlight {
+	background-color: #fff4bd;
+}
+
 .news-card-content.russian,
 .news-card-content.ukrainian,
 .news-card-content.bulgarian {
