@@ -5,16 +5,12 @@ import { useState, useEffect } from 'react'
 import { getNews } from './businessLogic/getNews';
 
 import { ControlBar } from '../../components/sections/controlbar/ControlBar';
-import { NewsFeed } from './newsFeed/NewsFeed';
+import { NewsFeed } from '../../components/common/newsFeed/NewsFeed';
 import { NewsControls } from './newsControls/NewsControls';
 import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
 import { Message } from '../../components/common/message/Message';
 import { InputComponent } from '../../components/common/inputComponent/InputComponent';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-
-const defaultCountry = 'all';
-const defaultCategory = 'all';
-const defaultLanguage = 'all';
 
 export const News = () => {
 	const [apiKey, setApiKey] = useLocalStorage('apiKey', '')
@@ -25,9 +21,9 @@ export const News = () => {
 	const [hasMoreNews, setHasMoreNews] = useState(true)
 	const [focusNewsIndex, setFocusNewsIndex] = useState(0)
 
-	const [selectedCountries, setSelectedCountries] = useLocalStorage('defaultCountry', [defaultCountry]);
-	const [selectedCategories, setSelectedCategories] = useLocalStorage('defaultCategory', [defaultCategory]);
-	const [selectedLanguages, setSelectedLanguages] = useLocalStorage('defaultLanguage', [defaultLanguage]);
+	const [selectedCountries, setSelectedCountries] = useLocalStorage('defaultCountry', ['all']);
+	const [selectedCategories, setSelectedCategories] = useLocalStorage('defaultCategory', ['all']);
+	const [selectedLanguages, setSelectedLanguages] = useLocalStorage('defaultLanguage', ['all']);
 	const [keyword, setKeyword] = useLocalStorage('keyword', '')
 
 	const [error, setError] = useState('')
@@ -63,8 +59,6 @@ export const News = () => {
 					setNews(response.data.results)
 					setFocusNewsIndex(0)
 
-					console.log('Start set of news were added');
-
 					setNextPage(response.data.nextPage)
 					setTotalResults(response.data.totalResults)
 				}
@@ -90,12 +84,14 @@ export const News = () => {
 					//Avoid multiple requests for
 					setRequestCounter(requestCounter => requestCounter + 1)
 
+					const prevFocusNews = news.length
+
 					setNextPage(response.data.nextPage)
 					setTotalResults(response.data.totalResults)
 
 					setNews((news) => { return [...new Set([...news, ...response.data.results])] })
 
-					setFocusNewsIndex((prevIndex) => prevIndex + response.data.results.length - 2)
+					setFocusNewsIndex(prevFocusNews - 2)
 				}
 				setLoading(false)
 
@@ -108,7 +104,7 @@ export const News = () => {
 		if (needMoreNews && hasMoreNews) {
 			getMoreNews()
 		}
-	}, [apiKey, selectedCountries, selectedCategories, selectedLanguages, nextPage, needMoreNews, hasMoreNews, keyword])
+	}, [apiKey, selectedCountries, selectedCategories, selectedLanguages, nextPage, needMoreNews, hasMoreNews, keyword, news.length])
 
 	//Avoid multiple requests for
 	useEffect(() => {
@@ -128,6 +124,7 @@ export const News = () => {
 						newsSet={news}
 						keywords={[keyword]}
 						focusNewsIndex={focusNewsIndex}
+						setFocusNewsIndex={setFocusNewsIndex}
 						setNeedMoreNews={setNeedMoreNews}
 					/>
 					:

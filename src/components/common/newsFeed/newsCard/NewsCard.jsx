@@ -10,11 +10,26 @@ import {
 } from '@material-ui/icons';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import { CustomLink } from '../../../../components/common/customLink/CustomLink';
-import { Button } from '../../../../components/common/button/Button';
+import { CustomLink } from '../../customLink/CustomLink';
+import { Button } from '../../button/Button';
+import { getIsFavorite } from './utils/getIsFavorite';
+import { addToFavorite } from './utils/addToFavorite';
+import { removeFromFavorite } from './utils/removeFromFavorite';
 
-export const NewsCard = ({ categories, countries, title, image, description, content, pubDate, creators, link, video, language, keywords }) => {
+export const NewsCard = ({ news, keywords, favoriteNews, setFavoriteNews, setFocusOnThisCard }) => {
 	const [isContentShown, setIsContentShown] = useState(false)
+
+	const { categories,
+		countries,
+		title,
+		image,
+		description,
+		content,
+		pubDate,
+		creators,
+		link,
+		video,
+		language } = news
 
 	return (
 		<article className='news-card' >
@@ -55,7 +70,16 @@ export const NewsCard = ({ categories, countries, title, image, description, con
 					alt={title}
 				/>
 
-				{video && <CustomLink content={<><OndemandVideo /><span className='link-add-text'>Watch Now</span></>} href={video} target='_blank' modification='hover-left-line' active='' />}
+				{video &&
+					<CustomLink
+						content={<>
+							<OndemandVideo /><span className='link-add-text'>Watch Now</span>
+						</>}
+						href={video}
+						target='_blank'
+						modification='hover-left-line'
+						active=''
+					/>}
 
 				<p className="news-card-description">
 					{keywords[0] === '' ?
@@ -69,33 +93,52 @@ export const NewsCard = ({ categories, countries, title, image, description, con
 					}
 				</p>
 
-				{isContentShown && <p className="news-card-full-text">
-					{keywords[0] === '' ?
-						content :
-						<Highlighter
-							highlightClassName="news-card-highlight"
-							searchWords={keywords}
-							autoEscape={true}
-							textToHighlight={content || ''}
-						/>
-					}
-				</p>}
+				{isContentShown &&
+					<p className="news-card-full-text">
+						{keywords[0] === '' ?
+							content :
+							<Highlighter
+								highlightClassName="news-card-highlight"
+								searchWords={keywords}
+								autoEscape={true}
+								textToHighlight={content || ''}
+							/>
+						}
+					</p>
+				}
 
 				<div className="news-card-controls">
-					{content && <Button
-						text={isContentShown ? 'Hide full text' : 'Read More'}
-						className='read-more-button'
-						onClick={() => setIsContentShown((prevState) => !prevState)} />}
+					{content &&
+						<Button
+							text={isContentShown ? 'Hide full text' : 'Read More'}
+							className='read-more-button'
+							onClick={() => setIsContentShown((prevState) => !prevState)}
+						/>}
 					<CustomLink
-						content={<><Bookmark /><span className='link-add-text'>Visit original source...</span></>}
+						content={<>
+							<Bookmark /><span className='link-add-text'>Visit original source...</span>
+						</>}
 						href={link}
 						target='_blank'
 						modification='hover-underline'
 						active='' />
-					<Button
-						text='Read Later'
-						className='read-later-button'
-						onClick={() => { }} />
+					{getIsFavorite(favoriteNews, link) ?
+						<Button
+							text='Remove from favorite'
+							className='remove-from-favorite-button'
+							onClick={() => {
+								removeFromFavorite(favoriteNews, setFavoriteNews, news)
+								setFocusOnThisCard()
+							}}
+						/> :
+						<Button
+							text='Add to favorite'
+							className='add-to-favorite-button'
+							onClick={() => {
+								addToFavorite(favoriteNews, setFavoriteNews, news)
+								setFocusOnThisCard()
+							}}
+						/>}
 				</div>
 			</div>
 

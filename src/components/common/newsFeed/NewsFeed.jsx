@@ -1,17 +1,20 @@
 import './newsFeed.css';
 
 import { useEffect, useRef, useCallback } from 'react'
-import uuid from 'react-uuid'
 import { SkeletonTheme } from 'react-loading-skeleton'
+import uuid from 'react-uuid'
 
-import { useScrollTo } from '../hooks/useScrollTo';
+import { useScrollTo } from '../../../pages/news/hooks/useScrollTo';
+import { useLocalStorage } from '../../../hooks/useLocalStorage';
 
 import { NewsCard } from './newsCard/NewsCard';
-import { Message } from '../../../components/common/message/Message';
+import { Message } from '../message/Message';
 import { NewsCardSkeleton } from './newsCardSkeleton/NewsCardSkeleton';
 
-export const NewsFeed = ({ newsSet, keywords, focusNewsIndex, loading, setNeedMoreNews }) => {
-	const [targetScrollRef, scrollToRef] = useScrollTo()
+export const NewsFeed = ({ newsSet, keywords=[''], focusNewsIndex, setFocusNewsIndex, loading=false, setNeedMoreNews }) => {
+	const [favoriteNews, setFavoriteNews] = useLocalStorage('favoriteNews', [])
+
+	const [currentRef, scrollToRef] = useScrollTo()
 
 	useEffect(() => {
 		scrollToRef()
@@ -40,20 +43,14 @@ export const NewsFeed = ({ newsSet, keywords, focusNewsIndex, loading, setNeedMo
 						return <li
 							key={uuid()}
 							className='news-list-item'
-							ref={index === newsSet.length - 1 ? lastNewsRef : index === focusNewsIndex ? targetScrollRef : null}>
+							ref={index === newsSet.length - 1 ? lastNewsRef : index === focusNewsIndex ? currentRef : null}
+						>
 							<NewsCard
-								categories={news.category}
-								countries={news.country}
-								title={news.title}
-								image={news.image_url}
-								description={news.description}
-								content={news.content}
-								pubDate={news.pubDate}
-								creators={news.creator}
-								link={news.link}
-								video={news.video_url}
-								language={news.language}
+								news={news}
 								keywords={keywords}
+								favoriteNews={favoriteNews}
+								setFavoriteNews={setFavoriteNews}
+								setFocusOnThisCard={() => setFocusNewsIndex(index)}
 							/>
 						</li>
 					})}
