@@ -1,6 +1,6 @@
 import './newsFeed.css';
 
-import { useEffect } from 'react'
+import { useEffect, useRef, useCallback } from 'react'
 import uuid from 'react-uuid'
 import { SkeletonTheme } from 'react-loading-skeleton'
 
@@ -10,12 +10,24 @@ import { NewsCard } from './newsCard/NewsCard';
 import { Message } from '../../../components/common/message/Message';
 import { NewsCardSkeleton } from './newsCardSkeleton/NewsCardSkeleton';
 
-export const NewsFeed = ({ newsSet, keywords, lastNewsRef, focusNewsIndex, loading }) => {
+export const NewsFeed = ({ newsSet, keywords, focusNewsIndex, loading, setNeedMoreNews }) => {
 	const [targetScrollRef, scrollToRef] = useScrollTo()
 
 	useEffect(() => {
 		scrollToRef()
 	}, [scrollToRef])
+
+	const observer = useRef()
+	const lastNewsRef = useCallback(node => {
+		if (loading) return
+		if (observer.current) observer.current.disconnect()
+		observer.current = new IntersectionObserver(entries => {
+			if (entries[0].isIntersecting) {
+				setNeedMoreNews(true);
+			};
+		})
+		if (node) observer.current.observe(node)
+	}, [loading, setNeedMoreNews])
 
 	return (
 		<section className='news-feed' >
@@ -28,7 +40,7 @@ export const NewsFeed = ({ newsSet, keywords, lastNewsRef, focusNewsIndex, loadi
 						return <li
 							key={uuid()}
 							className='news-list-item'
-							ref={index === newsSet.length - 1 ? lastNewsRef : index === focusNewsIndex - 2 ? targetScrollRef : null}>
+							ref={index === newsSet.length - 1 ? lastNewsRef : index === focusNewsIndex ? targetScrollRef : null}>
 							<NewsCard
 								categories={news.category}
 								countries={news.country}
