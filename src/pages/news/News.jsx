@@ -1,6 +1,6 @@
 import './news.css';
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 
 import { getNews } from './businessLogic/getNews';
 
@@ -63,6 +63,8 @@ export const News = () => {
 					setNews(response.data.results)
 					setFocusNewsIndex(0)
 
+					console.log('Start set of news were added');
+
 					setNextPage(response.data.nextPage)
 					setTotalResults(response.data.totalResults)
 				}
@@ -93,7 +95,7 @@ export const News = () => {
 
 					setNews((news) => { return [...new Set([...news, ...response.data.results])] })
 
-					setFocusNewsIndex((prevIndex) => prevIndex + response.data.results.length)
+					setFocusNewsIndex((prevIndex) => prevIndex + response.data.results.length - 2)
 				}
 				setLoading(false)
 
@@ -117,18 +119,6 @@ export const News = () => {
 	}, [requestCounter, setApiKey])
 	// End of In develop purpose
 
-	const observer = useRef()
-	const lastNewsRef = useCallback(node => {
-		if (loading) return
-		if (observer.current) observer.current.disconnect()
-		observer.current = new IntersectionObserver(entries => {
-			if (entries[0].isIntersecting) {
-				setNeedMoreNews(true);
-			};
-		})
-		if (node) observer.current.observe(node)
-	}, [loading])
-
 	return (
 		<>
 			<section className='content-container'>
@@ -137,8 +127,8 @@ export const News = () => {
 						loading={loading}
 						newsSet={news}
 						keywords={[keyword]}
-						lastNewsRef={lastNewsRef}
 						focusNewsIndex={focusNewsIndex}
+						setNeedMoreNews={setNeedMoreNews}
 					/>
 					:
 					<Message type={'info'} title={'You need API key for getting news.'}>
