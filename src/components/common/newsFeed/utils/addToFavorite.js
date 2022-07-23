@@ -1,3 +1,3 @@
 export const addToFavorite = (favoriteNews, setFavoriteNews, news) => {
-  setFavoriteNews([...favoriteNews, { [news.link]: news }])
+  setFavoriteNews([...favoriteNews, news ])
 }

@@ -19,7 +19,7 @@ export const News = () => {
 	const [totalResults, setTotalResults] = useState(1)
 	const [needMoreNews, setNeedMoreNews] = useState(false)
 	const [hasMoreNews, setHasMoreNews] = useState(true)
-	const [focusNewsIndex, setFocusNewsIndex] = useState(0)
+	const [startNews, setStartNews] = useState(0)
 
 	const [selectedCountries, setSelectedCountries] = useLocalStorage('defaultCountry', ['all']);
 	const [selectedCategories, setSelectedCategories] = useLocalStorage('defaultCategory', ['all']);
@@ -30,6 +30,7 @@ export const News = () => {
 	const [loading, setLoading] = useState(false)
 
 	const [news, setNews] = useState([])
+	const [favoriteNews, setFavoriteNews] = useLocalStorage('favoriteNews', [])
 
 	//Avoid multiple requests for
 	const [requestCounter, setRequestCounter] = useState(0)
@@ -57,7 +58,7 @@ export const News = () => {
 					setRequestCounter(requestCounter => requestCounter + 1)
 
 					setNews(response.data.results)
-					setFocusNewsIndex(0)
+					setStartNews(0)
 
 					setNextPage(response.data.nextPage)
 					setTotalResults(response.data.totalResults)
@@ -84,14 +85,14 @@ export const News = () => {
 					//Avoid multiple requests for
 					setRequestCounter(requestCounter => requestCounter + 1)
 
-					const prevFocusNews = news.length
+					const prevStartNews = news.length
 
 					setNextPage(response.data.nextPage)
 					setTotalResults(response.data.totalResults)
 
 					setNews((news) => { return [...new Set([...news, ...response.data.results])] })
-
-					setFocusNewsIndex(prevFocusNews - 2)
+					console.log(prevStartNews);
+					setStartNews(prevStartNews)
 				}
 				setLoading(false)
 
@@ -122,9 +123,11 @@ export const News = () => {
 					<NewsFeed
 						loading={loading}
 						newsSet={news}
+						favoriteNews={favoriteNews}
+						setFavoriteNews={setFavoriteNews}
 						keywords={[keyword]}
-						focusNewsIndex={focusNewsIndex}
-						setFocusNewsIndex={setFocusNewsIndex}
+						startNews={startNews}
+						setStartNews={setStartNews}
 						setNeedMoreNews={setNeedMoreNews}
 					/>
 					:

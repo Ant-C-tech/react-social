@@ -1,9 +1,14 @@
+import { useState } from 'react'
+
 import { Message } from '../../components/common/message/Message';
 import { NewsFeed } from '../../components/common/newsFeed/NewsFeed';
 import { ControlBar } from '../../components/sections/controlbar/ControlBar';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 export const FavoriteNews = () => {
+  const [startNews, setStartNews] = useState(0)
+  const [needMoreNews, setNeedMoreNews] = useState(false)
+
   const [favoriteNews, setFavoriteNews] = useLocalStorage('favoriteNews', [])
 
   return (
@@ -11,14 +16,17 @@ export const FavoriteNews = () => {
       <section className='content-container'>
         {favoriteNews ?
           <NewsFeed
-          //   newsSet={favoriteNews}
-          //   // focusNewsIndex={focusNewsIndex}
-          //   // setFocusNewsIndex={setFocusNewsIndex}
-          //   // setNeedMoreNews={setNeedMoreNews}
+            newsSet={favoriteNews}
+            favoriteNews={favoriteNews}
+            setFavoriteNews={setFavoriteNews}
+            keywords={['']}
+            startNews={startNews}
+            setStartNews={setStartNews}
+            loading={false}
+            setNeedMoreNews={setNeedMoreNews}
           />
-          // <h2>Test</h2>
           :
-          <Message type={'info'} title={'No favorite news yet.'}> </Message>
+          <Message type={'info'} title={'There is no favorite news yet.'}> </Message>
         }
       </section>
       <ControlBar />

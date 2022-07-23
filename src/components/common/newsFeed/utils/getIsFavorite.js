@@ -1,7 +1,7 @@
 export const getIsFavorite = (favoriteNews, newsLink) => {
 		let isFavorite = false
 		favoriteNews.forEach((currentFavoriteNews) => {
-			if (Object.keys(currentFavoriteNews)[0] === newsLink) {
+			if (currentFavoriteNews.link === newsLink) {
 				isFavorite = true
 			}
 		})

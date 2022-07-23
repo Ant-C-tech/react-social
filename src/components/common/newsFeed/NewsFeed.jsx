@@ -1,36 +1,35 @@
 import './newsFeed.css';
 
-import { useEffect, useRef, useCallback } from 'react'
+import { useEffect } from 'react'
 import { SkeletonTheme } from 'react-loading-skeleton'
-import uuid from 'react-uuid'
+import { Waypoint } from 'react-waypoint';
 
 import { useScrollTo } from '../../../pages/news/hooks/useScrollTo';
-import { useLocalStorage } from '../../../hooks/useLocalStorage';
 
 import { NewsCard } from './newsCard/NewsCard';
 import { Message } from '../message/Message';
 import { NewsCardSkeleton } from './newsCardSkeleton/NewsCardSkeleton';
+import { getIsFavorite } from './utils/getIsFavorite';
+import { addToFavorite } from './utils/addToFavorite';
+import { removeFromFavorite } from './utils/removeFromFavorite';
 
-export const NewsFeed = ({ newsSet, keywords=[''], focusNewsIndex, setFocusNewsIndex, loading=false, setNeedMoreNews }) => {
-	const [favoriteNews, setFavoriteNews] = useLocalStorage('favoriteNews', [])
+export const NewsFeed = ({
+	newsSet,
+	favoriteNews,
+	setFavoriteNews,
+	keywords,
+	startNews,
+	setStartNews,
+	loading,
+	setNeedMoreNews }) => {
 
 	const [currentRef, scrollToRef] = useScrollTo()
 
+	console.log(startNews);
+
 	useEffect(() => {
 		scrollToRef()
-	}, [scrollToRef])
-
-	const observer = useRef()
-	const lastNewsRef = useCallback(node => {
-		if (loading) return
-		if (observer.current) observer.current.disconnect()
-		observer.current = new IntersectionObserver(entries => {
-			if (entries[0].isIntersecting) {
-				setNeedMoreNews(true);
-			};
-		})
-		if (node) observer.current.observe(node)
-	}, [loading, setNeedMoreNews])
+	}, [newsSet, scrollToRef])
 
 	return (
 		<section className='news-feed' >
@@ -38,27 +37,38 @@ export const NewsFeed = ({ newsSet, keywords=[''], focusNewsIndex, setFocusNewsI
 				<SkeletonTheme baseColor="#dce2e4" highlightColor="#b2c0c4">
 					<NewsCardSkeleton skeletons={2} />
 				</SkeletonTheme>
-				: newsSet.length > 0 ? <ul className='news-list' >
-					{newsSet.map((news, index) => {
-						return <li
-							key={uuid()}
-							className='news-list-item'
-							ref={index === newsSet.length - 1 ? lastNewsRef : index === focusNewsIndex ? currentRef : null}
-						>
-							<NewsCard
-								news={news}
-								keywords={keywords}
-								favoriteNews={favoriteNews}
-								setFavoriteNews={setFavoriteNews}
-								setFocusOnThisCard={() => setFocusNewsIndex(index)}
-							/>
-						</li>
-					})}
-				</ul> : <Message type={'info'} title={'Nothing was found according to your request.'}>
-					<p>Try to change your search parameters.</p>
-					<p>Happy news!</p>
-				</Message>
+				: newsSet.length > 0 ?
+					<ul className='news-list' >
+						{newsSet.map((news, index) =>
+							<li
+								className='news-list-item'
+								key={index}
+								ref={index === startNews ? currentRef : null}>
+								<NewsCard
+									news={news}
+									keywords={keywords}
+									isFavorite={getIsFavorite(favoriteNews, news.link)}
+									addToFavorite={() => {
+										addToFavorite(favoriteNews, setFavoriteNews, news)
+										setStartNews(index)
+									}}
+									removeFromFavorite={() => {
+										removeFromFavorite(favoriteNews, setFavoriteNews, news)
+										setStartNews(index)
+									}}
+								/>
+								{index === newsSet.length - 1
+									&& <Waypoint
+										onEnter={() => setNeedMoreNews(true)}
+									/>}
+							</li>
+						)}
+					</ul> :
+					<Message type={'info'} title={'Nothing was found according to your request.'}>
+						<p>Try to change your search parameters.</p>
+						<p>Happy news!</p>
+					</Message>
 			}
-		</section>
+		</section >
 	);
 };

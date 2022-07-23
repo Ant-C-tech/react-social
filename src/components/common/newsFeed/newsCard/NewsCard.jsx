@@ -12,36 +12,41 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { CustomLink } from '../../customLink/CustomLink';
 import { Button } from '../../button/Button';
-import { getIsFavorite } from './utils/getIsFavorite';
-import { addToFavorite } from './utils/addToFavorite';
-import { removeFromFavorite } from './utils/removeFromFavorite';
 
-export const NewsCard = ({ news, keywords, favoriteNews, setFavoriteNews, setFocusOnThisCard }) => {
+export const NewsCard = ({
+	news,
+	keywords,
+	isFavorite,
+	addToFavorite,
+	removeFromFavorite,
+}) => {
 	const [isContentShown, setIsContentShown] = useState(false)
 
-	const { categories,
-		countries,
+	const {
 		title,
-		image,
+		link,
+		creator,
+		video_url,
 		description,
 		content,
 		pubDate,
-		creators,
-		link,
-		video,
+		image_url,
+		source_id,
+		country,
+		category,
 		language } = news
 
 	return (
 		<article className='news-card' >
 			<header className="news-card-header">
-				{categories && <div className="news-card-category">
-					{categories.map((category, index) => (
-						<h3 key={index}>{category}</h3>
+				{category && <div className="news-card-category">
+					{category.map((currentCategory, index) => (
+						<h3 key={index}>{currentCategory}</h3>
 					))}
 				</div>}
-				{countries && <div className="news-card-country">
-					{countries.map((country, index) => (
-						<h3 key={index}>{country}</h3>
+				{country && <div className="news-card-country">
+					{country.map((currentCountry, index) => (
+						<h3 key={index}>{currentCountry}</h3>
 					))}
 				</div>}
 			</header>
@@ -50,15 +55,12 @@ export const NewsCard = ({ news, keywords, favoriteNews, setFavoriteNews, setFoc
 				<div className="news-card-title">
 					<FiberNew className="news-card-title-icon" />
 					<h2 className="news-card-title-text">
-						{keywords[0] === '' ?
-							title :
-							<Highlighter
-								highlightClassName="news-card-highlight"
-								searchWords={keywords}
-								autoEscape={true}
-								textToHighlight={title || ''}
-							/>
-						}
+						<Highlighter
+							highlightClassName="news-card-highlight"
+							searchWords={keywords}
+							autoEscape={true}
+							textToHighlight={title || ''}
+						/>
 					</h2>
 				</div>
 
@@ -66,44 +68,38 @@ export const NewsCard = ({ news, keywords, favoriteNews, setFavoriteNews, setFoc
 					className="news-card-image"
 					wrapperClassName="news-card-image-wrapper"
 					effect="blur"
-					src={image}
+					src={image_url}
 					alt={title}
 				/>
 
-				{video &&
+				{video_url &&
 					<CustomLink
 						content={<>
 							<OndemandVideo /><span className='link-add-text'>Watch Now</span>
 						</>}
-						href={video}
+						href={video_url}
 						target='_blank'
 						modification='hover-left-line'
 						active=''
 					/>}
 
 				<p className="news-card-description">
-					{keywords[0] === '' ?
-						description :
-						<Highlighter
-							highlightClassName="news-card-highlight"
-							searchWords={keywords}
-							autoEscape={true}
-							textToHighlight={description || ''}
-						/>
-					}
+					<Highlighter
+						highlightClassName="news-card-highlight"
+						searchWords={keywords}
+						autoEscape={true}
+						textToHighlight={description || ''}
+					/>
 				</p>
 
 				{isContentShown &&
 					<p className="news-card-full-text">
-						{keywords[0] === '' ?
-							content :
-							<Highlighter
-								highlightClassName="news-card-highlight"
-								searchWords={keywords}
-								autoEscape={true}
-								textToHighlight={content || ''}
-							/>
-						}
+						<Highlighter
+							highlightClassName="news-card-highlight"
+							searchWords={keywords}
+							autoEscape={true}
+							textToHighlight={content || ''}
+						/>
 					</p>
 				}
 
@@ -122,21 +118,19 @@ export const NewsCard = ({ news, keywords, favoriteNews, setFavoriteNews, setFoc
 						target='_blank'
 						modification='hover-underline'
 						active='' />
-					{getIsFavorite(favoriteNews, link) ?
+					{isFavorite ?
 						<Button
 							text='Remove from favorite'
 							className='remove-from-favorite-button'
 							onClick={() => {
-								removeFromFavorite(favoriteNews, setFavoriteNews, news)
-								setFocusOnThisCard()
+								removeFromFavorite()
 							}}
 						/> :
 						<Button
 							text='Add to favorite'
 							className='add-to-favorite-button'
 							onClick={() => {
-								addToFavorite(favoriteNews, setFavoriteNews, news)
-								setFocusOnThisCard()
+								addToFavorite()
 							}}
 						/>}
 				</div>
@@ -144,11 +138,15 @@ export const NewsCard = ({ news, keywords, favoriteNews, setFavoriteNews, setFoc
 
 			<footer className="news-card-footer">
 				<p className="news-card-date">{pubDate}</p>
-				{creators && <div className="news-card-creators">
-					{creators.map((creator, index) => (
-						<p key={index}>{creator}</p>
-					))}
-				</div>}
+				{(creator || source_id)
+					&& <div className="news-card-creators">
+						{creator ? creator.map((currentCreator, index) => (
+							<p key={index}>{currentCreator}</p>
+						)) :
+							source_id &&
+							<p>{source_id}</p>
+						}
+					</div>}
 			</footer>
 		</article>
 	)
