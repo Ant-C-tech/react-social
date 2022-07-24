@@ -5,7 +5,7 @@ import { MenuBook, CancelPresentation, FolderSpecial, People, AddCircle, RemoveC
 const buttonIcons = {
 	'Read More': MenuBook,
 	'Hide full text': CancelPresentation,
-	'Read Later': FolderSpecial,
+	'Add to favorite': FolderSpecial,
 	'Show Contacts': People,
 	'Hide Contacts': RemoveCircle,
 	'Add More Countries': AddCircle,
