@@ -64,13 +64,13 @@ export const NewsCard = ({
 					</h2>
 				</div>
 
-				<LazyLoadImage
+				{image_url && <LazyLoadImage
 					className="news-card-image"
 					wrapperClassName="news-card-image-wrapper"
 					effect="blur"
 					src={image_url}
 					alt={title}
-				/>
+				/>}
 
 				{video_url &&
 					<CustomLink

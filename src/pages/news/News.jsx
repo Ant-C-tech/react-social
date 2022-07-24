@@ -11,6 +11,7 @@ import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
 import { Message } from '../../components/common/message/Message';
 import { InputComponent } from '../../components/common/inputComponent/InputComponent';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { NothingWasFoundMessage } from '../../components/common/nothingWasFoundMessage/NothingWasFoundMessage';
 
 export const News = () => {
 	const [apiKey, setApiKey] = useLocalStorage('apiKey', '')
@@ -20,6 +21,7 @@ export const News = () => {
 	const [needMoreNews, setNeedMoreNews] = useState(false)
 	const [hasMoreNews, setHasMoreNews] = useState(true)
 	const [startNews, setStartNews] = useState(0)
+	const [needScroll, setNeedScroll] = useState(false)
 
 	const [selectedCountries, setSelectedCountries] = useLocalStorage('defaultCountry', ['all']);
 	const [selectedCategories, setSelectedCategories] = useLocalStorage('defaultCategory', ['all']);
@@ -64,9 +66,16 @@ export const News = () => {
 					setTotalResults(response.data.totalResults)
 				}
 				setLoading(false)
+				setNeedScroll(true)
 			} catch (error) {
 				setError(error.message)
 				setLoading(false)
+				if (error.message === 'Internet Disconnected') {
+					setTimeout(() => {
+						setError('')
+						getDefaultNews()
+					}, 5000);
+				}
 			}
 		}
 
@@ -91,14 +100,20 @@ export const News = () => {
 					setTotalResults(response.data.totalResults)
 
 					setNews((news) => { return [...new Set([...news, ...response.data.results])] })
-					console.log(prevStartNews);
-					setStartNews(prevStartNews)
+					setStartNews(prevStartNews - 1)
 				}
 				setLoading(false)
+				setNeedScroll(true)
 
 			} catch (error) {
 				setError(error.message)
 				setLoading(false)
+				if (error.message === 'Internet Disconnected') {
+					setTimeout(() => {
+						setError('')
+						getMoreNews()
+					}, 5000);
+				}
 			}
 		}
 
@@ -129,6 +144,9 @@ export const News = () => {
 						startNews={startNews}
 						setStartNews={setStartNews}
 						setNeedMoreNews={setNeedMoreNews}
+						needScroll={needScroll}
+						setNeedScroll={setNeedScroll}
+						message={news.length === 0 ? <NothingWasFoundMessage /> : null}
 					/>
 					:
 					<Message type={'info'} title={'You need API key for getting news.'}>
@@ -144,18 +162,19 @@ export const News = () => {
 			</section>
 			<ControlBar
 				content={(apiKey || error) &&
-					<NewsControls
-						news={news}
-						error={error}
-						selectedCountries={selectedCountries}
-						setSelectedCountries={setSelectedCountries}
-						selectedCategories={selectedCategories}
-						setSelectedCategories={setSelectedCategories}
-						selectedLanguages={selectedLanguages}
-						setSelectedLanguages={setSelectedLanguages}
-						keyword={keyword}
-						setKeyword={setKeyword}
-						loading={loading} />} />
+						<NewsControls
+							news={news}
+							error={error}
+							selectedCountries={selectedCountries}
+							setSelectedCountries={setSelectedCountries}
+							selectedCategories={selectedCategories}
+							setSelectedCategories={setSelectedCategories}
+							selectedLanguages={selectedLanguages}
+							setSelectedLanguages={setSelectedLanguages}
+							keyword={keyword}
+							setKeyword={setKeyword}
+							loading={loading} />
+					} />
 		</>
 	)
 };
