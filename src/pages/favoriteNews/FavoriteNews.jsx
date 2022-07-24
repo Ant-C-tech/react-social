@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { NewsControls } from '../../components/common/newsControls/NewsControls';
 
 import { NewsFeed } from '../../components/common/newsFeed/NewsFeed';
 import { NothingWasFoundMessage } from '../../components/common/nothingWasFoundMessage/NothingWasFoundMessage';
@@ -14,6 +15,11 @@ export const FavoriteNews = () => {
   const [currentPage, setCurrentPage] = useState(1)
   const [needMoreNews, setNeedMoreNews] = useState(false)
   const [hasMoreNews, setHasMoreNews] = useState(true)
+
+  const [selectedCountries, setSelectedCountries] = useState(['all']);
+  const [selectedCategories, setSelectedCategories] = useState(['all']);
+  const [selectedLanguages, setSelectedLanguages] = useState(['all']);
+  const [keyword, setKeyword] = useState('')
 
   const newsForPage = 10
 
@@ -54,7 +60,22 @@ export const FavoriteNews = () => {
         />
         }
       </section>
-      <ControlBar />
+      <ControlBar
+        content={
+          <NewsControls
+            news={news}
+            error={''}
+            selectedCountries={selectedCountries}
+            setSelectedCountries={setSelectedCountries}
+            selectedCategories={selectedCategories}
+            setSelectedCategories={setSelectedCategories}
+            selectedLanguages={selectedLanguages}
+            setSelectedLanguages={setSelectedLanguages}
+            keyword={keyword}
+            setKeyword={setKeyword}
+            loading={false}
+          />
+        } />
     </>
   )
 };
