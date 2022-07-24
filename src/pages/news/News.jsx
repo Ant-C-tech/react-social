@@ -6,7 +6,7 @@ import { getNews } from './businessLogic/getNews';
 
 import { ControlBar } from '../../components/sections/controlbar/ControlBar';
 import { NewsFeed } from '../../components/common/newsFeed/NewsFeed';
-import { NewsControls } from './newsControls/NewsControls';
+import { NewsControls } from '../../components/common/newsControls/NewsControls';
 import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
 import { Message } from '../../components/common/message/Message';
 import { InputComponent } from '../../components/common/inputComponent/InputComponent';

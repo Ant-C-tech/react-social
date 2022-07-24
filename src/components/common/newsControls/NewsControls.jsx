@@ -1,26 +1,24 @@
 import './newsControls.css';
 
-// import { useState, useEffect } from 'react'
-
 import { Help } from '@material-ui/icons';
 import uuid from 'react-uuid'
 
-import { createErrorMessage } from '../businessLogic/createErrorMessage';
+import { createErrorMessage } from './utils/createErrorMessage';
 
-import { countriesAvailableForFilterNews } from '../constants/countriesAvailableForFilterNews';
-import { categoriesAvailableForFilterNews } from '../constants/categoriesAvailableForFilterNews';
-import { languagesAvailableForFilterNews } from '../constants/languagesAvailableForFilterNews';
+import { countriesAvailableForFilterNews } from './constants/countriesAvailableForFilterNews';
+import { categoriesAvailableForFilterNews } from './constants/categoriesAvailableForFilterNews';
+import { languagesAvailableForFilterNews } from './constants/languagesAvailableForFilterNews';
 
-import { getNotSelectedItems } from '../utils/getNotSelectedItems';
-import { addSelectWithNotSelectedValue } from '../utils/addSelectWithNotSelectedValue';
-import { removeLastSelect } from '../utils/removeLastSelect';
-import { updateSelectedItems } from '../utils/updateSelectedItems'
-import { getAdditionalDataForNewsControls } from '../utils/getAdditionalDataForNewsControls';
+import { getNotSelectedItems } from './utils/getNotSelectedItems';
+import { addSelectWithNotSelectedValue } from './utils/addSelectWithNotSelectedValue';
+import { removeLastSelect } from './utils/removeLastSelect';
+import { updateSelectedItems } from './utils/updateSelectedItems'
+import { getAdditionalDataForNewsControls } from './utils/getAdditionalDataForNewsControls';
 
-import { Message } from '../../../components/common/message/Message';
-import { Button } from '../../../components/common/button/Button'
-import { SelectComponent } from '../../../components/common/selectComponent/selectComponent';
-import { InputComponent } from '../../../components/common/inputComponent/InputComponent';
+import { Message } from '../message/Message';
+import { Button } from '../button/Button'
+import { SelectComponent } from '../selectComponent/selectComponent';
+import { InputComponent } from '../inputComponent/InputComponent';
 
 export const NewsControls = ({
   news,
@@ -34,11 +32,6 @@ export const NewsControls = ({
   keyword,
   setKeyword,
   loading }) => {
-  // const [receivedFirstNews, setReceivedFirstNews] = useState(false)
-
-  // useEffect(() => {
-  //   if (news.length > 0 && !receivedFirstNews) setReceivedFirstNews(true)
-  // }, [news, receivedFirstNews])
 
   const minParametersLength = 1
   const maxParametersLength = 5
@@ -49,8 +42,6 @@ export const NewsControls = ({
     labelOptionForCountries,
     labelIconOptionsForCountries,
     labelIconOptionsForLanguages } = getAdditionalDataForNewsControls()
-
-  // console.log(receivedFirstNews);
 
   return (
     <section className='news-controls'>
