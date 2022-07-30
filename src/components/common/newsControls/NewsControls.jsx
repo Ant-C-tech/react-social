@@ -5,9 +5,9 @@ import uuid from 'react-uuid'
 
 import { createErrorMessage } from './utils/createErrorMessage';
 
-import { countriesAvailableForFilterNews } from './constants/countriesAvailableForFilterNews';
-import { categoriesAvailableForFilterNews } from './constants/categoriesAvailableForFilterNews';
-import { languagesAvailableForFilterNews } from './constants/languagesAvailableForFilterNews';
+// import { countriesAvailableForFilterNews } from '../../../constants/countriesAvailableForFilterNews';
+import { categoriesAvailableForFilterNews } from '../../../constants/categoriesAvailableForFilterNews';
+import { languagesAvailableForFilterNews } from '../../../constants/languagesAvailableForFilterNews';
 
 import { getNotSelectedItems } from './utils/getNotSelectedItems';
 import { addSelectWithNotSelectedValue } from './utils/addSelectWithNotSelectedValue';
@@ -31,7 +31,10 @@ export const NewsControls = ({
   setSelectedLanguages,
   keyword,
   setKeyword,
-  loading }) => {
+  loading,
+  countriesAvailableForFilterNews,
+  minCountriesAvailableForFilterNews,
+  maxCountriesAvailableForFilterNews }) => {
 
   const minParametersLength = 1
   const maxParametersLength = 5
@@ -72,14 +75,14 @@ export const NewsControls = ({
             }
             )}
             <div className="select-controls">
-              {selectedCountries.length !== maxParametersLength && selectedCountries[0] !== 'all' &&
+              {selectedCountries.length !== maxCountriesAvailableForFilterNews && selectedCountries[0] !== 'all' &&
                 <Button text='Add More Countries'
                   onClick={() => {
                     if (!loading) {
                       addSelectWithNotSelectedValue(selectedCountries, countriesAvailableForFilterNews, setSelectedCountries)
                     }
                   }} />}
-              {selectedCountries.length !== minParametersLength &&
+              {selectedCountries.length !== minCountriesAvailableForFilterNews &&
                 <Button text='Remove Country'
                   onClick={() => {
                     if (!loading) {

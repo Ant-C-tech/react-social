@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NewsControls } from '../../components/common/newsControls/NewsControls';
+import { getCountriesAvailableForFilterFavoriteNews } from '../../components/common/newsControls/utils/getCountriesAvailableForFilterFavoriteNews';
+import { updateNewsControls } from '../../components/common/newsControls/utils/updateNewsControls';
 
 import { NewsFeed } from '../../components/common/newsFeed/NewsFeed';
 import { NothingWasFoundMessage } from '../../components/common/nothingWasFoundMessage/NothingWasFoundMessage';
@@ -23,9 +25,33 @@ export const FavoriteNews = () => {
 
   const newsForPage = 10
 
+  const minParametersLength = 1
+  const maxParametersLength = 5
+
   useEffect(() => {
     setNews([...favoriteNews.filter((_currentFavoriteNews, index) => index < currentPage * newsForPage)])
   }, [favoriteNews, currentPage])
+
+  useEffect(() => {
+    if (favoriteNews.length > 0) {
+      const countriesAvailableForFilterFavoriteNews = getCountriesAvailableForFilterFavoriteNews(favoriteNews)
+      if (selectedCountries.length > countriesAvailableForFilterFavoriteNews.length - 1) {
+        updateNewsControls(
+          selectedCountries,
+          countriesAvailableForFilterFavoriteNews,
+          setSelectedCountries
+        )
+      }
+      if (selectedCountries.length === 1 &&
+        !countriesAvailableForFilterFavoriteNews.includes(selectedCountries[0])) {
+        updateNewsControls(
+          selectedCountries,
+          countriesAvailableForFilterFavoriteNews,
+          setSelectedCountries
+        )
+      }
+    }
+  }, [favoriteNews, selectedCountries])
 
   useEffect(() => {
     if (news.length < favoriteNews.length) {
@@ -61,7 +87,7 @@ export const FavoriteNews = () => {
         }
       </section>
       <ControlBar
-        content={
+        content={favoriteNews.length > 0 &&
           <NewsControls
             news={news}
             error={''}
@@ -74,6 +100,9 @@ export const FavoriteNews = () => {
             keyword={keyword}
             setKeyword={setKeyword}
             loading={false}
+            countriesAvailableForFilterNews={getCountriesAvailableForFilterFavoriteNews(favoriteNews)}
+            minCountriesAvailableForFilterNews={minParametersLength}
+            maxCountriesAvailableForFilterNews={getCountriesAvailableForFilterFavoriteNews(favoriteNews).length - 1 > maxParametersLength ? maxParametersLength : getCountriesAvailableForFilterFavoriteNews(favoriteNews).length - 1}
           />
         } />
     </>

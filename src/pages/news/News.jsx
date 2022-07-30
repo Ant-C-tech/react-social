@@ -3,15 +3,17 @@ import './news.css';
 import { useState, useEffect } from 'react'
 
 import { getNews } from './businessLogic/getNews';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { countriesAvailableForFilterNews } from '../../constants/countriesAvailableForFilterNews';
 
 import { ControlBar } from '../../components/sections/controlbar/ControlBar';
 import { NewsFeed } from '../../components/common/newsFeed/NewsFeed';
 import { NewsControls } from '../../components/common/newsControls/NewsControls';
-import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
 import { Message } from '../../components/common/message/Message';
 import { InputComponent } from '../../components/common/inputComponent/InputComponent';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { NothingWasFoundMessage } from '../../components/common/nothingWasFoundMessage/NothingWasFoundMessage';
+
+import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
 
 export const News = () => {
 	const [apiKey, setApiKey] = useLocalStorage('apiKey', '')
@@ -33,6 +35,9 @@ export const News = () => {
 
 	const [news, setNews] = useState([])
 	const [favoriteNews, setFavoriteNews] = useLocalStorage('favoriteNews', [])
+
+	const minParametersLength = 1
+	const maxParametersLength = 5
 
 	//Avoid multiple requests for
 	const [requestCounter, setRequestCounter] = useState(0)
@@ -162,19 +167,21 @@ export const News = () => {
 			</section>
 			<ControlBar
 				content={(apiKey || error) &&
-						<NewsControls
-							news={news}
-							error={error}
-							selectedCountries={selectedCountries}
-							setSelectedCountries={setSelectedCountries}
-							selectedCategories={selectedCategories}
-							setSelectedCategories={setSelectedCategories}
-							selectedLanguages={selectedLanguages}
-							setSelectedLanguages={setSelectedLanguages}
-							keyword={keyword}
-							setKeyword={setKeyword}
-							loading={loading} />
-					} />
+					<NewsControls
+						news={news}
+						error={error}
+						selectedCountries={selectedCountries}
+						setSelectedCountries={setSelectedCountries}
+						selectedCategories={selectedCategories}
+						setSelectedCategories={setSelectedCategories}
+						selectedLanguages={selectedLanguages}
+						setSelectedLanguages={setSelectedLanguages}
+						keyword={keyword}
+						setKeyword={setKeyword}
+						loading={loading}
+						countriesAvailableForFilterNews={countriesAvailableForFilterNews} minCountriesAvailableForFilterNews={minParametersLength}
+						maxCountriesAvailableForFilterNews={maxParametersLength} />
+				} />
 		</>
 	)
 };
