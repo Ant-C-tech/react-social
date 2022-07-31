@@ -1,9 +1,9 @@
 import { getCountryCodesByNames } from '../../../utils/getCountryCodesByNames';
 
-export const getNewsFilteredByCountry = (favoriteNews, selectedCountries) => {
+export const getNewsFilteredByCountry = (news, selectedCountries) => {
 	const newsFilteredByCountry = [];
-		favoriteNews.forEach((currentFavoriteNews) => {
-			const currentFavoriteNewsCountryCodes = getCountryCodesByNames(currentFavoriteNews.country);
+		news.forEach((currentNews) => {
+			const currentFavoriteNewsCountryCodes = getCountryCodesByNames(currentNews.country);
 			let isCurrentNewsMatchesToFilterParameters = false;
 			selectedCountries.forEach((selectedCountry) => {
 				if (currentFavoriteNewsCountryCodes.includes(selectedCountry)) {
@@ -11,7 +11,7 @@ export const getNewsFilteredByCountry = (favoriteNews, selectedCountries) => {
 				}
 			});
 			if (isCurrentNewsMatchesToFilterParameters) {
-				newsFilteredByCountry.push(currentFavoriteNews);
+				newsFilteredByCountry.push(currentNews);
 			}
     });
   return newsFilteredByCountry;

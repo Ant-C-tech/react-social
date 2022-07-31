@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react'
 
 import { getNews } from './businessLogic/getNews';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
+
 import { countriesAvailableForFilterNews } from './constants/countriesAvailableForFilterNews';
+import { categoriesAvailableForFilterNews } from '../../constants/categoriesAvailableForFilterNews';
 
 import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
 
@@ -179,7 +181,10 @@ export const News = () => {
 						setKeyword={setKeyword}
 						loading={loading}
 						countriesAvailableForFilterNews={countriesAvailableForFilterNews} minCountriesAvailableForFilterNews={minParametersLength}
-						maxCountriesAvailableForFilterNews={maxParametersLength} />
+						maxCountriesAvailableForFilterNews={maxParametersLength}
+						categoriesAvailableForFilterNews={categoriesAvailableForFilterNews}
+						minCategoriesAvailableForFilterNews={minParametersLength}
+						maxCategoriesAvailableForFilterNews={maxParametersLength} />
 				} />
 		</>
 	)
