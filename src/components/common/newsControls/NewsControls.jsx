@@ -8,7 +8,6 @@ import { Button } from '../button/Button'
 import { SelectComponent } from '../selectComponent/selectComponent';
 import { InputComponent } from '../inputComponent/InputComponent';
 
-import { categoriesAvailableForFilterNews } from '../../../constants/categoriesAvailableForFilterNews';
 import { languagesAvailableForFilterNews } from '../../../constants/languagesAvailableForFilterNews';
 
 import { getNotSelectedItems } from './utils/getNotSelectedItems';
@@ -32,7 +31,10 @@ export const NewsControls = ({
   loading,
   countriesAvailableForFilterNews,
   minCountriesAvailableForFilterNews,
-  maxCountriesAvailableForFilterNews }) => {
+  maxCountriesAvailableForFilterNews,
+  categoriesAvailableForFilterNews,
+  minCategoriesAvailableForFilterNews,
+  maxCategoriesAvailableForFilterNews }) => {
 
   const minParametersLength = 1
   const maxParametersLength = 5
@@ -107,7 +109,7 @@ export const NewsControls = ({
                 isSearchable={true} />
             })}
             <div className="select-controls">
-              {selectedCategories.length !== maxParametersLength && selectedCategories[0] !== 'all' &&
+              {selectedCategories.length !== maxCategoriesAvailableForFilterNews && selectedCategories[0] !== 'all' &&
                 <Button
                   text='Add More Categories'
                   onClick={() => {
@@ -115,7 +117,7 @@ export const NewsControls = ({
                       addSelectWithNotSelectedValue(selectedCategories, Object.keys(categoriesAvailableForFilterNews), setSelectedCategories)
                     }
                   }} />}
-              {selectedCategories.length !== minParametersLength &&
+              {selectedCategories.length !== minCategoriesAvailableForFilterNews &&
                 <Button
                   text='Remove Category'
                   onClick={() => {
