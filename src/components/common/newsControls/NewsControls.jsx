@@ -3,9 +3,11 @@ import './newsControls.css';
 import { Help } from '@material-ui/icons';
 import uuid from 'react-uuid'
 
-import { createErrorMessage } from './utils/createErrorMessage';
+import { Message } from '../message/Message';
+import { Button } from '../button/Button'
+import { SelectComponent } from '../selectComponent/selectComponent';
+import { InputComponent } from '../inputComponent/InputComponent';
 
-// import { countriesAvailableForFilterNews } from '../../../constants/countriesAvailableForFilterNews';
 import { categoriesAvailableForFilterNews } from '../../../constants/categoriesAvailableForFilterNews';
 import { languagesAvailableForFilterNews } from '../../../constants/languagesAvailableForFilterNews';
 
@@ -14,11 +16,7 @@ import { addSelectWithNotSelectedValue } from './utils/addSelectWithNotSelectedV
 import { removeLastSelect } from './utils/removeLastSelect';
 import { updateSelectedItems } from './utils/updateSelectedItems'
 import { getAdditionalDataForNewsControls } from './utils/getAdditionalDataForNewsControls';
-
-import { Message } from '../message/Message';
-import { Button } from '../button/Button'
-import { SelectComponent } from '../selectComponent/selectComponent';
-import { InputComponent } from '../inputComponent/InputComponent';
+import { createErrorMessage } from './utils/createErrorMessage';
 
 export const NewsControls = ({
   news,

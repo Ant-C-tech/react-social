@@ -1,16 +1,8 @@
 import { countries } from 'country-data';
 
-export const getCountriesAvailableForFilterFavoriteNews = (favoriteNews) => {
-	const favoriteNewsCountryNames = [];
-	favoriteNews.forEach(({ country }) => {
-		favoriteNewsCountryNames.push(...country);
-	});
-
-	const uniqueFavoriteNewsCountryNames = [ ...new Set(favoriteNewsCountryNames) ];
-
-	return [
-		'all',
-		...uniqueFavoriteNewsCountryNames.map((countryName) => {
+export const getCountryCodesByNames = (countryNames) => {
+  return [
+		...countryNames.map((countryName) => {
 			let countryCode;
 			countries.all.forEach((country) => {
 				if (country.name.toLowerCase() === countryName) {
@@ -49,4 +41,4 @@ export const getCountriesAvailableForFilterFavoriteNews = (favoriteNews) => {
 			return countryCode;
 		}),
 	];
-};
+}

@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react'
 
 import { getNews } from './businessLogic/getNews';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-import { countriesAvailableForFilterNews } from '../../constants/countriesAvailableForFilterNews';
+import { countriesAvailableForFilterNews } from './constants/countriesAvailableForFilterNews';
+
+import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
 
 import { ControlBar } from '../../components/sections/controlbar/ControlBar';
 import { NewsFeed } from '../../components/common/newsFeed/NewsFeed';
@@ -12,8 +14,6 @@ import { NewsControls } from '../../components/common/newsControls/NewsControls'
 import { Message } from '../../components/common/message/Message';
 import { InputComponent } from '../../components/common/inputComponent/InputComponent';
 import { NothingWasFoundMessage } from '../../components/common/nothingWasFoundMessage/NothingWasFoundMessage';
-
-import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
 
 export const News = () => {
 	const [apiKey, setApiKey] = useLocalStorage('apiKey', '')
@@ -147,7 +147,6 @@ export const News = () => {
 						setFavoriteNews={setFavoriteNews}
 						keywords={[keyword]}
 						startNews={startNews}
-						setStartNews={setStartNews}
 						setNeedMoreNews={setNeedMoreNews}
 						needScroll={needScroll}
 						setNeedScroll={setNeedScroll}
