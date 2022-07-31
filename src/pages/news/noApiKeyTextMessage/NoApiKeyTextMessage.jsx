@@ -8,7 +8,13 @@ export const NoApiKeyTextMessage = () => {
   return (
     <div className="no-api-key">
       <p className="no-api-key-subtitle">Please, go to
-        <CustomLink content={<><Bookmark /><span className='link-add-text'>NEWSDATA.IO</span></>} href='https://newsdata.io/' target='_blank' modification='hover-underline' active='' />
+        <CustomLink type='external'
+          content={<><Bookmark /><span className='link-add-text'>NEWSDATA.IO</span></>}
+          href='https://newsdata.io/'
+          target='_blank'
+          modification='hover-underline'
+          active=''
+        />
       </p>
       <ul className="no-api-key-description-list">
         <li className="no-api-key-description-list-item">Click to the "GET API KEY" button.</li>

@@ -16,8 +16,11 @@
 }
 
 .news-card-content.russian,
+.news-card-creators.russian,
 .news-card-content.ukrainian,
-.news-card-content.bulgarian {
+.news-card-creators.ukrainian,
+.news-card-content.bulgarian,
+.news-card-creators.bulgarian {
 	font-family: 'Pangolin', cursive;
 }
 

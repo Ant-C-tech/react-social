@@ -111,6 +111,7 @@ export const NewsCard = ({
 							onClick={() => setIsContentShown((prevState) => !prevState)}
 						/>}
 					<CustomLink
+						type='external'
 						content={<>
 							<Bookmark /><span className='link-add-text'>Visit original source...</span>
 						</>}
@@ -139,7 +140,7 @@ export const NewsCard = ({
 			<footer className="news-card-footer">
 				<p className="news-card-date">{pubDate}</p>
 				{(creator || source_id)
-					&& <div className="news-card-creators">
+					&& <div className={`news-card-creators ${language}`}>
 						{creator ? creator.map((currentCreator, index) => (
 							<p key={index}>{currentCreator}</p>
 						)) :

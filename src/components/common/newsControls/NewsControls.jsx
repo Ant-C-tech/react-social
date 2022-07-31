@@ -1,26 +1,22 @@
 import './newsControls.css';
 
-// import { useState, useEffect } from 'react'
-
 import { Help } from '@material-ui/icons';
 import uuid from 'react-uuid'
 
-import { createErrorMessage } from '../businessLogic/createErrorMessage';
+import { Message } from '../message/Message';
+import { Button } from '../button/Button'
+import { SelectComponent } from '../selectComponent/selectComponent';
+import { InputComponent } from '../inputComponent/InputComponent';
 
-import { countriesAvailableForFilterNews } from '../constants/countriesAvailableForFilterNews';
-import { categoriesAvailableForFilterNews } from '../constants/categoriesAvailableForFilterNews';
-import { languagesAvailableForFilterNews } from '../constants/languagesAvailableForFilterNews';
+import { categoriesAvailableForFilterNews } from '../../../constants/categoriesAvailableForFilterNews';
+import { languagesAvailableForFilterNews } from '../../../constants/languagesAvailableForFilterNews';
 
-import { getNotSelectedItems } from '../utils/getNotSelectedItems';
-import { addSelectWithNotSelectedValue } from '../utils/addSelectWithNotSelectedValue';
-import { removeLastSelect } from '../utils/removeLastSelect';
-import { updateSelectedItems } from '../utils/updateSelectedItems'
-import { getAdditionalDataForNewsControls } from '../utils/getAdditionalDataForNewsControls';
-
-import { Message } from '../../../components/common/message/Message';
-import { Button } from '../../../components/common/button/Button'
-import { SelectComponent } from '../../../components/common/selectComponent/selectComponent';
-import { InputComponent } from '../../../components/common/inputComponent/InputComponent';
+import { getNotSelectedItems } from './utils/getNotSelectedItems';
+import { addSelectWithNotSelectedValue } from './utils/addSelectWithNotSelectedValue';
+import { removeLastSelect } from './utils/removeLastSelect';
+import { updateSelectedItems } from './utils/updateSelectedItems'
+import { getAdditionalDataForNewsControls } from './utils/getAdditionalDataForNewsControls';
+import { createErrorMessage } from './utils/createErrorMessage';
 
 export const NewsControls = ({
   news,
@@ -33,12 +29,10 @@ export const NewsControls = ({
   setSelectedLanguages,
   keyword,
   setKeyword,
-  loading }) => {
-  // const [receivedFirstNews, setReceivedFirstNews] = useState(false)
-
-  // useEffect(() => {
-  //   if (news.length > 0 && !receivedFirstNews) setReceivedFirstNews(true)
-  // }, [news, receivedFirstNews])
+  loading,
+  countriesAvailableForFilterNews,
+  minCountriesAvailableForFilterNews,
+  maxCountriesAvailableForFilterNews }) => {
 
   const minParametersLength = 1
   const maxParametersLength = 5
@@ -49,8 +43,6 @@ export const NewsControls = ({
     labelOptionForCountries,
     labelIconOptionsForCountries,
     labelIconOptionsForLanguages } = getAdditionalDataForNewsControls()
-
-  // console.log(receivedFirstNews);
 
   return (
     <section className='news-controls'>
@@ -81,14 +73,14 @@ export const NewsControls = ({
             }
             )}
             <div className="select-controls">
-              {selectedCountries.length !== maxParametersLength && selectedCountries[0] !== 'all' &&
+              {selectedCountries.length !== maxCountriesAvailableForFilterNews && selectedCountries[0] !== 'all' &&
                 <Button text='Add More Countries'
                   onClick={() => {
                     if (!loading) {
                       addSelectWithNotSelectedValue(selectedCountries, countriesAvailableForFilterNews, setSelectedCountries)
                     }
                   }} />}
-              {selectedCountries.length !== minParametersLength &&
+              {selectedCountries.length !== minCountriesAvailableForFilterNews &&
                 <Button text='Remove Country'
                   onClick={() => {
                     if (!loading) {
