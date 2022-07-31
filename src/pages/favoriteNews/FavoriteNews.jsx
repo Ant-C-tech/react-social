@@ -11,6 +11,7 @@ import { NothingWasFoundMessage } from '../../components/common/nothingWasFoundM
 import { getCountriesAvailableForFilterFavoriteNews } from './utils/getCountriesAvailableForFilterFavoriteNews';
 import { getNewsFilteredByCountry } from './utils/getNewsFilteredByCountry';
 import { updateNewsControls } from './utils/updateNewsControls';
+import { getNewsSortByDate } from './utils/getNewsSortByDate';
 
 
 export const FavoriteNews = () => {
@@ -38,7 +39,9 @@ export const FavoriteNews = () => {
       favoriteNews :
       getNewsFilteredByCountry(favoriteNews, selectedCountries)
 
-    const newsFilteredByPage = [...newsFilteredByCountry.filter((_currentNewsFilteredByCountry, index) => index < currentPage * newsForPage)]
+    const newsSortedByDate = getNewsSortByDate(newsFilteredByCountry)
+
+    const newsFilteredByPage = [...newsSortedByDate.filter((_currentNewsFilteredByCountry, index) => index < currentPage * newsForPage)]
     setNews(newsFilteredByPage)
 
     if (newsFilteredByPage.length < newsFilteredByCountry.length) {
