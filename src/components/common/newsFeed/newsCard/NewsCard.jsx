@@ -4,9 +4,10 @@ import './newsCard.css';
 
 import { useState } from 'react'
 import Highlighter from "react-highlight-words";
-import { FiberNew } from '@material-ui/icons';
 import {
-	Bookmark, OndemandVideo
+	Bookmark,
+	OndemandVideo,
+	FiberNew
 } from '@material-ui/icons';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
