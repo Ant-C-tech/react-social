@@ -3,7 +3,7 @@ export const selectTheme = (theme) => {
     ...theme,
     colors: {
       ...theme.colors,
-      primary: '#707070',
+      primary: '#dce2e4',
       primary25: 'rgb(230, 250, 230)'
     }
   }

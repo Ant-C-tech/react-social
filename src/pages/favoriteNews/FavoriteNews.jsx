@@ -82,30 +82,34 @@ export const FavoriteNews = () => {
   }, [favoriteNews, currentPage, selectedCountries, selectedCategories])
 
   // Manage of News Controls
-
-
-  // useEffect(() => {
-  //   console.log(newsRemovedFromFavorite);
-  // }, [newsRemovedFromFavorite])
-
   useEffect(() => {
-    console.log(selectedCountries);
-    console.log(countriesAvailableForFilterFavoriteNews);
-    console.log(selectedCountries.filter((country) => !countriesAvailableForFilterFavoriteNews.includes(country)).length > 0);
-    console.log([...selectedCountries.filter((country) => !countriesAvailableForFilterFavoriteNews.includes(country))].length > 0);
-
-    if (countriesAvailableForFilterFavoriteNews.length > 0 && selectedCountries.filter((country) => !countriesAvailableForFilterFavoriteNews.includes(country)).length > 0) {
+    if (countriesAvailableForFilterFavoriteNews.length > 0 &&
+      selectedCountries.filter(
+        (country) => !countriesAvailableForFilterFavoriteNews.includes(country)).length > 0
+    ) {
       setSelectedCountries(
-        [...selectedCountries.filter((country) => !countriesAvailableForFilterFavoriteNews.includes(country))].length < 0 ?
-          [...selectedCountries.filter((country) => countriesAvailableForFilterFavoriteNews.includes(country))] :
-          ['all']
+        selectedCountries.filter(
+          (country) => countriesAvailableForFilterFavoriteNews.includes(country)
+        ).length > 0 ?
+          selectedCountries.filter(
+            (country) => countriesAvailableForFilterFavoriteNews.includes(country)
+          ) : ['all']
       )
     }
-    if (categoriesAvailableForFilterFavoriteNews.length > 0 && selectedCategories.filter((category) => !categoriesAvailableForFilterFavoriteNews.includes(category)).length > 0) {
+
+    if (categoriesAvailableForFilterFavoriteNews.length > 0 &&
+      selectedCategories.filter(
+        (category) => !categoriesAvailableForFilterFavoriteNews.includes(category)
+      ).length > 0
+    ) {
       setSelectedCategories(
-        [...selectedCategories.filter((category) => categoriesAvailableForFilterFavoriteNews.includes(category))].length < 0 ?
-          [...selectedCategories.filter((category) => categoriesAvailableForFilterFavoriteNews.includes(category))] :
-          ['all'])
+        selectedCategories.filter(
+          (category) => categoriesAvailableForFilterFavoriteNews.includes(category)
+        ).length > 0 ?
+          selectedCategories.filter(
+            (category) => categoriesAvailableForFilterFavoriteNews.includes(category)
+          ) : ['all']
+      )
     }
   }, [
     countriesAvailableForFilterFavoriteNews,
