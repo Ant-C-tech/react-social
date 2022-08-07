@@ -6,6 +6,7 @@ import { Waypoint } from 'react-waypoint';
 
 import { NewsCard } from './newsCard/NewsCard';
 import { NewsCardSkeleton } from './newsCardSkeleton/NewsCardSkeleton';
+
 import { getIsFavorite } from './utils/getIsFavorite';
 import { addToFavorite } from './utils/addToFavorite';
 import { removeFromFavorite } from './utils/removeFromFavorite';
@@ -20,7 +21,6 @@ export const NewsFeed = ({
 	setNeedMoreNews,
 	needScroll,
 	setNeedScroll,
-	// setNewsRemovedFromFavorite,
 	message}) => {
 	const currentRef = useRef(null)
 
@@ -53,7 +53,6 @@ export const NewsFeed = ({
 									}}
 									removeFromFavorite={() => {
 										removeFromFavorite(favoriteNews, setFavoriteNews, news)
-										// setNewsRemovedFromFavorite(true)
 									}}
 								/>
 								{index === newsSet.length - 1

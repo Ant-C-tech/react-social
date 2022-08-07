@@ -17,6 +17,7 @@ import { getNewsFilteredByCategory } from './utils/getNewsFilteredByCategory';
 import { getLanguagesAvailableForFilterFavoriteNews } from './utils/getLanguagesAvailableForFilterFavoriteNews';
 import { getLanguagesObject } from './utils/getLanguagesObject';
 import { getNewsFilteredByLanguage } from './utils/getNewsFilteredByLanguage';
+import { getNewsFilteredByKeyword } from './utils/getNewsFilteredByKeyword';
 
 
 export const FavoriteNews = () => {
@@ -64,7 +65,11 @@ export const FavoriteNews = () => {
       newsFilteredByCategory :
       getNewsFilteredByLanguage(newsFilteredByCategory, selectedLanguages)
 
-    const newsSortedByDate = getNewsSortByDate(newsFilteredByLanguage)
+    const newsFilteredByKeyword = keyword.length === 0 ?
+      newsFilteredByLanguage :
+      getNewsFilteredByKeyword(newsFilteredByLanguage, keyword)
+
+    const newsSortedByDate = getNewsSortByDate(newsFilteredByKeyword)
 
     const newsFilteredByPage = [...newsSortedByDate.filter(
       (_currentNewsFilteredByCountry, index) => index < currentPage * newsForPage)
@@ -76,22 +81,22 @@ export const FavoriteNews = () => {
     } else {
       setHasMoreNews(false)
     }
-  }, [favoriteNews, currentPage, selectedCountries, selectedCategories, selectedLanguages])
+  }, [favoriteNews, currentPage, selectedCountries, selectedCategories, selectedLanguages, keyword])
 
   // Manage of News Controls
   useEffect(() => {
     setCountriesAvailableForFilterFavoriteNews(
-      getCountriesAvailableForFilterFavoriteNews(favoriteNews, selectedCategories, selectedLanguages)
+      getCountriesAvailableForFilterFavoriteNews(favoriteNews, selectedCategories, selectedLanguages, keyword)
     )
 
     setCategoriesAvailableForFilterFavoriteNews(
-      getCategoriesAvailableForFilterFavoriteNews(favoriteNews, selectedCountries, selectedLanguages)
+      getCategoriesAvailableForFilterFavoriteNews(favoriteNews, selectedCountries, selectedLanguages, keyword)
     )
 
     setLanguagesAvailableForFilterFavoriteNews(
-      getLanguagesAvailableForFilterFavoriteNews(favoriteNews, selectedCountries, selectedCategories)
+      getLanguagesAvailableForFilterFavoriteNews(favoriteNews, selectedCountries, selectedCategories, keyword)
     )
-  }, [favoriteNews, selectedCategories, selectedCountries, selectedLanguages])
+  }, [favoriteNews, selectedCategories, selectedCountries, selectedLanguages, keyword])
 
   // Update available filter parameters if news was removed from favorite
   useEffect(() => {
@@ -163,7 +168,7 @@ export const FavoriteNews = () => {
           newsSet={news}
           favoriteNews={favoriteNews}
           setFavoriteNews={setFavoriteNews}
-          keywords={['']}
+          keywords={[keyword]}
           startNews={startNews}
           loading={false}
           setNeedMoreNews={setNeedMoreNews}

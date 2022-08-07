@@ -1,8 +1,14 @@
 import { getNewsFilteredByCategory } from './getNewsFilteredByCategory';
 import { getNewsFilteredByCountry } from './getNewsFilteredByCountry';
 import { getLanguageAbbreviationsByNames } from './getLanguageAbbreviationsByNames';
+import { getNewsFilteredByKeyword } from './getNewsFilteredByKeyword';
 
-export const getLanguagesAvailableForFilterFavoriteNews = (favoriteNews, selectedCountries, selectedCategories) => {
+export const getLanguagesAvailableForFilterFavoriteNews = (
+	favoriteNews,
+	selectedCountries,
+	selectedCategories,
+	keyword,
+) => {
 	const newsFilteredByCountry =
 		selectedCountries[0] === 'all' ? favoriteNews : getNewsFilteredByCountry(favoriteNews, selectedCountries);
 
@@ -11,8 +17,11 @@ export const getLanguagesAvailableForFilterFavoriteNews = (favoriteNews, selecte
 			? newsFilteredByCountry
 			: getNewsFilteredByCategory(newsFilteredByCountry, selectedCategories);
 
+	const newsFilteredByKeyword =
+		keyword.length === 0 ? newsFilteredByCategory : getNewsFilteredByKeyword(newsFilteredByCategory, keyword);
+
 	const favoriteNewsLanguages = [];
-	newsFilteredByCategory.forEach(({ language }) => {
+	newsFilteredByKeyword.forEach(({ language }) => {
 		favoriteNewsLanguages.push(language);
 	});
 
