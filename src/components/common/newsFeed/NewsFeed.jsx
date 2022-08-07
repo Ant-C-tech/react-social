@@ -20,6 +20,7 @@ export const NewsFeed = ({
 	setNeedMoreNews,
 	needScroll,
 	setNeedScroll,
+	// setNewsRemovedFromFavorite,
 	message}) => {
 	const currentRef = useRef(null)
 
@@ -52,6 +53,7 @@ export const NewsFeed = ({
 									}}
 									removeFromFavorite={() => {
 										removeFromFavorite(favoriteNews, setFavoriteNews, news)
+										// setNewsRemovedFromFavorite(true)
 									}}
 								/>
 								{index === newsSet.length - 1

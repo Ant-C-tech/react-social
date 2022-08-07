@@ -1,3 +1,7 @@
+.news-controls{
+	max-width: 240px;
+}
+
 .news-control-title-icon {
 	display: block !important;
 	margin: 0 auto 15px;

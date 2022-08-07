@@ -36,6 +36,7 @@ export const selectStyles = {
     paddingBottom: '5px',
     borderRadius: '4px',
     fontWeight: 'bold',
+    color:'#323e42'
   }),
   singleValue: (styles) => ({
     ...styles,
