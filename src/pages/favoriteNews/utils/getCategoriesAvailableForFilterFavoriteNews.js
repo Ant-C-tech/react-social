@@ -1,8 +1,13 @@
-export const getCategoriesAvailableForFilterFavoriteNews = (favoriteNews) => {
+import { getNewsFilteredByCountry } from './getNewsFilteredByCountry';
+
+export const getCategoriesAvailableForFilterFavoriteNews = (favoriteNews, selectedCountries) => {
+	const newsFilteredByCountry =
+		selectedCountries[0] === 'all' ? favoriteNews : getNewsFilteredByCountry(favoriteNews, selectedCountries);
+
 	const favoriteNewsCategories = [];
-	favoriteNews.forEach(({ category }) => {
+	newsFilteredByCountry.forEach(({ category }) => {
 		favoriteNewsCategories.push(...category);
 	});
 
-	return [ 'all', ...[ ...new Set(favoriteNewsCategories) ] ]
+	return [ 'all', ...[ ...new Set(favoriteNewsCategories) ] ];
 };

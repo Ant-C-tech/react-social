@@ -9,16 +9,17 @@ import { NewsFeed } from '../../components/common/newsFeed/NewsFeed';
 import { NothingWasFoundMessage } from '../../components/common/nothingWasFoundMessage/NothingWasFoundMessage';
 
 import { getCountriesAvailableForFilterFavoriteNews } from './utils/getCountriesAvailableForFilterFavoriteNews';
-import { getNewsFilteredByCountry } from './utils/getNewsFilteredByCountry';
 import { getNewsSortByDate } from './utils/getNewsSortByDate';
 import { getCategoriesAvailableForFilterFavoriteNews } from './utils/getCategoriesAvailableForFilterFavoriteNews';
 import { getCategoriesObject } from './utils/getCategoriesObject';
+import { getNewsFilteredByCountry } from './utils/getNewsFilteredByCountry';
 import { getNewsFilteredByCategory } from './utils/getNewsFilteredByCategory';
 
 
 export const FavoriteNews = () => {
   const [favoriteNews, setFavoriteNews] = useLocalStorage('favoriteNews', [])
   const [news, setNews] = useState([])
+  // const [newsRemovedFromFavorite, setNewsRemovedFromFavorite] = useState(false)
 
   const [startNews, setStartNews] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
@@ -27,7 +28,9 @@ export const FavoriteNews = () => {
   const [needScroll, setNeedScroll] = useState(false)
 
   const [selectedCountries, setSelectedCountries] = useState(['all']);
+  const [countriesAvailableForFilterFavoriteNews, setCountriesAvailableForFilterFavoriteNews] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState(['all']);
+  const [categoriesAvailableForFilterFavoriteNews, setCategoriesAvailableForFilterFavoriteNews] = useState([]);
   const [selectedLanguages, setSelectedLanguages] = useState(['all']);
   const [keyword, setKeyword] = useState('')
 
@@ -36,13 +39,23 @@ export const FavoriteNews = () => {
   const minParametersLength = 1
   const maxParametersLength = 5
 
-    // Manage scroll
+  // Manage scroll
   useEffect(() => {
     setNeedScroll(true)
     setStartNews(0)
     setCurrentPage(1)
     setNeedMoreNews(false)
   }, [selectedCountries, selectedCategories])
+
+  // Manage of News Controls
+  useEffect(() => {
+    setCountriesAvailableForFilterFavoriteNews(
+      getCountriesAvailableForFilterFavoriteNews(favoriteNews, selectedCategories)
+    )
+    setCategoriesAvailableForFilterFavoriteNews(
+      getCategoriesAvailableForFilterFavoriteNews(favoriteNews, selectedCountries)
+    )
+  }, [favoriteNews, selectedCategories, selectedCountries])
 
   // Filtering news
   useEffect(() => {
@@ -56,9 +69,9 @@ export const FavoriteNews = () => {
 
     const newsSortedByDate = getNewsSortByDate(newsFilteredByCategory)
 
-    console.log(currentPage);
-
-    const newsFilteredByPage = [...newsSortedByDate.filter((_currentNewsFilteredByCountry, index) => index < currentPage * newsForPage)]
+    const newsFilteredByPage = [...newsSortedByDate.filter(
+      (_currentNewsFilteredByCountry, index) => index < currentPage * newsForPage)
+    ]
     setNews(newsFilteredByPage)
 
     if (newsFilteredByPage.length < newsFilteredByCategory.length) {
@@ -69,27 +82,42 @@ export const FavoriteNews = () => {
   }, [favoriteNews, currentPage, selectedCountries, selectedCategories])
 
   // Manage of News Controls
+
+
+  // useEffect(() => {
+  //   console.log(newsRemovedFromFavorite);
+  // }, [newsRemovedFromFavorite])
+
   useEffect(() => {
-    const countriesAvailableForFilterFavoriteNews = getCountriesAvailableForFilterFavoriteNews(favoriteNews)
-    setSelectedCountries((prevSelectedCountries) => [...prevSelectedCountries.filter((country) => countriesAvailableForFilterFavoriteNews.includes(country))].length > 0 ?
-      [...prevSelectedCountries.filter((country) => countriesAvailableForFilterFavoriteNews.includes(country))] :
-      ['all']
-    )
+    console.log(selectedCountries);
+    console.log(countriesAvailableForFilterFavoriteNews);
+    console.log(selectedCountries.filter((country) => !countriesAvailableForFilterFavoriteNews.includes(country)).length > 0);
+    console.log([...selectedCountries.filter((country) => !countriesAvailableForFilterFavoriteNews.includes(country))].length > 0);
 
-    const categoriesAvailableForFilterFavoriteNews = getCategoriesAvailableForFilterFavoriteNews(favoriteNews)
-    setSelectedCategories((prevSelectedCategories) =>
-      [...prevSelectedCategories.filter((category) => categoriesAvailableForFilterFavoriteNews.includes(category))].length > 0 ?
-        [...prevSelectedCategories.filter((category) => categoriesAvailableForFilterFavoriteNews.includes(category))] :
-        ['all'])
-
-    // Prevent changing needScroll state on first load
-    setNeedScroll(false)
-  }, [favoriteNews])
+    if (countriesAvailableForFilterFavoriteNews.length > 0 && selectedCountries.filter((country) => !countriesAvailableForFilterFavoriteNews.includes(country)).length > 0) {
+      setSelectedCountries(
+        [...selectedCountries.filter((country) => !countriesAvailableForFilterFavoriteNews.includes(country))].length < 0 ?
+          [...selectedCountries.filter((country) => countriesAvailableForFilterFavoriteNews.includes(country))] :
+          ['all']
+      )
+    }
+    if (categoriesAvailableForFilterFavoriteNews.length > 0 && selectedCategories.filter((category) => !categoriesAvailableForFilterFavoriteNews.includes(category)).length > 0) {
+      setSelectedCategories(
+        [...selectedCategories.filter((category) => categoriesAvailableForFilterFavoriteNews.includes(category))].length < 0 ?
+          [...selectedCategories.filter((category) => categoriesAvailableForFilterFavoriteNews.includes(category))] :
+          ['all'])
+    }
+  }, [
+    countriesAvailableForFilterFavoriteNews,
+    categoriesAvailableForFilterFavoriteNews,
+    selectedCountries,
+    selectedCategories])
 
   // Get more news
   useEffect(() => {
     if (needMoreNews && hasMoreNews) {
       setCurrentPage(page => page + 1)
+      setNeedMoreNews(false)
     }
   }, [needMoreNews, hasMoreNews, favoriteNews]);
 
@@ -106,6 +134,7 @@ export const FavoriteNews = () => {
           setNeedMoreNews={setNeedMoreNews}
           needScroll={needScroll}
           setNeedScroll={setNeedScroll}
+          // setNewsRemovedFromFavorite={setNewsRemovedFromFavorite}
           message={favoriteNews.length === 0 ?
             <NoFavoriteNewsMessage /> : news.length === 0 ?
               <NothingWasFoundMessage /> : null}
@@ -126,17 +155,17 @@ export const FavoriteNews = () => {
             keyword={keyword}
             setKeyword={setKeyword}
             loading={false}
-            countriesAvailableForFilterNews={getCountriesAvailableForFilterFavoriteNews(favoriteNews)}
+            countriesAvailableForFilterNews={countriesAvailableForFilterFavoriteNews}
             minCountriesAvailableForFilterNews={minParametersLength}
             maxCountriesAvailableForFilterNews={
-              getCountriesAvailableForFilterFavoriteNews(favoriteNews).length - 1 > maxParametersLength ? maxParametersLength :
-                getCountriesAvailableForFilterFavoriteNews(favoriteNews).length - 1
+              countriesAvailableForFilterFavoriteNews.length - 1 > maxParametersLength ? maxParametersLength :
+                countriesAvailableForFilterFavoriteNews.length - 1
             }
-            categoriesAvailableForFilterNews={getCategoriesObject(getCategoriesAvailableForFilterFavoriteNews(favoriteNews))}
+            categoriesAvailableForFilterNews={getCategoriesObject(categoriesAvailableForFilterFavoriteNews)}
             minCategoriesAvailableForFilterNews={minParametersLength}
             maxCategoriesAvailableForFilterNews={
-              getCategoriesAvailableForFilterFavoriteNews(favoriteNews).length - 1 > maxParametersLength ? maxParametersLength :
-                getCategoriesAvailableForFilterFavoriteNews(favoriteNews).length - 1
+              categoriesAvailableForFilterFavoriteNews.length - 1 > maxParametersLength ? maxParametersLength :
+                categoriesAvailableForFilterFavoriteNews.length - 1
             }
           />
         } />
