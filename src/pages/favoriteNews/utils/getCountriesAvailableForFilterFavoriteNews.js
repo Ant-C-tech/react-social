@@ -1,15 +1,18 @@
 import { getCountryCodesByNames } from '../../../utils/getCountryCodesByNames';
 import { getNewsFilteredByCategory } from './getNewsFilteredByCategory';
+import { getNewsFilteredByLanguage } from './getNewsFilteredByLanguage';
 
-export const getCountriesAvailableForFilterFavoriteNews = (favoriteNews, selectedCategories) => {
+export const getCountriesAvailableForFilterFavoriteNews = (favoriteNews, selectedCategories, selectedLanguages) => {
+	const newsFilteredByCategory =
+		selectedCategories[0] === 'all' ? favoriteNews : getNewsFilteredByCategory(favoriteNews, selectedCategories);
 
-		const newsFilteredByCategory =
-		selectedCategories[0] === 'all'
-			? favoriteNews
-			: getNewsFilteredByCategory (favoriteNews, selectedCategories);
+	const newsFilteredByLanguage =
+		selectedLanguages[0] === 'all'
+			? newsFilteredByCategory
+			: getNewsFilteredByLanguage(newsFilteredByCategory, selectedLanguages);
 
 	const favoriteNewsCountryNames = [];
-	newsFilteredByCategory.forEach(({ country }) => {
+	newsFilteredByLanguage.forEach(({ country }) => {
 		favoriteNewsCountryNames.push(...country);
 	});
 
