@@ -8,8 +8,6 @@ import { Button } from '../button/Button'
 import { SelectComponent } from '../selectComponent/selectComponent';
 import { InputComponent } from '../inputComponent/InputComponent';
 
-import { languagesAvailableForFilterNews } from '../../../constants/languagesAvailableForFilterNews';
-
 import { getNotSelectedItems } from './utils/getNotSelectedItems';
 import { addSelectWithNotSelectedValue } from './utils/addSelectWithNotSelectedValue';
 import { removeLastSelect } from './utils/removeLastSelect';
@@ -34,10 +32,10 @@ export const NewsControls = ({
   maxCountriesAvailableForFilterNews,
   categoriesAvailableForFilterNews,
   minCategoriesAvailableForFilterNews,
-  maxCategoriesAvailableForFilterNews }) => {
-
-  const minParametersLength = 1
-  const maxParametersLength = 5
+  maxCategoriesAvailableForFilterNews,
+  languagesAvailableForFilterNews,
+  minLanguagesAvailableForFilterNews,
+  maxLanguagesAvailableForFilterNews }) => {
 
   const errorMessage = error && createErrorMessage(news, error)
 
@@ -147,7 +145,7 @@ export const NewsControls = ({
                 isSearchable={true} />
             })}
             <div className="select-controls">
-              {selectedLanguages.length !== maxParametersLength && selectedLanguages[0] !== 'all' &&
+              {selectedLanguages.length !== maxLanguagesAvailableForFilterNews && selectedLanguages[0] !== 'all' &&
                 <Button
                   text='Add More Languages'
                   onClick={() => {
@@ -155,7 +153,7 @@ export const NewsControls = ({
                       addSelectWithNotSelectedValue(selectedLanguages, Object.keys(languagesAvailableForFilterNews), setSelectedLanguages)
                     }
                   }} />}
-              {selectedLanguages.length !== minParametersLength &&
+              {selectedLanguages.length !== minLanguagesAvailableForFilterNews &&
                 <Button
                   text='Remove Language'
                   onClick={() => {

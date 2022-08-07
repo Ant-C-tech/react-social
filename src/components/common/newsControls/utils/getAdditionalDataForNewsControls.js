@@ -40,6 +40,31 @@ export const getAdditionalDataForNewsControls = () => {
 			case 'gb':
 				languageCode = 'en';
 				break;
+			case 'se':
+				languageCode = 'sv';
+				break;
+			case 'sv':
+				break;
+			case 'si':
+				languageCode = 'sl';
+				break;
+			case 'sl':
+				break;
+			case 'my':
+				languageCode = 'ms';
+				break;
+			case 'ms':
+				break;
+			case 'ba':
+				languageCode = 'bs';
+				break;
+			case 'bs':
+				break;
+			case 'rs':
+				languageCode = 'sr';
+				break;
+			case 'sr':
+				break;
 
 			default:
 				languageCode = country.alpha2.toLowerCase();

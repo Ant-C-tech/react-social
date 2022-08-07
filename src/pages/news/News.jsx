@@ -16,6 +16,7 @@ import { NewsControls } from '../../components/common/newsControls/NewsControls'
 import { Message } from '../../components/common/message/Message';
 import { InputComponent } from '../../components/common/inputComponent/InputComponent';
 import { NothingWasFoundMessage } from '../../components/common/nothingWasFoundMessage/NothingWasFoundMessage';
+import { languagesAvailableForFilterNews } from '../../constants/languagesAvailableForFilterNews';
 
 export const News = () => {
 	const [apiKey, setApiKey] = useLocalStorage('apiKey', '')
@@ -184,7 +185,11 @@ export const News = () => {
 						maxCountriesAvailableForFilterNews={maxParametersLength}
 						categoriesAvailableForFilterNews={categoriesAvailableForFilterNews}
 						minCategoriesAvailableForFilterNews={minParametersLength}
-						maxCategoriesAvailableForFilterNews={maxParametersLength} />
+						maxCategoriesAvailableForFilterNews={maxParametersLength}
+						languagesAvailableForFilterNews={languagesAvailableForFilterNews}
+						minLanguagesAvailableForFilterNews={minParametersLength}
+						maxLanguagesAvailableForFilterNews={maxParametersLength}
+					/>
 				} />
 		</>
 	)

@@ -1,9 +1,11 @@
 import { categoriesAvailableForFilterNews } from '../../../constants/categoriesAvailableForFilterNews';
 
-export const getCategoriesObject = (categoriesArray) => {
-	const categoriesAvailableForFilterFavoriteNews = {};
-	categoriesArray.forEach((category) => {
-		categoriesAvailableForFilterFavoriteNews[category] = categoriesAvailableForFilterNews[category];
+export const getCategoriesObject = (categoriesAvailableForFilterFavoriteNews) => {
+	const categoriesObject = {};
+
+	categoriesAvailableForFilterFavoriteNews.forEach((category) => {
+		categoriesObject[category] = categoriesAvailableForFilterNews[category];
 	});
-	return categoriesAvailableForFilterFavoriteNews;
+
+	return categoriesObject;
 };

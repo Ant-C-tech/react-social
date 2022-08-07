@@ -14,12 +14,14 @@ import { getCategoriesAvailableForFilterFavoriteNews } from './utils/getCategori
 import { getCategoriesObject } from './utils/getCategoriesObject';
 import { getNewsFilteredByCountry } from './utils/getNewsFilteredByCountry';
 import { getNewsFilteredByCategory } from './utils/getNewsFilteredByCategory';
+import { getLanguagesAvailableForFilterFavoriteNews } from './utils/getLanguagesAvailableForFilterFavoriteNews';
+import { getLanguagesObject } from './utils/getLanguagesObject';
+import { getNewsFilteredByLanguage } from './utils/getNewsFilteredByLanguage';
 
 
 export const FavoriteNews = () => {
   const [favoriteNews, setFavoriteNews] = useLocalStorage('favoriteNews', [])
   const [news, setNews] = useState([])
-  // const [newsRemovedFromFavorite, setNewsRemovedFromFavorite] = useState(false)
 
   const [startNews, setStartNews] = useState(0)
   const [currentPage, setCurrentPage] = useState(1)
@@ -32,6 +34,7 @@ export const FavoriteNews = () => {
   const [selectedCategories, setSelectedCategories] = useState(['all']);
   const [categoriesAvailableForFilterFavoriteNews, setCategoriesAvailableForFilterFavoriteNews] = useState([]);
   const [selectedLanguages, setSelectedLanguages] = useState(['all']);
+  const [languagesAvailableForFilterFavoriteNews, setLanguagesAvailableForFilterFavoriteNews] = useState([]);
   const [keyword, setKeyword] = useState('')
 
   const newsForPage = 10
@@ -47,16 +50,6 @@ export const FavoriteNews = () => {
     setNeedMoreNews(false)
   }, [selectedCountries, selectedCategories])
 
-  // Manage of News Controls
-  useEffect(() => {
-    setCountriesAvailableForFilterFavoriteNews(
-      getCountriesAvailableForFilterFavoriteNews(favoriteNews, selectedCategories)
-    )
-    setCategoriesAvailableForFilterFavoriteNews(
-      getCategoriesAvailableForFilterFavoriteNews(favoriteNews, selectedCountries)
-    )
-  }, [favoriteNews, selectedCategories, selectedCountries])
-
   // Filtering news
   useEffect(() => {
     const newsFilteredByCountry = selectedCountries[0] === 'all' ?
@@ -67,21 +60,40 @@ export const FavoriteNews = () => {
       newsFilteredByCountry :
       getNewsFilteredByCategory(newsFilteredByCountry, selectedCategories)
 
-    const newsSortedByDate = getNewsSortByDate(newsFilteredByCategory)
+    const newsFilteredByLanguage = selectedLanguages[0] === 'all' ?
+      newsFilteredByCategory :
+      getNewsFilteredByLanguage(newsFilteredByCategory, selectedLanguages)
+
+    const newsSortedByDate = getNewsSortByDate(newsFilteredByLanguage)
 
     const newsFilteredByPage = [...newsSortedByDate.filter(
       (_currentNewsFilteredByCountry, index) => index < currentPage * newsForPage)
     ]
     setNews(newsFilteredByPage)
 
-    if (newsFilteredByPage.length < newsFilteredByCategory.length) {
+    if (newsFilteredByPage.length < newsFilteredByLanguage.length) {
       setHasMoreNews(true)
     } else {
       setHasMoreNews(false)
     }
-  }, [favoriteNews, currentPage, selectedCountries, selectedCategories])
+  }, [favoriteNews, currentPage, selectedCountries, selectedCategories, selectedLanguages])
 
   // Manage of News Controls
+  useEffect(() => {
+    setCountriesAvailableForFilterFavoriteNews(
+      getCountriesAvailableForFilterFavoriteNews(favoriteNews, selectedCategories, selectedLanguages)
+    )
+
+    setCategoriesAvailableForFilterFavoriteNews(
+      getCategoriesAvailableForFilterFavoriteNews(favoriteNews, selectedCountries, selectedLanguages)
+    )
+
+    setLanguagesAvailableForFilterFavoriteNews(
+      getLanguagesAvailableForFilterFavoriteNews(favoriteNews, selectedCountries, selectedCategories)
+    )
+  }, [favoriteNews, selectedCategories, selectedCountries, selectedLanguages])
+
+  // Update available filter parameters if news was removed from favorite
   useEffect(() => {
     if (countriesAvailableForFilterFavoriteNews.length > 0 &&
       selectedCountries.filter(
@@ -111,11 +123,30 @@ export const FavoriteNews = () => {
           ) : ['all']
       )
     }
+
+    if (languagesAvailableForFilterFavoriteNews.length > 0 &&
+      selectedLanguages.filter(
+        (language) => {
+          return !languagesAvailableForFilterFavoriteNews.includes(language)
+        }
+      ).length > 0
+    ) {
+      setSelectedLanguages(
+        selectedLanguages.filter(
+          (language) => languagesAvailableForFilterFavoriteNews.includes(language)
+        ).length > 0 ?
+          selectedLanguages.filter(
+            (language) => languagesAvailableForFilterFavoriteNews.includes(language)
+          ) : ['all']
+      )
+    }
   }, [
     countriesAvailableForFilterFavoriteNews,
     categoriesAvailableForFilterFavoriteNews,
+    languagesAvailableForFilterFavoriteNews,
     selectedCountries,
-    selectedCategories])
+    selectedCategories,
+    selectedLanguages])
 
   // Get more news
   useEffect(() => {
@@ -138,7 +169,6 @@ export const FavoriteNews = () => {
           setNeedMoreNews={setNeedMoreNews}
           needScroll={needScroll}
           setNeedScroll={setNeedScroll}
-          // setNewsRemovedFromFavorite={setNewsRemovedFromFavorite}
           message={favoriteNews.length === 0 ?
             <NoFavoriteNewsMessage /> : news.length === 0 ?
               <NothingWasFoundMessage /> : null}
@@ -165,11 +195,21 @@ export const FavoriteNews = () => {
               countriesAvailableForFilterFavoriteNews.length - 1 > maxParametersLength ? maxParametersLength :
                 countriesAvailableForFilterFavoriteNews.length - 1
             }
-            categoriesAvailableForFilterNews={getCategoriesObject(categoriesAvailableForFilterFavoriteNews)}
+            categoriesAvailableForFilterNews={
+              getCategoriesObject(categoriesAvailableForFilterFavoriteNews)
+            }
             minCategoriesAvailableForFilterNews={minParametersLength}
             maxCategoriesAvailableForFilterNews={
               categoriesAvailableForFilterFavoriteNews.length - 1 > maxParametersLength ? maxParametersLength :
                 categoriesAvailableForFilterFavoriteNews.length - 1
+            }
+            languagesAvailableForFilterNews={
+              getLanguagesObject(languagesAvailableForFilterFavoriteNews)
+            }
+            minLanguagesAvailableForFilterNews={minParametersLength}
+            maxLanguagesAvailableForFilterNews={
+              languagesAvailableForFilterFavoriteNews.length - 1 > maxParametersLength ? maxParametersLength :
+                languagesAvailableForFilterFavoriteNews.length - 1
             }
           />
         } />
