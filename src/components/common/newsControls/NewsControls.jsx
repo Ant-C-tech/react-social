@@ -1,6 +1,6 @@
 import './newsControls.css';
 
-import { Help } from '@material-ui/icons';
+import { Help, BorderColor } from '@material-ui/icons';
 import uuid from 'react-uuid'
 
 import { Message } from '../message/Message';
@@ -35,7 +35,10 @@ export const NewsControls = ({
   maxCategoriesAvailableForFilterNews,
   languagesAvailableForFilterNews,
   minLanguagesAvailableForFilterNews,
-  maxLanguagesAvailableForFilterNews }) => {
+  maxLanguagesAvailableForFilterNews,
+  isHighLightersBar,
+  activeHighlighter,
+  setActiveHighlighter }) => {
 
   const errorMessage = error && createErrorMessage(news, error)
 
@@ -44,14 +47,43 @@ export const NewsControls = ({
     labelIconOptionsForCountries,
     labelIconOptionsForLanguages } = getAdditionalDataForNewsControls()
 
+  const highlighters = [
+    'green-highlighter',
+    'yellow-highlighter',
+    'orange-highlighter',
+    'pink-highlighter',
+    'purple-highlighter',
+    'blue-highlighter'
+  ]
+
   return (
     <section className='news-controls'>
       {error ?
         <Message type={errorMessage.type} title={errorMessage.title} >
           <p>{errorMessage.text}</p>
         </Message> : !loading &&
-        <><Help className='news-control-title-icon' />
-          <h3 className='news-control-title'>What are you interesting in?</h3>
+        <>
+          {isHighLightersBar && <>
+            <BorderColor className='news-control-title-icon' />
+            <h3 className='news-control-title'>Want to highlight something?</h3>
+            <div className="news-control">
+              <div className="news-control-highlight-bar">
+                {highlighters.map((highlighter, index) =>
+                  <Button
+                    key={index}
+                    text={highlighter}
+                    showText={false}
+                    active={highlighter === activeHighlighter}
+                    onClick={() => {
+                      setActiveHighlighter(highlighter === activeHighlighter ? '' : highlighter)
+                    }} />
+                )}
+              </div>
+            </div>
+          </>}
+
+          <Help className='news-control-title-icon' />
+          <h3 className='news-control-title'>Want to find something special?</h3>
 
           <div className="news-control">
             <h4 className='select-title'>Selected country:</h4>

@@ -1,17 +1,14 @@
 export const selectStyles = {
   control: (styles) => ({
     ...styles,
-    // position: 'relative',
     height: '55px',
-    // left: '0px',
     marginBottom: '15px',
     color: '#323e42',
     border: '1px solid #323e42',
     transition: 'box-shadow ease-in-out 0.2s, left ease-in-out 0.2s',
     "&:hover": {
-      // border: '1px solid #323e42'
       boxShadow: '0px 0px 0px 0px #718b93',
-      // left: '3px',
+      cursor: 'pointer'
     },
   }),
   menu: (styles) => ({
@@ -36,7 +33,10 @@ export const selectStyles = {
     paddingBottom: '5px',
     borderRadius: '4px',
     fontWeight: 'bold',
-    color:'#323e42'
+    color: '#323e42',
+    "&:hover": {
+      cursor: 'pointer'
+    },
   }),
   singleValue: (styles) => ({
     ...styles,

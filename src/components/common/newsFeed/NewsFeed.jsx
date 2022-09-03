@@ -21,7 +21,8 @@ export const NewsFeed = ({
 	setNeedMoreNews,
 	needScroll,
 	setNeedScroll,
-	message}) => {
+	message,
+	activeHighlighter }) => {
 	const currentRef = useRef(null)
 
 	useEffect(() => {
@@ -32,7 +33,7 @@ export const NewsFeed = ({
 	}, [needScroll, setNeedScroll])
 
 	return (
-		<section className='news-feed' >
+		<section className={`news-feed ${activeHighlighter}`} >
 			{loading ?
 				<SkeletonTheme baseColor="#dce2e4" highlightColor="#b2c0c4">
 					<NewsCardSkeleton skeletons={2} />
@@ -54,6 +55,10 @@ export const NewsFeed = ({
 									removeFromFavorite={() => {
 										removeFromFavorite(favoriteNews, setFavoriteNews, news)
 									}}
+									index={index}
+									activeHighlighter={activeHighlighter}
+									favoriteNews={favoriteNews}
+									setFavoriteNews={setFavoriteNews}
 								/>
 								{index === newsSet.length - 1
 									&& <Waypoint

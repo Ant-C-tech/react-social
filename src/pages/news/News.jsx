@@ -189,6 +189,7 @@ export const News = () => {
 						languagesAvailableForFilterNews={languagesAvailableForFilterNews}
 						minLanguagesAvailableForFilterNews={minParametersLength}
 						maxLanguagesAvailableForFilterNews={maxParametersLength}
+						isHighLightersBar={false}
 					/>
 				} />
 		</>

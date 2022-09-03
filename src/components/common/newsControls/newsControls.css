@@ -72,3 +72,11 @@
 .category-option-item-text {
 	margin-left: 10px;
 }
+
+.news-control-highlight-bar{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	max-width: 90%;
+	margin: 0 auto;
+}

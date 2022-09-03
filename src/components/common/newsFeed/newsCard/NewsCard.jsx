@@ -16,6 +16,10 @@ import { Button } from '../../button/Button';
 
 export const NewsCard = ({
 	news,
+	index,
+	activeHighlighter,
+	favoriteNews,
+	setFavoriteNews,
 	keywords,
 	isFavorite,
 	addToFavorite,
@@ -85,7 +89,14 @@ export const NewsCard = ({
 						active=''
 					/>}
 
-				<p className="news-card-description">
+				<p className="news-card-description" onMouseUp={() => {
+					if (window.getSelection().toString().length > 0 && activeHighlighter) {
+						console.log(window.getSelection().anchorOffset);
+						console.log(window.getSelection().focusOffset);
+						console.log(index);
+						console.log(favoriteNews);
+					}
+				}}>
 					<Highlighter
 						highlightClassName="news-card-highlight"
 						searchWords={keywords}
