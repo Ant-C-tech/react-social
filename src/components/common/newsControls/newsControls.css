@@ -1,5 +1,5 @@
 .news-controls{
-	max-width: 240px;
+	max-width: calc(20vw - 50px);
 }
 
 .news-control-title-icon {

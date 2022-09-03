@@ -75,6 +75,7 @@ export const NewsCard = ({
 
 				{video_url &&
 					<CustomLink
+						type='external'
 						content={<>
 							<OndemandVideo /><span className='link-add-text'>Watch Now</span>
 						</>}
