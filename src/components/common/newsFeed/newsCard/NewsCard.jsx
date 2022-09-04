@@ -4,6 +4,7 @@ import './newsCard.css';
 
 import { useState } from 'react'
 import Highlighter from "react-highlight-words";
+import uuid from 'react-uuid';
 import {
 	Bookmark,
 	OndemandVideo,
@@ -16,16 +17,14 @@ import { Button } from '../../button/Button';
 
 export const NewsCard = ({
 	news,
-	index,
-	activeHighlighter,
-	favoriteNews,
-	setFavoriteNews,
 	keywords,
 	isFavorite,
 	addToFavorite,
 	removeFromFavorite,
+	addHighlight
 }) => {
 	const [isContentShown, setIsContentShown] = useState(false)
+	const [isMouseDown, setIsMouseDown] = useState(false)
 
 	const {
 		title,
@@ -39,7 +38,126 @@ export const NewsCard = ({
 		source_id,
 		country,
 		category,
-		language } = news
+		language,
+		highlights } = news
+
+	const getHighlightedDescription = () => {
+		console.log('work');
+		console.log(highlights);
+
+		if (highlights && highlights.description) {
+			const sortedDescriptionHighlights = highlights.description.sort((highlight1, highlight2) => {
+				return highlight1.startIndex - highlight2.startIndex
+			})
+
+			let endOfPrevHighlight = 0
+			const correctedDescriptionHighlights = sortedDescriptionHighlights.map((highlight, index) => {
+				if (index === 0) {
+					endOfPrevHighlight = highlight.endIndex
+					return highlight
+				} else {
+					if (highlight.startIndex < endOfPrevHighlight) {
+						highlight.startIndex = endOfPrevHighlight
+						endOfPrevHighlight = highlight.endIndex
+						return highlight
+					} else {
+						endOfPrevHighlight = highlight.endIndex
+						return highlight
+					}
+				}
+			})
+
+			let highlightedDescription = []
+			const initialDescriptionArray = description.split('')
+
+			let endOfPrevHighlightForParsing = 0
+			correctedDescriptionHighlights.forEach((highlight, index) => {
+				if (correctedDescriptionHighlights.length === 1 && highlight.startIndex !== 0) {
+					highlightedDescription.push(
+						<span key={uuid()}>
+							{initialDescriptionArray.slice(0, highlight.startIndex).join('')}
+						</span>
+					)
+					highlightedDescription.push(
+						<span className={highlight.highlighter} key={uuid()}>
+							{initialDescriptionArray.slice(highlight.startIndex, highlight.endIndex).join('')}
+						</span>
+					)
+					highlightedDescription.push(
+						<span key={uuid()}>
+							{initialDescriptionArray.slice(highlight.endIndex, initialDescriptionArray.length).join('')}
+						</span>
+					)
+				} else if (correctedDescriptionHighlights.length === 1 && highlight.startIndex === 0) {
+					highlightedDescription.push(
+						<span className={highlight.highlighter} key={uuid()}>
+							{initialDescriptionArray.slice(highlight.startIndex, highlight.endIndex).join('')}
+						</span>
+					)
+					highlightedDescription.push(
+						<span key={uuid()}>{initialDescriptionArray.slice(highlight.endIndex, initialDescriptionArray.length).join('')}
+						</span>
+					)
+				} else if (index === 0 && highlight.startIndex !== 0) {
+					highlightedDescription.push(
+						<span key={uuid()}>
+							{initialDescriptionArray.slice(0, highlight.startIndex).join('')}
+						</span>
+					)
+					highlightedDescription.push(
+						<span className={highlight.highlighter} key={uuid()}>
+							{initialDescriptionArray.slice(highlight.startIndex, highlight.endIndex).join('')}
+						</span>
+					)
+					endOfPrevHighlightForParsing = highlight.endIndex
+				} else if (index === 0 && highlight.startIndex === 0) {
+					highlightedDescription.push(
+						<span className={highlight.highlighter} key={uuid()}>
+							{initialDescriptionArray.slice(highlight.startIndex, highlight.endIndex).join('')}
+						</span>
+					)
+					endOfPrevHighlightForParsing = highlight.endIndex
+				} else if (index === correctedDescriptionHighlights.length - 1
+					&& highlight.endIndex < initialDescriptionArray.length - 1) {
+					highlightedDescription.push(
+						<span key={uuid()}>
+							{initialDescriptionArray.slice(endOfPrevHighlightForParsing, highlight.startIndex).join('')}
+						</span>
+					)
+					highlightedDescription.push(
+						<span className={highlight.highlighter} key={uuid()}>
+							{initialDescriptionArray.slice(highlight.startIndex, highlight.endIndex).join('')}
+						</span>
+					)
+					highlightedDescription.push(
+						<span key={uuid()}>
+							{initialDescriptionArray.slice(highlight.endIndex, initialDescriptionArray.length).join('')}
+						</span>
+					)
+				} else if (index === correctedDescriptionHighlights.length - 1
+					&& highlight.startIndex !== endOfPrevHighlightForParsing) {
+					highlightedDescription.push(
+						<span key={uuid()}>
+							{initialDescriptionArray.slice(endOfPrevHighlightForParsing, highlight.startIndex).join('')}
+						</span>
+					)
+					highlightedDescription.push(
+						<span className={highlight.highlighter} key={uuid()}>
+							{initialDescriptionArray.slice(highlight.startIndex, highlight.endIndex).join('')}
+						</span>
+					)
+					endOfPrevHighlightForParsing = highlight.endIndex
+				}
+			})
+
+			console.log(highlightedDescription);
+			return highlightedDescription
+		} else {
+			return description
+		}
+	}
+
+
 
 	return (
 		<article className='news-card' >
@@ -89,20 +207,14 @@ export const NewsCard = ({
 						active=''
 					/>}
 
-				<p className="news-card-description" onMouseUp={() => {
-					if (window.getSelection().toString().length > 0 && activeHighlighter) {
-						console.log(window.getSelection().anchorOffset);
-						console.log(window.getSelection().focusOffset);
-						console.log(index);
-						console.log(favoriteNews);
-					}
-				}}>
-					<Highlighter
+				<p className="news-card-description" onMouseUp={() => { setIsMouseDown(false); addHighlight() }} onMouseDown={() => { setIsMouseDown(true) }}>
+					{/* <Highlighter
 						highlightClassName="news-card-highlight"
 						searchWords={keywords}
 						autoEscape={true}
-						textToHighlight={description || ''}
-					/>
+						textToHighlight={getHighlightedDescription || ''}
+					/> */}
+					{isMouseDown ? description : getHighlightedDescription()}
 				</p>
 
 				{isContentShown &&

@@ -117,7 +117,32 @@
 	line-height: 30px;
 
 	border-bottom: 1px solid #323e42;
-	word-break: break-all;
+	/* word-break: break-all; */
+}
+
+.news-card-description .green-highlighter {
+	background-color: #6bd59a;
+}
+
+.news-card-description .blue-highlighter {
+	background-color: #6ad0ca;
+}
+
+.news-card-description .yellow-highlighter {
+	background-color: #dfca45;
+}
+
+.news-card-description .purple-highlighter {
+	background-color: #b079ab;
+	color: #f3f3f3;
+}
+
+.news-card-description .pink-highlighter {
+	background-color: #de888d;
+}
+
+.news-card-description .orange-highlighter {
+	background-color: #e87f52;
 }
 
 .news-card-controls {

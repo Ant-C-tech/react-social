@@ -55,10 +55,41 @@ export const NewsFeed = ({
 									removeFromFavorite={() => {
 										removeFromFavorite(favoriteNews, setFavoriteNews, news)
 									}}
-									index={index}
-									activeHighlighter={activeHighlighter}
-									favoriteNews={favoriteNews}
-									setFavoriteNews={setFavoriteNews}
+									addHighlight={() => {
+										if (window.getSelection().toString().length > 0 && activeHighlighter) {
+											const parentText = window.getSelection().baseNode.textContent
+											let targetPartOfNews
+											Object.entries(favoriteNews[index]).forEach((keyValue) => {
+												const key = keyValue[0]
+												const value = keyValue[1]
+												if (value === parentText) {
+													targetPartOfNews = key
+												}
+											})
+
+											const startIndex = window.getSelection().anchorOffset
+											const endIndex = window.getSelection().focusOffset
+
+											const highlight = {
+												highlighter: activeHighlighter,
+												startIndex: startIndex < endIndex ? startIndex : endIndex,
+												endIndex: startIndex < endIndex ? endIndex : startIndex,
+											}
+
+											console.log(window.getSelection());
+
+											setFavoriteNews(favoriteNews.map((currentFavoriteNews, currentFavoriteNewsIndex) => {
+												if (currentFavoriteNewsIndex === index) {
+													!currentFavoriteNews.highlights && (currentFavoriteNews['highlights'] = { });
+													!currentFavoriteNews.highlights[targetPartOfNews] && (currentFavoriteNews.highlights[targetPartOfNews] = [])
+													currentFavoriteNews.highlights[targetPartOfNews].push(highlight)
+													return currentFavoriteNews
+												} else {
+													return currentFavoriteNews
+												}
+											}))
+										}
+									}}
 								/>
 								{index === newsSet.length - 1
 									&& <Waypoint
