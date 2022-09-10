@@ -70,19 +70,34 @@ export const NewsFeed = ({
 											const startIndex = window.getSelection().anchorOffset
 											const endIndex = window.getSelection().focusOffset
 
-											const highlight = {
+											const newHighlight = {
 												highlighter: activeHighlighter,
 												startIndex: startIndex < endIndex ? startIndex : endIndex,
 												endIndex: startIndex < endIndex ? endIndex : startIndex,
 											}
 
-											console.log(window.getSelection());
-
 											setFavoriteNews(favoriteNews.map((currentFavoriteNews, currentFavoriteNewsIndex) => {
 												if (currentFavoriteNewsIndex === index) {
-													!currentFavoriteNews.highlights && (currentFavoriteNews['highlights'] = { });
+													!currentFavoriteNews.highlights && (currentFavoriteNews['highlights'] = {});
 													!currentFavoriteNews.highlights[targetPartOfNews] && (currentFavoriteNews.highlights[targetPartOfNews] = [])
-													currentFavoriteNews.highlights[targetPartOfNews].push(highlight)
+
+													const updatedArrayOfHighlights =
+														currentFavoriteNews.highlights[targetPartOfNews].filter((highlight) => {
+															if (
+																(highlight.startIndex < newHighlight.startIndex) ||
+																(highlight.endIndex > newHighlight.endIndex)) {
+																return highlight
+															} else {
+																return false
+															}
+														})
+															.map((highlight) => {
+																return highlight
+															})
+													updatedArrayOfHighlights.push(newHighlight)
+
+													currentFavoriteNews.highlights[targetPartOfNews] = updatedArrayOfHighlights
+													// console.log(updatedArrayOfHighlights);
 													return currentFavoriteNews
 												} else {
 													return currentFavoriteNews

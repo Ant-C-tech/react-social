@@ -80,7 +80,6 @@
 	display: inline;
 
 	font-weight: bold;
-	line-height: 30px;
 
 	color: #323e42;
 	text-transform: uppercase;
@@ -88,8 +87,6 @@
 
 .news-card-title-icon {
 	margin-right: 15px;
-	position: relative;
-	top: 5px;
 
 	color: #323e42;
 }

@@ -43,8 +43,6 @@
 
 .logo:before {
 	content: "";
-	position: relative;
-	top: -3px;
 	width: 30px;
 	height: 30px;
 	margin-right: 20px;

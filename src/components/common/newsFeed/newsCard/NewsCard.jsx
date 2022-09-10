@@ -42,100 +42,37 @@ export const NewsCard = ({
 		highlights } = news
 
 	const getHighlightedDescription = () => {
-		console.log('work');
-		console.log(highlights);
-
 		if (highlights && highlights.description) {
+			// const lastAddedHighlight = highlights.description[highlights.description.length - 1]
+			// const correctedDescriptionHighlights = highlights.description.filter((highlight, index) => {
+			// 	if ((index === highlights.description.length - 1) ||
+			// 		(highlight.startIndex < lastAddedHighlight.startIndex) ||
+			// 		(highlight.endIndex > lastAddedHighlight.endIndex)) {
+			// 		return highlight
+			// 	} else {
+			// 		return false
+			// 	}
+			// }).map((highlight) => {
+			// 	return highlight
+			// })
+
 			const sortedDescriptionHighlights = highlights.description.sort((highlight1, highlight2) => {
 				return highlight1.startIndex - highlight2.startIndex
-			})
-
-			let endOfPrevHighlight = 0
-			const correctedDescriptionHighlights = sortedDescriptionHighlights.map((highlight, index) => {
-				if (index === 0) {
-					endOfPrevHighlight = highlight.endIndex
-					return highlight
-				} else {
-					if (highlight.startIndex < endOfPrevHighlight) {
-						highlight.startIndex = endOfPrevHighlight
-						endOfPrevHighlight = highlight.endIndex
-						return highlight
-					} else {
-						endOfPrevHighlight = highlight.endIndex
-						return highlight
-					}
-				}
 			})
 
 			let highlightedDescription = []
 			const initialDescriptionArray = description.split('')
 
 			let endOfPrevHighlightForParsing = 0
-			correctedDescriptionHighlights.forEach((highlight, index) => {
-				if (correctedDescriptionHighlights.length === 1 && highlight.startIndex !== 0) {
-					highlightedDescription.push(
-						<span key={uuid()}>
-							{initialDescriptionArray.slice(0, highlight.startIndex).join('')}
-						</span>
-					)
-					highlightedDescription.push(
-						<span className={highlight.highlighter} key={uuid()}>
-							{initialDescriptionArray.slice(highlight.startIndex, highlight.endIndex).join('')}
-						</span>
-					)
-					highlightedDescription.push(
-						<span key={uuid()}>
-							{initialDescriptionArray.slice(highlight.endIndex, initialDescriptionArray.length).join('')}
-						</span>
-					)
-				} else if (correctedDescriptionHighlights.length === 1 && highlight.startIndex === 0) {
-					highlightedDescription.push(
-						<span className={highlight.highlighter} key={uuid()}>
-							{initialDescriptionArray.slice(highlight.startIndex, highlight.endIndex).join('')}
-						</span>
-					)
-					highlightedDescription.push(
-						<span key={uuid()}>{initialDescriptionArray.slice(highlight.endIndex, initialDescriptionArray.length).join('')}
-						</span>
-					)
-				} else if (index === 0 && highlight.startIndex !== 0) {
-					highlightedDescription.push(
-						<span key={uuid()}>
-							{initialDescriptionArray.slice(0, highlight.startIndex).join('')}
-						</span>
-					)
+			sortedDescriptionHighlights.forEach((highlight, index) => {
+				if (highlight.startIndex === 0) {
 					highlightedDescription.push(
 						<span className={highlight.highlighter} key={uuid()}>
 							{initialDescriptionArray.slice(highlight.startIndex, highlight.endIndex).join('')}
 						</span>
 					)
 					endOfPrevHighlightForParsing = highlight.endIndex
-				} else if (index === 0 && highlight.startIndex === 0) {
-					highlightedDescription.push(
-						<span className={highlight.highlighter} key={uuid()}>
-							{initialDescriptionArray.slice(highlight.startIndex, highlight.endIndex).join('')}
-						</span>
-					)
-					endOfPrevHighlightForParsing = highlight.endIndex
-				} else if (index === correctedDescriptionHighlights.length - 1
-					&& highlight.endIndex < initialDescriptionArray.length - 1) {
-					highlightedDescription.push(
-						<span key={uuid()}>
-							{initialDescriptionArray.slice(endOfPrevHighlightForParsing, highlight.startIndex).join('')}
-						</span>
-					)
-					highlightedDescription.push(
-						<span className={highlight.highlighter} key={uuid()}>
-							{initialDescriptionArray.slice(highlight.startIndex, highlight.endIndex).join('')}
-						</span>
-					)
-					highlightedDescription.push(
-						<span key={uuid()}>
-							{initialDescriptionArray.slice(highlight.endIndex, initialDescriptionArray.length).join('')}
-						</span>
-					)
-				} else if (index === correctedDescriptionHighlights.length - 1
-					&& highlight.startIndex !== endOfPrevHighlightForParsing) {
+				} else if (highlight.startIndex !== 0) {
 					highlightedDescription.push(
 						<span key={uuid()}>
 							{initialDescriptionArray.slice(endOfPrevHighlightForParsing, highlight.startIndex).join('')}
@@ -148,16 +85,19 @@ export const NewsCard = ({
 					)
 					endOfPrevHighlightForParsing = highlight.endIndex
 				}
+				if (index === sortedDescriptionHighlights.length - 1 && highlight.endIndex !== initialDescriptionArray.length) {
+					highlightedDescription.push(
+						<span key={uuid()}>
+							{initialDescriptionArray.slice(highlight.endIndex, initialDescriptionArray.length).join('')}
+						</span>
+					)
+				}
 			})
-
-			console.log(highlightedDescription);
 			return highlightedDescription
 		} else {
 			return description
 		}
 	}
-
-
 
 	return (
 		<article className='news-card' >

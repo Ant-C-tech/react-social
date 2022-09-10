@@ -21,6 +21,7 @@ const buttonComponentIcons = {
 	'Read More': MenuBook,
 	'Hide full text': CancelPresentation,
 	'Add to favorite': FolderSpecial,
+	'Remove from favorite': RemoveCircle,
 	'Show Contacts': People,
 	'Hide Contacts': RemoveCircle,
 	'Add More Countries': AddCircle,
