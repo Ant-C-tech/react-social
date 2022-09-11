@@ -10,6 +10,7 @@ import { NewsCardSkeleton } from './newsCardSkeleton/NewsCardSkeleton';
 import { getIsFavorite } from './utils/getIsFavorite';
 import { addToFavorite } from './utils/addToFavorite';
 import { removeFromFavorite } from './utils/removeFromFavorite';
+import { addHighlight } from './utils/addHighlight';
 
 export const NewsFeed = ({
 	newsSet,
@@ -33,21 +34,22 @@ export const NewsFeed = ({
 	}, [needScroll, setNeedScroll])
 
 	return (
-		<section className={`news-feed ${activeHighlighter}`} >
+		<section className={`news-feed`} >
 			{loading ?
 				<SkeletonTheme baseColor="#dce2e4" highlightColor="#b2c0c4">
 					<NewsCardSkeleton skeletons={2} />
 				</SkeletonTheme>
 				: message ? message :
 					<ul className='news-list' >
-						{newsSet.map((news, index) =>
+						{newsSet.map((news, indexOfCurrentNews) =>
 							<li
 								className={`news-list-item`}
-								key={index}
-								ref={index === startNews ? currentRef : null}>
+								key={indexOfCurrentNews}
+								ref={indexOfCurrentNews === startNews ? currentRef : null}>
 								<NewsCard
 									news={news}
 									keywords={keywords}
+									activeHighlighter={activeHighlighter}
 									isFavorite={getIsFavorite(favoriteNews, news.link)}
 									addToFavorite={() => {
 										addToFavorite(favoriteNews, setFavoriteNews, news)
@@ -55,58 +57,11 @@ export const NewsFeed = ({
 									removeFromFavorite={() => {
 										removeFromFavorite(favoriteNews, setFavoriteNews, news)
 									}}
-									addHighlight={() => {
-										if (window.getSelection().toString().length > 0 && activeHighlighter) {
-											const parentText = window.getSelection().baseNode.textContent
-											let targetPartOfNews
-											Object.entries(favoriteNews[index]).forEach((keyValue) => {
-												const key = keyValue[0]
-												const value = keyValue[1]
-												if (value === parentText) {
-													targetPartOfNews = key
-												}
-											})
-
-											const startIndex = window.getSelection().anchorOffset
-											const endIndex = window.getSelection().focusOffset
-
-											const newHighlight = {
-												highlighter: activeHighlighter,
-												startIndex: startIndex < endIndex ? startIndex : endIndex,
-												endIndex: startIndex < endIndex ? endIndex : startIndex,
-											}
-
-											setFavoriteNews(favoriteNews.map((currentFavoriteNews, currentFavoriteNewsIndex) => {
-												if (currentFavoriteNewsIndex === index) {
-													!currentFavoriteNews.highlights && (currentFavoriteNews['highlights'] = {});
-													!currentFavoriteNews.highlights[targetPartOfNews] && (currentFavoriteNews.highlights[targetPartOfNews] = [])
-
-													const updatedArrayOfHighlights =
-														currentFavoriteNews.highlights[targetPartOfNews].filter((highlight) => {
-															if (
-																(highlight.startIndex < newHighlight.startIndex) ||
-																(highlight.endIndex > newHighlight.endIndex)) {
-																return highlight
-															} else {
-																return false
-															}
-														})
-															.map((highlight) => {
-																return highlight
-															})
-													updatedArrayOfHighlights.push(newHighlight)
-
-													currentFavoriteNews.highlights[targetPartOfNews] = updatedArrayOfHighlights
-													// console.log(updatedArrayOfHighlights);
-													return currentFavoriteNews
-												} else {
-													return currentFavoriteNews
-												}
-											}))
-										}
+									addHighlight={(targetPart) => {
+										addHighlight(favoriteNews, activeHighlighter, indexOfCurrentNews, setFavoriteNews, targetPart)
 									}}
 								/>
-								{index === newsSet.length - 1
+								{indexOfCurrentNews === newsSet.length - 1
 									&& <Waypoint
 										onEnter={() => {
 											setNeedMoreNews(true)

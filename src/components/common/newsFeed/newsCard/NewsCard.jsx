@@ -4,7 +4,6 @@ import './newsCard.css';
 
 import { useState } from 'react'
 import Highlighter from "react-highlight-words";
-import uuid from 'react-uuid';
 import {
 	Bookmark,
 	OndemandVideo,
@@ -15,16 +14,19 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CustomLink } from '../../customLink/CustomLink';
 import { Button } from '../../button/Button';
 
+import { getHighlightedStructure } from '../utils/getHighlightedStructure';
+
 export const NewsCard = ({
 	news,
 	keywords,
+	activeHighlighter,
 	isFavorite,
 	addToFavorite,
 	removeFromFavorite,
 	addHighlight
 }) => {
 	const [isContentShown, setIsContentShown] = useState(false)
-	const [isMouseDown, setIsMouseDown] = useState(false)
+	// const [isMouseDown, setIsMouseDown] = useState(false)
 
 	const {
 		title,
@@ -40,64 +42,6 @@ export const NewsCard = ({
 		category,
 		language,
 		highlights } = news
-
-	const getHighlightedDescription = () => {
-		if (highlights && highlights.description) {
-			// const lastAddedHighlight = highlights.description[highlights.description.length - 1]
-			// const correctedDescriptionHighlights = highlights.description.filter((highlight, index) => {
-			// 	if ((index === highlights.description.length - 1) ||
-			// 		(highlight.startIndex < lastAddedHighlight.startIndex) ||
-			// 		(highlight.endIndex > lastAddedHighlight.endIndex)) {
-			// 		return highlight
-			// 	} else {
-			// 		return false
-			// 	}
-			// }).map((highlight) => {
-			// 	return highlight
-			// })
-
-			const sortedDescriptionHighlights = highlights.description.sort((highlight1, highlight2) => {
-				return highlight1.startIndex - highlight2.startIndex
-			})
-
-			let highlightedDescription = []
-			const initialDescriptionArray = description.split('')
-
-			let endOfPrevHighlightForParsing = 0
-			sortedDescriptionHighlights.forEach((highlight, index) => {
-				if (highlight.startIndex === 0) {
-					highlightedDescription.push(
-						<span className={highlight.highlighter} key={uuid()}>
-							{initialDescriptionArray.slice(highlight.startIndex, highlight.endIndex).join('')}
-						</span>
-					)
-					endOfPrevHighlightForParsing = highlight.endIndex
-				} else if (highlight.startIndex !== 0) {
-					highlightedDescription.push(
-						<span key={uuid()}>
-							{initialDescriptionArray.slice(endOfPrevHighlightForParsing, highlight.startIndex).join('')}
-						</span>
-					)
-					highlightedDescription.push(
-						<span className={highlight.highlighter} key={uuid()}>
-							{initialDescriptionArray.slice(highlight.startIndex, highlight.endIndex).join('')}
-						</span>
-					)
-					endOfPrevHighlightForParsing = highlight.endIndex
-				}
-				if (index === sortedDescriptionHighlights.length - 1 && highlight.endIndex !== initialDescriptionArray.length) {
-					highlightedDescription.push(
-						<span key={uuid()}>
-							{initialDescriptionArray.slice(highlight.endIndex, initialDescriptionArray.length).join('')}
-						</span>
-					)
-				}
-			})
-			return highlightedDescription
-		} else {
-			return description
-		}
-	}
 
 	return (
 		<article className='news-card' >
@@ -147,14 +91,18 @@ export const NewsCard = ({
 						active=''
 					/>}
 
-				<p className="news-card-description" onMouseUp={() => { setIsMouseDown(false); addHighlight() }} onMouseDown={() => { setIsMouseDown(true) }}>
+				<p className={`news-card-description cursor-${activeHighlighter}`}
+					onMouseUp={() => {
+						addHighlight('description')
+					}}
+				>
 					{/* <Highlighter
 						highlightClassName="news-card-highlight"
 						searchWords={keywords}
 						autoEscape={true}
 						textToHighlight={getHighlightedDescription || ''}
 					/> */}
-					{isMouseDown ? description : getHighlightedDescription()}
+					{getHighlightedStructure(description, highlights)}
 				</p>
 
 				{isContentShown &&
