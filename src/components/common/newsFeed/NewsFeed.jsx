@@ -57,8 +57,13 @@ export const NewsFeed = ({
 									removeFromFavorite={() => {
 										removeFromFavorite(favoriteNews, setFavoriteNews, news)
 									}}
-									addHighlight={(targetPart) => {
-										addHighlight(favoriteNews, activeHighlighter, indexOfCurrentNews, setFavoriteNews, targetPart)
+									addHighlight={(link, targetPart) => {
+										addHighlight(
+											favoriteNews,
+											activeHighlighter,
+											setFavoriteNews,
+											link,
+											targetPart)
 									}}
 								/>
 								{indexOfCurrentNews === newsSet.length - 1

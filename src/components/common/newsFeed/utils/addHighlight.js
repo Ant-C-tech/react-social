@@ -1,14 +1,26 @@
-export const addHighlight = (favoriteNews, activeHighlighter, indexOfTargetNews, setFavoriteNews, targetPart) => {
+export const addHighlight = (favoriteNews, activeHighlighter, setFavoriteNews, link, targetPart) => {
+	let indexOfTargetNews = 0;
+	favoriteNews.forEach((news, index) => {
+		if (news.link === link) indexOfTargetNews = index;
+	});
+
 	if (window.getSelection().toString().length > 0 && activeHighlighter) {
-		let parentText;
+		let onMouseDownTargetText;
 		if (favoriteNews[indexOfTargetNews].highlights && favoriteNews[indexOfTargetNews].highlights[targetPart]) {
-			parentText = window.getSelection().anchorNode.parentElement.textContent;
+			onMouseDownTargetText = window.getSelection().anchorNode.parentElement.textContent;
 		} else {
-			parentText = window.getSelection().baseNode.textContent;
+			onMouseDownTargetText = window.getSelection().baseNode.textContent;
 		}
+		const onMouseUpTargetText = window.getSelection().focusNode.textContent;
+
+		// console.log('onMouseDownTargetText: ', onMouseDownTargetText);
+		// console.log('onMouseUpTargetText: ', onMouseUpTargetText);
 
 		const startSelection = window.getSelection().anchorOffset;
 		const endSelection = window.getSelection().focusOffset;
+
+		// console.log('startSelection', startSelection);
+		// console.log('endSelection', endSelection);
 
 		let startIndex;
 		let endIndex;
@@ -16,29 +28,69 @@ export const addHighlight = (favoriteNews, activeHighlighter, indexOfTargetNews,
 		if (favoriteNews[indexOfTargetNews].highlights && favoriteNews[indexOfTargetNews].highlights[targetPart]) {
 			const arrayOfChunks = Array.prototype.slice.call(
 				window.getSelection().anchorNode.parentElement.parentElement.children,
-      );
+			);
 
 			let startIndexCounter = 0;
 			let endIndexCounter = 0;
-			let foundTargetChunk = false;
+			let wasStartIndexFound = false;
+			let wasEndIndexFound = false;
+
 			arrayOfChunks.forEach((chunk) => {
-				if (chunk.textContent !== parentText && !foundTargetChunk) {
-					startIndexCounter = startIndexCounter + chunk.textContent.length;
-					endIndexCounter = endIndexCounter + chunk.textContent.length;
-        }
+				if (chunk.textContent !== onMouseDownTargetText && chunk.textContent !== onMouseUpTargetText) {
+					// console.log(
+					// 	'chunk.textContent !== onMouseDownTargetText && chunk.textContent !== onMouseUpTargetText',
+					// );
+					// console.log('startIndexCounter: ', startIndexCounter);
+					// console.log('endIndexCounter: ', endIndexCounter);
 
-        console.log('parentText ', parentText);
-        console.log(chunk.textContent);
+					startIndexCounter = !wasStartIndexFound
+						? startIndexCounter + chunk.textContent.length
+						: startIndexCounter;
+					endIndexCounter = !wasEndIndexFound ? endIndexCounter + chunk.textContent.length : endIndexCounter;
+				}
 
-        if (chunk.textContent === parentText) {
-					foundTargetChunk = true;
+				if (chunk.textContent === onMouseDownTargetText && chunk.textContent === onMouseUpTargetText) {
+					// console.log(
+					// 	'chunk.textContent === onMouseDownTargetText && chunk.textContent === onMouseUpTargetText',
+					// );
+					// console.log('startIndexCounter: ', startIndexCounter);
+					// console.log('endIndexCounter: ', endIndexCounter);
+
 					startIndexCounter =
-						startIndexCounter + (startSelection < endSelection ? startSelection : endSelection);
-					endIndexCounter = endIndexCounter + (startSelection < endSelection ? endSelection : startSelection);
-        }
-      });
-      startIndex = startIndexCounter;
-			endIndex = endIndexCounter;
+						startIndexCounter + (endSelection > startSelection ? startSelection : endSelection);
+					endIndexCounter = endIndexCounter + (endSelection > startSelection ? endSelection : startSelection);
+					wasStartIndexFound = true;
+					wasEndIndexFound = true;
+				}
+
+				if (chunk.textContent === onMouseDownTargetText && chunk.textContent !== onMouseUpTargetText) {
+					// console.log(
+					// 	'chunk.textContent === onMouseDownTargetText && chunk.textContent !== onMouseUpTargetText',
+					// );
+					// console.log('startIndexCounter: ', startIndexCounter);
+					// console.log('endIndexCounter: ', endIndexCounter);
+
+					startIndexCounter = startIndexCounter + startSelection;
+					endIndexCounter = !wasEndIndexFound ? endIndexCounter + chunk.textContent.length : endIndexCounter;
+					wasStartIndexFound = true;
+				}
+
+				if (chunk.textContent !== onMouseDownTargetText && chunk.textContent === onMouseUpTargetText) {
+					// console.log(
+					// 	'chunk.textContent !== onMouseDownTargetText && chunk.textContent === onMouseUpTargetText',
+					// );
+					// console.log('startIndexCounter: ', startIndexCounter);
+					// console.log('endIndexCounter: ', endIndexCounter);
+
+					startIndexCounter = !wasStartIndexFound
+						? startIndexCounter + chunk.textContent.length
+						: startIndexCounter;
+					endIndexCounter = endIndexCounter + endSelection;
+					wasEndIndexFound = true;
+				}
+			});
+			startIndex = endIndexCounter > startIndexCounter ? startIndexCounter : endIndexCounter;
+			endIndex = endIndexCounter > startIndexCounter ? endIndexCounter : startIndexCounter;
 		} else {
 			startIndex = startSelection < endSelection ? startSelection : endSelection;
 			endIndex = startSelection < endSelection ? endSelection : startSelection;
@@ -108,9 +160,9 @@ export const addHighlight = (favoriteNews, activeHighlighter, indexOfTargetNews,
 					}
 					updatedArrayOfHighlights.push(newHighlight);
 
-          currentFavoriteNews.highlights[targetPart] = updatedArrayOfHighlights;
+					currentFavoriteNews.highlights[targetPart] = updatedArrayOfHighlights;
 
-          console.log(currentFavoriteNews.highlights[targetPart]);
+					console.log(currentFavoriteNews.highlights[targetPart]);
 					return currentFavoriteNews;
 				} else {
 					return currentFavoriteNews;

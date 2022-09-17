@@ -26,7 +26,6 @@ export const NewsCard = ({
 	addHighlight
 }) => {
 	const [isContentShown, setIsContentShown] = useState(false)
-	// const [isMouseDown, setIsMouseDown] = useState(false)
 
 	const {
 		title,
@@ -93,7 +92,7 @@ export const NewsCard = ({
 
 				<p className={`news-card-description cursor-${activeHighlighter}`}
 					onMouseUp={() => {
-						addHighlight('description')
+						addHighlight(link, 'description')
 					}}
 				>
 					{/* <Highlighter
