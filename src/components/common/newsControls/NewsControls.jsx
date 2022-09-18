@@ -1,7 +1,7 @@
 import './newsControls.css';
 
 import { Help, BorderColor } from '@material-ui/icons';
-import uuid from 'react-uuid'
+
 
 import { Message } from '../message/Message';
 import { Button } from '../button/Button'
@@ -14,6 +14,7 @@ import { removeLastSelect } from './utils/removeLastSelect';
 import { updateSelectedItems } from './utils/updateSelectedItems'
 import { getAdditionalDataForNewsControls } from './utils/getAdditionalDataForNewsControls';
 import { createErrorMessage } from './utils/createErrorMessage';
+import { TabsComponent } from '../tabsComponent/TabsComponent';
 
 export const NewsControls = ({
   news,
@@ -63,24 +64,29 @@ export const NewsControls = ({
           <p>{errorMessage.text}</p>
         </Message> : !loading &&
         <>
-          {isHighLightersBar && <>
-            <BorderColor className='news-control-title-icon' />
-            <h3 className='news-control-title'>Want to highlight something?</h3>
-            <div className="news-control">
-              <div className="news-control-highlight-bar">
-                {highlighters.map((highlighter, index) =>
-                  <Button
-                    key={index}
-                    text={highlighter}
-                    showText={false}
-                    active={highlighter === activeHighlighter}
-                    onClick={() => {
-                      setActiveHighlighter(highlighter === activeHighlighter ? '' : highlighter)
-                    }} />
-                )}
+          {isHighLightersBar &&
+            <>
+              <div className="news-control-top-bar">
+                <TabsComponent />
               </div>
-            </div>
-          </>}
+
+              <BorderColor className='news-control-title-icon' />
+              <h3 className='news-control-title'>Want to highlight something?</h3>
+              <div className="news-control">
+                <div className="news-control-highlight-bar">
+                  {highlighters.map((highlighter, index) =>
+                    <Button
+                      key={index}
+                      text={highlighter}
+                      showText={false}
+                      active={highlighter === activeHighlighter}
+                      onClick={() => {
+                        setActiveHighlighter(highlighter === activeHighlighter ? '' : highlighter)
+                      }} />
+                  )}
+                </div>
+              </div>
+            </>}
 
           <Help className='news-control-title-icon' />
           <h3 className='news-control-title'>Want to find something special?</h3>
@@ -91,7 +97,7 @@ export const NewsControls = ({
               const availableCountries = getNotSelectedItems(country, countriesAvailableForFilterNews, selectedCountries)
 
               return <SelectComponent
-                key={uuid()}
+                key={index}
                 valueOptions={availableCountries}
                 labelOptions={labelOptionForCountries}
                 labelIconOptions={labelIconOptionsForCountries}
@@ -127,7 +133,7 @@ export const NewsControls = ({
             {selectedCategories.map((category, index) => {
               const availableCategories = getNotSelectedItems(category, Object.keys(categoriesAvailableForFilterNews), selectedCategories)
               return <SelectComponent
-                key={uuid()}
+                key={index}
                 valueOptions={availableCategories}
                 labelIconOptions={categoriesAvailableForFilterNews}
                 defaultValue={category}
@@ -164,7 +170,7 @@ export const NewsControls = ({
               const availableLanguages = getNotSelectedItems(language, Object.keys(languagesAvailableForFilterNews), selectedLanguages)
 
               return <SelectComponent
-                key={uuid()}
+                key={index}
                 valueOptions={availableLanguages}
                 labelOptions={languagesAvailableForFilterNews}
                 labelIconOptions={labelIconOptionsForLanguages}
