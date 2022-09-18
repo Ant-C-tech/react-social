@@ -5,9 +5,13 @@ import './newsCard.css';
 import { useState } from 'react'
 import Highlighter from "react-highlight-words";
 import {
-	Bookmark,
-	OndemandVideo,
-	FiberNew
+	BookmarkTwoTone,
+	OndemandVideoTwoTone,
+	FiberNewTwoTone,
+	MenuBookTwoTone,
+	CancelPresentationTwoTone,
+	FolderSpecialTwoTone,
+	RemoveCircleTwoTone
 } from '@material-ui/icons';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
@@ -59,7 +63,7 @@ export const NewsCard = ({
 
 			<div className={`news-card-content ${language}`}>
 				<div className="news-card-title">
-					<FiberNew className="news-card-title-icon" />
+					<FiberNewTwoTone className="news-card-title-icon" />
 					<h2 className="news-card-title-text">
 						<Highlighter
 							highlightClassName="news-card-highlight"
@@ -82,7 +86,7 @@ export const NewsCard = ({
 					<CustomLink
 						type='external'
 						content={<>
-							<OndemandVideo /><span className='link-add-text'>Watch Now</span>
+							<OndemandVideoTwoTone /><span className='link-add-text'>Watch Now</span>
 						</>}
 						href={video_url}
 						target='_blank'
@@ -121,31 +125,25 @@ export const NewsCard = ({
 							text={isContentShown ? 'Hide full text' : 'Read More'}
 							className='read-more-button'
 							onClick={() => setIsContentShown((prevState) => !prevState)}
+						buttonComponentIcon={isContentShown ? CancelPresentationTwoTone : MenuBookTwoTone}
 						/>}
 					<CustomLink
 						type='external'
 						content={<>
-							<Bookmark /><span className='link-add-text'>Visit original source...</span>
+							<BookmarkTwoTone /><span className='link-add-text'>Visit original source...</span>
 						</>}
 						href={link}
 						target='_blank'
 						modification='hover-underline'
 						active='' />
-					{isFavorite ?
-						<Button
-							text='Remove from favorite'
-							className='remove-from-favorite-button'
-							onClick={() => {
-								removeFromFavorite()
-							}}
-						/> :
-						<Button
-							text='Add to favorite'
-							className='add-to-favorite-button'
-							onClick={() => {
-								addToFavorite()
-							}}
-						/>}
+					<Button
+						text={isFavorite ? 'Remove from favorite' : 'Add to favorite'}
+						className='remove-from-favorite-button'
+						onClick={() => {
+							isFavorite ? removeFromFavorite() : addToFavorite()
+						}}
+						buttonComponentIcon={isFavorite ? RemoveCircleTwoTone : FolderSpecialTwoTone}
+					/>
 				</div>
 			</div>
 

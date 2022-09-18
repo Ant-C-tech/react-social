@@ -3,7 +3,7 @@ import './selectComponent.css';
 import { useState } from 'react'
 
 import Select from 'react-select'
-import { AllInclusive } from '@material-ui/icons';
+import { AllInclusiveTwoTone } from '@material-ui/icons';
 
 import { selectStyles } from './selectStyles';
 import { selectTheme } from './selectTheme'
@@ -12,7 +12,7 @@ export const SelectComponent = ({ valueOptions, labelOptions = null, labelIconOp
   const [isFocused, setIsFocused] = useState(false)
 
   const getIcon = (item) => {
-    return item === 'all' ? <AllInclusive /> : labelIconOptions ? labelIconOptions[item] : null
+    return item === 'all' ? <AllInclusiveTwoTone /> : labelIconOptions ? labelIconOptions[item] : null
   }
 
   const options = valueOptions.map((currentOption) => {

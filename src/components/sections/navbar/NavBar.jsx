@@ -3,36 +3,37 @@ import './navbar.css';
 import { useState } from 'react'
 import { BigHead } from '@bigheads/core';
 import {
-	Announcement,
-	FolderSpecial,
-	Chat,
-	VideoLibrary,
-	Notes,
-	Bookmark,
-	WorkOutline,
-	Event,
-	School,
-	Translate,
-	FormatListNumbered,
-	MusicNote
+	AnnouncementTwoTone,
+	FolderSpecialTwoTone,
+	ChatTwoTone,
+	VideoLibraryTwoTone,
+	NotesTwoTone,
+	BookmarkTwoTone,
+	WorkOutlineTwoTone,
+	EventTwoTone,
+	SchoolTwoTone,
+	TranslateTwoTone,
+	FormatListNumberedTwoTone,
+	MusicNoteTwoTone,
+	PeopleTwoTone
 } from '@material-ui/icons';
 
 import { CustomLink } from '../../common/customLink/CustomLink';
 import { Button } from '../../common/button/Button';
 
 const navBarItems = [
-	{ type: 'internal', icon: Announcement, path: 'organizer/', text: 'News' },
-	{ type: 'internal', icon: FolderSpecial, path: 'organizer/favorite_news', text: 'My Favorite News' },
-	{ type: 'internal', icon: FormatListNumbered, path: 'organizer/todo', text: 'ToDo' },
-	{ type: 'internal', icon: Notes, path: 'organizer/notes', text: 'Notes' },
-	{ type: 'internal', icon: Event, path: 'organizer/events', text: 'Events' },
-	{ type: 'internal', icon: Translate, path: 'organizer/translation', text: 'Translation' },
-	{ type: 'internal', icon: Bookmark, path: 'organizer/bookmarks', text: 'Bookmarks' },
-	{ type: 'internal', icon: VideoLibrary, path: 'organizer/videos', text: 'Videos' },
-	{ type: 'internal', icon: MusicNote, path: 'organizer/music', text: 'Music' },
-	{ type: 'internal', icon: WorkOutline, path: 'organizer/jobs', text: ' Jobs' },
-	{ type: 'internal', icon: School, path: 'organizer/courses', text: ' Courses' },
-	{ type: 'internal', icon: Chat, path: 'organizer/chats', text: ' Chats' },
+	{ type: 'internal', icon: AnnouncementTwoTone, path: 'organizer/', text: 'News' },
+	{ type: 'internal', icon: FolderSpecialTwoTone, path: 'organizer/favorite_news', text: 'My Favorite News' },
+	{ type: 'internal', icon: FormatListNumberedTwoTone, path: 'organizer/todo', text: 'ToDo' },
+	{ type: 'internal', icon: NotesTwoTone, path: 'organizer/notes', text: 'Notes' },
+	{ type: 'internal', icon: EventTwoTone, path: 'organizer/events', text: 'Events' },
+	{ type: 'internal', icon: TranslateTwoTone, path: 'organizer/translation', text: 'Translation' },
+	{ type: 'internal', icon: BookmarkTwoTone, path: 'organizer/bookmarks', text: 'Bookmarks' },
+	{ type: 'internal', icon: VideoLibraryTwoTone, path: 'organizer/videos', text: 'Videos' },
+	{ type: 'internal', icon: MusicNoteTwoTone, path: 'organizer/music', text: 'Music' },
+	{ type: 'internal', icon: WorkOutlineTwoTone, path: 'organizer/jobs', text: ' Jobs' },
+	{ type: 'internal', icon: SchoolTwoTone, path: 'organizer/courses', text: ' Courses' },
+	{ type: 'internal', icon: ChatTwoTone, path: 'organizer/chats', text: ' Chats' },
 ];
 
 
@@ -48,7 +49,7 @@ export const NavBar = ({contacts}) => {
 						<li key={index} className='navbar-nav-item'>
 							<CustomLink
 								type={navItem.type}
-								content={<><Icon /><span className='link-add-text'>{navItem.text}</span></>}
+								content={<><Icon fontSize="large" /><span className='link-add-text'>{navItem.text}</span></>}
 								href={navItem.path}
 								modification='hover-left-line'
 							/>
@@ -60,7 +61,9 @@ export const NavBar = ({contacts}) => {
 			<Button
 				text={isContactsShown ? 'Hide Contacts' : 'Show Contacts'}
 				className='read-more-button'
-				onClick={() => setIsContactsShown((prevState) => !prevState)} />
+				onClick={() => setIsContactsShown((prevState) => !prevState)}
+				buttonComponentIcon={PeopleTwoTone}
+			/>
 			{isContactsShown && <ul className='navbar-contacts'>
 				{contacts.map((contact, index) => (
 					<li key={index} className='navbar-contact'>

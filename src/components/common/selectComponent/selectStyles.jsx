@@ -1,4 +1,8 @@
 export const selectStyles = {
+  container: (styles) => ({
+    ...styles,
+    borderRadius: '4px',
+  }),
   control: (styles) => ({
     ...styles,
     height: '55px',
