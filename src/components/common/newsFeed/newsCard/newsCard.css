@@ -196,6 +196,20 @@
 	color: #22373F;
 }
 
+.cursor-eraser::selection,
+.cursor-eraser > span::selection {
+	background-color: #FFF;
+}
+
+.cursor-eraser {
+	cursor: url(../../../../assets/eraser-svgrepo-com.ico) 0 30, auto !important;
+}
+
+.search-highlight{
+	background-color: #323e42;
+	color: #FFF;
+}
+
 .news-card-controls {
 	display: flex;
 	align-items: center;

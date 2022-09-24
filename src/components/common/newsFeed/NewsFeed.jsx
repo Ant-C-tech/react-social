@@ -23,7 +23,7 @@ export const NewsFeed = ({
 	needScroll,
 	setNeedScroll,
 	message,
-	activeHighlighter }) => {
+	activeTool }) => {
 	const currentRef = useRef(null)
 
 	useEffect(() => {
@@ -47,9 +47,10 @@ export const NewsFeed = ({
 								key={indexOfCurrentNews}
 								ref={indexOfCurrentNews === startNews ? currentRef : null}>
 								<NewsCard
+									createdFor={activeTool === null ? 'news' : 'favorite news'}
 									news={news}
 									keywords={keywords}
-									activeHighlighter={activeHighlighter}
+									activeTool={activeTool}
 									isFavorite={getIsFavorite(favoriteNews, news.link)}
 									addToFavorite={() => {
 										addToFavorite(favoriteNews, setFavoriteNews, news)
@@ -60,8 +61,8 @@ export const NewsFeed = ({
 									addHighlight={(link, targetPart) => {
 										addHighlight(
 											favoriteNews,
-											activeHighlighter,
 											setFavoriteNews,
+											activeTool,
 											link,
 											targetPart)
 									}}

@@ -21,9 +21,10 @@ import { Button } from '../../button/Button';
 import { getHighlightedStructure } from '../utils/getHighlightedStructure';
 
 export const NewsCard = ({
+	createdFor,
 	news,
 	keywords,
-	activeHighlighter,
+	activeTool,
 	isFavorite,
 	addToFavorite,
 	removeFromFavorite,
@@ -94,18 +95,17 @@ export const NewsCard = ({
 						active=''
 					/>}
 
-				<p className={`news-card-description cursor-${activeHighlighter}`}
+				<p className={`news-card-description cursor-${activeTool}`}
 					onMouseUp={() => {
 						addHighlight(link, 'description')
 					}}
 				>
-					{/* <Highlighter
+					{createdFor === 'news' ? <Highlighter
 						highlightClassName="news-card-highlight"
 						searchWords={keywords}
 						autoEscape={true}
-						textToHighlight={getHighlightedDescription || ''}
-					/> */}
-					{getHighlightedStructure(description, highlights)}
+						textToHighlight={description || ''}
+					/> : getHighlightedStructure(description, highlights && highlights['description'], keywords)}
 				</p>
 
 				{isContentShown &&
@@ -125,7 +125,7 @@ export const NewsCard = ({
 							text={isContentShown ? 'Hide full text' : 'Read More'}
 							className='read-more-button'
 							onClick={() => setIsContentShown((prevState) => !prevState)}
-						buttonComponentIcon={isContentShown ? CancelPresentationTwoTone : MenuBookTwoTone}
+							buttonComponentIcon={isContentShown ? CancelPresentationTwoTone : MenuBookTwoTone}
 						/>}
 					<CustomLink
 						type='external'

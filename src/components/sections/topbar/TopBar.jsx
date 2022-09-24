@@ -1,7 +1,7 @@
 import './topbar.css';
 
 import {
-	Chat, Notifications, MeetingRoom
+	ChatTwoTone, NotificationsTwoTone, MeetingRoomTwoTone
 } from '@material-ui/icons';
 import { BigHead } from '@bigheads/core';
 
@@ -14,8 +14,8 @@ const topBarCenterLinks = [
 ];
 
 const topBarNotifications = [
-	{ type: 'internal', icon: Chat, path: 'organizer/chats', messageCounter: '2' },
-	{ type: 'internal', icon: Notifications, path: 'organizer/events', messageCounter: '6' },
+	{ type: 'internal', icon: ChatTwoTone, path: 'organizer/chats', messageCounter: '2' },
+	{ type: 'internal', icon: NotificationsTwoTone, path: 'organizer/events', messageCounter: '6' },
 ];
 
 const topBarRightLinks = [
@@ -51,7 +51,7 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
 							<CustomLink
 								key={index}
 								type={iconLink.type}
-								content={<><Icon /><span className='icon-badge'>{iconLink.messageCounter}</span></>}
+								content={<><Icon fontSize='large' /><span className='icon-badge'>{iconLink.messageCounter}</span></>}
 								href={iconLink.path}
 								modification='hover-left-line'
 							/>
@@ -73,7 +73,7 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
 								modification='hover-underline' />
 						))}
 					{isAuthorized && <IconButtonComponent onClick={() => setIsAuthorized(false)} >
-						<MeetingRoom/>
+						<MeetingRoomTwoTone fontSize='large'/>
 					</IconButtonComponent>}
 				</div>
 

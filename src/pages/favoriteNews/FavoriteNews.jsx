@@ -37,7 +37,7 @@ export const FavoriteNews = () => {
   const [selectedLanguages, setSelectedLanguages] = useState(['all']);
   const [languagesAvailableForFilterFavoriteNews, setLanguagesAvailableForFilterFavoriteNews] = useState([]);
   const [keyword, setKeyword] = useState('')
-  const [activeHighlighter, setActiveHighlighter] = useState('')
+  const [activeTool, setActiveTool] = useState('')
 
   const newsForPage = 10
 
@@ -178,7 +178,7 @@ export const FavoriteNews = () => {
           message={favoriteNews.length === 0 ?
             <NoFavoriteNewsMessage /> : news.length === 0 ?
               <NothingWasFoundMessage /> : null}
-          activeHighlighter={activeHighlighter}
+          activeTool={activeTool}
         />
         }
       </section>
@@ -219,8 +219,8 @@ export const FavoriteNews = () => {
                 languagesAvailableForFilterFavoriteNews.length - 1
             }
             isHighLightersBar={true}
-            activeHighlighter={activeHighlighter}
-            setActiveHighlighter={setActiveHighlighter}
+            activeTool={activeTool}
+            setActiveTool={setActiveTool}
           />
         } />
     </>

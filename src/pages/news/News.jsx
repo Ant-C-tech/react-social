@@ -154,6 +154,7 @@ export const News = () => {
 						needScroll={needScroll}
 						setNeedScroll={setNeedScroll}
 						message={news.length === 0 ? <NothingWasFoundMessage /> : null}
+						activeTool={null}
 					/>
 					:
 					<Message type={'info'} title={'You need API key for getting news.'}>

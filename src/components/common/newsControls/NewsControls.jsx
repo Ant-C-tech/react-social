@@ -6,6 +6,7 @@ import orangeHighlighterIcon from '../../../assets/highlighter-svgrepo-com-orang
 import pinkHighlighterIcon from '../../../assets/highlighter-svgrepo-com-pink.svg'
 import purpleHighlighterIcon from '../../../assets/highlighter-svgrepo-com-purple.svg'
 import yellowHighlighterIcon from '../../../assets/highlighter-svgrepo-com-yellow.svg'
+import eraser from '../../../assets/eraser-svgrepo-com.svg'
 
 import { useState } from 'react'
 
@@ -48,8 +49,8 @@ export const NewsControls = ({
   minLanguagesAvailableForFilterNews,
   maxLanguagesAvailableForFilterNews,
   isHighLightersBar,
-  activeHighlighter,
-  setActiveHighlighter }) => {
+  activeTool,
+  setActiveTool }) => {
 
   const errorMessage = error && createErrorMessage(news, error)
 
@@ -232,14 +233,14 @@ export const NewsControls = ({
             <BorderColorTwoTone fontSize="large" className='news-control-title-icon' />
             <h3 className='news-control-title'>Do You want to highlight something?</h3>
             <div className="news-control">
-              <div className="news-control-highlight-bar">
+              <div className="news-control-toolbar">
                 {highlighters.map((highlighter, index) => {
                   const { name, icon } = highlighter
                   return (<Button
                     key={index}
-                    active={name === activeHighlighter}
+                    active={name === activeTool}
                     onClick={() => {
-                      setActiveHighlighter(name === activeHighlighter ? '' : name)
+                      setActiveTool(name === activeTool ? '' : name)
                     }}
                     buttonImageIcon={icon} />)
                 }
@@ -249,6 +250,16 @@ export const NewsControls = ({
 
             <DeleteForeverTwoTone fontSize="large" className='news-control-title-icon' />
             <h3 className='news-control-title'>Do You want to delete some highlight?</h3>
+            <div className="news-control">
+              <div className="news-control-toolbar">
+                <Button
+                  active={'eraser' === activeTool}
+                  onClick={() => {
+                    setActiveTool('eraser' === activeTool ? '' : 'eraser')
+                  }}
+                  buttonImageIcon={eraser} />
+              </div>
+            </div>
           </TabPanel>
         </>
       }

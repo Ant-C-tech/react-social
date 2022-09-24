@@ -18,7 +18,7 @@
 
 	width: calc(20% - 20px);
 
-	margin: 10px;
+	margin: 10px 10px 15px;
 
 	height: 50px;
 
@@ -46,7 +46,7 @@
 	width: 30px;
 	height: 30px;
 	margin-right: 20px;
-	background-image: url(../../../assets/logo.png);
+	background-image: url(../../../assets/clock.png);
 	background-repeat: no-repeat;
 	background-position: 0 50%;
 	background-size: cover;
@@ -60,7 +60,7 @@
 	justify-content: space-between;
 
 	height: 50px;
-	margin: 10px;
+	margin: 10px 10px 15px;
 	padding: 0 30px;
 
 	border-radius: 25px;
@@ -78,7 +78,7 @@
 	width: calc(20% - 20px);
 
 	height: 50px;
-	margin: 10px;
+	margin: 10px 10px 15px;
 	padding: 0 5px 0 30px;
 
 	background: #eff1db;
