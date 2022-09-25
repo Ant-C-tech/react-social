@@ -25,14 +25,8 @@ export const addHighlight = (
     }
     const onMouseUpTargetText = window.getSelection().focusNode.textContent;
 
-    // console.log('onMouseDownTargetText: ', onMouseDownTargetText);
-    // console.log('onMouseUpTargetText: ', onMouseUpTargetText);
-
     const startSelection = window.getSelection().anchorOffset;
     const endSelection = window.getSelection().focusOffset;
-
-    // console.log('startSelection', startSelection);
-    // console.log('endSelection', endSelection);
 
     let startIndex;
     let endIndex;
@@ -55,12 +49,6 @@ export const addHighlight = (
           chunk.textContent !== onMouseDownTargetText &&
           chunk.textContent !== onMouseUpTargetText
         ) {
-          // console.log(
-          // 	'chunk.textContent !== onMouseDownTargetText && chunk.textContent !== onMouseUpTargetText',
-          // );
-          // console.log('startIndexCounter: ', startIndexCounter);
-          // console.log('endIndexCounter: ', endIndexCounter);
-
           startIndexCounter = !wasStartIndexFound
             ? startIndexCounter + chunk.textContent.length
             : startIndexCounter;
@@ -73,12 +61,6 @@ export const addHighlight = (
           chunk.textContent === onMouseDownTargetText &&
           chunk.textContent === onMouseUpTargetText
         ) {
-          // console.log(
-          // 	'chunk.textContent === onMouseDownTargetText && chunk.textContent === onMouseUpTargetText',
-          // );
-          // console.log('startIndexCounter: ', startIndexCounter);
-          // console.log('endIndexCounter: ', endIndexCounter);
-
           startIndexCounter =
             startIndexCounter +
             (endSelection > startSelection ? startSelection : endSelection);
@@ -93,12 +75,6 @@ export const addHighlight = (
           chunk.textContent === onMouseDownTargetText &&
           chunk.textContent !== onMouseUpTargetText
         ) {
-          // console.log(
-          // 	'chunk.textContent === onMouseDownTargetText && chunk.textContent !== onMouseUpTargetText',
-          // );
-          // console.log('startIndexCounter: ', startIndexCounter);
-          // console.log('endIndexCounter: ', endIndexCounter);
-
           startIndexCounter = startIndexCounter + startSelection;
           endIndexCounter = !wasEndIndexFound
             ? endIndexCounter + chunk.textContent.length
@@ -110,12 +86,6 @@ export const addHighlight = (
           chunk.textContent !== onMouseDownTargetText &&
           chunk.textContent === onMouseUpTargetText
         ) {
-          // console.log(
-          // 	'chunk.textContent !== onMouseDownTargetText && chunk.textContent === onMouseUpTargetText',
-          // );
-          // console.log('startIndexCounter: ', startIndexCounter);
-          // console.log('endIndexCounter: ', endIndexCounter);
-
           startIndexCounter = !wasStartIndexFound
             ? startIndexCounter + chunk.textContent.length
             : startIndexCounter;
@@ -150,62 +120,6 @@ export const addHighlight = (
             (currentFavoriteNews['highlights'] = {});
           !currentFavoriteNews.highlights[targetPart] &&
             (currentFavoriteNews.highlights[targetPart] = []);
-
-          // const additionalHighlight = {};
-
-          // const updatedArrayOfHighlights = currentFavoriteNews.highlights[
-          //   targetPart
-          // ]
-          //   .filter((highlight) => {
-          //     if (
-          //       highlight.startIndex < newHighlight.startIndex ||
-          //       highlight.endIndex > newHighlight.endIndex
-          //     ) {
-          //       return highlight;
-          //     } else {
-          //       return false;
-          //     }
-          //   })
-          //   .map((highlight) => {
-          //     if (
-          //       highlight.startIndex <= newHighlight.startIndex &&
-          //       highlight.endIndex > newHighlight.startIndex &&
-          //       highlight.endIndex <= newHighlight.endIndex
-          //     ) {
-          //       highlight.endIndex = newHighlight.startIndex;
-          //     }
-          //     if (
-          //       highlight.startIndex >= newHighlight.startIndex &&
-          //       highlight.startIndex < newHighlight.endIndex &&
-          //       highlight.endIndex >= newHighlight.endIndex
-          //     ) {
-          //       highlight.startIndex = newHighlight.endIndex;
-          //     }
-          //     if (
-          //       highlight.startIndex < newHighlight.startIndex &&
-          //       highlight.endIndex > newHighlight.endIndex
-          //     ) {
-          //       additionalHighlight['highlighter'] = highlight.highlighter;
-          //       additionalHighlight['startIndex'] =
-          //         newHighlight.startIndex < newHighlight.endIndex
-          //           ? newHighlight.endIndex
-          //           : newHighlight.startIndex;
-          //       additionalHighlight['endIndex'] =
-          //         highlight.startIndex < highlight.endIndex
-          //           ? highlight.endIndex
-          //           : highlight.startIndex;
-
-          //       highlight.endIndex = newHighlight.startIndex;
-          //     }
-          //     return highlight;
-          //   });
-
-          // if (Object.keys(additionalHighlight).length > 0) {
-          //   updatedArrayOfHighlights.push(additionalHighlight);
-          // }
-          // updatedArrayOfHighlights.push(newHighlight);
-
-          // currentFavoriteNews.highlights[targetPart] = updatedArrayOfHighlights;
 
           currentFavoriteNews.highlights[targetPart] =
             getUpdatedArrayOfHighlights(

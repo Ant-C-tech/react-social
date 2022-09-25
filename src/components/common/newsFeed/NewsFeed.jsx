@@ -7,10 +7,10 @@ import { Waypoint } from 'react-waypoint';
 import { NewsCard } from './newsCard/NewsCard';
 import { NewsCardSkeleton } from './newsCardSkeleton/NewsCardSkeleton';
 
-import { getIsFavorite } from './utils/getIsFavorite';
-import { addToFavorite } from './utils/addToFavorite';
-import { removeFromFavorite } from './utils/removeFromFavorite';
-import { addHighlight } from './utils/addHighlight';
+import { getIsFavorite } from '../../../utils/newsFeed/getIsFavorite';
+import { addToFavorite } from '../../../utils/newsFeed/addToFavorite';
+import { removeFromFavorite } from '../../../utils/newsFeed/removeFromFavorite';
+import { addHighlight } from '../../../utils/newsFeed/addHighlight';
 
 export const NewsFeed = ({
 	newsSet,

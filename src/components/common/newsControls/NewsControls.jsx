@@ -18,12 +18,12 @@ import { SelectComponent } from '../selectComponent/selectComponent';
 import { InputComponent } from '../inputComponent/InputComponent';
 import { TabPanel } from '../tabs/TabPanel';
 
-import { getNotSelectedItems } from './utils/getNotSelectedItems';
-import { addSelectWithNotSelectedValue } from './utils/addSelectWithNotSelectedValue';
-import { removeLastSelect } from './utils/removeLastSelect';
-import { updateSelectedItems } from './utils/updateSelectedItems'
-import { getAdditionalDataForNewsControls } from './utils/getAdditionalDataForNewsControls';
-import { createErrorMessage } from './utils/createErrorMessage';
+import { getNotSelectedItems } from '../../../utils/newsControls/getNotSelectedItems';
+import { addSelectWithNotSelectedValue } from '../../../utils/newsControls/addSelectWithNotSelectedValue';
+import { removeLastSelect } from '../../../utils/newsControls/removeLastSelect';
+import { updateSelectedItems } from '../../../utils/newsControls/updateSelectedItems'
+import { getAdditionalDataForNewsControls } from '../../../utils/newsControls/getAdditionalDataForNewsControls';
+import { createErrorMessage } from '../../../utils/newsControls/createErrorMessage';
 import { StyledTab } from '../tabs/StyledTab';
 import { StyledTabs } from '../tabs/StyledTabs';
 
