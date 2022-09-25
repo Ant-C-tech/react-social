@@ -4,10 +4,10 @@ import { useState, useEffect } from 'react';
 
 import { LockTwoTone } from '@material-ui/icons';
 
-import { getNews } from './businessLogic/getNews';
+import { getNews } from '../../businessLogic/news/getNews';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
-import { countriesAvailableForFilterNews } from './constants/countriesAvailableForFilterNews';
+import { countriesAvailableForFilterNews } from '../../constants/news/countriesAvailableForFilterNews';
 import { categoriesAvailableForFilterNews } from '../../constants/categoriesAvailableForFilterNews';
 
 import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';

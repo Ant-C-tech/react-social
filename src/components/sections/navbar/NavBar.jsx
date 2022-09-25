@@ -1,10 +1,12 @@
 import './navbar.css';
 
+import newsIcon from '../../../assets/newspaper.png';
+import favoriteNewsIcon from '../../../assets/inbox.png';
+
 import { useState } from 'react';
+
 import { BigHead } from '@bigheads/core';
 import {
-  AnnouncementTwoTone,
-  FolderSpecialTwoTone,
   ChatTwoTone,
   VideoLibraryTwoTone,
   NotesTwoTone,
@@ -24,13 +26,15 @@ import { Button } from '../../common/button/Button';
 const navBarItems = [
   {
     type: 'internal',
-    icon: AnnouncementTwoTone,
+    iconImage: newsIcon,
+    className: 'link-image-icon',
     path: 'organizer/',
     text: 'News',
   },
   {
     type: 'internal',
-    icon: FolderSpecialTwoTone,
+    iconImage: favoriteNewsIcon,
+    className: 'link-image-icon-small',
     path: 'organizer/favorite_news',
     text: 'My Favorite News',
   },
@@ -110,7 +114,14 @@ export const NavBar = ({ contacts }) => {
                 type={navItem.type}
                 content={
                   <>
-                    <Icon fontSize='large' />
+                    {Icon && <Icon fontSize='large' />}
+                    {navItem.iconImage && (
+                      <img
+                        className={ navItem.className}
+                        src={navItem.iconImage}
+                        alt=''
+                      />
+                    )}
                     <span className='link-add-text'>{navItem.text}</span>
                   </>
                 }

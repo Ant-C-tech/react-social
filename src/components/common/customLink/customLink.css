@@ -7,6 +7,16 @@
   font-size: 25px;
 }
 
+.link-image-icon-small{
+  margin: 0 5px;
+  width: 30px
+}
+
+.link-image-icon{
+  margin: 0 3px;
+  width: 38px
+}
+
 .link:after {
   position: absolute;
   content: '';
