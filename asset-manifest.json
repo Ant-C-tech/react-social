@@ -1,13 +1,30 @@
 {
   "files": {
-    "main.css": "/organizer/static/css/main.fd209088.css",
-    "main.js": "/organizer/static/js/main.26c2f497.js",
+    "main.css": "/organizer/static/css/main.211d04ef.css",
+    "main.js": "/organizer/static/js/main.07fb1519.js",
+    "static/media/inbox.png": "/organizer/static/media/inbox.a905a52038917b6ca252.png",
+    "static/media/clock.png": "/organizer/static/media/clock.e6388bbebf25b644ef24.png",
+    "static/media/newspaper.png": "/organizer/static/media/newspaper.a3ae6aea2dfb31e8268b.png",
+    "static/media/eraser-svgrepo-com.ico": "/organizer/static/media/eraser-svgrepo-com.e9bb64cef6a85187c41d.ico",
+    "static/media/highlighter-blue-cursor.ico": "/organizer/static/media/highlighter-blue-cursor.d321979e5f20b9d78784.ico",
+    "static/media/highlighter-green-cursor.ico": "/organizer/static/media/highlighter-green-cursor.3788ead107944c29c655.ico",
+    "static/media/highlighter-orange-cursor.ico": "/organizer/static/media/highlighter-orange-cursor.6b2e2ddc70e702ba3007.ico",
+    "static/media/highlighter-pink-cursor.ico": "/organizer/static/media/highlighter-pink-cursor.afaf35a2f3064d7fc100.ico",
+    "static/media/highlighter-purple-cursor.ico": "/organizer/static/media/highlighter-purple-cursor.b813db3cc32cde416853.ico",
+    "static/media/highlighter-yellow-cursor.ico": "/organizer/static/media/highlighter-yellow-cursor.8de15c9754d37e79ddae.ico",
+    "static/media/highlighter-svgrepo-com-purple.svg": "/organizer/static/media/highlighter-svgrepo-com-purple.0561cc121f96fe81cb66e4e70aea159f.svg",
+    "static/media/highlighter-svgrepo-com-yellow.svg": "/organizer/static/media/highlighter-svgrepo-com-yellow.3826ee3c91b796c1efbd5f7d27305407.svg",
+    "static/media/highlighter-svgrepo-com-blue.svg": "/organizer/static/media/highlighter-svgrepo-com-blue.449aca5a6abc5292e62e8d2b7f07d716.svg",
+    "static/media/highlighter-svgrepo-com-green.svg": "/organizer/static/media/highlighter-svgrepo-com-green.0eb892dda7467b1223df75334758b56e.svg",
+    "static/media/highlighter-svgrepo-com-orange.svg": "/organizer/static/media/highlighter-svgrepo-com-orange.ca36e46eb3521a50dff4de99042538f8.svg",
+    "static/media/highlighter-svgrepo-com-pink.svg": "/organizer/static/media/highlighter-svgrepo-com-pink.f0847d4ae1b73a3cbf238ccb55870743.svg",
+    "static/media/eraser-svgrepo-com.svg": "/organizer/static/media/eraser-svgrepo-com.4a7139e2adff690d4d5d3479d857f78d.svg",
     "index.html": "/organizer/index.html",
-    "main.fd209088.css.map": "/organizer/static/css/main.fd209088.css.map",
-    "main.26c2f497.js.map": "/organizer/static/js/main.26c2f497.js.map"
+    "main.211d04ef.css.map": "/organizer/static/css/main.211d04ef.css.map",
+    "main.07fb1519.js.map": "/organizer/static/js/main.07fb1519.js.map"
   },
   "entrypoints": [
-    "static/css/main.fd209088.css",
-    "static/js/main.26c2f497.js"
+    "static/css/main.211d04ef.css",
+    "static/js/main.07fb1519.js"
   ]
 }
