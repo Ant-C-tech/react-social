@@ -12,7 +12,8 @@
 }
 
 .news-card-highlight {
-  background-color: #fff4bd;
+  background-color: #e0004d;
+  color: #fff;
 }
 
 .news-card-content.russian,
@@ -206,7 +207,7 @@
 }
 
 .search-highlight {
-  background-color: #323e42;
+  background-color: #e0004d;
   color: #fff;
 }
 
