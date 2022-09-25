@@ -1,4 +1,4 @@
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles } from '@material-ui/core/styles';
 import Tab from '@mui/material/Tab';
 
 export const StyledTab = withStyles(() => ({
@@ -11,5 +11,5 @@ export const StyledTab = withStyles(() => ({
     color: '#323e42 !important',
     letterSpacing: '0 !important',
     borderRadius: '10px !important',
-  }
-}))(props => <Tab disableRipple {...props} />);
+  },
+}))((props) => <Tab disableRipple {...props} />);

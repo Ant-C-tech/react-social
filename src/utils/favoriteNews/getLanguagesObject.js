@@ -1,11 +1,11 @@
 import { languagesAvailableForFilterNews } from '../../constants/languagesAvailableForFilterNews';
 
 export const getLanguagesObject = (languagesAvailableForFilterFavoriteNews) => {
-	const languagesObject = {};
+  const languagesObject = {};
 
-	languagesAvailableForFilterFavoriteNews.forEach((language) => {
-		languagesObject[language] = languagesAvailableForFilterNews[language]
+  languagesAvailableForFilterFavoriteNews.forEach((language) => {
+    languagesObject[language] = languagesAvailableForFilterNews[language];
   });
 
-	return languagesObject;
+  return languagesObject;
 };

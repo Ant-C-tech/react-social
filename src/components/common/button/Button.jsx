@@ -1,18 +1,26 @@
 import './button.css';
 
-export const Button = ({ text, active, onClick, buttonImageIcon, buttonComponentIcon }) => {
-	const Icon = buttonComponentIcon;
+export const Button = ({
+  text,
+  active,
+  onClick,
+  buttonImageIcon,
+  buttonComponentIcon,
+}) => {
+  const Icon = buttonComponentIcon;
 
-	return <button
-		className={
-			`button
+  return (
+    <button
+      className={`button
 		${!text ? 'button-without-text' : ''}
-		${active ? 'button-active' : ''}`
-		}
-		onClick={onClick}
-	>
-		{buttonComponentIcon && <Icon className='button-component-icon' />}
-		{buttonImageIcon && <img className='button-image-icon' src={buttonImageIcon} alt='' />}
-		{text && text}
-	</button>;
+		${active ? 'button-active' : ''}`}
+      onClick={onClick}
+    >
+      {buttonComponentIcon && <Icon className='button-component-icon' />}
+      {buttonImageIcon && (
+        <img className='button-image-icon' src={buttonImageIcon} alt='' />
+      )}
+      {text && text}
+    </button>
+  );
 };

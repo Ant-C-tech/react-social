@@ -1,25 +1,26 @@
 export const createErrorMessage = (news, error) => {
-	const errorMessageTemplate = {
-		type: 'warning',
-		title: error,
-		text: ''
-	};
+  const errorMessageTemplate = {
+    type: 'warning',
+    title: error,
+    text: '',
+  };
 
-	switch (error) {
-		case 'Internet Disconnected':
-			errorMessageTemplate.text = 'Please, check your internet connection';
-			break;
+  switch (error) {
+    case 'Internet Disconnected':
+      errorMessageTemplate.text = 'Please, check your internet connection';
+      break;
 
-		case 'API Key Error':
-			errorMessageTemplate.text = 'Please, use valid API Key';
-			break;
+    case 'API Key Error':
+      errorMessageTemplate.text = 'Please, use valid API Key';
+      break;
 
-		default:
-			errorMessageTemplate.text = 'Please, try to change your parameters';
-			break;
-	}
+    default:
+      errorMessageTemplate.text = 'Please, try to change your parameters';
+      break;
+  }
 
-	if (news.length === 0) errorMessageTemplate.text = 'Please, use valid API Key';
+  if (news.length === 0)
+    errorMessageTemplate.text = 'Please, use valid API Key';
 
-	return errorMessageTemplate;
+  return errorMessageTemplate;
 };

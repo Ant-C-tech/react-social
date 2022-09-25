@@ -1,87 +1,87 @@
 .news-card-skeleton {
-	margin-bottom: 30px;
-	padding: 0 15px;
+  margin-bottom: 30px;
+  padding: 0 15px;
 
-	border: 1px solid #96a9af;
-	background-color: #f8f9f9;
+  border: 1px solid #96a9af;
+  background-color: #f8f9f9;
 }
 
 .news-card-skeleton-header {
-	display: flex;
-	justify-content: space-around;
-	padding: 30px;
-	border-bottom: 1px solid #96a9af;
+  display: flex;
+  justify-content: space-around;
+  padding: 30px;
+  border-bottom: 1px solid #96a9af;
 }
 
 .news-card-skeleton-category,
 .news-card-skeleton-country {
-	width: 50%;
-	margin: 0 15px;
+  width: 50%;
+  margin: 0 15px;
 }
 
 .news-card-skeleton-category {
-	padding-right: 30px;
-	border-right: 1px solid #96a9af;
+  padding-right: 30px;
+  border-right: 1px solid #96a9af;
 }
 
 .news-card-skeleton-title {
-	margin: 15px 0;
+  margin: 15px 0;
 }
 
 .news-card-skeleton-title-first-line {
-	display: flex;
+  display: flex;
 }
 
 .news-card-skeleton-title-icon,
 .news-card-skeleton-go-to-source-icon {
-	width: 30px;
-	margin-right: 5px;
+  width: 30px;
+  margin-right: 5px;
 }
 
 .news-card-skeleton-title-icon-text,
 .news-card-skeleton-title-text {
-	width: 100%;
+  width: 100%;
 }
 
 .news-card-skeleton-img {
-	width: 50%;
-	margin: 0 auto 15px;
+  width: 50%;
+  margin: 0 auto 15px;
 }
 
 .news-card-skeleton-description {
-	padding: 0 0 30px;
-	border-bottom: 1px solid #96a9af;
+  padding: 0 0 30px;
+  border-bottom: 1px solid #96a9af;
 }
 
 .news-card-skeleton-controls {
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	padding: 15px 0;
-	border-bottom: 1px solid #96a9af;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 15px 0;
+  border-bottom: 1px solid #96a9af;
 }
 
 .news-card-skeleton-read-more,
 .news-card-skeleton-read-later {
-	width: 30%;
+  width: 30%;
 }
 
 .news-card-skeleton-go-to-source {
-	display: flex;
+  display: flex;
 }
 
 .news-card-skeleton-go-to-source-text {
-	width: 100px;
+  width: 100px;
 }
 
 .news-card-skeleton-footer {
-	display: flex;
-	justify-content: space-between;
-	padding: 15px 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
 }
 
 .news-card-skeleton-data,
 .news-card-skeleton-author {
-	width: 30%;
-	margin: 0 15px;
+  width: 30%;
+  margin: 0 15px;
 }

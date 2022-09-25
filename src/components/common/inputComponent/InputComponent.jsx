@@ -3,9 +3,7 @@ import './inputComponent.css';
 import { useState } from 'react';
 
 import { DebounceInput } from 'react-debounce-input';
-import {
-  BackspaceTwoTone,
-} from '@material-ui/icons';
+import { BackspaceTwoTone } from '@material-ui/icons';
 
 export const InputComponent = ({
   type,
