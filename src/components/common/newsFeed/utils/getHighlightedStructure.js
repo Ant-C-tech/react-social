@@ -1,13 +1,13 @@
 import uuid from 'react-uuid';
+import { getUpdatedArrayOfHighlights } from './getUpdatedArrayOfHighlights';
 
 export const getHighlightedStructure = (initialText, highlights, keywords) => {
-  const highlightsWithSearch = [];
+  let highlightsWithSearch = [];
+  const searchHighlights = [];
 
   if (keywords[0].length > 0) {
     let searchCounter = 0;
     let isMatch = true;
-
-    const searchHighlights = [];
 
     while (isMatch) {
       const searchHighlight = {
@@ -17,10 +17,11 @@ export const getHighlightedStructure = (initialText, highlights, keywords) => {
       };
 
       const firstMatch = initialText
+        .toLowerCase()
         .split('')
         .slice(searchCounter)
         .join('')
-        .search(keywords);
+        .search(keywords[0].toLowerCase());
 
       switch (firstMatch) {
         case -1:
@@ -28,9 +29,11 @@ export const getHighlightedStructure = (initialText, highlights, keywords) => {
           break;
 
         default:
-          searchCounter = firstMatch + keywords[0].length;
-          searchHighlight.startIndex = firstMatch;
-          searchHighlight.endIndex = firstMatch + keywords[0].length;
+          searchHighlight.startIndex = firstMatch + searchCounter;
+          searchHighlight.endIndex =
+            firstMatch + keywords[0].length + searchCounter;
+
+          searchCounter = searchHighlight.endIndex;
           break;
       }
 
@@ -38,21 +41,26 @@ export const getHighlightedStructure = (initialText, highlights, keywords) => {
         searchHighlights.push(searchHighlight);
       }
     }
-
-    if (searchHighlights.length > 0) {
-      searchHighlights.forEach((highlight) => {
-        highlightsWithSearch.push(highlight);
-      });
-    }
   }
 
   if (highlights) {
-    highlights.forEach((highlight) => {
-      highlightsWithSearch.push(highlight);
-    });
-	}
+    highlightsWithSearch = JSON.parse(JSON.stringify(highlights));
 
-	console.log(highlightsWithSearch);
+    if (searchHighlights.length > 0) {
+      searchHighlights.forEach((searchHighlight) => {
+        highlightsWithSearch = getUpdatedArrayOfHighlights(
+          highlightsWithSearch,
+          searchHighlight,
+        );
+      });
+    }
+  } else {
+    if (searchHighlights.length > 0) {
+      searchHighlights.forEach((searchHighlight) => {
+        highlightsWithSearch.push(searchHighlight);
+      });
+    }
+  }
 
   if (highlightsWithSearch.length > 0) {
     const sortedDescriptionHighlights = highlightsWithSearch.sort(
@@ -117,6 +125,7 @@ export const getHighlightedStructure = (initialText, highlights, keywords) => {
         );
       }
     });
+
     return highlightedStructure;
   } else {
     return initialText;

@@ -3,11 +3,11 @@ import './inputComponent.css'
 import { useState } from 'react'
 
 import { DebounceInput } from 'react-debounce-input';
-import { Search, Lock, Backspace } from '@material-ui/icons';
+import { SearchTwoTone, LockTwoTone, BackspaceTwoTone } from '@material-ui/icons';
 
 const inputIcons = {
-  'Please, input your API key': Lock,
-  'Keyword...': Search,
+  'Please, input your API key': LockTwoTone,
+  'Keyword...': SearchTwoTone,
 }
 
 export const InputComponent = ({ type, minLength, debounceTimeout, placeholder, value, setValue }) => {
@@ -29,7 +29,7 @@ export const InputComponent = ({ type, minLength, debounceTimeout, placeholder, 
       onBlur={() => setIsFocused(false)}
     />
     {value.length > 0 && <button className='input-component-clear-button' onClick={() => { setValue('') }}>
-      <Backspace className='input-component-clear-button-icon' />
+      <BackspaceTwoTone className='input-component-clear-button-icon' />
     </button>}
   </div>
 

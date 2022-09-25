@@ -1,4 +1,4 @@
-import { getCountryCodesByNames } from '../../../utils/getCountryCodesByNames';
+import { getCountryCodesByNames } from '../getCountryCodesByNames';
 import { getNewsFilteredByCategory } from './getNewsFilteredByCategory';
 import { getNewsFilteredByKeyword } from './getNewsFilteredByKeyword';
 import { getNewsFilteredByLanguage } from './getNewsFilteredByLanguage';

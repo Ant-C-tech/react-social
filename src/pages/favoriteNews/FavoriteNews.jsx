@@ -8,16 +8,16 @@ import { NoFavoriteNewsMessage } from './noFavoriteNewsMessage/NoFavoriteNewsMes
 import { NewsFeed } from '../../components/common/newsFeed/NewsFeed';
 import { NothingWasFoundMessage } from '../../components/common/nothingWasFoundMessage/NothingWasFoundMessage';
 
-import { getCountriesAvailableForFilterFavoriteNews } from './utils/getCountriesAvailableForFilterFavoriteNews';
-import { getNewsSortByDate } from './utils/getNewsSortByDate';
-import { getCategoriesAvailableForFilterFavoriteNews } from './utils/getCategoriesAvailableForFilterFavoriteNews';
-import { getCategoriesObject } from './utils/getCategoriesObject';
-import { getNewsFilteredByCountry } from './utils/getNewsFilteredByCountry';
-import { getNewsFilteredByCategory } from './utils/getNewsFilteredByCategory';
-import { getLanguagesAvailableForFilterFavoriteNews } from './utils/getLanguagesAvailableForFilterFavoriteNews';
-import { getLanguagesObject } from './utils/getLanguagesObject';
-import { getNewsFilteredByLanguage } from './utils/getNewsFilteredByLanguage';
-import { getNewsFilteredByKeyword } from './utils/getNewsFilteredByKeyword';
+import { getCountriesAvailableForFilterFavoriteNews } from '../../utils/favoriteNews/getCountriesAvailableForFilterFavoriteNews';
+import { getNewsSortByDate } from '../../utils/favoriteNews/getNewsSortByDate';
+import { getCategoriesAvailableForFilterFavoriteNews } from '../../utils/favoriteNews/getCategoriesAvailableForFilterFavoriteNews';
+import { getCategoriesObject } from '../../utils/favoriteNews/getCategoriesObject';
+import { getNewsFilteredByCountry } from '../../utils/favoriteNews/getNewsFilteredByCountry';
+import { getNewsFilteredByCategory } from '../../utils/favoriteNews/getNewsFilteredByCategory';
+import { getLanguagesAvailableForFilterFavoriteNews } from '../../utils/favoriteNews/getLanguagesAvailableForFilterFavoriteNews';
+import { getLanguagesObject } from '../../utils/favoriteNews/getLanguagesObject';
+import { getNewsFilteredByLanguage } from '../../utils/favoriteNews/getNewsFilteredByLanguage';
+import { getNewsFilteredByKeyword } from '../../utils/favoriteNews/getNewsFilteredByKeyword';
 
 
 export const FavoriteNews = () => {

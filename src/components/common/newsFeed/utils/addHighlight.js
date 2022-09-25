@@ -1,3 +1,5 @@
+import { getUpdatedArrayOfHighlights } from './getUpdatedArrayOfHighlights';
+
 export const addHighlight = (
   favoriteNews,
   setFavoriteNews,
@@ -149,61 +151,67 @@ export const addHighlight = (
           !currentFavoriteNews.highlights[targetPart] &&
             (currentFavoriteNews.highlights[targetPart] = []);
 
-          const additionalHighlight = {};
+          // const additionalHighlight = {};
 
-          const updatedArrayOfHighlights = currentFavoriteNews.highlights[
-            targetPart
-          ]
-            .filter((highlight) => {
-              if (
-                highlight.startIndex < newHighlight.startIndex ||
-                highlight.endIndex > newHighlight.endIndex
-              ) {
-                return highlight;
-              } else {
-                return false;
-              }
-            })
-            .map((highlight) => {
-              if (
-                highlight.startIndex <= newHighlight.startIndex &&
-                highlight.endIndex > newHighlight.startIndex &&
-                highlight.endIndex <= newHighlight.endIndex
-              ) {
-                highlight.endIndex = newHighlight.startIndex;
-              }
-              if (
-                highlight.startIndex >= newHighlight.startIndex &&
-                highlight.startIndex < newHighlight.endIndex &&
-                highlight.endIndex >= newHighlight.endIndex
-              ) {
-                highlight.startIndex = newHighlight.endIndex;
-              }
-              if (
-                highlight.startIndex < newHighlight.startIndex &&
-                highlight.endIndex > newHighlight.endIndex
-              ) {
-                additionalHighlight['highlighter'] = highlight.highlighter;
-                additionalHighlight['startIndex'] =
-                  newHighlight.startIndex < newHighlight.endIndex
-                    ? newHighlight.endIndex
-                    : newHighlight.startIndex;
-                additionalHighlight['endIndex'] =
-                  highlight.startIndex < highlight.endIndex
-                    ? highlight.endIndex
-                    : highlight.startIndex;
+          // const updatedArrayOfHighlights = currentFavoriteNews.highlights[
+          //   targetPart
+          // ]
+          //   .filter((highlight) => {
+          //     if (
+          //       highlight.startIndex < newHighlight.startIndex ||
+          //       highlight.endIndex > newHighlight.endIndex
+          //     ) {
+          //       return highlight;
+          //     } else {
+          //       return false;
+          //     }
+          //   })
+          //   .map((highlight) => {
+          //     if (
+          //       highlight.startIndex <= newHighlight.startIndex &&
+          //       highlight.endIndex > newHighlight.startIndex &&
+          //       highlight.endIndex <= newHighlight.endIndex
+          //     ) {
+          //       highlight.endIndex = newHighlight.startIndex;
+          //     }
+          //     if (
+          //       highlight.startIndex >= newHighlight.startIndex &&
+          //       highlight.startIndex < newHighlight.endIndex &&
+          //       highlight.endIndex >= newHighlight.endIndex
+          //     ) {
+          //       highlight.startIndex = newHighlight.endIndex;
+          //     }
+          //     if (
+          //       highlight.startIndex < newHighlight.startIndex &&
+          //       highlight.endIndex > newHighlight.endIndex
+          //     ) {
+          //       additionalHighlight['highlighter'] = highlight.highlighter;
+          //       additionalHighlight['startIndex'] =
+          //         newHighlight.startIndex < newHighlight.endIndex
+          //           ? newHighlight.endIndex
+          //           : newHighlight.startIndex;
+          //       additionalHighlight['endIndex'] =
+          //         highlight.startIndex < highlight.endIndex
+          //           ? highlight.endIndex
+          //           : highlight.startIndex;
 
-                highlight.endIndex = newHighlight.startIndex;
-              }
-              return highlight;
-            });
+          //       highlight.endIndex = newHighlight.startIndex;
+          //     }
+          //     return highlight;
+          //   });
 
-          if (Object.keys(additionalHighlight).length > 0) {
-            updatedArrayOfHighlights.push(additionalHighlight);
-          }
-          updatedArrayOfHighlights.push(newHighlight);
+          // if (Object.keys(additionalHighlight).length > 0) {
+          //   updatedArrayOfHighlights.push(additionalHighlight);
+          // }
+          // updatedArrayOfHighlights.push(newHighlight);
 
-          currentFavoriteNews.highlights[targetPart] = updatedArrayOfHighlights;
+          // currentFavoriteNews.highlights[targetPart] = updatedArrayOfHighlights;
+
+          currentFavoriteNews.highlights[targetPart] =
+            getUpdatedArrayOfHighlights(
+              currentFavoriteNews.highlights[targetPart],
+              newHighlight,
+            );
 
           console.log(currentFavoriteNews.highlights[targetPart]);
           return currentFavoriteNews;

@@ -1,4 +1,4 @@
-import { getCountryCodesByNames } from '../../../utils/getCountryCodesByNames';
+import { getCountryCodesByNames } from '../getCountryCodesByNames';
 
 export const getNewsFilteredByCountry = (news, selectedCountries) => {
 	const newsFilteredByCountry = [];

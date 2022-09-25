@@ -72,6 +72,7 @@ export const NewsControls = ({
 
   const handleChangeTab = (_event, newTab) => {
     setTab(newTab);
+    setActiveTool('');
   };
 
   const a11yProps = (index) => {
@@ -128,7 +129,7 @@ export const NewsControls = ({
                         addSelectWithNotSelectedValue(selectedCountries, countriesAvailableForFilterNews, setSelectedCountries)
                       }
                     }}
-                  buttonComponentIcon={AddCircleTwoTone} />}
+                    buttonComponentIcon={AddCircleTwoTone} />}
                 {selectedCountries.length !== minCountriesAvailableForFilterNews &&
                   <Button text='Remove Country'
                     onClick={() => {
@@ -136,7 +137,7 @@ export const NewsControls = ({
                         removeLastSelect(selectedCountries, setSelectedCountries)
                       }
                     }}
-                  buttonComponentIcon={RemoveCircleTwoTone} />}
+                    buttonComponentIcon={RemoveCircleTwoTone} />}
               </div>
             </div>
 
@@ -165,7 +166,7 @@ export const NewsControls = ({
                         addSelectWithNotSelectedValue(selectedCategories, Object.keys(categoriesAvailableForFilterNews), setSelectedCategories)
                       }
                     }}
-                  buttonComponentIcon={AddCircleTwoTone}/>}
+                    buttonComponentIcon={AddCircleTwoTone} />}
                 {selectedCategories.length !== minCategoriesAvailableForFilterNews &&
                   <Button
                     text='Remove Category'
@@ -174,7 +175,7 @@ export const NewsControls = ({
                         removeLastSelect(selectedCategories, setSelectedCategories)
                       }
                     }}
-                  buttonComponentIcon={RemoveCircleTwoTone}/>}
+                    buttonComponentIcon={RemoveCircleTwoTone} />}
               </div>
             </div>
 
@@ -205,7 +206,7 @@ export const NewsControls = ({
                         addSelectWithNotSelectedValue(selectedLanguages, Object.keys(languagesAvailableForFilterNews), setSelectedLanguages)
                       }
                     }}
-                  buttonComponentIcon={AddCircleTwoTone}/>}
+                    buttonComponentIcon={AddCircleTwoTone} />}
                 {selectedLanguages.length !== minLanguagesAvailableForFilterNews &&
                   <Button
                     text='Remove Language'
@@ -214,7 +215,7 @@ export const NewsControls = ({
                         removeLastSelect(selectedLanguages, setSelectedLanguages)
                       }
                     }}
-                  buttonComponentIcon={RemoveCircleTwoTone}/>}
+                    buttonComponentIcon={RemoveCircleTwoTone} />}
               </div>
             </div>
             <div className="news-control">
