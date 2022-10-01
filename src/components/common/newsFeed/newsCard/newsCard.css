@@ -74,11 +74,12 @@
 }
 
 .news-card-title {
+  display: flex;
   margin-bottom: 15px;
 }
 
 .news-card-title-text {
-  display: inline;
+  display: block;
 
   font-weight: bold;
 

@@ -70,13 +70,26 @@ export const NewsCard = ({
       <div className={`news-card-content ${language}`}>
         <div className='news-card-title'>
           <FiberNewTwoTone className='news-card-title-icon' />
-          <h2 className='news-card-title-text'>
-            <Highlighter
-              highlightClassName='news-card-highlight'
-              searchWords={keywords}
-              autoEscape={true}
-              textToHighlight={title || ''}
-            />
+          <h2
+            className={`news-card-title-text cursor-${activeTool}`}
+            onMouseUp={() => {
+              addHighlight(link, 'title');
+            }}
+          >
+            {createdFor === 'news' ? (
+              <Highlighter
+                highlightClassName='news-card-highlight'
+                searchWords={keywords}
+                autoEscape={true}
+                textToHighlight={title || ''}
+              />
+            ) : (
+              getHighlightedStructure(
+                title,
+                highlights && highlights['title'],
+                keywords,
+              )
+            )}
           </h2>
         </div>
 
