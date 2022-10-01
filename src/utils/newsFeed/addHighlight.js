@@ -18,7 +18,7 @@ export const addHighlight = (
     if (
       (favoriteNews[indexOfTargetNews].highlights &&
         favoriteNews[indexOfTargetNews].highlights[targetPart]) ||
-      keywords.length > 0
+      keywords[0].length > 0
     ) {
       onMouseDownTargetText =
         window.getSelection().anchorNode.parentElement.textContent;
@@ -36,7 +36,7 @@ export const addHighlight = (
     if (
       (favoriteNews[indexOfTargetNews].highlights &&
         favoriteNews[indexOfTargetNews].highlights[targetPart]) ||
-      keywords.length > 0
+      keywords[0].length > 0
     ) {
       const arrayOfChunks = Array.prototype.slice.call(
         window.getSelection().anchorNode.parentElement.parentElement.children,
@@ -129,8 +129,6 @@ export const addHighlight = (
               currentFavoriteNews.highlights[targetPart],
               newHighlight,
             );
-
-          console.log(currentFavoriteNews.highlights[targetPart]);
           return currentFavoriteNews;
         } else {
           return currentFavoriteNews;
