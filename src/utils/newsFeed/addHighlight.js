@@ -4,6 +4,7 @@ export const addHighlight = (
   favoriteNews,
   setFavoriteNews,
   activeTool,
+  keywords,
   link,
   targetPart,
 ) => {
@@ -15,8 +16,9 @@ export const addHighlight = (
   if (window.getSelection().toString().length > 0 && activeTool) {
     let onMouseDownTargetText;
     if (
-      favoriteNews[indexOfTargetNews].highlights &&
-      favoriteNews[indexOfTargetNews].highlights[targetPart]
+      (favoriteNews[indexOfTargetNews].highlights &&
+        favoriteNews[indexOfTargetNews].highlights[targetPart]) ||
+      keywords.length > 0
     ) {
       onMouseDownTargetText =
         window.getSelection().anchorNode.parentElement.textContent;
@@ -32,8 +34,9 @@ export const addHighlight = (
     let endIndex;
 
     if (
-      favoriteNews[indexOfTargetNews].highlights &&
-      favoriteNews[indexOfTargetNews].highlights[targetPart]
+      (favoriteNews[indexOfTargetNews].highlights &&
+        favoriteNews[indexOfTargetNews].highlights[targetPart]) ||
+      keywords.length > 0
     ) {
       const arrayOfChunks = Array.prototype.slice.call(
         window.getSelection().anchorNode.parentElement.parentElement.children,

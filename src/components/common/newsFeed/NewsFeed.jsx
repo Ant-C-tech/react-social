@@ -68,6 +68,7 @@ export const NewsFeed = ({
                     favoriteNews,
                     setFavoriteNews,
                     activeTool,
+                    keywords,
                     link,
                     targetPart,
                   );
