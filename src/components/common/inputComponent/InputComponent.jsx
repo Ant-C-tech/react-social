@@ -1,36 +1,49 @@
-import './inputComponent.css'
+import './inputComponent.css';
 
-import { useState } from 'react'
+import { useState } from 'react';
 
 import { DebounceInput } from 'react-debounce-input';
-import { Search, Lock, Backspace } from '@material-ui/icons';
+import { BackspaceTwoTone } from '@material-ui/icons';
 
-const inputIcons = {
-  'Please, input your API key': Lock,
-  'Keyword...': Search,
-}
+export const InputComponent = ({
+  type,
+  minLength,
+  debounceTimeout,
+  placeholder,
+  value,
+  setValue,
+  icon,
+}) => {
+  const [isFocused, setIsFocused] = useState(false);
 
-export const InputComponent = ({ type, minLength, debounceTimeout, placeholder, value, setValue }) => {
-  const [isFocused, setIsFocused] = useState(false)
+  const Icon = icon;
 
-  const Icon = inputIcons[placeholder];
-
-  return <div className={`input-component ${isFocused ? 'withFocus' : ''}`}>
-    <Icon className='input-icon' />
-    <DebounceInput
-      type={type}
-      minLength={minLength}
-      debounceTimeout={debounceTimeout}
-      placeholder={placeholder}
-      value={value}
-      onChange={(event) => { setValue(event.target.value) }}
-      className='debounce-input'
-      onFocus={() => setIsFocused(true)}
-      onBlur={() => setIsFocused(false)}
-    />
-    {value.length > 0 && <button className='input-component-clear-button' onClick={() => { setValue('') }}>
-      <Backspace className='input-component-clear-button-icon' />
-    </button>}
-  </div>
-
+  return (
+    <div className={`input-component ${isFocused ? 'withFocus' : ''}`}>
+      <Icon className='input-icon' />
+      <DebounceInput
+        type={type}
+        minLength={minLength}
+        debounceTimeout={debounceTimeout}
+        placeholder={placeholder}
+        value={value}
+        onChange={(event) => {
+          setValue(event.target.value);
+        }}
+        className='debounce-input'
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
+      />
+      {value.length > 0 && (
+        <button
+          className='input-component-clear-button'
+          onClick={() => {
+            setValue('');
+          }}
+        >
+          <BackspaceTwoTone className='input-component-clear-button-icon' />
+        </button>
+      )}
+    </div>
+  );
 };
