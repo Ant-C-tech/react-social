@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/organizer/static/css/main.211d04ef.css",
-    "main.js": "/organizer/static/js/main.07fb1519.js",
+    "main.css": "/organizer/static/css/main.caea4635.css",
+    "main.js": "/organizer/static/js/main.530244a1.js",
     "static/media/inbox.png": "/organizer/static/media/inbox.a905a52038917b6ca252.png",
     "static/media/clock.png": "/organizer/static/media/clock.e6388bbebf25b644ef24.png",
     "static/media/newspaper.png": "/organizer/static/media/newspaper.a3ae6aea2dfb31e8268b.png",
@@ -20,11 +20,11 @@
     "static/media/highlighter-svgrepo-com-pink.svg": "/organizer/static/media/highlighter-svgrepo-com-pink.f0847d4ae1b73a3cbf238ccb55870743.svg",
     "static/media/eraser-svgrepo-com.svg": "/organizer/static/media/eraser-svgrepo-com.4a7139e2adff690d4d5d3479d857f78d.svg",
     "index.html": "/organizer/index.html",
-    "main.211d04ef.css.map": "/organizer/static/css/main.211d04ef.css.map",
-    "main.07fb1519.js.map": "/organizer/static/js/main.07fb1519.js.map"
+    "main.caea4635.css.map": "/organizer/static/css/main.caea4635.css.map",
+    "main.530244a1.js.map": "/organizer/static/js/main.530244a1.js.map"
   },
   "entrypoints": [
-    "static/css/main.211d04ef.css",
-    "static/js/main.07fb1519.js"
+    "static/css/main.caea4635.css",
+    "static/js/main.530244a1.js"
   ]
 }
