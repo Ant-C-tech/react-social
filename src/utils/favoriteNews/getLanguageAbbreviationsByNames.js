@@ -1,4 +1,4 @@
-import { languagesAvailableForFilterNews } from '../../constants/languagesAvailableForFilterNews';
+import { languagesAvailableForFilterNews } from '@constants/languagesAvailableForFilterNews';
 
 export const getLanguageAbbreviationsByNames = (languages) => {
   const dataBaseOfLanguages = Object.entries(languagesAvailableForFilterNews);

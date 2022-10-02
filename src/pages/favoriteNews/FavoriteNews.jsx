@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react';
 
-import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useLocalStorage } from '@hooks/useLocalStorage';
 
-import { ControlBar } from '../../components/sections/controlbar/ControlBar';
-import { NewsControls } from '../../components/common/newsControls/NewsControls';
+import { ControlBar } from '@sections/controlbar/ControlBar';
+import { NewsControls } from '@common/newsControls/NewsControls';
 import { NoFavoriteNewsMessage } from './noFavoriteNewsMessage/NoFavoriteNewsMessage';
-import { NewsFeed } from '../../components/common/newsFeed/NewsFeed';
-import { NothingWasFoundMessage } from '../../components/common/nothingWasFoundMessage/NothingWasFoundMessage';
+import { NewsFeed } from '@common/newsFeed/NewsFeed';
+import { NothingWasFoundMessage } from '@common/nothingWasFoundMessage/NothingWasFoundMessage';
 
-import { getCountriesAvailableForFilterFavoriteNews } from '../../utils/favoriteNews/getCountriesAvailableForFilterFavoriteNews';
-import { getNewsSortByDate } from '../../utils/favoriteNews/getNewsSortByDate';
-import { getCategoriesAvailableForFilterFavoriteNews } from '../../utils/favoriteNews/getCategoriesAvailableForFilterFavoriteNews';
-import { getCategoriesObject } from '../../utils/favoriteNews/getCategoriesObject';
-import { getNewsFilteredByCountry } from '../../utils/favoriteNews/getNewsFilteredByCountry';
-import { getNewsFilteredByCategory } from '../../utils/favoriteNews/getNewsFilteredByCategory';
-import { getLanguagesAvailableForFilterFavoriteNews } from '../../utils/favoriteNews/getLanguagesAvailableForFilterFavoriteNews';
-import { getLanguagesObject } from '../../utils/favoriteNews/getLanguagesObject';
-import { getNewsFilteredByLanguage } from '../../utils/favoriteNews/getNewsFilteredByLanguage';
-import { getNewsFilteredByKeyword } from '../../utils/favoriteNews/getNewsFilteredByKeyword';
+import { getCountriesAvailableForFilterFavoriteNews } from '@utils/favoriteNews/getCountriesAvailableForFilterFavoriteNews';
+import { getNewsSortByDate } from '@utils/favoriteNews/getNewsSortByDate';
+import { getCategoriesAvailableForFilterFavoriteNews } from '@utils/favoriteNews/getCategoriesAvailableForFilterFavoriteNews';
+import { getCategoriesObject } from '@utils/favoriteNews/getCategoriesObject';
+import { getNewsFilteredByCountry } from '@utils/favoriteNews/getNewsFilteredByCountry';
+import { getNewsFilteredByCategory } from '@utils/favoriteNews/getNewsFilteredByCategory';
+import { getLanguagesAvailableForFilterFavoriteNews } from '@utils/favoriteNews/getLanguagesAvailableForFilterFavoriteNews';
+import { getLanguagesObject } from '@utils/favoriteNews/getLanguagesObject';
+import { getNewsFilteredByLanguage } from '@utils/favoriteNews/getNewsFilteredByLanguage';
+import { getNewsFilteredByKeyword } from '@utils/favoriteNews/getNewsFilteredByKeyword';
 
 export const FavoriteNews = () => {
   const [favoriteNews, setFavoriteNews] = useLocalStorage('favoriteNews', []);

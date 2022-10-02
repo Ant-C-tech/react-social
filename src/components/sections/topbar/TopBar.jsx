@@ -7,8 +7,8 @@ import {
 } from '@material-ui/icons';
 import { BigHead } from '@bigheads/core';
 
-import { CustomLink } from '../../common/customLink/CustomLink';
-import { IconButtonComponent } from '../../common/iconButtonComponent/iconButtonComponent';
+import { CustomLink } from '@common/CustomLink/';
+import { IconButtonComponent } from '@common/IconButtonComponent/';
 
 const topBarCenterLinks = [
   { type: 'internal', text: 'Settings', path: 'organizer/settings' },

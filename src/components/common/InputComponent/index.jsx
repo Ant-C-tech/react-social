@@ -1,4 +1,4 @@
-import './inputComponent.css';
+import './index.css';
 
 import { useState } from 'react';
 

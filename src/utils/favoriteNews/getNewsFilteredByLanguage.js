@@ -1,4 +1,4 @@
-import { languagesAvailableForFilterNews } from '../../constants/languagesAvailableForFilterNews';
+import { languagesAvailableForFilterNews } from '@constants/languagesAvailableForFilterNews';
 
 export const getNewsFilteredByLanguage = (news, selectedLanguages) => {
   const newsFilteredByLanguage = [];

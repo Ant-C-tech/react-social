@@ -1,4 +1,4 @@
-import { Message } from '../message/Message';
+import { Message } from '@common/Message/';
 
 export const NothingWasFoundMessage = () => {
   return (

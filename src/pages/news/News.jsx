@@ -5,20 +5,20 @@ import { useState, useEffect } from 'react';
 import { LockTwoTone } from '@material-ui/icons';
 
 import { getNews } from '../../businessLogic/news/getNews';
-import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { useLocalStorage } from '@hooks/useLocalStorage';
 
-import { countriesAvailableForFilterNews } from '../../constants/news/countriesAvailableForFilterNews';
-import { categoriesAvailableForFilterNews } from '../../constants/categoriesAvailableForFilterNews';
+import { countriesAvailableForFilterNews } from '@constants/news/countriesAvailableForFilterNews';
+import { categoriesAvailableForFilterNews } from '@constants/categoriesAvailableForFilterNews';
 
 import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
 
-import { ControlBar } from '../../components/sections/controlbar/ControlBar';
-import { NewsFeed } from '../../components/common/newsFeed/NewsFeed';
-import { NewsControls } from '../../components/common/newsControls/NewsControls';
-import { Message } from '../../components/common/message/Message';
-import { InputComponent } from '../../components/common/inputComponent/InputComponent';
-import { NothingWasFoundMessage } from '../../components/common/nothingWasFoundMessage/NothingWasFoundMessage';
-import { languagesAvailableForFilterNews } from '../../constants/languagesAvailableForFilterNews';
+import { ControlBar } from '@sections/controlbar/ControlBar';
+import { NewsFeed } from '@common/newsFeed/NewsFeed';
+import { NewsControls } from '@common/newsControls/NewsControls';
+import { Message } from '@common/Message/';
+import { InputComponent } from '@common/InputComponent/';
+import { NothingWasFoundMessage } from '@common/nothingWasFoundMessage/NothingWasFoundMessage';
+import { languagesAvailableForFilterNews } from '@constants/languagesAvailableForFilterNews';
 
 export const News = () => {
   const [apiKey, setApiKey] = useLocalStorage('apiKey', '');

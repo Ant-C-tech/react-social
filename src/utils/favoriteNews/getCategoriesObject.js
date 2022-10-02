@@ -1,4 +1,4 @@
-import { categoriesAvailableForFilterNews } from '../../constants/categoriesAvailableForFilterNews';
+import { categoriesAvailableForFilterNews } from '@constants/categoriesAvailableForFilterNews';
 
 export const getCategoriesObject = (
   categoriesAvailableForFilterFavoriteNews,

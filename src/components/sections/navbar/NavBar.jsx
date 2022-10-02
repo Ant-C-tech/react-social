@@ -1,7 +1,7 @@
 import './navbar.css';
 
-import newsIcon from '../../../assets/newspaper.png';
-import favoriteNewsIcon from '../../../assets/inbox.png';
+import newsIcon from '@assets/newspaper.png';
+import favoriteNewsIcon from '@assets/inbox.png';
 
 import { useState } from 'react';
 
@@ -20,8 +20,8 @@ import {
   PeopleTwoTone,
 } from '@material-ui/icons';
 
-import { CustomLink } from '../../common/customLink/CustomLink';
-import { Button } from '../../common/button/Button';
+import { CustomLink } from '@common/CustomLink/';
+import { Button } from '@common/Button';
 
 const navBarItems = [
   {

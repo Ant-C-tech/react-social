@@ -1,5 +1,5 @@
-import { Message } from '../../components/common/message/Message';
-import { ControlBar } from '../../components/sections/controlbar/ControlBar';
+import { Message } from '@common/Message/';
+import { ControlBar } from '@sections/controlbar/ControlBar';
 
 export const Courses = () => {
   return (

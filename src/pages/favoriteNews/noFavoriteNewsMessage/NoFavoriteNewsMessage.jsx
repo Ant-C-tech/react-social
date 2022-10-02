@@ -1,4 +1,4 @@
-import { Message } from '../../../components/common/message/Message';
+import { Message } from '@common/Message/';
 
 export const NoFavoriteNewsMessage = () => {
   return (

@@ -4,26 +4,26 @@ import { useState } from 'react';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { News } from './pages/news/News';
-import { FavoriteNews } from './pages/favoriteNews/FavoriteNews';
-import { ToDo } from './pages/todo/ToDo';
-import { Notes } from './pages/notes/Notes';
-import { Events } from './pages/events/Events';
-import { Translation } from './pages/translation/Translation';
-import { Bookmarks } from './pages/bookmarks/Bookmarks';
-import { Videos } from './pages/videos/Videos';
-import { Music } from './pages/music/Music';
-import { Jobs } from './pages/jobs/Jobs';
-import { Courses } from './pages/courses/Courses';
-import { Chats } from './pages/chats/Chats';
-import { Settings } from './pages/settings/Settings';
-import { Help } from './pages/help/Help';
-import { TopBar } from './components/sections/topbar/TopBar';
-import { NavBar } from './components/sections/navbar/NavBar';
-import { SignUp } from './pages/signup/SignUp';
-import { LogIn } from './pages/login/LogIn';
-import { NoMatch } from './pages/nomatch/NoMatch';
-import { Contact } from './pages/contact/Contact';
+import { News } from '@pages/news/News';
+import { FavoriteNews } from '@pages/favoriteNews/FavoriteNews';
+import { ToDo } from '@pages/todo/ToDo';
+import { Notes } from '@pages/notes/Notes';
+import { Events } from '@pages/events/Events';
+import { Translation } from '@pages/translation/Translation';
+import { Bookmarks } from '@pages/bookmarks/Bookmarks';
+import { Videos } from '@pages/videos/Videos';
+import { Music } from '@pages/music/Music';
+import { Jobs } from '@pages/jobs/Jobs';
+import { Courses } from '@pages/courses/Courses';
+import { Chats } from '@pages/chats/Chats';
+import { Settings } from '@pages/settings/Settings';
+import { Help } from '@pages/help/Help';
+import { TopBar } from '@sections/topbar/TopBar';
+import { NavBar } from '@sections/navbar/NavBar';
+import { SignUp } from '@pages/signup/SignUp';
+import { LogIn } from '@pages/login/LogIn';
+import { NoMatch } from '@pages/nomatch/NoMatch';
+import { Contact } from '@pages/contact/Contact';
 
 const App = () => {
   // Mock authorization data

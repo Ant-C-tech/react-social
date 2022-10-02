@@ -1,12 +1,12 @@
 import './newsControls.css';
 
-import greenHighlighterIcon from '../../../assets/highlighter-svgrepo-com-green.svg';
-import blueHighlighterIcon from '../../../assets/highlighter-svgrepo-com-blue.svg';
-import orangeHighlighterIcon from '../../../assets/highlighter-svgrepo-com-orange.svg';
-import pinkHighlighterIcon from '../../../assets/highlighter-svgrepo-com-pink.svg';
-import purpleHighlighterIcon from '../../../assets/highlighter-svgrepo-com-purple.svg';
-import yellowHighlighterIcon from '../../../assets/highlighter-svgrepo-com-yellow.svg';
-import eraser from '../../../assets/eraser-svgrepo-com.svg';
+import greenHighlighterIcon from '@assets/highlighter-svgrepo-com-green.svg';
+import blueHighlighterIcon from '@assets/highlighter-svgrepo-com-blue.svg';
+import orangeHighlighterIcon from '@assets/highlighter-svgrepo-com-orange.svg';
+import pinkHighlighterIcon from '@assets/highlighter-svgrepo-com-pink.svg';
+import purpleHighlighterIcon from '@assets/highlighter-svgrepo-com-purple.svg';
+import yellowHighlighterIcon from '@assets/highlighter-svgrepo-com-yellow.svg';
+import eraser from '@assets/eraser-svgrepo-com.svg';
 
 import { useState } from 'react';
 
@@ -19,20 +19,21 @@ import {
   SearchTwoTone,
 } from '@material-ui/icons';
 
-import { Message } from '../message/Message';
-import { Button } from '../button/Button';
-import { SelectComponent } from '../selectComponent/selectComponent';
-import { InputComponent } from '../inputComponent/InputComponent';
-import { TabPanel } from '../tabs/TabPanel';
+import { Message } from '@common/Message/';
+import { Button } from '@common/Button/';
+import { SelectComponent } from '@common/selectComponent/selectComponent';
+import { InputComponent } from '@common/InputComponent/';
+import { TabPanel } from '@common/tabs/TabPanel';
+import { StyledTab } from '@common/tabs/StyledTab';
+import { StyledTabs } from '@common/tabs/StyledTabs';
 
-import { getNotSelectedItems } from '../../../utils/newsControls/getNotSelectedItems';
-import { addSelectWithNotSelectedValue } from '../../../utils/newsControls/addSelectWithNotSelectedValue';
-import { removeLastSelect } from '../../../utils/newsControls/removeLastSelect';
-import { updateSelectedItems } from '../../../utils/newsControls/updateSelectedItems';
-import { getAdditionalDataForNewsControls } from '../../../utils/newsControls/getAdditionalDataForNewsControls';
-import { createErrorMessage } from '../../../utils/newsControls/createErrorMessage';
-import { StyledTab } from '../tabs/StyledTab';
-import { StyledTabs } from '../tabs/StyledTabs';
+import { getNotSelectedItems } from '@utils/newsControls/getNotSelectedItems';
+import { addSelectWithNotSelectedValue } from '@utils/newsControls/addSelectWithNotSelectedValue';
+import { removeLastSelect } from '@utils/newsControls/removeLastSelect';
+import { updateSelectedItems } from '@utils/newsControls/updateSelectedItems';
+import { getAdditionalDataForNewsControls } from '@utils/newsControls/getAdditionalDataForNewsControls';
+import { createErrorMessage } from '@utils/newsControls/createErrorMessage';
+
 
 export const NewsControls = ({
   news,

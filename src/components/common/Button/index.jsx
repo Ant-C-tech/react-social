@@ -1,4 +1,4 @@
-import './button.css';
+import './index.css';
 
 export const Button = ({
   text,
