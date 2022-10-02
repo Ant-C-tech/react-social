@@ -3,5 +3,6 @@ export const getNotSelectedItems = (currentItem, itemBase, selectedItems) => {
     (item) => selectedItems.indexOf(item) === -1,
   );
   itemsAvailableForSelecting.push(currentItem);
+
   return itemsAvailableForSelecting;
 };

@@ -1,6 +1,6 @@
 import './selectComponent.css';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Select from 'react-select';
 import { AllInclusiveTwoTone } from '@material-ui/icons';
@@ -17,6 +17,11 @@ export const SelectComponent = ({
   isSearchable,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
+  const [value, setValue] = useState();
+
+  useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue]);
 
   const getIcon = (item) => {
     return item === 'all' ? (
@@ -56,24 +61,27 @@ export const SelectComponent = ({
     }
   };
 
+  const getValue = (value) => {
+    return {
+      value: value,
+      label: (
+        <span className='option-item'>
+          {getIcon(value)}{' '}
+          <span className='option-item-text'>
+            {labelOptions && value !== 'all' ? labelOptions[value] : value}
+          </span>
+        </span>
+      ),
+    };
+  };
+
   return (
     <Select
       options={options}
       styles={selectStyles}
-      defaultValue={{
-        value: defaultValue,
-        label: (
-          <span className='option-item'>
-            {getIcon(defaultValue)}{' '}
-            <span className='option-item-text'>
-              {labelOptions && defaultValue !== 'all'
-                ? labelOptions[defaultValue]
-                : defaultValue}
-            </span>
-          </span>
-        ),
-      }}
+      value={getValue(value)}
       isSearchable={isSearchable}
+      hideSelectedOptions={true}
       filterOption={customFilter}
       theme={(theme) => selectTheme(theme)}
       className={`select ${isFocused ? 'withFocus' : ''}`}

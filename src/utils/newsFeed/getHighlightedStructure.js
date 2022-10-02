@@ -9,8 +9,6 @@ export const getHighlightedStructure = (initialText, highlights, keywords) => {
     let searchCounter = 0;
     let isMatch = true;
 
-    console.log(initialText);
-
     while (isMatch) {
       const searchHighlight = {
         highlighter: 'search-highlight',

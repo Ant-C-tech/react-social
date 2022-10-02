@@ -143,19 +143,11 @@ export const NewsCard = ({
 
         {isContentShown && (
           <p
-            // className='news-card-full-text'
             className={`news-card-full-text cursor-${activeTool}`}
             onMouseUp={() => {
               addHighlight(link, 'content');
             }}
           >
-            {/* <Highlighter
-              highlightClassName='news-card-highlight'
-              searchWords={keywords}
-              autoEscape={true}
-              textToHighlight={content || ''}
-            /> */}
-
             {createdFor === 'news' ? (
               <Highlighter
                 highlightClassName='news-card-highlight'
