@@ -69,7 +69,7 @@ export const NewsCard = ({
 
       <div className={`news-card-content ${language}`}>
         <div className='news-card-title'>
-          <FiberNewTwoTone className='news-card-title-icon' />
+          <FiberNewTwoTone fontSize='large' className='news-card-title-icon' />
           <h2
             className={`news-card-title-text cursor-${activeTool}`}
             onMouseUp={() => {
@@ -83,13 +83,13 @@ export const NewsCard = ({
                 autoEscape={true}
                 textToHighlight={title || ''}
               />
-            ) : (
+            ) : title ? (
               getHighlightedStructure(
                 title,
                 highlights && highlights['title'],
                 keywords,
               )
-            )}
+            ) : null}
           </h2>
         </div>
 
@@ -132,13 +132,13 @@ export const NewsCard = ({
               autoEscape={true}
               textToHighlight={description || ''}
             />
-          ) : (
+          ) : description ? (
             getHighlightedStructure(
               description,
               highlights && highlights['description'],
               keywords,
             )
-          )}
+          ) : null}
         </p>
 
         {isContentShown && (
@@ -164,11 +164,11 @@ export const NewsCard = ({
                 textToHighlight={content || ''}
               />
             ) : (
-              getHighlightedStructure(
+              content ? getHighlightedStructure(
                 content,
                 highlights && highlights['content'],
                 keywords,
-              )
+              ) : null
             )}
           </p>
         )}
