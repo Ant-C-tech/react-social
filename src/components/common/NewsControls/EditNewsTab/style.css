@@ -1,0 +1,7 @@
+.news-control-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 90%;
+  margin: 0 auto;
+}

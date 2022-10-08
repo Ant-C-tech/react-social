@@ -1,4 +1,4 @@
-import './index.css';
+import './style.css';
 
 import { Link, useMatch, useResolvedPath } from 'react-router-dom';
 

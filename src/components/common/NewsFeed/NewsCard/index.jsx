@@ -1,6 +1,6 @@
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
-import './newsCard.css';
+import './style.css';
 
 import { useState } from 'react';
 import Highlighter from 'react-highlight-words';

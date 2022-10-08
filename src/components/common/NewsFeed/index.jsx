@@ -1,11 +1,11 @@
-import './newsFeed.css';
+import './style.css';
 
 import { useEffect, useRef } from 'react';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { Waypoint } from 'react-waypoint';
 
-import { NewsCard } from './newsCard/NewsCard';
-import { NewsCardSkeleton } from './newsCardSkeleton/NewsCardSkeleton';
+import { NewsCard } from './NewsCard';
+import { NewsCardSkeleton } from './NewsCardSkeleton';
 
 import { getIsFavorite } from '@utils/newsFeed/getIsFavorite';
 import { addToFavorite } from '@utils/newsFeed/addToFavorite';

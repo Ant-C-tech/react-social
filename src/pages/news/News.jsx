@@ -7,17 +7,17 @@ import { LockTwoTone } from '@material-ui/icons';
 import { getNews } from '../../businessLogic/news/getNews';
 import { useLocalStorage } from '@hooks/useLocalStorage';
 
-import { countriesAvailableForFilterNews } from '@constants/news/countriesAvailableForFilterNews';
+import { countriesAvailableForFilterNews } from '@constants/News/countriesAvailableForFilterNews';
 import { categoriesAvailableForFilterNews } from '@constants/categoriesAvailableForFilterNews';
 
 import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
 
 import { ControlBar } from '@sections/controlbar/ControlBar';
-import { NewsFeed } from '@common/newsFeed/NewsFeed';
-import { NewsControls } from '@common/newsControls/NewsControls';
+import { NewsFeed } from '@common/NewsFeed/';
+import { NewsControls } from '@common/NewsControls/';
 import { Message } from '@common/Message/';
 import { InputComponent } from '@common/InputComponent/';
-import { NothingWasFoundMessage } from '@common/nothingWasFoundMessage/NothingWasFoundMessage';
+import { NothingWasFoundMessage } from '@common/NothingWasFoundMessage';
 import { languagesAvailableForFilterNews } from '@constants/languagesAvailableForFilterNews';
 
 export const News = () => {

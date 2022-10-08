@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 import { useLocalStorage } from '@hooks/useLocalStorage';
 
 import { ControlBar } from '@sections/controlbar/ControlBar';
-import { NewsControls } from '@common/newsControls/NewsControls';
+import { NewsControls } from '@common/NewsControls/';
 import { NoFavoriteNewsMessage } from './noFavoriteNewsMessage/NoFavoriteNewsMessage';
-import { NewsFeed } from '@common/newsFeed/NewsFeed';
-import { NothingWasFoundMessage } from '@common/nothingWasFoundMessage/NothingWasFoundMessage';
+import { NewsFeed } from '@common/NewsFeed/';
+import { NothingWasFoundMessage } from '@common/NothingWasFoundMessage';
 
 import { getCountriesAvailableForFilterFavoriteNews } from '@utils/favoriteNews/getCountriesAvailableForFilterFavoriteNews';
 import { getNewsSortByDate } from '@utils/favoriteNews/getNewsSortByDate';

@@ -1,5 +1,5 @@
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import './index.css';
+import './style.css';
 
 import { CradleLoader } from 'react-loader-spinner';
 

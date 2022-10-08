@@ -1,6 +1,6 @@
 import 'react-loading-skeleton/dist/skeleton.css';
 
-import './newsCardSkeleton.css';
+import './style.css';
 
 import Skeleton from 'react-loading-skeleton';
 

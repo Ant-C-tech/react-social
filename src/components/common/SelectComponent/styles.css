@@ -19,3 +19,12 @@
   margin-left: 10px;
   font-weight: bold;
 }
+
+.category-option-item {
+  display: flex;
+  align-items: center;
+}
+
+.category-option-item-text {
+  margin-left: 10px;
+}
