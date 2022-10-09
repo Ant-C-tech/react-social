@@ -12,12 +12,12 @@
 
   overflow-y: auto;
 
-  color: rgba(0, 0, 0, 0);
+  color: rgba(50, 62, 66, 0);
   transition: color 0.3s ease;
 }
 
 .navbar:hover {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(50, 62, 66, 0.6);
 }
 
 .navbar hr {
@@ -57,4 +57,44 @@
 
   background: #f3f3f3;
   box-shadow: 4px 1px 3px 1px rgba(243, 243, 243, 0.57);
+}
+
+.link-image-icon-small{
+  margin: 0 5px;
+  width: 30px
+}
+
+.link-image-icon{
+  margin: 0 3px;
+  width: 38px
+}
+
+.link-add-text {
+  margin-left: 15px;
+
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.navbar-hover-left-line {
+  display: inline-flex;
+  align-items: center;
+
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.navbar-hover-left-line:after {
+  width: 1px;
+  height: 0;
+  bottom: 50%;
+  left: -4px;
+  transform: translate(50%, 50%);
+}
+
+.navbar-hover-left-line:hover:after,
+.navbar-hover-left-line:focus:after,
+.navbar-hover-left-line.active:after {
+  height: 100%;
 }

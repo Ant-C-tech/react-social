@@ -5,12 +5,12 @@
   padding: 15px 30px;
 
   overflow-y: auto;
-  color: rgba(0, 0, 0, 0);
+  color: rgba(50, 62, 66, 0);
   transition: color 0.3s ease;
 }
 
 .news-feed:hover {
-  color: rgba(0, 0, 0, 0.3);
+  color: rgba(50, 62, 66, 0.6);
 }
 
 .news-list-item {

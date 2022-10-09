@@ -36,7 +36,7 @@ export const NewsFeed = ({
   }, [needScroll, setNeedScroll]);
 
   return (
-    <section className={`news-feed`}>
+    <section className='news-feed'>
       {loading ? (
         <SkeletonTheme baseColor='#dce2e4' highlightColor='#b2c0c4'>
           <NewsCardSkeleton skeletons={2} />
@@ -44,10 +44,10 @@ export const NewsFeed = ({
       ) : message ? (
         message
       ) : (
-        <ul className='news-list'>
+        <ul>
           {newsSet.map((news, indexOfCurrentNews) => (
             <li
-              className={`news-list-item`}
+              className='news-list-item'
               key={indexOfCurrentNews}
               ref={indexOfCurrentNews === startNews ? currentRef : null}
             >

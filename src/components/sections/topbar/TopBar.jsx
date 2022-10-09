@@ -74,7 +74,7 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
                   </>
                 }
                 href={iconLink.path}
-                modification='hover-left-line'
+                modification='topbar-hover-left-line'
               />
             );
           })}
@@ -105,7 +105,7 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
           type='internal'
           content={<BigHead className='profile-image' />}
           href='/profile'
-          modification='hover-left-line'
+          modification='topbar-hover-left-line'
         />
       </div>
     </header>

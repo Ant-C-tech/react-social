@@ -1,0 +1,15 @@
+.filter-item {
+  margin-bottom: 15px;
+}
+
+.filter-item-title {
+  margin-bottom: 5px;
+  color: #3f3f3f;
+}
+
+.filter-item-controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 -5px;
+}

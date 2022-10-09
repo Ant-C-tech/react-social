@@ -23,6 +23,11 @@
     box-shadow ease-in-out 0.2s, left ease-in-out 0.2s;
 }
 
+.input-component:hover,
+.input-component.withFocus {
+  box-shadow: 0px 0px 0px 0px #718b93;
+}
+
 .input-icon {
   margin: 0 10px;
 }
@@ -39,11 +44,6 @@
 
 .debounce-input:focus {
   outline: none;
-}
-
-.input-component:hover,
-.input-component.withFocus {
-  box-shadow: 0px 0px 0px 0px #718b93;
 }
 
 .input-component-clear-button {

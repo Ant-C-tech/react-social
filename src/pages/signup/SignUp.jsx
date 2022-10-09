@@ -5,7 +5,7 @@ export const SignUp = () => {
   return (
     <>
       <section className='content-container'>
-        <Message type={'info'} title={'SignUp'}>
+        <Message type={'message-info'} title={'SignUp'}>
           <p>Sorry, this functionality is in development at the moment.</p>
         </Message>
       </section>

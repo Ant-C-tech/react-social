@@ -3,28 +3,29 @@
   transition: box-shadow ease-in-out 0.2s, left ease-in-out 0.2s;
 }
 
-.select.withFocus,
+.select.select-with-focus,
 .select:hover {
   outline: none;
 
   box-shadow: 0px 0px 0px 0px #718b93;
 }
 
-.option-item {
+.select-value {
   display: flex;
   align-items: center;
 }
 
-.option-item-text {
+.select-value-text {
   margin-left: 10px;
   font-weight: bold;
 }
 
-.category-option-item {
+
+.select-option-item {
   display: flex;
   align-items: center;
 }
 
-.category-option-item-text {
+.select-option-item-text {
   margin-left: 10px;
 }

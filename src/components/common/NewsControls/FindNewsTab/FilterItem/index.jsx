@@ -1,3 +1,5 @@
+import './style.css';
+
 import { AddCircleTwoTone, RemoveCircleTwoTone } from '@material-ui/icons';
 
 import { getNotSelectedItems } from '@utils/newsControls/getNotSelectedItems';
@@ -21,13 +23,13 @@ export const FilterItem = ({
   removeButtonText,
   loading,
 }) => (
-  <div className='news-control'>
-    <h4 className='select-title'>{title}</h4>
+  <div className='filter-item'>
+    <h4 className='filter-item-title'>{title}</h4>
     {selectedItems.map((item, index) => {
       const availableItems = getNotSelectedItems(
         item,
         itemsAvailableForFilterNews,
-        selectedItems
+        selectedItems,
       );
 
       return (
@@ -43,14 +45,15 @@ export const FilterItem = ({
                 index,
                 value,
                 selectedItems,
-                setSelectedItems
+                setSelectedItems,
               );
             }
-          } }
-          isSearchable={true} />
+          }}
+          isSearchable={true}
+        />
       );
     })}
-    <div className='select-controls'>
+    <div className='filter-item-controls'>
       {selectedItems.length !== maxItemsAvailableForFilterNews &&
         selectedItems[0] !== 'all' && (
           <Button
@@ -60,11 +63,12 @@ export const FilterItem = ({
                 addSelectWithNotSelectedValue(
                   selectedItems,
                   itemsAvailableForFilterNews,
-                  setSelectedItems
+                  setSelectedItems,
                 );
               }
-            } }
-            buttonComponentIcon={AddCircleTwoTone} />
+            }}
+            buttonComponentIcon={AddCircleTwoTone}
+          />
         )}
       {selectedItems.length !== minItemsAvailableForFilterNews && (
         <Button
@@ -73,8 +77,9 @@ export const FilterItem = ({
             if (!loading) {
               removeLastSelect(selectedItems, setSelectedItems);
             }
-          } }
-          buttonComponentIcon={RemoveCircleTwoTone} />
+          }}
+          buttonComponentIcon={RemoveCircleTwoTone}
+        />
       )}
     </div>
   </div>

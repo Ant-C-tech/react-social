@@ -1,4 +1,4 @@
-.link {
+.custom-link {
   position: relative;
   margin: 0 7px;
 
@@ -7,102 +7,13 @@
   font-size: 25px;
 }
 
-.link-image-icon-small{
-  margin: 0 5px;
-  width: 30px
-}
-
-.link-image-icon{
-  margin: 0 3px;
-  width: 38px
-}
-
-.link:after {
+.custom-link:after {
   position: absolute;
   content: '';
   background-color: #e0004d;
   transition: width ease-in-out 0.3s, height ease-in-out 0.3s;
 }
 
-.link:focus {
+.custom-link:focus {
   outline: none;
-}
-
-.link-add-text {
-  margin-left: 15px;
-
-  line-height: 1;
-  vertical-align: middle;
-}
-
-.icon-badge {
-  display: inline-block;
-  position: relative;
-  bottom: -8px;
-
-  padding: 2px 5px;
-  min-width: 16px;
-
-  background-color: #e0004d;
-
-  border-radius: 3px;
-
-  font-size: 18px;
-  font-weight: bold;
-  line-height: 1;
-  color: #f3f3f3;
-  text-align: center;
-}
-
-/* Modification */
-/* ************************** */
-.hover-underline {
-  display: inline-flex;
-  align-items: flex-end;
-
-  position: relative;
-  bottom: -5px;
-
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.hover-underline:after {
-  width: 0;
-  height: 1px;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
-}
-
-.hover-underline:hover:after,
-.hover-underline:focus:after,
-.hover-underline.active:after {
-  width: 100%;
-}
-
-.logo.hover-underline.active:after {
-  width: 0;
-}
-/* ************************** */
-.hover-left-line {
-  display: inline-flex;
-  align-items: center;
-
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.hover-left-line:after {
-  width: 1px;
-  height: 0;
-  bottom: 50%;
-  left: -4px;
-  transform: translate(50%, 50%);
-}
-
-.hover-left-line:hover:after,
-.hover-left-line:focus:after,
-.hover-left-line.active:after {
-  height: 100%;
 }

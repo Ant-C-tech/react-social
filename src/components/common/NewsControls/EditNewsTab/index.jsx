@@ -14,46 +14,42 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
     <>
       <BorderColorTwoTone
         fontSize='large'
-        className='news-control-title-icon'
+        className='edit-news-tab-title-icon'
       />
-      <h3 className='news-control-title'>
+      <h3 className='edit-news-tab-title'>
         Do You want to highlight something?
       </h3>
-      <div className='news-control'>
-        <div className='news-control-toolbar'>
-          {highlighters.map((highlighter, index) => {
-            const { name, icon } = highlighter;
-            return (
-              <Button
-                key={index}
-                active={name === activeTool}
-                onClick={() => {
-                  setActiveTool(name === activeTool ? '' : name);
-                }}
-                buttonImageIcon={icon}
-              />
-            );
-          })}
-        </div>
+      <div className='edit-news-tab-control-toolbar'>
+        {highlighters.map((highlighter, index) => {
+          const { name, icon } = highlighter;
+          return (
+            <Button
+              key={index}
+              active={name === activeTool}
+              onClick={() => {
+                setActiveTool(name === activeTool ? '' : name);
+              }}
+              buttonImageIcon={icon}
+            />
+          );
+        })}
       </div>
 
       <DeleteForeverTwoTone
         fontSize='large'
-        className='news-control-title-icon'
+        className='edit-news-tab-title-icon'
       />
-      <h3 className='news-control-title'>
+      <h3 className='edit-news-tab-title'>
         Do You want to delete some highlight?
       </h3>
-      <div className='news-control'>
-        <div className='news-control-toolbar'>
-          <Button
-            active={'eraser' === activeTool}
-            onClick={() => {
-              setActiveTool('eraser' === activeTool ? '' : 'eraser');
-            }}
-            buttonImageIcon={eraser}
-          />
-        </div>
+      <div className='edit-news-tab-control-toolbar'>
+        <Button
+          active={'eraser' === activeTool}
+          onClick={() => {
+            setActiveTool('eraser' === activeTool ? '' : 'eraser');
+          }}
+          buttonImageIcon={eraser}
+        />
       </div>
     </>
   );

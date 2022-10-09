@@ -1,12 +1,20 @@
+.find-news-tab-title {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
 
-.select-title {
-  margin-bottom: 5px;
+  text-align: center;
+  color: #3f3f3f;
+  border-bottom: 1px solid #707070;
+}
+
+.find-news-tab-title-icon {
+  display: block !important;
+  margin: 0 auto 15px;
+
   color: #3f3f3f;
 }
 
-.select-controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 -5px;
+.find-news-tab-keyword-input-title {
+  margin-bottom: 5px;
+  color: #3f3f3f;
 }

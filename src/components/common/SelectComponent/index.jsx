@@ -1,4 +1,4 @@
-import './styles.css';
+import './style.css';
 
 import { useState, useEffect } from 'react';
 
@@ -35,9 +35,9 @@ export const SelectComponent = ({
     return {
       value: currentOption,
       label: (
-        <span className='category-option-item'>
+        <span className='select-option-item'>
           {getIcon(currentOption)}{' '}
-          <span className='category-option-item-text'>
+          <span className='select-option-item-text'>
             {labelOptions && currentOption !== 'all'
               ? labelOptions[currentOption]
               : currentOption}
@@ -65,9 +65,9 @@ export const SelectComponent = ({
     return {
       value: value,
       label: (
-        <span className='option-item'>
+        <span className='select-value'>
           {getIcon(value)}{' '}
-          <span className='option-item-text'>
+          <span className='select-value-text'>
             {labelOptions && value !== 'all' ? labelOptions[value] : value}
           </span>
         </span>
@@ -84,7 +84,7 @@ export const SelectComponent = ({
       hideSelectedOptions={true}
       filterOption={customFilter}
       theme={(theme) => selectTheme(theme)}
-      className={`select ${isFocused ? 'withFocus' : ''}`}
+      className={`select ${isFocused ? 'select-with-focus' : ''}`}
       onChange={onChange}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}

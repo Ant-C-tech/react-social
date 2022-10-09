@@ -5,7 +5,7 @@ export const Bookmarks = () => {
   return (
     <>
       <section className='content-container'>
-        <Message type={'info'} title={'Bookmarks'}>
+        <Message type={'message-info'} title={'Bookmarks'}>
           <p>Sorry, this functionality is in development at the moment.</p>
         </Message>
       </section>

@@ -5,7 +5,7 @@ export const Settings = () => {
   return (
     <>
       <section className='content-container'>
-        <Message type={'info'} title={'Settings'}>
+        <Message type={'message-info'} title={'Settings'}>
           <p>Sorry, this functionality is in development at the moment.</p>
         </Message>
       </section>

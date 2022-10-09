@@ -46,61 +46,77 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
     labelIconOptionsForLanguages,
   } = getAdditionalDataForNewsControls();
 
+  const filterItemsConfig = [
+    {
+      title: 'Selected country:',
+      selectedItems: selectedCountries,
+      setSelectedItems: setSelectedCountries,
+      itemsAvailableForFilterNews: countriesAvailableForFilterNews,
+      minItemsAvailableForFilterNews: minCountriesAvailableForFilterNews,
+      maxItemsAvailableForFilterNews: maxCountriesAvailableForFilterNews,
+      labelOptionForItems: labelOptionForCountries,
+      labelIconOptionsForItems: labelIconOptionsForCountries,
+      addButtonText: 'Add More Countries',
+      removeButtonText: 'Remove Country',
+    },
+    {
+      title: 'Selected category:',
+      selectedItems: selectedCategories,
+      setSelectedItems: setSelectedCategories,
+      itemsAvailableForFilterNews: Object.keys(
+        categoriesAvailableForFilterNews,
+      ),
+      minItemsAvailableForFilterNews: minCategoriesAvailableForFilterNews,
+      maxItemsAvailableForFilterNews: maxCategoriesAvailableForFilterNews,
+      labelOptionForItems: null,
+      labelIconOptionsForItems: categoriesAvailableForFilterNews,
+      addButtonText: 'Add More Categories',
+      removeButtonText: 'Remove Category',
+    },
+    {
+      title: 'Selected languages:',
+      selectedItems: selectedLanguages,
+      setSelectedItems: setSelectedLanguages,
+      itemsAvailableForFilterNews: Object.keys(languagesAvailableForFilterNews),
+      minItemsAvailableForFilterNews: minLanguagesAvailableForFilterNews,
+      maxItemsAvailableForFilterNews: maxLanguagesAvailableForFilterNews,
+      labelOptionForItems: languagesAvailableForFilterNews,
+      labelIconOptionsForItems: labelIconOptionsForLanguages,
+      addButtonText: 'Add More Languages',
+      removeButtonText: 'Remove Language',
+    },
+  ];
+
   return (
     <>
-      <HelpTwoTone fontSize='large' className='news-control-title-icon' />
-      <h3 className='news-control-title'>
+      <HelpTwoTone fontSize='large' className='find-news-tab-title-icon' />
+      <h3 className='find-news-tab-title'>
         Do You want to find something special?
       </h3>
 
-      <FilterItem
-        title='Selected country:'
-        selectedItems={selectedCountries}
-        setSelectedItems={setSelectedCountries}
-        itemsAvailableForFilterNews={countriesAvailableForFilterNews}
-        minItemsAvailableForFilterNews={minCountriesAvailableForFilterNews}
-        maxItemsAvailableForFilterNews={maxCountriesAvailableForFilterNews}
-        labelOptionForItems={labelOptionForCountries}
-        labelIconOptionsForItems={labelIconOptionsForCountries}
-        addButtonText='Add More Countries'
-        removeButtonText='Remove Country'
-        loading={loading}
-      />
+      {filterItemsConfig.map((filterItem, index) => (
+        <FilterItem
+          key={index}
+          title={filterItem.title}
+          selectedItems={filterItem.selectedItems}
+          setSelectedItems={filterItem.setSelectedItems}
+          itemsAvailableForFilterNews={filterItem.itemsAvailableForFilterNews}
+          minItemsAvailableForFilterNews={
+            filterItem.minItemsAvailableForFilterNews
+          }
+          maxItemsAvailableForFilterNews={
+            filterItem.maxItemsAvailableForFilterNews
+          }
+          labelOptionForItems={filterItem.labelOptionForItems}
+          labelIconOptionsForItems={filterItem.labelIconOptionsForItems}
+          addButtonText={filterItem.addButtonText}
+          removeButtonText={filterItem.removeButtonText}
+          loading={loading}
+        />
+      ))}
 
-      <FilterItem
-        title='Selected category:'
-        selectedItems={selectedCategories}
-        setSelectedItems={setSelectedCategories}
-        itemsAvailableForFilterNews={Object.keys(
-          categoriesAvailableForFilterNews,
-        )}
-        minItemsAvailableForFilterNews={minCategoriesAvailableForFilterNews}
-        maxItemsAvailableForFilterNews={maxCategoriesAvailableForFilterNews}
-        labelOptionForItems={null}
-        labelIconOptionsForItems={categoriesAvailableForFilterNews}
-        addButtonText='Add More Categories'
-        removeButtonText='Remove Category'
-        loading={loading}
-      />
-
-      <FilterItem
-        title='Selected languages:'
-        selectedItems={selectedLanguages}
-        setSelectedItems={setSelectedLanguages}
-        itemsAvailableForFilterNews={Object.keys(
-          languagesAvailableForFilterNews,
-        )}
-        minItemsAvailableForFilterNews={minLanguagesAvailableForFilterNews}
-        maxItemsAvailableForFilterNews={maxLanguagesAvailableForFilterNews}
-        labelOptionForItems={languagesAvailableForFilterNews}
-        labelIconOptionsForItems={labelIconOptionsForLanguages}
-        addButtonText='Add More Languages'
-        removeButtonText='Remove Language'
-        loading={loading}
-      />
-
-      <div className='news-control'>
-        <h4 className='select-title'>
+      <>
+        <h4 className='find-news-tab-keyword-input-title'>
           Keywords or phrases you are interested in:
         </h4>
         <InputComponent
@@ -112,7 +128,7 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
           setValue={setKeyword}
           icon={SearchTwoTone}
         />
-      </div>
+      </>
 
       {/* <div className='news-control'>
         <h4 className='select-title'>Selected country:</h4>

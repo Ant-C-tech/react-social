@@ -117,7 +117,7 @@ export const NavBar = ({ contacts }) => {
                     {Icon && <Icon fontSize='large' />}
                     {navItem.iconImage && (
                       <img
-                        className={ navItem.className}
+                        className={navItem.className}
                         src={navItem.iconImage}
                         alt=''
                       />
@@ -126,7 +126,7 @@ export const NavBar = ({ contacts }) => {
                   </>
                 }
                 href={navItem.path}
-                modification='hover-left-line'
+                modification='navbar-hover-left-line'
               />
             </li>
           );
@@ -152,7 +152,7 @@ export const NavBar = ({ contacts }) => {
                   </>
                 }
                 href={`organizer/contact/${index}`}
-                modification='hover-left-line'
+                modification='navbar-hover-left-line'
                 text={contact}
               />
             </li>

@@ -40,18 +40,8 @@ a:active {
 *::-webkit-scrollbar-thumb {
   height: 75px;
   box-shadow: inset 0 0 0 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 *::-webkit-scrollbar-thumb:hover {
   border: 8px solid transparent;
-}
-
-.message {
-  padding: 15px;
-
-  color: #323e42;
-
-  border: 1px solid #323e42;
-  border-radius: 5px;
 }

@@ -5,7 +5,7 @@ export const Chats = () => {
   return (
     <>
       <section className='content-container'>
-        <Message type={'info'} title={'Chats'}>
+        <Message type={'message-info'} title={'Chats'}>
           <p>Sorry, this functionality is in development at the moment.</p>
         </Message>
       </section>

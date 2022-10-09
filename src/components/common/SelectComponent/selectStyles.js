@@ -19,13 +19,14 @@ export const selectStyles = {
     ...styles,
     position: 'relative',
     left: '0px',
-    color: ' #323e42',
+    color: 'rgba(50, 62, 66, 0)',
     boxShadow: '12px 15px 10px -5px #718b93',
     transition: 'box-shadow ease-in-out 0.2s, left ease-in-out 0.2s',
     border: '1px solid #323e42',
     '&:hover': {
       boxShadow: '0px 0px 0px 0px #718b93',
       left: '3px',
+      color: 'rgba(50, 62, 66, 0.6)',
     },
   }),
   menuList: (styles) => ({

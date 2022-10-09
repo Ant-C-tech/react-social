@@ -1,6 +1,5 @@
-import 'react-lazy-load-image-component/src/effects/blur.css';
-
 import './style.css';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import { useState } from 'react';
 import Highlighter from 'react-highlight-words';
@@ -68,10 +67,13 @@ export const NewsCard = ({
       </header>
 
       <div className={`news-card-content ${language}`}>
-        <div className='news-card-title'>
-          <FiberNewTwoTone fontSize='large' className='news-card-title-icon' />
+        <div className='news-card-content-title'>
+          <FiberNewTwoTone
+            fontSize='large'
+            className='news-card-content-title-icon'
+          />
           <h2
-            className={`news-card-title-text cursor-${activeTool}`}
+            className={`news-card-content-title-text cursor-${activeTool}`}
             onMouseUp={() => {
               addHighlight(link, 'title');
             }}
@@ -109,12 +111,12 @@ export const NewsCard = ({
             content={
               <>
                 <OndemandVideoTwoTone />
-                <span className='link-add-text'>Watch Now</span>
+                <span className='news-card-link-add-text'>Watch Now</span>
               </>
             }
             href={video_url}
             target='_blank'
-            modification='hover-left-line'
+            modification='news-card-hover-left-line'
             active=''
           />
         )}
@@ -155,13 +157,13 @@ export const NewsCard = ({
                 autoEscape={true}
                 textToHighlight={content || ''}
               />
-            ) : (
-              content ? getHighlightedStructure(
+            ) : content ? (
+              getHighlightedStructure(
                 content,
                 highlights && highlights['content'],
                 keywords,
-              ) : null
-            )}
+              )
+            ) : null}
           </p>
         )}
 
@@ -169,7 +171,6 @@ export const NewsCard = ({
           {content && (
             <Button
               text={isContentShown ? 'Hide full text' : 'Read More'}
-              className='read-more-button'
               onClick={() => setIsContentShown((prevState) => !prevState)}
               buttonComponentIcon={
                 isContentShown ? CancelPresentationTwoTone : MenuBookTwoTone
@@ -181,17 +182,18 @@ export const NewsCard = ({
             content={
               <>
                 <BookmarkTwoTone />
-                <span className='link-add-text'>Visit original source...</span>
+                <span className='news-card-link-add-text'>
+                  Visit original source...
+                </span>
               </>
             }
             href={link}
             target='_blank'
-            modification='hover-underline'
+            modification='news-card-link-hover-underline'
             active=''
           />
           <Button
             text={isFavorite ? 'Remove from favorite' : 'Add to favorite'}
-            className='remove-from-favorite-button'
             onClick={() => {
               isFavorite ? removeFromFavorite() : addToFavorite();
             }}

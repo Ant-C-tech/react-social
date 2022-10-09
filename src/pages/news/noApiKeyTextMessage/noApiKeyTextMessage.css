@@ -15,3 +15,36 @@
 .no-api-key-description-list-item {
   margin-bottom: 5px;
 }
+
+.link-add-text {
+  margin-left: 15px;
+
+  line-height: 1;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.hover-underline {
+  display: inline-flex;
+  align-items: flex-end;
+
+  position: relative;
+  bottom: -5px;
+
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.hover-underline:after {
+  width: 0;
+  height: 1px;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.hover-underline:hover:after,
+.hover-underline:focus:after,
+.hover-underline.active:after {
+  width: 100%;
+}

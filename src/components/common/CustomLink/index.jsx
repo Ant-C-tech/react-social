@@ -14,7 +14,7 @@ export const CustomLink = ({
 
   return type === 'external' ? (
     <a
-      className={`link ${modification}`}
+      className={`custom-link ${modification}`}
       href={href}
       target={target}
       rel='noopener noreferrer'
@@ -22,7 +22,10 @@ export const CustomLink = ({
       {content}
     </a>
   ) : (
-    <Link className={`link ${modification} ${match ? 'active' : ''}`} to={href}>
+    <Link
+      className={`custom-link ${modification} ${match ? 'active' : ''}`}
+      to={href}
+    >
       {content}
     </Link>
   );

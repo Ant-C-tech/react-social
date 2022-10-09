@@ -199,7 +199,10 @@ export const News = () => {
             activeTool={null}
           />
         ) : (
-          <Message type={'info'} title={'You need API key for getting news.'}>
+          <Message
+            type={'message-info'}
+            title={'You need API key for getting news.'}
+          >
             <NoApiKeyTextMessage />
             <InputComponent
               type='text'
