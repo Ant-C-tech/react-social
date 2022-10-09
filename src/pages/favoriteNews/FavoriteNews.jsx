@@ -2,12 +2,6 @@ import { useState, useEffect } from 'react';
 
 import { useLocalStorage } from '@hooks/useLocalStorage';
 
-import { ControlBar } from '@sections/controlbar/ControlBar';
-import { NewsControls } from '@common/NewsControls/';
-import { NoFavoriteNewsMessage } from './noFavoriteNewsMessage/NoFavoriteNewsMessage';
-import { NewsFeed } from '@common/NewsFeed/';
-import { NothingWasFoundMessage } from '@common/NothingWasFoundMessage';
-
 import { getCountriesAvailableForFilterFavoriteNews } from '@utils/favoriteNews/getCountriesAvailableForFilterFavoriteNews';
 import { getNewsSortByDate } from '@utils/favoriteNews/getNewsSortByDate';
 import { getCategoriesAvailableForFilterFavoriteNews } from '@utils/favoriteNews/getCategoriesAvailableForFilterFavoriteNews';
@@ -18,6 +12,14 @@ import { getLanguagesAvailableForFilterFavoriteNews } from '@utils/favoriteNews/
 import { getLanguagesObject } from '@utils/favoriteNews/getLanguagesObject';
 import { getNewsFilteredByLanguage } from '@utils/favoriteNews/getNewsFilteredByLanguage';
 import { getNewsFilteredByKeyword } from '@utils/favoriteNews/getNewsFilteredByKeyword';
+
+import { ControlBar } from '@sections/Controlbar';
+
+import { NewsControls } from '@common/NewsControls/';
+import { NewsFeed } from '@common/NewsFeed/';
+import { NothingWasFoundMessage } from '@common/NothingWasFoundMessage';
+
+import { NoFavoriteNewsMessage } from './noFavoriteNewsMessage/NoFavoriteNewsMessage';
 
 export const FavoriteNews = () => {
   const [favoriteNews, setFavoriteNews] = useLocalStorage('favoriteNews', []);

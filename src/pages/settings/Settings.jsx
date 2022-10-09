@@ -1,5 +1,5 @@
 import { Message } from '@common/Message/';
-import { ControlBar } from '@sections/controlbar/ControlBar';
+import { ControlBar } from '@sections/Controlbar';
 
 export const Settings = () => {
   return (

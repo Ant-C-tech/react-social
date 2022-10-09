@@ -1,4 +1,4 @@
-import './topbar.css';
+import './style.css';
 
 import {
   ChatTwoTone,
@@ -10,12 +10,12 @@ import { BigHead } from '@bigheads/core';
 import { CustomLink } from '@common/CustomLink/';
 import { IconButtonComponent } from '@common/IconButtonComponent/';
 
-const topBarCenterLinks = [
+const topBarCenterLinksConfig = [
   { type: 'internal', text: 'Settings', path: 'organizer/settings' },
   { type: 'internal', text: 'Help', path: 'organizer/help' },
 ];
 
-const topBarNotifications = [
+const topBarNotificationsConfig = [
   {
     type: 'internal',
     icon: ChatTwoTone,
@@ -30,36 +30,36 @@ const topBarNotifications = [
   },
 ];
 
-const topBarRightLinks = [
+const topBarRightLinksConfig = [
   { type: 'internal', text: 'SignUp', path: 'organizer/signup' },
   { type: 'internal', text: 'LogIn', path: 'organizer/login' },
 ];
 
 export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
   return (
-    <header className='topbar container-flex'>
-      <div className='topbar-left'>
+    <header className='topbar'>
+      <div className='topbar-left-panel'>
         <CustomLink
           type='internal'
           content='OrganiZeR'
           href='organizer/'
-          modification='logo hover-underline'
+          modification='logo topbar-hover-underline'
         />
       </div>
-      <div className='topbar-center'>
-        <div className='topbar-links'>
-          {topBarCenterLinks.map((link, index) => (
+      <div className='topbar-center-panel'>
+        <div className='topbar-links-wrapper'>
+          {topBarCenterLinksConfig.map((link, index) => (
             <CustomLink
               key={index}
               type={link.type}
               content={link.text}
               href={link.path}
-              modification='hover-underline'
+              modification='topbar-hover-underline'
             />
           ))}
         </div>
-        <div className='topbar-notifications'>
-          {topBarNotifications.map((iconLink, index) => {
+        <div className='topbar-center-panel-notifications'>
+          {topBarNotificationsConfig.map((iconLink, index) => {
             const Icon = iconLink['icon'];
             return (
               <CustomLink
@@ -68,7 +68,7 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
                 content={
                   <>
                     <Icon fontSize='large' />
-                    <span className='icon-badge'>
+                    <span className='topbar-center-panel-notifications-badge'>
                       {iconLink.messageCounter}
                     </span>
                   </>
@@ -80,9 +80,9 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
           })}
         </div>
       </div>
-      <div className='topbar-right'>
-        <div className='topbar-links'>
-          {topBarRightLinks.map(
+      <div className='topbar-right-panel'>
+        <div className='topbar-links-wrapper'>
+          {topBarRightLinksConfig.map(
             (link, index) =>
               !isAuthorized && (
                 <CustomLink
@@ -90,7 +90,7 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
                   type={link.type}
                   content={link.text}
                   href={link.path}
-                  modification='hover-underline'
+                  modification='topbar-hover-underline'
                 />
               ),
           )}
@@ -103,7 +103,7 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
 
         <CustomLink
           type='internal'
-          content={<BigHead className='profile-image' />}
+          content={<BigHead className='topbar-profile-image' />}
           href='/profile'
           modification='topbar-hover-left-line'
         />

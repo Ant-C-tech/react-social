@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import { TopBar } from '@sections/Topbar';
+import { NavBar } from '@sections/Navbar';
 import { News } from '@pages/news/News';
 import { FavoriteNews } from '@pages/favoriteNews/FavoriteNews';
 import { ToDo } from '@pages/todo/ToDo';
@@ -18,8 +20,6 @@ import { Courses } from '@pages/courses/Courses';
 import { Chats } from '@pages/chats/Chats';
 import { Settings } from '@pages/settings/Settings';
 import { Help } from '@pages/help/Help';
-import { TopBar } from '@sections/topbar/TopBar';
-import { NavBar } from '@sections/navbar/NavBar';
 import { SignUp } from '@pages/signup/SignUp';
 import { LogIn } from '@pages/login/LogIn';
 import { NoMatch } from '@pages/nomatch/NoMatch';

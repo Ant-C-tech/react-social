@@ -1,4 +1,4 @@
-import './navbar.css';
+import './style.css';
 
 import newsIcon from '@assets/newspaper.png';
 import favoriteNewsIcon from '@assets/inbox.png';
@@ -23,18 +23,18 @@ import {
 import { CustomLink } from '@common/CustomLink/';
 import { Button } from '@common/Button';
 
-const navBarItems = [
+const navBarItemsConfig = [
   {
     type: 'internal',
     iconImage: newsIcon,
-    className: 'link-image-icon',
+    className: 'navbar-link-image-icon',
     path: 'organizer/',
     text: 'News',
   },
   {
     type: 'internal',
     iconImage: favoriteNewsIcon,
-    className: 'link-image-icon-small',
+    className: 'navbar-link-image-icon-small',
     path: 'organizer/favorite_news',
     text: 'My Favorite News',
   },
@@ -106,7 +106,7 @@ export const NavBar = ({ contacts }) => {
   return (
     <nav className='navbar'>
       <ul className='navbar-nav'>
-        {navBarItems.map((navItem, index) => {
+        {navBarItemsConfig.map((navItem, index) => {
           const Icon = navItem['icon'];
           return (
             <li key={index} className='navbar-nav-item'>
@@ -122,7 +122,7 @@ export const NavBar = ({ contacts }) => {
                         alt=''
                       />
                     )}
-                    <span className='link-add-text'>{navItem.text}</span>
+                    <span className='navbar-link-add-text'>{navItem.text}</span>
                   </>
                 }
                 href={navItem.path}
@@ -132,10 +132,9 @@ export const NavBar = ({ contacts }) => {
           );
         })}
       </ul>
-      <hr />
+      <hr className='navbar-divider' />
       <Button
         text={isContactsShown ? 'Hide Contacts' : 'Show Contacts'}
-        className='read-more-button'
         onClick={() => setIsContactsShown((prevState) => !prevState)}
         buttonComponentIcon={PeopleTwoTone}
       />
@@ -148,7 +147,7 @@ export const NavBar = ({ contacts }) => {
                 content={
                   <>
                     <BigHead className='navbar-contact-image' />
-                    <span className='link-add-text'>{contact}</span>
+                    <span className='navbar-link-add-text'>{contact}</span>
                   </>
                 }
                 href={`organizer/contact/${index}`}

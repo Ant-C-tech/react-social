@@ -9,16 +9,16 @@ import { useLocalStorage } from '@hooks/useLocalStorage';
 
 import { countriesAvailableForFilterNews } from '@constants/News/countriesAvailableForFilterNews';
 import { categoriesAvailableForFilterNews } from '@constants/categoriesAvailableForFilterNews';
+import { languagesAvailableForFilterNews } from '@constants/languagesAvailableForFilterNews';
 
-import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
-
-import { ControlBar } from '@sections/controlbar/ControlBar';
+import { ControlBar } from '@sections/Controlbar';
 import { NewsFeed } from '@common/NewsFeed/';
 import { NewsControls } from '@common/NewsControls/';
 import { Message } from '@common/Message/';
 import { InputComponent } from '@common/InputComponent/';
 import { NothingWasFoundMessage } from '@common/NothingWasFoundMessage';
-import { languagesAvailableForFilterNews } from '@constants/languagesAvailableForFilterNews';
+import { NoApiKeyTextMessage } from './noApiKeyTextMessage/NoApiKeyTextMessage';
+
 
 export const News = () => {
   const [apiKey, setApiKey] = useLocalStorage('apiKey', '');
