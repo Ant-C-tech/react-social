@@ -1,4 +1,4 @@
-import './style.css';
+import './styles.css';
 
 import { ErrorTwoTone } from '@material-ui/icons';
 

@@ -1,4 +1,4 @@
-import './style.css';
+import './styles.css';
 
 import newsIcon from '@assets/newspaper.png';
 import favoriteNewsIcon from '@assets/inbox.png';

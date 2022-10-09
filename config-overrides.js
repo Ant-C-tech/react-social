@@ -2,7 +2,7 @@ const path = require('path');
 
 const resolve = (dir) => path.resolve(__dirname, dir);
 
-module.exports = function(config, env) {
+module.exports = function(config, _env) {
   config.resolve.alias = Object.assign(config.resolve.alias, {
     '@utils': resolve('src/utils'),
     '@common': resolve('src/components/common'),

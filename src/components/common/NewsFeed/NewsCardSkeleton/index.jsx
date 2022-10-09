@@ -1,4 +1,4 @@
-import './style.css';
+import './styles.css';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 import Skeleton from 'react-loading-skeleton';

@@ -1,4 +1,4 @@
-import './style.css';
+import './styles.css';
 
 import IconButton from '@material-ui/core/IconButton';
 

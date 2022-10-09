@@ -1,4 +1,4 @@
-import './style.css';
+import './styles.css';
 import eraser from '@assets/eraser-svgrepo-com.svg';
 
 import { DeleteForeverTwoTone, BorderColorTwoTone } from '@material-ui/icons';

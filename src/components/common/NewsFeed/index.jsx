@@ -1,16 +1,16 @@
-import './style.css';
+import './styles.css';
 
 import { useEffect, useRef } from 'react';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import { Waypoint } from 'react-waypoint';
 
-import { NewsCard } from './NewsCard';
-import { NewsCardSkeleton } from './NewsCardSkeleton';
-
 import { getIsFavorite } from '@utils/newsFeed/getIsFavorite';
 import { addToFavorite } from '@utils/newsFeed/addToFavorite';
 import { removeFromFavorite } from '@utils/newsFeed/removeFromFavorite';
 import { addHighlight } from '@utils/newsFeed/addHighlight';
+
+import { NewsCard } from './NewsCard';
+import { NewsCardSkeleton } from './NewsCardSkeleton';
 
 export const NewsFeed = ({
   newsSet,

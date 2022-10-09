@@ -14,11 +14,9 @@ import { getNewsFilteredByLanguage } from '@utils/favoriteNews/getNewsFilteredBy
 import { getNewsFilteredByKeyword } from '@utils/favoriteNews/getNewsFilteredByKeyword';
 
 import { ControlBar } from '@sections/Controlbar';
-
 import { NewsControls } from '@common/NewsControls/';
 import { NewsFeed } from '@common/NewsFeed/';
 import { NothingWasFoundMessage } from '@common/NothingWasFoundMessage';
-
 import { NoFavoriteNewsMessage } from './noFavoriteNewsMessage/NoFavoriteNewsMessage';
 
 export const FavoriteNews = () => {
