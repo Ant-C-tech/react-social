@@ -305,3 +305,9 @@
   background-color: #e0004d;
   color: #fff;
 }
+
+.news-card-link-image-icon {
+  display: block;
+  margin: 0 3px;
+  width: 38px
+}

@@ -12,11 +12,11 @@ import { ToDo } from '@pages/todo/ToDo';
 import { Notes } from '@pages/notes/Notes';
 import { Events } from '@pages/events/Events';
 import { Translation } from '@pages/translation/Translation';
-import { Bookmarks } from '@pages/bookmarks/Bookmarks';
+import { Photos } from '@pages/photos/Photos';
 import { Videos } from '@pages/videos/Videos';
 import { Music } from '@pages/music/Music';
 import { Jobs } from '@pages/jobs/Jobs';
-import { Courses } from '@pages/courses/Courses';
+import { Books } from '@pages/books/Books';
 import { Chats } from '@pages/chats/Chats';
 import { Settings } from '@pages/settings/Settings';
 import { Help } from '@pages/help/Help';
@@ -62,11 +62,11 @@ const App = () => {
           <Route path='organizer/notes' element={<Notes />} />
           <Route path='organizer/events' element={<Events />} />
           <Route path='organizer/translation' element={<Translation />} />
-          <Route path='organizer/bookmarks' element={<Bookmarks />} />
+          <Route path='organizer/photos' element={<Photos />} />
           <Route path='organizer/videos' element={<Videos />} />
           <Route path='organizer/music' element={<Music />} />
           <Route path='organizer/jobs' element={<Jobs />} />
-          <Route path='organizer/courses' element={<Courses />} />
+          <Route path='organizer/books' element={<Books />} />
           <Route path='organizer/chats' element={<Chats />} />
           {contacts.map((_contact, index) => (
             <Route

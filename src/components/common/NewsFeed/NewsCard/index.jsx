@@ -1,11 +1,12 @@
 import './styles.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
+import playVideoIcon from '@assets/clapperboard.png';
+
 import { useState } from 'react';
 import Highlighter from 'react-highlight-words';
 import {
   BookmarkTwoTone,
-  OndemandVideoTwoTone,
   FiberNewTwoTone,
   MenuBookTwoTone,
   CancelPresentationTwoTone,
@@ -110,7 +111,11 @@ export const NewsCard = ({
             type='external'
             content={
               <>
-                <OndemandVideoTwoTone />
+                <img
+                  className='news-card-link-image-icon'
+                  src={playVideoIcon}
+                  alt=''
+                />
                 <span className='news-card-link-add-text'>Watch Now</span>
               </>
             }

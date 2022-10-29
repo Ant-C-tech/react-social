@@ -2,21 +2,21 @@ import './styles.css';
 
 import newsIcon from '@assets/newspaper.png';
 import favoriteNewsIcon from '@assets/inbox.png';
+import jobsIcon from '@assets/money.png';
+import musicIcon from '@assets/guitar-playing.png';
+import booksIcon from '@assets/bookshelf.png';
+import todoIcon from '@assets/rules.png';
+import notesIcon from '@assets/reminder.png';
+import eventsIcon from '@assets/calendar.png';
+import translationIcon from '@assets/translation.png';
+import chatsIcon from '@assets/comment.png';
+import photosIcon from '@assets/photo.png';
+import videosIcon from '@assets/film.png';
 
 import { useState } from 'react';
 
 import { BigHead } from '@bigheads/core';
 import {
-  ChatTwoTone,
-  VideoLibraryTwoTone,
-  NotesTwoTone,
-  BookmarkTwoTone,
-  WorkOutlineTwoTone,
-  EventTwoTone,
-  SchoolTwoTone,
-  TranslateTwoTone,
-  FormatListNumberedTwoTone,
-  MusicNoteTwoTone,
   PeopleTwoTone,
 } from '@material-ui/icons';
 
@@ -34,67 +34,77 @@ const navBarItemsConfig = [
   {
     type: 'internal',
     iconImage: favoriteNewsIcon,
-    className: 'navbar-link-image-icon-small',
+    className: 'navbar-link-image-icon',
     path: 'organizer/favorite_news',
     text: 'My Favorite News',
   },
   {
     type: 'internal',
-    icon: FormatListNumberedTwoTone,
+    iconImage: todoIcon,
+    className: 'navbar-link-image-icon',
     path: 'organizer/todo',
     text: 'ToDo',
   },
   {
     type: 'internal',
-    icon: NotesTwoTone,
+    iconImage: notesIcon,
+    className: 'navbar-link-image-icon',
     path: 'organizer/notes',
     text: 'Notes',
   },
   {
     type: 'internal',
-    icon: EventTwoTone,
+    iconImage: eventsIcon,
+    className: 'navbar-link-image-icon',
     path: 'organizer/events',
     text: 'Events',
   },
   {
     type: 'internal',
-    icon: TranslateTwoTone,
+    iconImage: translationIcon,
+    className: 'navbar-link-image-icon',
     path: 'organizer/translation',
     text: 'Translation',
   },
   {
     type: 'internal',
-    icon: BookmarkTwoTone,
-    path: 'organizer/bookmarks',
-    text: 'Bookmarks',
+    iconImage: photosIcon,
+    className: 'navbar-link-image-icon',
+    path: 'organizer/photos',
+    text: 'Photos',
   },
   {
     type: 'internal',
-    icon: VideoLibraryTwoTone,
+    iconImage: videosIcon,
+    className: 'navbar-link-image-icon',
     path: 'organizer/videos',
     text: 'Videos',
   },
   {
     type: 'internal',
-    icon: MusicNoteTwoTone,
+    iconImage: musicIcon,
+    className: 'navbar-link-image-icon',
     path: 'organizer/music',
     text: 'Music',
   },
   {
     type: 'internal',
-    icon: WorkOutlineTwoTone,
+    iconImage: jobsIcon,
+    className: 'navbar-link-image-icon',
     path: 'organizer/jobs',
     text: ' Jobs',
   },
   {
     type: 'internal',
-    icon: SchoolTwoTone,
-    path: 'organizer/courses',
-    text: ' Courses',
+    iconImage: booksIcon,
+    className: 'navbar-link-image-icon',
+    path: 'organizer/books',
+    text: ' Books',
   },
   {
     type: 'internal',
-    icon: ChatTwoTone,
+    iconImage: chatsIcon,
+    className: 'navbar-link-image-icon',
     path: 'organizer/chats',
     text: ' Chats',
   },
