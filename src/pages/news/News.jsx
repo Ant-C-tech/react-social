@@ -1,8 +1,8 @@
 import './news.css';
 
-import { useState, useEffect } from 'react';
+import fingerPrint from '@assets/fingerprint.png';
 
-import { LockTwoTone } from '@material-ui/icons';
+import { useState, useEffect } from 'react';
 
 import { getNews } from '../../businessLogic/news/getNews';
 import { useLocalStorage } from '@hooks/useLocalStorage';
@@ -211,7 +211,7 @@ export const News = () => {
               placeholder={'Please, input your API key'}
               value={apiKey}
               setValue={setApiKey}
-              icon={LockTwoTone}
+              icon={fingerPrint}
             />
           </Message>
         )}

@@ -1,10 +1,9 @@
 import './styles.css';
 
+import magnifyingGlass from '@assets/magnifying-glass.png';
+
 import {
   HelpTwoTone,
-  // AddCircleTwoTone,
-  // RemoveCircleTwoTone,
-  SearchTwoTone,
 } from '@material-ui/icons';
 
 // import { getNotSelectedItems } from '@utils/newsControls/getNotSelectedItems';
@@ -126,7 +125,7 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
           placeholder={'Keyword...'}
           value={keyword}
           setValue={setKeyword}
-          icon={SearchTwoTone}
+          icon={magnifyingGlass}
         />
       </>
 

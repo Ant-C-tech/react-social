@@ -16,11 +16,9 @@ export const InputComponent = ({
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
-  const Icon = icon;
-
   return (
     <div className={`input-component ${isFocused ? 'withFocus' : ''}`}>
-      <Icon className='input-icon' />
+      <img className='input-icon' src={icon} alt='' />
       <DebounceInput
         type={type}
         minLength={minLength}
