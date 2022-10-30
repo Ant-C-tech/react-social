@@ -1,6 +1,6 @@
 import './noApiKeyTextMessage.css';
 
-import { Bookmark } from '@material-ui/icons';
+import originalSourceIcon from '@assets/footprint.png';
 
 import { CustomLink } from '@common/CustomLink/';
 
@@ -13,7 +13,12 @@ export const NoApiKeyTextMessage = () => {
           type='external'
           content={
             <>
-              <Bookmark />
+              <img
+                className='no-api-key-icon'
+                src={originalSourceIcon}
+                alt='#'
+                aria-hidden={true}
+              />
               <span className='link-add-text'>NEWSDATA.IO</span>
             </>
           }
