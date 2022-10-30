@@ -7,23 +7,23 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { TopBar } from '@sections/Topbar';
 import { NavBar } from '@sections/Navbar';
 import { News } from '@pages/news/News';
-import { FavoriteNews } from '@pages/favoriteNews/FavoriteNews';
+import { FavoriteNews } from '@pages/FavoriteNews/';
 import { ToDo } from '@pages/todo/ToDo';
 import { Notes } from '@pages/notes/Notes';
-import { Events } from '@pages/events/Events';
+import { Events } from '@pages/Events/';
 import { Translation } from '@pages/translation/Translation';
 import { Photos } from '@pages/photos/Photos';
 import { Videos } from '@pages/videos/Videos';
 import { Music } from '@pages/music/Music';
 import { Jobs } from '@pages/jobs/Jobs';
-import { Books } from '@pages/books/Books';
-import { Chats } from '@pages/chats/Chats';
+import { Books } from '@pages/Books/';
+import { Chats } from '@pages/Chats/';
 import { Settings } from '@pages/settings/Settings';
 import { Help } from '@pages/help/Help';
 import { SignUp } from '@pages/signup/SignUp';
 import { LogIn } from '@pages/login/LogIn';
 import { NoMatch } from '@pages/nomatch/NoMatch';
-import { Contact } from '@pages/contact/Contact';
+import { Contacts } from '@pages/Contacts/';
 
 const App = () => {
   // Mock authorization data
@@ -72,7 +72,7 @@ const App = () => {
             <Route
               key={index}
               path={`organizer/contact/${index}`}
-              element={<Contact />}
+              element={<Contacts />}
             />
           ))}
 

@@ -1,5 +1,8 @@
 import './styles.css';
 
+import addIcon from '@assets/add.png';
+import removeIcon from '@assets/bin.png';
+
 import { AddCircleTwoTone, RemoveCircleTwoTone } from '@material-ui/icons';
 
 import { getNotSelectedItems } from '@utils/newsControls/getNotSelectedItems';
@@ -77,7 +80,7 @@ export const FilterItem = ({
                 );
               }
             }}
-            buttonComponentIcon={AddCircleTwoTone}
+            buttonImageIcon={addIcon}
           />
         )}
       {selectedItems.length !== minItemsAvailableForFilterNews && (
@@ -88,7 +91,7 @@ export const FilterItem = ({
               removeLastSelect(selectedItems, setSelectedItems);
             }
           }}
-          buttonComponentIcon={RemoveCircleTwoTone}
+          buttonImageIcon={removeIcon}
         />
       )}
     </div>

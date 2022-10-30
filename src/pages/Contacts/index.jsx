@@ -1,7 +1,7 @@
 import { Message } from '@common/Message/';
 import { ControlBar } from '@sections/Controlbar';
 
-export const Contact = () => {
+export const Contacts = () => {
   return (
     <>
       <section className='content-container'>

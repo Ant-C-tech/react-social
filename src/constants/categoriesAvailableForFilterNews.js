@@ -10,73 +10,52 @@ import technologyIconSrc from '@assets/cyborg.png';
 import topIconSrc from '@assets/award.png';
 import worldIconSrc from '@assets/globe.png';
 
+const categories = [
+  'all',
+  'business',
+  'entertainment',
+  'environment',
+  'food',
+  'health',
+  'politics',
+  'science',
+  'sports',
+  'technology',
+  'top',
+  'world',
+];
+
+const categoriesIcons = [
+  'all',
+  businessIconSrc,
+  entertainmentIconSrc,
+  environmentIconSrc,
+  foodIconSrc,
+  healthIconSrc,
+  politicsIconSrc,
+  scienceIconSrc,
+  sportsIconSrc,
+  technologyIconSrc,
+  topIconSrc,
+  worldIconSrc,
+];
+
 const iconStyles = {
   width: '40px',
   paddingRight: '10px',
   objectFit: 'contain',
 };
 
-const BusinessIcon = () => (
-  <img src={businessIconSrc} alt='#' style={iconStyles} aria-hidden={true} />
-);
+export const categoriesAvailableForFilterNews = {};
 
-const EnvironmentIcon = () => (
-  <img src={environmentIconSrc} alt='#' style={iconStyles} aria-hidden={true} />
-);
-
-const EntertainmentIcon = () => (
-  <img
-    src={entertainmentIconSrc}
-    alt='#'
-    style={iconStyles}
-    aria-hidden={true}
-  />
-);
-
-const FoodIcon = () => (
-  <img src={foodIconSrc} alt='#' style={iconStyles} aria-hidden={true} />
-);
-
-const HealthIcon = () => (
-  <img src={healthIconSrc} alt='#' style={iconStyles} aria-hidden={true} />
-);
-
-const PoliticsIcon = () => (
-  <img src={politicsIconSrc} alt='#' style={iconStyles} aria-hidden={true} />
-);
-
-const ScienceIcon = () => (
-  <img src={scienceIconSrc} alt='#' style={iconStyles} aria-hidden={true} />
-);
-
-const SportsIcon = () => (
-  <img src={sportsIconSrc} alt='#' style={iconStyles} aria-hidden={true} />
-);
-
-const TechnologyIcon = () => (
-  <img src={technologyIconSrc} alt='#' style={iconStyles} aria-hidden={true} />
-);
-
-const TopIcon = () => (
-  <img src={topIconSrc} alt='#' style={iconStyles} aria-hidden={true} />
-);
-
-const WorldIcon = () => (
-  <img src={worldIconSrc} alt='#' style={iconStyles} aria-hidden={true} />
-);
-
-
-export const categoriesAvailableForFilterNews = {
-  all:'',
-  business: <BusinessIcon />,
-  entertainment: <EntertainmentIcon />,
-  environment: <EnvironmentIcon />,
-  food: <FoodIcon />,
-  health: <HealthIcon />,
-  politics: <PoliticsIcon />,
-  science: <ScienceIcon />,
-  sports: <SportsIcon />,
-  technology: <TechnologyIcon />,
-  top: <TopIcon />,
-  world: <WorldIcon />,
-};
+categories.forEach((category, index) => {
+  const Icon = () => (
+    <img
+      src={categoriesIcons[index]}
+      alt='#'
+      style={iconStyles}
+      aria-hidden={true}
+    />
+  );
+  categoriesAvailableForFilterNews[category] = <Icon />;
+});
