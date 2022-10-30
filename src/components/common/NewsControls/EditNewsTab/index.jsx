@@ -1,7 +1,7 @@
 import './styles.css';
 import eraser from '@assets/eraser-svgrepo-com.svg';
-
-import { DeleteForeverTwoTone, BorderColorTwoTone } from '@material-ui/icons';
+import highlightToolsIcon from '@assets/stationery.png';
+import eraseToolIcon from '@assets/bin.png';
 
 import { highlighters } from '@constants/NewsControls/highlighters';
 
@@ -12,9 +12,11 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
 
   return (
     <>
-      <BorderColorTwoTone
-        fontSize='large'
+      <img
         className='edit-news-tab-title-icon'
+        src={highlightToolsIcon}
+        alt='#'
+        aria-hidden={true}
       />
       <h3 className='edit-news-tab-title'>
         Do You want to highlight something?
@@ -35,9 +37,11 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
         })}
       </div>
 
-      <DeleteForeverTwoTone
-        fontSize='large'
+      <img
         className='edit-news-tab-title-icon'
+        src={eraseToolIcon}
+        alt='#'
+        aria-hidden={true}
       />
       <h3 className='edit-news-tab-title'>
         Do You want to delete some highlight?

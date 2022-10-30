@@ -1,12 +1,16 @@
 import './styles.css';
-
-import { ErrorTwoTone } from '@material-ui/icons';
+import hintIcon from '@assets/knowledge.png';
 
 export const Message = ({ type, title, children }) => {
   return (
     <article className={`${type} message`}>
       <h2 className='message-title'>{title}</h2>
-      <ErrorTwoTone fontSize='large' className='message-icon' />
+      <img
+        src={hintIcon}
+        className='message-icon'
+        alt='#'
+        aria-hidden={true}
+      />
       <div className='message-text'>{children}</div>
     </article>
   );

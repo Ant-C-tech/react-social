@@ -11,6 +11,19 @@
   font-family: 'Special Elite', cursive;
 }
 
+.news-card-icon {
+  display: block;
+  width: 38px;
+  height: 38px;
+  margin: 0 10px;
+}
+
+.news-card-title-icon {
+  position: relative;
+  bottom: 10px;
+}
+
+
 .news-card-header {
   justify-content: space-around;
   text-transform: uppercase;
@@ -69,12 +82,6 @@
   margin-bottom: 15px;
 }
 
-.news-card-content-title-icon {
-  margin-right: 15px;
-
-  color: #323e42;
-}
-
 .news-card-content-title-text {
   display: block;
 
@@ -84,7 +91,7 @@
   text-transform: uppercase;
 }
 
-.news-card-content-title-text > span {
+.news-card-content-title-text>span {
   padding-top: 5px;
 }
 
@@ -93,7 +100,7 @@
 }
 
 .cursor-green-highlighter::selection,
-.cursor-green-highlighter > span::selection {
+.cursor-green-highlighter>span::selection {
   background-color: #96e2b9;
 }
 
@@ -102,7 +109,7 @@
 }
 
 .cursor-blue-highlighter::selection,
-.cursor-blue-highlighter > span::selection {
+.cursor-blue-highlighter>span::selection {
   background-color: #94d3cf;
 }
 
@@ -111,7 +118,7 @@
 }
 
 .cursor-yellow-highlighter::selection,
-.cursor-yellow-highlighter > span::selection {
+.cursor-yellow-highlighter>span::selection {
   background-color: #e7d771;
 }
 
@@ -120,7 +127,7 @@
 }
 
 .cursor-purple-highlighter::selection,
-.cursor-purple-highlighter > span::selection {
+.cursor-purple-highlighter>span::selection {
   background-color: #c6aee1;
 }
 
@@ -129,7 +136,7 @@
 }
 
 .cursor-pink-highlighter::selection,
-.cursor-pink-highlighter > span::selection {
+.cursor-pink-highlighter>span::selection {
   background-color: #e9bcbf;
 }
 
@@ -138,13 +145,13 @@
 }
 
 .cursor-orange-highlighter::selection,
-.cursor-orange-highlighter > span::selection {
+.cursor-orange-highlighter>span::selection {
   background-color: #efa383;
   color: #22373f;
 }
 
 .cursor-eraser::selection,
-.cursor-eraser > span::selection {
+.cursor-eraser>span::selection {
   background-color: #fff;
 }
 
@@ -211,8 +218,6 @@
   position: relative;
   bottom: -5px;
 
-  min-width: 40%;
-
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -220,7 +225,7 @@
 .news-card-link-hover-underline:after {
   width: 0;
   height: 1px;
-  bottom: 0;
+  bottom: -3px;
   left: 50%;
   transform: translate(-50%, 0);
 }
@@ -304,10 +309,4 @@
 .search-highlight {
   background-color: #e0004d;
   color: #fff;
-}
-
-.news-card-link-image-icon {
-  display: block;
-  margin: 0 3px;
-  width: 38px
 }

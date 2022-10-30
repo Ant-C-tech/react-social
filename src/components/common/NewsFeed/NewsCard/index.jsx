@@ -2,19 +2,17 @@ import './styles.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
 import playVideoIcon from '@assets/clapperboard.png';
+import newsIcon from '@assets/newspaper.png';
+import originalSourceIcon from '@assets/footprint.png';
+import addToFavoriteButtonIcon from '@assets/inbox.png';
+import removeFromFavoriteButtonIcon from '@assets/bin.png';
+import readMoreButtonIcon from '@assets/book-pages.png';
+import hideFullTextButtonIcon from '@assets/book.png';
 
 import { useState } from 'react';
 import Highlighter from 'react-highlight-words';
-import {
-  BookmarkTwoTone,
-  FiberNewTwoTone,
-  MenuBookTwoTone,
-  CancelPresentationTwoTone,
-  FolderSpecialTwoTone,
-  RemoveCircleTwoTone,
-} from '@material-ui/icons';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CustomLink } from '@common/CustomLink/';
 import { Button } from '@common/Button/';
 
@@ -69,9 +67,11 @@ export const NewsCard = ({
 
       <div className={`news-card-content ${language}`}>
         <div className='news-card-content-title'>
-          <FiberNewTwoTone
-            fontSize='large'
-            className='news-card-content-title-icon'
+          <img
+            className='news-card-icon news-card-title-icon'
+            src={newsIcon}
+            alt='#'
+            aria-hidden={true}
           />
           <h2
             className={`news-card-content-title-text cursor-${activeTool}`}
@@ -112,9 +112,10 @@ export const NewsCard = ({
             content={
               <>
                 <img
-                  className='news-card-link-image-icon'
+                  className='news-card-icon'
                   src={playVideoIcon}
-                  alt=''
+                  alt='#'
+                  aria-hidden={true}
                 />
                 <span className='news-card-link-add-text'>Watch Now</span>
               </>
@@ -177,8 +178,8 @@ export const NewsCard = ({
             <Button
               text={isContentShown ? 'Hide full text' : 'Read More'}
               onClick={() => setIsContentShown((prevState) => !prevState)}
-              buttonComponentIcon={
-                isContentShown ? CancelPresentationTwoTone : MenuBookTwoTone
+              buttonImageIcon={
+                isContentShown ? hideFullTextButtonIcon : readMoreButtonIcon
               }
             />
           )}
@@ -186,7 +187,12 @@ export const NewsCard = ({
             type='external'
             content={
               <>
-                <BookmarkTwoTone />
+                <img
+                  className='news-card-icon'
+                  src={originalSourceIcon}
+                  alt='#'
+                  aria-hidden={true}
+                />
                 <span className='news-card-link-add-text'>
                   Visit original source...
                 </span>
@@ -202,8 +208,10 @@ export const NewsCard = ({
             onClick={() => {
               isFavorite ? removeFromFavorite() : addToFavorite();
             }}
-            buttonComponentIcon={
-              isFavorite ? RemoveCircleTwoTone : FolderSpecialTwoTone
+            buttonImageIcon={
+              isFavorite
+                ? removeFromFavoriteButtonIcon
+                : addToFavoriteButtonIcon
             }
           />
         </div>

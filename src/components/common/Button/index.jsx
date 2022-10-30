@@ -18,9 +18,14 @@ export const Button = ({
     >
       {buttonComponentIcon && <Icon className='button-component-icon' />}
       {buttonImageIcon && (
-        <img className='button-image-icon' src={buttonImageIcon} alt='' />
+        <img
+          className='button-image-icon'
+          src={buttonImageIcon}
+          alt='#'
+          aria-hidden={true}
+        />
       )}
-      {text && text}
+      {text && <span>{text}</span>}
     </button>
   );
 };

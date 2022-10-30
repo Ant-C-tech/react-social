@@ -18,7 +18,7 @@ export const InputComponent = ({
 
   return (
     <div className={`input-component ${isFocused ? 'withFocus' : ''}`}>
-      <img className='input-icon' src={icon} alt='' />
+      <img className='input-icon' src={icon} alt='#' aria-hidden={true} />
       <DebounceInput
         type={type}
         minLength={minLength}

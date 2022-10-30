@@ -9,12 +9,23 @@
 
 .find-news-tab-title-icon {
   display: block !important;
+  width: 38px;
   margin: 0 auto 15px;
+}
 
-  color: #3f3f3f;
+.find-news-tab-keyword-input-title-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
+.find-news-tab-keyword-input-title-icon {
+  display: block;
+  width: 38px;
+  margin-right: 10px;
 }
 
 .find-news-tab-keyword-input-title {
-  margin-bottom: 5px;
   color: #3f3f3f;
 }

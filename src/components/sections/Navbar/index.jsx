@@ -3,7 +3,7 @@ import './styles.css';
 import newsIcon from '@assets/newspaper.png';
 import favoriteNewsIcon from '@assets/inbox.png';
 import jobsIcon from '@assets/money.png';
-import musicIcon from '@assets/guitar-playing.png';
+import musicIcon from '@assets/music.png';
 import booksIcon from '@assets/bookshelf.png';
 import todoIcon from '@assets/rules.png';
 import notesIcon from '@assets/reminder.png';
@@ -12,13 +12,11 @@ import translationIcon from '@assets/translation.png';
 import chatsIcon from '@assets/comment.png';
 import photosIcon from '@assets/photo.png';
 import videosIcon from '@assets/film.png';
+import contactsButtonIcon from '@assets/member.png';
 
 import { useState } from 'react';
 
 import { BigHead } from '@bigheads/core';
-import {
-  PeopleTwoTone,
-} from '@material-ui/icons';
 
 import { CustomLink } from '@common/CustomLink/';
 import { Button } from '@common/Button';
@@ -117,19 +115,20 @@ export const NavBar = ({ contacts }) => {
     <nav className='navbar'>
       <ul className='navbar-nav'>
         {navBarItemsConfig.map((navItem, index) => {
-          const Icon = navItem['icon'];
+          // const Icon = navItem['icon'];
           return (
             <li key={index} className='navbar-nav-item'>
               <CustomLink
                 type={navItem.type}
                 content={
                   <>
-                    {Icon && <Icon fontSize='large' />}
+                    {/* {Icon && <Icon fontSize='large' />} */}
                     {navItem.iconImage && (
                       <img
                         className={navItem.className}
                         src={navItem.iconImage}
-                        alt=''
+                        alt='#'
+                        aria-hidden={true}
                       />
                     )}
                     <span className='navbar-link-add-text'>{navItem.text}</span>
@@ -146,7 +145,7 @@ export const NavBar = ({ contacts }) => {
       <Button
         text={isContactsShown ? 'Hide Contacts' : 'Show Contacts'}
         onClick={() => setIsContactsShown((prevState) => !prevState)}
-        buttonComponentIcon={PeopleTwoTone}
+        buttonImageIcon={contactsButtonIcon}
       />
       {isContactsShown && (
         <ul className='navbar-contacts'>

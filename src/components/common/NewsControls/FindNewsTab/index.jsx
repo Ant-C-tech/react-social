@@ -1,10 +1,12 @@
 import './styles.css';
 
 import magnifyingGlass from '@assets/magnifying-glass.png';
+import hintIcon from '@assets/idea.png';
+import countriesIcon from '@assets/globe.png';
+import categoriesIcon from '@assets/compass.png';
+import languagesIcon from '@assets/languages.png';
+import keywordsIcon from '@assets/keyword.png';
 
-import {
-  HelpTwoTone,
-} from '@material-ui/icons';
 
 // import { getNotSelectedItems } from '@utils/newsControls/getNotSelectedItems';
 // import { addSelectWithNotSelectedValue } from '@utils/newsControls/addSelectWithNotSelectedValue';
@@ -48,6 +50,7 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
   const filterItemsConfig = [
     {
       title: 'Selected country:',
+      icon: countriesIcon,
       selectedItems: selectedCountries,
       setSelectedItems: setSelectedCountries,
       itemsAvailableForFilterNews: countriesAvailableForFilterNews,
@@ -60,6 +63,7 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
     },
     {
       title: 'Selected category:',
+      icon: categoriesIcon,
       selectedItems: selectedCategories,
       setSelectedItems: setSelectedCategories,
       itemsAvailableForFilterNews: Object.keys(
@@ -74,6 +78,7 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
     },
     {
       title: 'Selected languages:',
+      icon: languagesIcon,
       selectedItems: selectedLanguages,
       setSelectedItems: setSelectedLanguages,
       itemsAvailableForFilterNews: Object.keys(languagesAvailableForFilterNews),
@@ -88,7 +93,12 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
 
   return (
     <>
-      <HelpTwoTone fontSize='large' className='find-news-tab-title-icon' />
+      <img
+        className='find-news-tab-title-icon'
+        src={hintIcon}
+        alt='#'
+        aria-hidden={true}
+      />
       <h3 className='find-news-tab-title'>
         Do You want to find something special?
       </h3>
@@ -97,6 +107,7 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
         <FilterItem
           key={index}
           title={filterItem.title}
+          icon={filterItem.icon}
           selectedItems={filterItem.selectedItems}
           setSelectedItems={filterItem.setSelectedItems}
           itemsAvailableForFilterNews={filterItem.itemsAvailableForFilterNews}
@@ -115,9 +126,17 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
       ))}
 
       <>
-        <h4 className='find-news-tab-keyword-input-title'>
-          Keywords or phrases you are interested in:
-        </h4>
+        <div className='find-news-tab-keyword-input-title-wrapper'>
+          <img
+            className='find-news-tab-keyword-input-title-icon'
+            src={keywordsIcon}
+            alt='#'
+            aria-hidden={true}
+          />
+          <h4 className='find-news-tab-keyword-input-title'>
+            Keywords or phrases you are interested in:
+          </h4>
+        </div>
         <InputComponent
           type='text'
           minLength={2}

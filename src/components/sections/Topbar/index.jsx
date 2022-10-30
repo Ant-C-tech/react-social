@@ -1,8 +1,9 @@
 import './styles.css';
 
+import chatsIcon from '@assets/comment.png';
+import eventsIcon from '@assets/calendar.png';
+
 import {
-  ChatTwoTone,
-  NotificationsTwoTone,
   MeetingRoomTwoTone,
 } from '@material-ui/icons';
 import { BigHead } from '@bigheads/core';
@@ -18,15 +19,19 @@ const topBarCenterLinksConfig = [
 const topBarNotificationsConfig = [
   {
     type: 'internal',
-    icon: ChatTwoTone,
+    iconImage: chatsIcon,
+    className: 'topbar-center-panel-notifications-image-icon',
+    title: 'Chats notifications',
     path: 'organizer/chats',
-    messageCounter: '2',
+    messageCounter: '6',
   },
   {
     type: 'internal',
-    icon: NotificationsTwoTone,
+    iconImage: eventsIcon,
+    className: 'topbar-center-panel-notifications-image-icon',
+    title: 'Events notifications',
     path: 'organizer/events',
-    messageCounter: '6',
+    messageCounter: '2',
   },
 ];
 
@@ -59,21 +64,30 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
           ))}
         </div>
         <div className='topbar-center-panel-notifications'>
-          {topBarNotificationsConfig.map((iconLink, index) => {
-            const Icon = iconLink['icon'];
+          {topBarNotificationsConfig.map((notificationLink, index) => {
+            const Icon = notificationLink['icon'];
             return (
               <CustomLink
                 key={index}
-                type={iconLink.type}
+                type={notificationLink.type}
                 content={
                   <>
-                    <Icon fontSize='large' />
+                    {Icon && <Icon fontSize='large' />}
+                    {notificationLink.iconImage && (
+                      <img
+                        className={notificationLink.className}
+                        src={notificationLink.iconImage}
+                        alt='#'
+                        aria-hidden={true}
+                        title={notificationLink.title}
+                      />
+                    )}
                     <span className='topbar-center-panel-notifications-badge'>
-                      {iconLink.messageCounter}
+                      {notificationLink.messageCounter}
                     </span>
                   </>
                 }
-                href={iconLink.path}
+                href={notificationLink.path}
                 modification='topbar-hover-left-line'
               />
             );

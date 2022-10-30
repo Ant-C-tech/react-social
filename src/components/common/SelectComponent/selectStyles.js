@@ -39,6 +39,7 @@ export const selectStyles = {
     borderRadius: '4px',
     fontWeight: 'bold',
     color: '#323e42',
+    textTransform: 'capitalize',
     '&:hover': {
       cursor: 'pointer',
     },
@@ -46,5 +47,6 @@ export const selectStyles = {
   singleValue: (styles) => ({
     ...styles,
     padding: '5px 0',
+    textTransform: 'capitalize'
   }),
 };

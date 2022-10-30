@@ -2,9 +2,21 @@
   margin-bottom: 15px;
 }
 
+.filter-item-title-wrapper{
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  margin-bottom: 10px;
+}
+
 .filter-item-title {
-  margin-bottom: 5px;
   color: #3f3f3f;
+}
+
+.filter-item-title-icon {
+  display: block;
+  width: 38px;
+  margin-right: 10px;
 }
 
 .filter-item-controls {

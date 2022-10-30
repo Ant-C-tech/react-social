@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
 
-  width: 65%;
+  width: 180px;
   min-height: 50px;
 
   margin: 0 5px 15px;
@@ -49,5 +49,8 @@
 }
 
 .button-image-icon {
+  display: block;
   width: 35px;
+  margin-right: 10px;
+  margin-bottom: 5px;
 }

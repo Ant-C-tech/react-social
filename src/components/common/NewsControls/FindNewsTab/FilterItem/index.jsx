@@ -12,6 +12,7 @@ import { Button } from '@common/Button/';
 
 export const FilterItem = ({
   title,
+  icon,
   selectedItems,
   setSelectedItems,
   itemsAvailableForFilterNews,
@@ -24,7 +25,16 @@ export const FilterItem = ({
   loading,
 }) => (
   <div className='filter-item'>
-    <h4 className='filter-item-title'>{title}</h4>
+    <div className='filter-item-title-wrapper'>
+      <img
+        className='filter-item-title-icon'
+        src={icon}
+        alt='#'
+        aria-hidden={true}
+      />
+      <h4 className='filter-item-title'>{title}</h4>
+    </div>
+
     {selectedItems.map((item, index) => {
       const availableItems = getNotSelectedItems(
         item,

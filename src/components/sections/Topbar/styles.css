@@ -111,6 +111,12 @@
   align-items: center;
 }
 
+.topbar-center-panel-notifications-image-icon {
+  display: block;
+  margin: 0 3px;
+  width: 38px
+}
+
 .topbar-center-panel-notifications-badge {
   display: inline-block;
   position: relative;

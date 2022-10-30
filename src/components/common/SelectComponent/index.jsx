@@ -1,9 +1,10 @@
 import './styles.css';
 
+import allIconSrc from '@assets/newspaper.png';
+
 import { useState, useEffect } from 'react';
 
 import Select from 'react-select';
-import { AllInclusiveTwoTone } from '@material-ui/icons';
 
 import { selectStyles } from './selectStyles';
 import { selectTheme } from './selectTheme';
@@ -23,9 +24,22 @@ export const SelectComponent = ({
     setValue(defaultValue);
   }, [defaultValue]);
 
+  const AllIcon = () => (
+    <img
+      src={allIconSrc}
+      alt='#'
+      style={{
+        width: '45px',
+        paddingRight: '10px',
+        objectFit: 'contain',
+      }}
+      aria-hidden={true}
+    />
+  );
+
   const getIcon = (item) => {
     return item === 'all' ? (
-      <AllInclusiveTwoTone />
+      <AllIcon />
     ) : labelIconOptions ? (
       labelIconOptions[item]
     ) : null;
