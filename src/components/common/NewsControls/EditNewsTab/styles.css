@@ -1,0 +1,24 @@
+.edit-news-tab-control-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 90%;
+  margin: 0 auto 15px;
+}
+
+.edit-news-tab-title {
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+
+  text-align: center;
+  color: #3f3f3f;
+  border-bottom: 1px solid #707070;
+}
+
+.edit-news-tab-title-icon {
+  display: block !important;
+  width: 50px;
+  margin: 0 auto 15px;
+
+  color: #3f3f3f;
+}

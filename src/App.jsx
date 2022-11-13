@@ -4,26 +4,28 @@ import { useState } from 'react';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { News } from './pages/news/News';
-import { FavoriteNews } from './pages/favoriteNews/FavoriteNews';
-import { ToDo } from './pages/todo/ToDo';
-import { Notes } from './pages/notes/Notes';
-import { Events } from './pages/events/Events';
-import { Translation } from './pages/translation/Translation';
-import { Bookmarks } from './pages/bookmarks/Bookmarks';
-import { Videos } from './pages/videos/Videos';
-import { Music } from './pages/music/Music';
-import { Jobs } from './pages/jobs/Jobs';
-import { Courses } from './pages/courses/Courses';
-import { Chats } from './pages/chats/Chats';
-import { Settings } from './pages/settings/Settings';
-import { Help } from './pages/help/Help';
-import { TopBar } from './components/sections/topbar/TopBar';
-import { NavBar } from './components/sections/navbar/NavBar';
-import { SignUp } from './pages/signup/SignUp';
-import { LogIn } from './pages/login/LogIn';
-import { NoMatch } from './pages/nomatch/NoMatch';
-import { Contact } from './pages/contact/Contact';
+import { TopBar, NavBar } from '@sections';
+
+import {
+  News,
+  FavoriteNews,
+  ToDo,
+  Notes,
+  Events,
+  Translation,
+  Photos,
+  Videos,
+  Music,
+  Jobs,
+  Books,
+  Chats,
+  Settings,
+  Help,
+  SignUp,
+  LogIn,
+  NoMatch,
+  Contacts,
+} from '@pages';
 
 const App = () => {
   // Mock authorization data
@@ -62,17 +64,17 @@ const App = () => {
           <Route path='organizer/notes' element={<Notes />} />
           <Route path='organizer/events' element={<Events />} />
           <Route path='organizer/translation' element={<Translation />} />
-          <Route path='organizer/bookmarks' element={<Bookmarks />} />
+          <Route path='organizer/photos' element={<Photos />} />
           <Route path='organizer/videos' element={<Videos />} />
           <Route path='organizer/music' element={<Music />} />
           <Route path='organizer/jobs' element={<Jobs />} />
-          <Route path='organizer/courses' element={<Courses />} />
+          <Route path='organizer/books' element={<Books />} />
           <Route path='organizer/chats' element={<Chats />} />
           {contacts.map((_contact, index) => (
             <Route
               key={index}
               path={`organizer/contact/${index}`}
-              element={<Contact />}
+              element={<Contacts />}
             />
           ))}
 

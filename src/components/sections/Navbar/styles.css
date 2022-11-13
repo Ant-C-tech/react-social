@@ -1,0 +1,101 @@
+.navbar {
+  flex: 2;
+  height: calc(100vh - 75px);
+
+  padding: 30px 15px;
+
+  position: relative;
+  z-index: 10;
+
+  background: #eaeaea;
+  box-shadow: 7px 15px 7px -5px #718b93;
+
+  overflow-y: auto;
+
+  color: rgba(50, 62, 66, 0);
+  transition: color 0.3s ease;
+}
+
+.navbar:hover {
+  color: rgba(50, 62, 66, 0.6);
+}
+
+.navbar-nav {
+  list-style: none;
+
+  margin-bottom: 30px;
+}
+
+.navbar-nav-item {
+  display: flex;
+  align-items: center;
+
+  margin-bottom: 10px;
+}
+
+.navbar-link-image-icon {
+  display: block;
+  margin: 0 3px;
+  width: 38px
+}
+
+.navbar-link-image-icon-small {
+  margin: 0 5px;
+  width: 30px
+}
+
+.navbar-link-add-text {
+  display: block;
+  margin-left: 15px;
+
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.navbar-hover-left-line {
+  display: inline-flex;
+  align-items: center;
+
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.navbar-hover-left-line:after {
+  width: 1px;
+  height: 0;
+  bottom: 50%;
+  left: -4px;
+  transform: translate(50%, 50%);
+}
+
+.navbar-hover-left-line:hover:after,
+.navbar-hover-left-line:focus:after,
+.navbar-hover-left-line.active:after {
+  height: 100%;
+}
+
+.navbar-divider {
+  margin-bottom: 30px;
+}
+
+.navbar-contacts {
+  margin-top: 30px;
+}
+
+.navbar-contact {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.navbar-contact-image {
+  display: block;
+
+  height: 40px;
+
+  border-radius: 50%;
+  border: 1px solid #707070;
+
+  background: #f3f3f3;
+  box-shadow: 4px 1px 3px 1px rgba(243, 243, 243, 0.57);
+}

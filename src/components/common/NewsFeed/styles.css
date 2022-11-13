@@ -1,0 +1,18 @@
+.news-feed {
+  flex: 8;
+  height: calc(100vh - 70px);
+
+  padding: 15px 30px;
+
+  overflow-y: auto;
+  color: rgba(50, 62, 66, 0);
+  transition: color 0.3s ease;
+}
+
+.news-feed:hover {
+  color: rgba(50, 62, 66, 0.6);
+}
+
+.news-list-item {
+  list-style-type: none;
+}
