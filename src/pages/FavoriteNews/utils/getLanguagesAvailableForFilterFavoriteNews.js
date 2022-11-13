@@ -7,7 +7,7 @@ export const getLanguagesAvailableForFilterFavoriteNews = (
   favoriteNews,
   selectedCountries,
   selectedCategories,
-  keyword,
+  keyword = '',
 ) => {
   const newsFilteredByCountry =
     selectedCountries[0] === 'all'

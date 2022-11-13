@@ -3,16 +3,10 @@ import { useState, useEffect } from 'react';
 import { useLocalStorage } from '@hooks/useLocalStorage';
 
 import {
-  getCategoriesAvailableForFilterFavoriteNews,
   getActualizatedCategoriesObject,
-  getCountriesAvailableForFilterFavoriteNews,
-  getLanguagesAvailableForFilterFavoriteNews,
   getLanguagesObject,
-  getNewsFilteredByCategory,
-  getNewsFilteredByCountry,
-  getNewsFilteredByKeyword,
-  getNewsFilteredByLanguage,
-  getNewsSortByDate,
+  getFilteredNews,
+  updateAvailableParametersForFiltering,
 } from './utils';
 
 import { ControlBar, Content } from '@sections';
@@ -36,16 +30,19 @@ export const FavoriteNews = () => {
     countriesAvailableForFilterFavoriteNews,
     setCountriesAvailableForFilterFavoriteNews,
   ] = useState([]);
+
   const [selectedCategories, setSelectedCategories] = useState(['all']);
   const [
     categoriesAvailableForFilterFavoriteNews,
     setCategoriesAvailableForFilterFavoriteNews,
   ] = useState([]);
+
   const [selectedLanguages, setSelectedLanguages] = useState(['all']);
   const [
     languagesAvailableForFilterFavoriteNews,
     setLanguagesAvailableForFilterFavoriteNews,
   ] = useState([]);
+
   const [keyword, setKeyword] = useState('');
   const [activeTool, setActiveTool] = useState('');
 
@@ -60,45 +57,21 @@ export const FavoriteNews = () => {
     setStartNews(0);
     setCurrentPage(1);
     setNeedMoreNews(false);
-  }, [selectedCountries, selectedCategories]);
+  }, [selectedCountries, selectedCategories, selectedLanguages, keyword]);
 
   // Filtering news
   useEffect(() => {
-    const newsFilteredByCountry =
-      selectedCountries[0] === 'all'
-        ? favoriteNews
-        : getNewsFilteredByCountry(favoriteNews, selectedCountries);
-
-    const newsFilteredByCategory =
-      selectedCategories[0] === 'all'
-        ? newsFilteredByCountry
-        : getNewsFilteredByCategory(newsFilteredByCountry, selectedCategories);
-
-    const newsFilteredByLanguage =
-      selectedLanguages[0] === 'all'
-        ? newsFilteredByCategory
-        : getNewsFilteredByLanguage(newsFilteredByCategory, selectedLanguages);
-
-    const newsFilteredByKeyword =
-      keyword.length === 0
-        ? newsFilteredByLanguage
-        : getNewsFilteredByKeyword(newsFilteredByLanguage, keyword);
-
-    const newsSortedByDate = getNewsSortByDate(newsFilteredByKeyword);
-
-    const newsFilteredByPage = [
-      ...newsSortedByDate.filter(
-        (_currentNewsFilteredByCountry, index) =>
-          index < currentPage * newsForPage,
-      ),
-    ];
-    setNews(newsFilteredByPage);
-
-    if (newsFilteredByPage.length < newsFilteredByLanguage.length) {
-      setHasMoreNews(true);
-    } else {
-      setHasMoreNews(false);
-    }
+    getFilteredNews(
+      favoriteNews,
+      selectedCountries,
+      selectedCategories,
+      selectedLanguages,
+      keyword,
+      currentPage,
+      newsForPage,
+      setNews,
+      setHasMoreNews,
+    );
   }, [
     favoriteNews,
     currentPage,
@@ -110,39 +83,36 @@ export const FavoriteNews = () => {
 
   // Manage of News Controls
   useEffect(() => {
-    setCountriesAvailableForFilterFavoriteNews(
-      getCountriesAvailableForFilterFavoriteNews(
-        favoriteNews,
+    updateAvailableParametersForFiltering(
+      favoriteNews,
+      selectedCountries,
+      selectedCategories,
+      selectedLanguages,
+      setCountriesAvailableForFilterFavoriteNews,
+      setCategoriesAvailableForFilterFavoriteNews,
+      setLanguagesAvailableForFilterFavoriteNews,
+    );
+  }, [favoriteNews, selectedCategories, selectedCountries, selectedLanguages]);
+
+  // If user starts with search
+  useEffect(() => {
+    if (
+      keyword.length > 0 &&
+      selectedCountries[0] === 'all' &&
+      selectedCategories[0] === 'all' &&
+      selectedLanguages[0] === 'all'
+    ) {
+      updateAvailableParametersForFiltering(
+        news,
+        selectedCountries,
         selectedCategories,
         selectedLanguages,
-        keyword,
-      ),
-    );
-
-    setCategoriesAvailableForFilterFavoriteNews(
-      getCategoriesAvailableForFilterFavoriteNews(
-        favoriteNews,
-        selectedCountries,
-        selectedLanguages,
-        keyword,
-      ),
-    );
-
-    setLanguagesAvailableForFilterFavoriteNews(
-      getLanguagesAvailableForFilterFavoriteNews(
-        favoriteNews,
-        selectedCountries,
-        selectedCategories,
-        keyword,
-      ),
-    );
-  }, [
-    favoriteNews,
-    selectedCategories,
-    selectedCountries,
-    selectedLanguages,
-    keyword,
-  ]);
+        setCountriesAvailableForFilterFavoriteNews,
+        setCategoriesAvailableForFilterFavoriteNews,
+        setLanguagesAvailableForFilterFavoriteNews,
+      );
+    }
+  }, [keyword, selectedCategories, selectedCountries, selectedLanguages, news]);
 
   // Update available filter parameters if news was removed from favorite
   useEffect(() => {

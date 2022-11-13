@@ -6,7 +6,7 @@ export const getCategoriesAvailableForFilterFavoriteNews = (
   favoriteNews,
   selectedCountries,
   selectedLanguages,
-  keyword,
+  keyword='',
 ) => {
   const newsFilteredByCountry =
     selectedCountries[0] === 'all'

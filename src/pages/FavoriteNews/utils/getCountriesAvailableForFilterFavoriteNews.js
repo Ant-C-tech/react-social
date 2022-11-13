@@ -7,7 +7,7 @@ export const getCountriesAvailableForFilterFavoriteNews = (
   favoriteNews,
   selectedCategories,
   selectedLanguages,
-  keyword,
+  keyword = '',
 ) => {
   const newsFilteredByCategory =
     selectedCategories[0] === 'all'
@@ -30,6 +30,5 @@ export const getCountriesAvailableForFilterFavoriteNews = (
   });
 
   const uniqueFavoriteNewsCountryNames = [...new Set(favoriteNewsCountryNames)];
-
   return ['all', ...getCountryCodesByNames(uniqueFavoriteNewsCountryNames)];
 };

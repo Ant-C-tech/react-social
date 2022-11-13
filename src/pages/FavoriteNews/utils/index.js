@@ -8,3 +8,5 @@ export * from './getNewsFilteredByCountry';
 export * from './getNewsFilteredByKeyword';
 export * from './getNewsFilteredByLanguage';
 export * from './getNewsSortByDate';
+export * from './getFilteredNews';
+export * from './updateAvailableParametersForFiltering';
