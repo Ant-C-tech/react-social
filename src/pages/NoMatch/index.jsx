@@ -1,12 +1,12 @@
 import { ControlBar, Content } from '@sections';
 import { Message } from '@common';
 
-export const Chats = () => {
+export const NoMatch = () => {
   return (
     <>
       <Content>
-        <Message type={'message-info'} title={'Chats'}>
-          <p>Sorry, this functionality is in development at the moment.</p>
+        <Message type={'message-warning'} title={'This page does not exist'}>
+          <p>Please, use the user interface for navigation.</p>
         </Message>
       </Content>
       <ControlBar />

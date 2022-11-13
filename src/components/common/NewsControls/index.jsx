@@ -5,7 +5,8 @@ import { useState } from 'react';
 import { Message } from '@common/Message/';
 import { TabsControls } from '@common/TabsControls';
 import { TabPanel } from '@common/TabPanel';
-import { createErrorMessage } from '@utils/newsControls/createErrorMessage';
+
+import { createErrorMessage } from './utils/createErrorMessage';
 
 import { FindNewsTab } from './FindNewsTab';
 import { EditNewsTab } from './EditNewsTab';

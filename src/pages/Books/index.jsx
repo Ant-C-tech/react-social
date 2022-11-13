@@ -1,14 +1,14 @@
-import { Message } from '@common/Message/';
-import { ControlBar } from '@sections/Controlbar';
+import { ControlBar, Content } from '@sections';
+import { Message } from '@common';
 
 export const Books = () => {
   return (
     <>
-      <section className='content-container'>
+      <Content>
         <Message type={'message-info'} title={'Books'}>
           <p>Sorry, this functionality is in development at the moment.</p>
         </Message>
-      </section>
+      </Content>
       <ControlBar />
     </>
   );

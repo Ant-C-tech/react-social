@@ -3,7 +3,7 @@ import eraser from '@assets/eraser-svgrepo-com.svg';
 import highlightToolsIcon from '@assets/stationery.png';
 import eraseToolIcon from '@assets/bin.png';
 
-import { highlighters } from '@constants/NewsControls/highlighters';
+import { HIGHLIGHTERS } from './constants';
 
 import { Button } from '@common/Button/';
 
@@ -22,7 +22,7 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
         Do You want to highlight something?
       </h3>
       <div className='edit-news-tab-control-toolbar'>
-        {highlighters.map((highlighter, index) => {
+        {HIGHLIGHTERS.map((highlighter, index) => {
           const { name, icon } = highlighter;
           return (
             <Button

@@ -4,26 +4,28 @@ import { useState } from 'react';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { TopBar } from '@sections/Topbar';
-import { NavBar } from '@sections/Navbar';
-import { News } from '@pages/news/News';
-import { FavoriteNews } from '@pages/FavoriteNews/';
-import { ToDo } from '@pages/todo/ToDo';
-import { Notes } from '@pages/notes/Notes';
-import { Events } from '@pages/Events/';
-import { Translation } from '@pages/translation/Translation';
-import { Photos } from '@pages/photos/Photos';
-import { Videos } from '@pages/videos/Videos';
-import { Music } from '@pages/music/Music';
-import { Jobs } from '@pages/jobs/Jobs';
-import { Books } from '@pages/Books/';
-import { Chats } from '@pages/Chats/';
-import { Settings } from '@pages/settings/Settings';
-import { Help } from '@pages/help/Help';
-import { SignUp } from '@pages/signup/SignUp';
-import { LogIn } from '@pages/login/LogIn';
-import { NoMatch } from '@pages/nomatch/NoMatch';
-import { Contacts } from '@pages/Contacts/';
+import { TopBar, NavBar } from '@sections';
+
+import {
+  News,
+  FavoriteNews,
+  ToDo,
+  Notes,
+  Events,
+  Translation,
+  Photos,
+  Videos,
+  Music,
+  Jobs,
+  Books,
+  Chats,
+  Settings,
+  Help,
+  SignUp,
+  LogIn,
+  NoMatch,
+  Contacts,
+} from '@pages';
 
 const App = () => {
   // Mock authorization data

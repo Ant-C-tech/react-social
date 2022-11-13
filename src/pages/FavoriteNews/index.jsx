@@ -2,22 +2,24 @@ import { useState, useEffect } from 'react';
 
 import { useLocalStorage } from '@hooks/useLocalStorage';
 
-import { getCountriesAvailableForFilterFavoriteNews } from '@utils/favoriteNews/getCountriesAvailableForFilterFavoriteNews';
-import { getNewsSortByDate } from '@utils/favoriteNews/getNewsSortByDate';
-import { getCategoriesAvailableForFilterFavoriteNews } from '@utils/favoriteNews/getCategoriesAvailableForFilterFavoriteNews';
-import { getCategoriesObject } from '@utils/favoriteNews/getCategoriesObject';
-import { getNewsFilteredByCountry } from '@utils/favoriteNews/getNewsFilteredByCountry';
-import { getNewsFilteredByCategory } from '@utils/favoriteNews/getNewsFilteredByCategory';
-import { getLanguagesAvailableForFilterFavoriteNews } from '@utils/favoriteNews/getLanguagesAvailableForFilterFavoriteNews';
-import { getLanguagesObject } from '@utils/favoriteNews/getLanguagesObject';
-import { getNewsFilteredByLanguage } from '@utils/favoriteNews/getNewsFilteredByLanguage';
-import { getNewsFilteredByKeyword } from '@utils/favoriteNews/getNewsFilteredByKeyword';
+import {
+  getCategoriesAvailableForFilterFavoriteNews,
+  getActualizatedCategoriesObject,
+  getCountriesAvailableForFilterFavoriteNews,
+  getLanguagesAvailableForFilterFavoriteNews,
+  getLanguagesObject,
+  getNewsFilteredByCategory,
+  getNewsFilteredByCountry,
+  getNewsFilteredByKeyword,
+  getNewsFilteredByLanguage,
+  getNewsSortByDate,
+} from './utils';
 
-import { ControlBar } from '@sections/Controlbar';
-import { NewsControls } from '@common/NewsControls/';
-import { NewsFeed } from '@common/NewsFeed/';
-import { NothingWasFoundMessage } from '@common/NothingWasFoundMessage';
-import { NoFavoriteNewsMessage } from './noFavoriteNewsMessage/NoFavoriteNewsMessage';
+import { ControlBar, Content } from '@sections';
+
+import { NewsControls, NewsFeed, NothingWasFoundMessage } from '@common';
+
+import { NoFavoriteNewsMessage } from './NoFavoriteNewsMessage';
 
 export const FavoriteNews = () => {
   const [favoriteNews, setFavoriteNews] = useLocalStorage('favoriteNews', []);
@@ -214,7 +216,7 @@ export const FavoriteNews = () => {
 
   return (
     <>
-      <section className='content-container'>
+      <Content>
         {
           <NewsFeed
             newsSet={news}
@@ -236,7 +238,7 @@ export const FavoriteNews = () => {
             activeTool={activeTool}
           />
         }
-      </section>
+      </Content>
       <ControlBar
         content={
           favoriteNews.length > 0 && (
@@ -262,7 +264,7 @@ export const FavoriteNews = () => {
                   ? maxParametersLength
                   : countriesAvailableForFilterFavoriteNews.length - 1
               }
-              categoriesAvailableForFilterNews={getCategoriesObject(
+              categoriesAvailableForFilterNews={getActualizatedCategoriesObject(
                 categoriesAvailableForFilterFavoriteNews,
               )}
               minCategoriesAvailableForFilterNews={minParametersLength}

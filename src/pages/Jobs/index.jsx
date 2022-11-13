@@ -1,11 +1,11 @@
-import { ControlBar , Content } from '@sections';
+import { ControlBar, Content } from '@sections';
 import { Message } from '@common';
 
-export const Events = () => {
+export const Jobs = () => {
   return (
     <>
       <Content>
-        <Message type={'message-info'} title={'Events'}>
+        <Message type={'message-info'} title={'Jobs'}>
           <p>Sorry, this functionality is in development at the moment.</p>
         </Message>
       </Content>

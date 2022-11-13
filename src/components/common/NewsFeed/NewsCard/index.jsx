@@ -16,7 +16,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CustomLink } from '@common/CustomLink/';
 import { Button } from '@common/Button/';
 
-import { getHighlightedStructure } from '@utils/newsFeed/getHighlightedStructure';
+import { getHighlightedStructure } from './utils/getHighlightedStructure';
 
 export const NewsCard = ({
   createdFor,

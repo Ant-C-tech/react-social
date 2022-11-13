@@ -3,12 +3,12 @@ import './styles.css';
 import addIcon from '@assets/add.png';
 import removeIcon from '@assets/bin.png';
 
-import { AddCircleTwoTone, RemoveCircleTwoTone } from '@material-ui/icons';
-
-import { getNotSelectedItems } from '@utils/newsControls/getNotSelectedItems';
-import { updateSelectedItems } from '@utils/newsControls/updateSelectedItems';
-import { removeLastSelect } from '@utils/newsControls/removeLastSelect';
-import { addSelectWithNotSelectedValue } from '@utils/newsControls/addSelectWithNotSelectedValue';
+import {
+  addSelectWithNotSelectedValue,
+  getNotSelectedItems,
+  removeLastSelect,
+  updateSelectedItems,
+} from './utils';
 
 import { SelectComponent } from '@common/SelectComponent';
 import { Button } from '@common/Button/';

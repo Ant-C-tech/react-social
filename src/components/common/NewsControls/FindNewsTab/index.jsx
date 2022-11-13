@@ -12,7 +12,7 @@ import keywordsIcon from '@assets/keyword.png';
 // import { addSelectWithNotSelectedValue } from '@utils/newsControls/addSelectWithNotSelectedValue';
 // import { removeLastSelect } from '@utils/newsControls/removeLastSelect';
 // import { updateSelectedItems } from '@utils/newsControls/updateSelectedItems';
-import { getAdditionalDataForNewsControls } from '@utils/newsControls/getAdditionalDataForNewsControls';
+import { getAdditionalDataForNewsControls } from './utils/getAdditionalDataForNewsControls';
 
 // import { Button } from '@common/Button/';
 // import { SelectComponent } from '@common/SelectComponent';
