@@ -7,15 +7,12 @@ import categoriesIcon from '@assets/compass.png';
 import languagesIcon from '@assets/languages.png';
 import keywordsIcon from '@assets/keyword.png';
 
+import {
+  WORLD_COUNTRY_NAMES,
+  WORLD_COUNTRY_FLAGS,
+  WORLD_COUNTRY_FLAGS_BY_LANGUAGE_CODE,
+} from '@constants';
 
-// import { getNotSelectedItems } from '@utils/newsControls/getNotSelectedItems';
-// import { addSelectWithNotSelectedValue } from '@utils/newsControls/addSelectWithNotSelectedValue';
-// import { removeLastSelect } from '@utils/newsControls/removeLastSelect';
-// import { updateSelectedItems } from '@utils/newsControls/updateSelectedItems';
-import { getAdditionalDataForNewsControls } from './utils/getAdditionalDataForNewsControls';
-
-// import { Button } from '@common/Button/';
-// import { SelectComponent } from '@common/SelectComponent';
 import { InputComponent } from '@common/InputComponent/';
 import { FilterItem } from './FilterItem';
 
@@ -41,12 +38,6 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
     maxLanguagesAvailableForFilterNews,
   } = findNewsTabProps;
 
-  const {
-    labelOptionForCountries,
-    labelIconOptionsForCountries,
-    labelIconOptionsForLanguages,
-  } = getAdditionalDataForNewsControls();
-
   const filterItemsConfig = [
     {
       title: 'Selected country:',
@@ -56,8 +47,8 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
       itemsAvailableForFilterNews: countriesAvailableForFilterNews,
       minItemsAvailableForFilterNews: minCountriesAvailableForFilterNews,
       maxItemsAvailableForFilterNews: maxCountriesAvailableForFilterNews,
-      labelOptionForItems: labelOptionForCountries,
-      labelIconOptionsForItems: labelIconOptionsForCountries,
+      labelOptionForItems: WORLD_COUNTRY_NAMES,
+      labelIconOptionsForItems: WORLD_COUNTRY_FLAGS,
       addButtonText: 'Add More Countries',
       removeButtonText: 'Remove Country',
     },
@@ -85,7 +76,7 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
       minItemsAvailableForFilterNews: minLanguagesAvailableForFilterNews,
       maxItemsAvailableForFilterNews: maxLanguagesAvailableForFilterNews,
       labelOptionForItems: languagesAvailableForFilterNews,
-      labelIconOptionsForItems: labelIconOptionsForLanguages,
+      labelIconOptionsForItems: WORLD_COUNTRY_FLAGS_BY_LANGUAGE_CODE,
       addButtonText: 'Add More Languages',
       removeButtonText: 'Remove Language',
     },

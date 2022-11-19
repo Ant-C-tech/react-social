@@ -7,6 +7,10 @@ import {
   getLanguagesObject,
   getFilteredNews,
   updateAvailableParametersForFiltering,
+  getNewsFilteredByKeyword,
+  getCountriesForPrompt,
+  getCategoriesForPrompt,
+  getLanguagesForPrompt,
 } from './utils';
 
 import { ControlBar, Content } from '@sections';
@@ -17,7 +21,8 @@ import { NoFavoriteNewsMessage } from './NoFavoriteNewsMessage';
 
 export const FavoriteNews = () => {
   const [favoriteNews, setFavoriteNews] = useLocalStorage('favoriteNews', []);
-  const [news, setNews] = useState([]);
+  const [newsToShow, setNewsToShow] = useState([]);
+  const [newsForPrompt, setNewsForPrompt] = useState([]);
 
   const [startNews, setStartNews] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -69,7 +74,7 @@ export const FavoriteNews = () => {
       keyword,
       currentPage,
       newsForPage,
-      setNews,
+      setNewsToShow,
       setHasMoreNews,
     );
   }, [
@@ -93,26 +98,6 @@ export const FavoriteNews = () => {
       setLanguagesAvailableForFilterFavoriteNews,
     );
   }, [favoriteNews, selectedCategories, selectedCountries, selectedLanguages]);
-
-  // If user starts with search
-  useEffect(() => {
-    if (
-      keyword.length > 0 &&
-      selectedCountries[0] === 'all' &&
-      selectedCategories[0] === 'all' &&
-      selectedLanguages[0] === 'all'
-    ) {
-      updateAvailableParametersForFiltering(
-        news,
-        selectedCountries,
-        selectedCategories,
-        selectedLanguages,
-        setCountriesAvailableForFilterFavoriteNews,
-        setCategoriesAvailableForFilterFavoriteNews,
-        setLanguagesAvailableForFilterFavoriteNews,
-      );
-    }
-  }, [keyword, selectedCategories, selectedCountries, selectedLanguages, news]);
 
   // Update available filter parameters if news was removed from favorite
   useEffect(() => {
@@ -176,6 +161,25 @@ export const FavoriteNews = () => {
     selectedLanguages,
   ]);
 
+  //Create data for prompt message if nothing was found
+  useEffect(() => {
+    if (
+      (selectedCountries[0] !== 'all' ||
+        selectedCategories[0] !== 'all' ||
+        selectedLanguages[0] !== 'all') &&
+      newsToShow.length === 0
+    ) {
+      setNewsForPrompt(getNewsFilteredByKeyword(favoriteNews, keyword));
+    }
+  }, [
+    keyword,
+    newsToShow,
+    favoriteNews,
+    selectedCountries,
+    selectedCategories,
+    selectedLanguages,
+  ]);
+
   // Get more news
   useEffect(() => {
     if (needMoreNews && hasMoreNews) {
@@ -189,7 +193,7 @@ export const FavoriteNews = () => {
       <Content>
         {
           <NewsFeed
-            newsSet={news}
+            newsSet={newsToShow}
             favoriteNews={favoriteNews}
             setFavoriteNews={setFavoriteNews}
             keywords={[keyword]}
@@ -201,8 +205,12 @@ export const FavoriteNews = () => {
             message={
               favoriteNews.length === 0 ? (
                 <NoFavoriteNewsMessage />
-              ) : news.length === 0 ? (
-                <NothingWasFoundMessage />
+              ) : newsToShow.length === 0 ? (
+                <NothingWasFoundMessage
+                  countriesForPrompt={getCountriesForPrompt(newsForPrompt)}
+                  categoriesForPrompt={getCategoriesForPrompt(newsForPrompt)}
+                  languagesForPrompt={getLanguagesForPrompt(newsForPrompt)}
+                />
               ) : null
             }
             activeTool={activeTool}
@@ -213,7 +221,7 @@ export const FavoriteNews = () => {
         content={
           favoriteNews.length > 0 && (
             <NewsControls
-              news={news}
+              news={newsToShow}
               error={''}
               selectedCountries={selectedCountries}
               setSelectedCountries={setSelectedCountries}

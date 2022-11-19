@@ -14,7 +14,7 @@ export const getFilteredNews = (
   keyword,
   currentPage,
   newsForPage,
-  setNews,
+  setNewsToShow,
   setHasMoreNews,
 ) => {
   const newsFilteredByCountry =
@@ -45,7 +45,7 @@ export const getFilteredNews = (
         index < currentPage * newsForPage,
     ),
   ];
-  setNews(newsFilteredByPage);
+  setNewsToShow(newsFilteredByPage);
 
   if (newsFilteredByPage.length < newsFilteredByLanguage.length) {
     setHasMoreNews(true);
