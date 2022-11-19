@@ -50,7 +50,7 @@ export const SelectComponent = ({
       value: currentOption,
       label: (
         <span className='select-option-item'>
-          {getIcon(currentOption)}{' '}
+          <span>{getIcon(currentOption)}{' '}</span>
           <span className='select-option-item-text'>
             {labelOptions && currentOption !== 'all'
               ? labelOptions[currentOption]
