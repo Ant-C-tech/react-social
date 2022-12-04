@@ -1,4 +1,4 @@
-import fingerPrint from '@assets/fingerprint.png';
+import { fingerPrintIcon } from '@assets';
 
 import { useState, useEffect } from 'react';
 
@@ -214,7 +214,7 @@ export const News = () => {
               placeholder={'Please, input your API key'}
               value={apiKey}
               setValue={setApiKey}
-              icon={fingerPrint}
+              icon={fingerPrintIcon}
             />
           </Message>
         )}

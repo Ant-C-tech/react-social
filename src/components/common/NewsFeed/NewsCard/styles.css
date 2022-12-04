@@ -159,6 +159,10 @@
   cursor: url(./assets/eraser-svgrepo-com.ico) 0 30, auto !important;
 }
 
+.cursor-note-creator {
+  cursor: url(./assets/note-cursor.ico) 0 30, auto !important;
+}
+
 .news-card-highlight {
   background-color: #e0004d;
   color: #fff;

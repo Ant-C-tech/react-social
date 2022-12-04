@@ -1,4 +1,5 @@
 import { getUpdatedArrayOfHighlights } from '../NewsCard/utils/getUpdatedArrayOfHighlights';
+import { getIndexOfTargetNews } from './getIndexOfTargetNews';
 
 export const addHighlight = (
   favoriteNews,
@@ -8,10 +9,7 @@ export const addHighlight = (
   link,
   targetPart,
 ) => {
-  let indexOfTargetNews = 0;
-  favoriteNews.forEach((news, index) => {
-    if (news.link === link) indexOfTargetNews = index;
-  });
+  const indexOfTargetNews = getIndexOfTargetNews(favoriteNews, link);
 
   if (window.getSelection().toString().length > 0 && activeTool) {
     let onMouseDownTargetText;

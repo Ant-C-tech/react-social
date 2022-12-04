@@ -9,12 +9,8 @@ import {
   getIsFavorite,
   addToFavorite,
   removeFromFavorite,
+  addNote,
 } from './utils';
-
-// import { getIsFavorite } from '@utils/newsFeed/getIsFavorite';
-// import { addToFavorite } from '@utils/newsFeed/addToFavorite';
-// import { removeFromFavorite } from '@utils/newsFeed/removeFromFavorite';
-// import { addHighlight } from '@utils/newsFeed/addHighlight';
 
 import { NewsCard } from './NewsCard';
 import { NewsCardSkeleton } from './NewsCardSkeleton';
@@ -76,6 +72,14 @@ export const NewsFeed = ({
                     setFavoriteNews,
                     activeTool,
                     keywords,
+                    link,
+                    targetPart,
+                  );
+                }}
+                addNote={(link, targetPart) => {
+                  addNote(
+                    favoriteNews,
+                    setFavoriteNews,
                     link,
                     targetPart,
                   );

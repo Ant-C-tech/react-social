@@ -1,6 +1,5 @@
 import './styles.css';
-
-import allIconSrc from '@assets/newspaper.png';
+import { newsIcon } from '@assets';
 
 import { useState, useEffect } from 'react';
 
@@ -26,7 +25,7 @@ export const SelectComponent = ({
 
   const AllIcon = () => (
     <img
-      src={allIconSrc}
+      src={newsIcon}
       alt='#'
       style={{
         width: '45px',

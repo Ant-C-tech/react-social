@@ -1,13 +1,14 @@
 import './styles.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-
-import playVideoIcon from '@assets/clapperboard.png';
-import newsIcon from '@assets/newspaper.png';
-import originalSourceIcon from '@assets/footprint.png';
-import addToFavoriteButtonIcon from '@assets/inbox.png';
-import removeFromFavoriteButtonIcon from '@assets/bin.png';
-import readMoreButtonIcon from '@assets/book-pages.png';
-import hideFullTextButtonIcon from '@assets/book.png';
+import {
+  playVideoIcon,
+  newsIcon,
+  originalSourceIcon,
+  addToFavoriteButtonIcon,
+  removeIcon,
+  readMoreButtonIcon,
+  hideFullTextButtonIcon,
+} from '@assets';
 
 import { useState } from 'react';
 import Highlighter from 'react-highlight-words';
@@ -27,6 +28,7 @@ export const NewsCard = ({
   addToFavorite,
   removeFromFavorite,
   addHighlight,
+  addNote,
 }) => {
   const [isContentShown, setIsContentShown] = useState(false);
 
@@ -76,7 +78,9 @@ export const NewsCard = ({
           <h2
             className={`news-card-content-title-text cursor-${activeTool}`}
             onMouseUp={() => {
-              addHighlight(link, 'title');
+              activeTool !== 'note-creator'
+                ? addHighlight(link, 'title')
+                : addNote(link, 'title');
             }}
           >
             {createdFor === 'news' ? (
@@ -130,7 +134,9 @@ export const NewsCard = ({
         <p
           className={`news-card-description cursor-${activeTool}`}
           onMouseUp={() => {
-            addHighlight(link, 'description');
+            activeTool !== 'note-creator'
+              ? addHighlight(link, 'description')
+              : addNote(link, 'description');
           }}
         >
           {createdFor === 'news' ? (
@@ -153,7 +159,9 @@ export const NewsCard = ({
           <p
             className={`news-card-full-text cursor-${activeTool}`}
             onMouseUp={() => {
-              addHighlight(link, 'content');
+              activeTool !== 'note-creator'
+                ? addHighlight(link, 'content')
+                : addNote(link, 'content');
             }}
           >
             {createdFor === 'news' ? (
@@ -208,11 +216,7 @@ export const NewsCard = ({
             onClick={() => {
               isFavorite ? removeFromFavorite() : addToFavorite();
             }}
-            buttonImageIcon={
-              isFavorite
-                ? removeFromFavoriteButtonIcon
-                : addToFavoriteButtonIcon
-            }
+            buttonImageIcon={isFavorite ? removeIcon : addToFavoriteButtonIcon}
           />
         </div>
       </div>

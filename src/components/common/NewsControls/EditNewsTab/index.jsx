@@ -1,7 +1,10 @@
 import './styles.css';
-import eraser from '@assets/eraser-svgrepo-com.svg';
-import highlightToolsIcon from '@assets/stationery.png';
-import eraseToolIcon from '@assets/bin.png';
+import {
+  makeNoteIcon,
+  noteIcon,
+  highlightToolsIcon,
+  eraserIcon,
+} from '@assets';
 
 import { HIGHLIGHTERS } from './constants';
 
@@ -19,11 +22,12 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
         aria-hidden={true}
       />
       <h3 className='edit-news-tab-title'>
-        Do You want to highlight something?
+        Do You want to highlight some text or remove some existing highlight?
       </h3>
+
       <div className='edit-news-tab-control-toolbar'>
         {HIGHLIGHTERS.map((highlighter, index) => {
-          const { name, icon } = highlighter;
+          const { name, icon, tooltipText } = highlighter;
           return (
             <Button
               key={index}
@@ -32,27 +36,35 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
                 setActiveTool(name === activeTool ? '' : name);
               }}
               buttonImageIcon={icon}
+              tooltipText={tooltipText}
             />
           );
         })}
-      </div>
-
-      <img
-        className='edit-news-tab-title-icon'
-        src={eraseToolIcon}
-        alt='#'
-        aria-hidden={true}
-      />
-      <h3 className='edit-news-tab-title'>
-        Do You want to delete some highlight?
-      </h3>
-      <div className='edit-news-tab-control-toolbar'>
         <Button
           active={'eraser' === activeTool}
           onClick={() => {
             setActiveTool('eraser' === activeTool ? '' : 'eraser');
           }}
-          buttonImageIcon={eraser}
+          buttonImageIcon={eraserIcon}
+          tooltipText='Remove an Existing Highlight'
+        />
+      </div>
+
+      <img
+        className='edit-news-tab-title-icon'
+        src={makeNoteIcon}
+        alt='#'
+        aria-hidden={true}
+      />
+      <h3 className='edit-news-tab-title'>Do you want to create some note?</h3>
+      <div className='edit-news-tab-control'>
+        <Button
+          text='Create Note'
+          active={'note-creator' === activeTool}
+          onClick={() => {
+            setActiveTool('note-creator' === activeTool ? '' : 'note-creator');
+          }}
+          buttonImageIcon={noteIcon}
         />
       </div>
     </>

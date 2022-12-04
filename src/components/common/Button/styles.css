@@ -28,7 +28,8 @@
 }
 
 .button-without-text {
-  width: auto;
+  width: 54px;
+  padding: 0;
 }
 
 .button:hover,
@@ -51,6 +52,9 @@
 .button-image-icon {
   display: block;
   width: 35px;
-  margin-right: 10px;
   margin-bottom: 5px;
+}
+
+.button-text{
+  margin-left: 10px;
 }

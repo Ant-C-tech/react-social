@@ -1,5 +1,5 @@
 import './styles.css';
-import hintIcon from '@assets/knowledge.png';
+import { hintIcon } from '@assets';
 
 export const Message = ({ type, title, children }) => {
   return (

@@ -1,18 +1,19 @@
 import './styles.css';
-
-import newsIcon from '@assets/newspaper.png';
-import favoriteNewsIcon from '@assets/inbox.png';
-import jobsIcon from '@assets/money.png';
-import musicIcon from '@assets/music.png';
-import booksIcon from '@assets/bookshelf.png';
-import todoIcon from '@assets/rules.png';
-import notesIcon from '@assets/reminder.png';
-import eventsIcon from '@assets/calendar.png';
-import translationIcon from '@assets/translation.png';
-import chatsIcon from '@assets/comment.png';
-import photosIcon from '@assets/photo.png';
-import videosIcon from '@assets/film.png';
-import contactsButtonIcon from '@assets/member.png';
+import {
+  newsIcon,
+  addToFavoriteButtonIcon,
+  jobsIcon,
+  musicIcon,
+  booksIcon,
+  todoIcon,
+  noteIcon,
+  eventsIcon,
+  translationIcon,
+  chatsIcon,
+  photosIcon,
+  videosIcon,
+  contactsButtonIcon,
+} from '@assets';
 
 import { useState } from 'react';
 
@@ -31,7 +32,7 @@ const navBarItemsConfig = [
   },
   {
     type: 'internal',
-    iconImage: favoriteNewsIcon,
+    iconImage: addToFavoriteButtonIcon,
     className: 'navbar-link-image-icon',
     path: 'organizer/favorite_news',
     text: 'My Favorite News',
@@ -45,7 +46,7 @@ const navBarItemsConfig = [
   },
   {
     type: 'internal',
-    iconImage: notesIcon,
+    iconImage: noteIcon,
     className: 'navbar-link-image-icon',
     path: 'organizer/notes',
     text: 'Notes',

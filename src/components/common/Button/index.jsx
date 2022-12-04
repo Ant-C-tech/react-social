@@ -6,6 +6,7 @@ export const Button = ({
   onClick,
   buttonImageIcon,
   buttonComponentIcon,
+  tooltipText
 }) => {
   const Icon = buttonComponentIcon;
 
@@ -15,6 +16,7 @@ export const Button = ({
 		${!text ? 'button-without-text' : ''}
 		${active ? 'button-active' : ''}`}
       onClick={onClick}
+      title={tooltipText}
     >
       {buttonComponentIcon && <Icon className='button-component-icon' />}
       {buttonImageIcon && (
@@ -25,7 +27,7 @@ export const Button = ({
           aria-hidden={true}
         />
       )}
-      {text && <span>{text}</span>}
+      {text && <span className='button-text'>{text}</span>}
     </button>
   );
 };
