@@ -63,21 +63,25 @@ export const getHighlightedStructure = (initialText, highlights, keywords) => {
   }
 
   if (highlightsWithSearch.length > 0) {
-    const sortedDescriptionHighlights = highlightsWithSearch.sort(
+    const sortedHighlights = highlightsWithSearch.sort(
       (highlight1, highlight2) => {
         return highlight1.startIndex - highlight2.startIndex;
       },
     );
 
     let highlightedStructure = [];
-    const initialDescriptionArray = initialText.split('');
+    const initialArray = initialText.split('');
 
     let endOfPrevHighlightForParsing = 0;
-    sortedDescriptionHighlights.forEach((highlight, index) => {
+    sortedHighlights.forEach((highlight, index) => {
       if (highlight.startIndex === 0) {
         highlightedStructure.push(
-          <span className={highlight.highlighter} key={uuid()}>
-            {initialDescriptionArray
+          <span
+            id={highlight.id}
+            className={highlight.highlighter}
+            key={uuid()}
+          >
+            {initialArray
               .slice(highlight.startIndex, highlight.endIndex)
               .join('')}
           </span>,
@@ -88,15 +92,19 @@ export const getHighlightedStructure = (initialText, highlights, keywords) => {
         highlight.startIndex !== endOfPrevHighlightForParsing
       ) {
         highlightedStructure.push(
-          <span key={uuid()}>
-            {initialDescriptionArray
+          <span id={uuid()} key={uuid()}>
+            {initialArray
               .slice(endOfPrevHighlightForParsing, highlight.startIndex)
               .join('')}
           </span>,
         );
         highlightedStructure.push(
-          <span className={highlight.highlighter} key={uuid()}>
-            {initialDescriptionArray
+          <span
+            id={highlight.id}
+            className={highlight.highlighter}
+            key={uuid()}
+          >
+            {initialArray
               .slice(highlight.startIndex, highlight.endIndex)
               .join('')}
           </span>,
@@ -104,8 +112,12 @@ export const getHighlightedStructure = (initialText, highlights, keywords) => {
         endOfPrevHighlightForParsing = highlight.endIndex;
       } else {
         highlightedStructure.push(
-          <span className={highlight.highlighter} key={uuid()}>
-            {initialDescriptionArray
+          <span
+            className={highlight.highlighter}
+            id={highlight.id}
+            key={uuid()}
+          >
+            {initialArray
               .slice(highlight.startIndex, highlight.endIndex)
               .join('')}
           </span>,
@@ -113,13 +125,13 @@ export const getHighlightedStructure = (initialText, highlights, keywords) => {
         endOfPrevHighlightForParsing = highlight.endIndex;
       }
       if (
-        index === sortedDescriptionHighlights.length - 1 &&
-        highlight.endIndex !== initialDescriptionArray.length
+        index === sortedHighlights.length - 1 &&
+        highlight.endIndex !== initialArray.length
       ) {
         highlightedStructure.push(
-          <span key={uuid()}>
-            {initialDescriptionArray
-              .slice(highlight.endIndex, initialDescriptionArray.length)
+          <span id={uuid()} key={uuid()}>
+            {initialArray
+              .slice(highlight.endIndex, initialArray.length)
               .join('')}
           </span>,
         );

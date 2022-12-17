@@ -1,3 +1,4 @@
+import uuid from 'react-uuid';
 import { getUpdatedArrayOfHighlights } from '../NewsCard/utils/getUpdatedArrayOfHighlights';
 import { getIndexOfTargetNews } from './getIndexOfTargetNews';
 
@@ -26,7 +27,9 @@ export const addHighlight = (
     const onMouseUpTargetText = window.getSelection().focusNode.textContent;
 
     const startSelection = window.getSelection().anchorOffset;
+    const startSelectionId = window.getSelection().anchorNode.parentElement.id;
     const endSelection = window.getSelection().focusOffset;
+    const endSelectionId = window.getSelection().focusNode.parentElement.id;
 
     let startIndex;
     let endIndex;
@@ -45,55 +48,76 @@ export const addHighlight = (
       let wasStartIndexFound = false;
       let wasEndIndexFound = false;
 
+      const chunkNotMatchHandler = (chunk) => {
+        startIndexCounter = !wasStartIndexFound
+          ? startIndexCounter + chunk.textContent.length
+          : startIndexCounter;
+        endIndexCounter = !wasEndIndexFound
+          ? endIndexCounter + chunk.textContent.length
+          : endIndexCounter;
+      };
+
       arrayOfChunks.forEach((chunk) => {
+        // Selection did NOT START here, did NOT FINISH here
         if (
           chunk.textContent !== onMouseDownTargetText &&
           chunk.textContent !== onMouseUpTargetText
         ) {
-          startIndexCounter = !wasStartIndexFound
-            ? startIndexCounter + chunk.textContent.length
-            : startIndexCounter;
-          endIndexCounter = !wasEndIndexFound
-            ? endIndexCounter + chunk.textContent.length
-            : endIndexCounter;
+          chunkNotMatchHandler(chunk);
         }
 
+        // Selection STARTED here, FINISHED here
         if (
           chunk.textContent === onMouseDownTargetText &&
           chunk.textContent === onMouseUpTargetText
         ) {
-          startIndexCounter =
-            startIndexCounter +
-            (endSelection > startSelection ? startSelection : endSelection);
-          endIndexCounter =
-            endIndexCounter +
-            (endSelection > startSelection ? endSelection : startSelection);
-          wasStartIndexFound = true;
-          wasEndIndexFound = true;
+          if (startSelectionId === chunk.id && endSelectionId === chunk.id) {
+            startIndexCounter =
+              startIndexCounter +
+              (endSelection > startSelection ? startSelection : endSelection);
+            endIndexCounter =
+              endIndexCounter +
+              (endSelection > startSelection ? endSelection : startSelection);
+            wasStartIndexFound = true;
+            wasEndIndexFound = true;
+          } else {
+            chunkNotMatchHandler(chunk);
+          }
         }
 
+        // Selection STARTED here, did NOT FINISH here
         if (
           chunk.textContent === onMouseDownTargetText &&
           chunk.textContent !== onMouseUpTargetText
         ) {
-          startIndexCounter = startIndexCounter + startSelection;
-          endIndexCounter = !wasEndIndexFound
-            ? endIndexCounter + chunk.textContent.length
-            : endIndexCounter;
-          wasStartIndexFound = true;
+          if (startSelectionId === chunk.id) {
+            startIndexCounter = startIndexCounter + startSelection;
+            endIndexCounter = !wasEndIndexFound
+              ? endIndexCounter + chunk.textContent.length
+              : endIndexCounter;
+            wasStartIndexFound = true;
+          } else {
+            chunkNotMatchHandler(chunk);
+          }
         }
 
+        // Selection did NOT START here, FINISHED here
         if (
           chunk.textContent !== onMouseDownTargetText &&
           chunk.textContent === onMouseUpTargetText
         ) {
-          startIndexCounter = !wasStartIndexFound
-            ? startIndexCounter + chunk.textContent.length
-            : startIndexCounter;
-          endIndexCounter = endIndexCounter + endSelection;
-          wasEndIndexFound = true;
+          if (endSelectionId === chunk.id) {
+            startIndexCounter = !wasStartIndexFound
+              ? startIndexCounter + chunk.textContent.length
+              : startIndexCounter;
+            endIndexCounter = endIndexCounter + endSelection;
+            wasEndIndexFound = true;
+          } else {
+            chunkNotMatchHandler(chunk);
+          }
         }
       });
+
       startIndex =
         endIndexCounter > startIndexCounter
           ? startIndexCounter
@@ -112,6 +136,7 @@ export const addHighlight = (
       highlighter: activeTool,
       startIndex: startIndex,
       endIndex: endIndex,
+      id: uuid(),
     };
 
     setFavoriteNews(

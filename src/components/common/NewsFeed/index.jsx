@@ -80,6 +80,8 @@ export const NewsFeed = ({
                   addNote(
                     favoriteNews,
                     setFavoriteNews,
+                    activeTool,
+                    keywords,
                     link,
                     targetPart,
                   );

@@ -77,6 +77,12 @@ export const NewsCard = ({
           />
           <h2
             className={`news-card-content-title-text cursor-${activeTool}`}
+            onMouseDown={(event) => {
+              // let range = document.createRange();
+              // range.selectNode(
+              //   event.target.closest('.news-card-content-title-text'),
+              // );
+            }}
             onMouseUp={() => {
               activeTool !== 'note-creator'
                 ? addHighlight(link, 'title')
