@@ -17,7 +17,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CustomLink } from '@common/CustomLink/';
 import { Button } from '@common/Button/';
 
-import { getHighlightedStructure } from './utils/getHighlightedStructure';
+import { getEditedHtmlStructure } from './utils';
 
 export const NewsCard = ({
   createdFor,
@@ -46,6 +46,7 @@ export const NewsCard = ({
     category,
     language,
     highlights,
+    notes
   } = news;
 
   return (
@@ -77,12 +78,6 @@ export const NewsCard = ({
           />
           <h2
             className={`news-card-content-title-text cursor-${activeTool}`}
-            onMouseDown={(event) => {
-              // let range = document.createRange();
-              // range.selectNode(
-              //   event.target.closest('.news-card-content-title-text'),
-              // );
-            }}
             onMouseUp={() => {
               activeTool !== 'note-creator'
                 ? addHighlight(link, 'title')
@@ -97,9 +92,10 @@ export const NewsCard = ({
                 textToHighlight={title || ''}
               />
             ) : title ? (
-              getHighlightedStructure(
+              getEditedHtmlStructure(
                 title,
                 highlights && highlights['title'],
+                notes && notes['title'],
                 keywords,
               )
             ) : null}
@@ -153,9 +149,10 @@ export const NewsCard = ({
               textToHighlight={description || ''}
             />
           ) : description ? (
-            getHighlightedStructure(
+            getEditedHtmlStructure(
               description,
               highlights && highlights['description'],
+              notes && notes['description'],
               keywords,
             )
           ) : null}
@@ -178,9 +175,10 @@ export const NewsCard = ({
                 textToHighlight={content || ''}
               />
             ) : content ? (
-              getHighlightedStructure(
+              getEditedHtmlStructure(
                 content,
                 highlights && highlights['content'],
+                notes && notes['content'],
                 keywords,
               )
             ) : null}

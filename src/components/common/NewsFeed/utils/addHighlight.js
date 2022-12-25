@@ -1,6 +1,9 @@
 import uuid from 'react-uuid';
-import { getUpdatedArrayOfHighlights } from '../NewsCard/utils/getUpdatedArrayOfHighlights';
-import { getIndexOfTargetNews } from './getIndexOfTargetNews';
+import { addNewHighlightToArrayOfHighlights } from '../NewsCard/utils/addNewHighlightToArrayOfHighlights';
+import {
+  getIndexOfTargetNews,
+  getIsHighlightWithinTargetPart,
+} from './';
 
 export const addHighlight = (
   favoriteNews,
@@ -13,17 +16,7 @@ export const addHighlight = (
   const indexOfTargetNews = getIndexOfTargetNews(favoriteNews, link);
 
   if (window.getSelection().toString().length > 0 && activeTool) {
-    let onMouseDownTargetText;
-    if (
-      (favoriteNews[indexOfTargetNews].highlights &&
-        favoriteNews[indexOfTargetNews].highlights[targetPart]) ||
-      keywords[0].length > 0
-    ) {
-      onMouseDownTargetText =
-        window.getSelection().anchorNode.parentElement.textContent;
-    } else {
-      onMouseDownTargetText = window.getSelection().baseNode.textContent;
-    }
+    const onMouseDownTargetText = window.getSelection().anchorNode.textContent;
     const onMouseUpTargetText = window.getSelection().focusNode.textContent;
 
     const startSelection = window.getSelection().anchorOffset;
@@ -34,12 +27,16 @@ export const addHighlight = (
     let startIndex;
     let endIndex;
 
-    if (
-      (favoriteNews[indexOfTargetNews].highlights &&
-        favoriteNews[indexOfTargetNews].highlights[targetPart]) ||
-      keywords[0].length > 0
-    ) {
+    const isHighlightWithinTargetPart = getIsHighlightWithinTargetPart(
+      favoriteNews,
+      indexOfTargetNews,
+      targetPart,
+      keywords,
+    );
+
+    if (isHighlightWithinTargetPart) {
       const arrayOfChunks = Array.prototype.slice.call(
+        // Target part always have not more than one level of nested children
         window.getSelection().anchorNode.parentElement.parentElement.children,
       );
 
@@ -148,7 +145,7 @@ export const addHighlight = (
             (currentFavoriteNews.highlights[targetPart] = []);
 
           currentFavoriteNews.highlights[targetPart] =
-            getUpdatedArrayOfHighlights(
+            addNewHighlightToArrayOfHighlights(
               currentFavoriteNews.highlights[targetPart],
               newHighlight,
             );

@@ -12,7 +12,7 @@ import { FindNewsTab } from './FindNewsTab';
 import { EditNewsTab } from './EditNewsTab';
 
 export const NewsControls = (newsControlProps) => {
-  const { news, error, loading, isHighLightersBar, setActiveTool } =
+  const { news, error, loading, isHighLightersBar, setActiveTool, setKeyword } =
     newsControlProps;
 
   const errorMessage = error && createErrorMessage(news, error);
@@ -22,6 +22,7 @@ export const NewsControls = (newsControlProps) => {
   const changeTab = (_event, newTab) => {
     setCurrentTab(newTab);
     setActiveTool('');
+    setKeyword('');
   };
 
   return (

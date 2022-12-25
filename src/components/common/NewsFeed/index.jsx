@@ -38,6 +38,8 @@ export const NewsFeed = ({
     }
   }, [needScroll, setNeedScroll]);
 
+  console.log(favoriteNews);
+
   return (
     <section className='news-feed'>
       {loading ? (
@@ -80,7 +82,6 @@ export const NewsFeed = ({
                   addNote(
                     favoriteNews,
                     setFavoriteNews,
-                    activeTool,
                     keywords,
                     link,
                     targetPart,
