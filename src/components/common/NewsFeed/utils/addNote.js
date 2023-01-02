@@ -1,8 +1,5 @@
-import {
-  getIndexOfTargetNews,
-  getIsHighlightWithinTargetPart,
-  // getOnMouseDownTargetText
-} from './';
+import uuid from 'react-uuid';
+import { getIndexOfTargetNews, getIsHighlightWithinTargetPart } from './';
 
 export const addNote = (
   favoriteNews,
@@ -61,13 +58,13 @@ export const addNote = (
 
   const newNote = {
     noteIndex: noteIndex,
+    noteId: uuid()
   };
 
   setFavoriteNews(
     favoriteNews.map((currentFavoriteNews, currentFavoriteNewsIndex) => {
       if (currentFavoriteNewsIndex === indexOfTargetNews) {
-        !currentFavoriteNews.notes &&
-          (currentFavoriteNews['notes'] = {});
+        !currentFavoriteNews.notes && (currentFavoriteNews['notes'] = {});
         !currentFavoriteNews.notes[targetPart] &&
           (currentFavoriteNews.notes[targetPart] = []);
 

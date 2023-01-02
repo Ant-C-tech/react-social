@@ -23,7 +23,6 @@
   bottom: 10px;
 }
 
-
 .news-card-header {
   justify-content: space-around;
   text-transform: uppercase;
@@ -91,7 +90,7 @@
   text-transform: uppercase;
 }
 
-.news-card-content-title-text>span {
+.news-card-content-title-text > span {
   padding-top: 5px;
 }
 
@@ -100,7 +99,7 @@
 }
 
 .cursor-green-highlighter::selection,
-.cursor-green-highlighter>span::selection {
+.cursor-green-highlighter > span::selection {
   background-color: #96e2b9;
 }
 
@@ -109,7 +108,7 @@
 }
 
 .cursor-blue-highlighter::selection,
-.cursor-blue-highlighter>span::selection {
+.cursor-blue-highlighter > span::selection {
   background-color: #94d3cf;
 }
 
@@ -118,7 +117,7 @@
 }
 
 .cursor-yellow-highlighter::selection,
-.cursor-yellow-highlighter>span::selection {
+.cursor-yellow-highlighter > span::selection {
   background-color: #e7d771;
 }
 
@@ -127,7 +126,7 @@
 }
 
 .cursor-purple-highlighter::selection,
-.cursor-purple-highlighter>span::selection {
+.cursor-purple-highlighter > span::selection {
   background-color: #c6aee1;
 }
 
@@ -136,7 +135,7 @@
 }
 
 .cursor-pink-highlighter::selection,
-.cursor-pink-highlighter>span::selection {
+.cursor-pink-highlighter > span::selection {
   background-color: #e9bcbf;
 }
 
@@ -145,13 +144,13 @@
 }
 
 .cursor-orange-highlighter::selection,
-.cursor-orange-highlighter>span::selection {
+.cursor-orange-highlighter > span::selection {
   background-color: #efa383;
   color: #22373f;
 }
 
 .cursor-eraser::selection,
-.cursor-eraser>span::selection {
+.cursor-eraser > span::selection {
   background-color: #fff;
 }
 
@@ -313,4 +312,25 @@
 .search-highlight {
   background-color: #e0004d;
   color: #fff;
+}
+
+.note {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #323e42;
+  border-radius: 5px;
+  background-color: #eaeaea;
+  cursor: pointer;
+  box-shadow: 5px 5px 4px -2px #718b93;
+  background-image: url('./assets/reminder.png');
+  background-size: 75%;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: box-shadow ease-in-out 0.2s, border ease-in-out 0.2s;
+}
+
+.note:hover,
+.note:focus-visible {
+  border: 1px solid #e0004d;
+  box-shadow: 0px 0px 0px 0px #718b93;
 }
