@@ -1,9 +1,6 @@
 import uuid from 'react-uuid';
 import { addNewHighlightToArrayOfHighlights } from '../NewsCard/utils/addNewHighlightToArrayOfHighlights';
-import {
-  getIndexOfTargetNews,
-  getIsHighlightWithinTargetPart,
-} from './';
+import { getIndexOfTargetNews, getIsHighlightWithinTargetPart } from './';
 
 export const addHighlight = (
   favoriteNews,
@@ -16,12 +13,12 @@ export const addHighlight = (
   const indexOfTargetNews = getIndexOfTargetNews(favoriteNews, link);
 
   if (window.getSelection().toString().length > 0 && activeTool) {
-    const onMouseDownTargetText = window.getSelection().anchorNode.textContent;
-    const onMouseUpTargetText = window.getSelection().focusNode.textContent;
+    // const onMouseDownTargetText = window.getSelection().anchorNode.textContent;
+    // const onMouseUpTargetText = window.getSelection().focusNode.textContent;
 
-    const startSelection = window.getSelection().anchorOffset;
+    const startSelectionIndex = window.getSelection().anchorOffset;
     const startSelectionId = window.getSelection().anchorNode.parentElement.id;
-    const endSelection = window.getSelection().focusOffset;
+    const endSelectionIndex = window.getSelection().focusOffset;
     const endSelectionId = window.getSelection().focusNode.parentElement.id;
 
     let startIndex;
@@ -57,62 +54,75 @@ export const addHighlight = (
       arrayOfChunks.forEach((chunk) => {
         // Selection did NOT START here, did NOT FINISH here
         if (
-          chunk.textContent !== onMouseDownTargetText &&
-          chunk.textContent !== onMouseUpTargetText
+          // chunk.textContent !== onMouseDownTargetText &&
+          // chunk.textContent !== onMouseUpTargetText
+          startSelectionId !== chunk.id &&
+          endSelectionId !== chunk.id
         ) {
           chunkNotMatchHandler(chunk);
         }
 
         // Selection STARTED here, FINISHED here
-        if (
-          chunk.textContent === onMouseDownTargetText &&
-          chunk.textContent === onMouseUpTargetText
-        ) {
-          if (startSelectionId === chunk.id && endSelectionId === chunk.id) {
-            startIndexCounter =
-              startIndexCounter +
-              (endSelection > startSelection ? startSelection : endSelection);
-            endIndexCounter =
-              endIndexCounter +
-              (endSelection > startSelection ? endSelection : startSelection);
-            wasStartIndexFound = true;
-            wasEndIndexFound = true;
-          } else {
-            chunkNotMatchHandler(chunk);
-          }
+        // if (
+        //   chunk.textContent === onMouseDownTargetText &&
+        //   chunk.textContent === onMouseUpTargetText
+        // ) {
+        if (startSelectionId === chunk.id && endSelectionId === chunk.id) {
+          startIndexCounter =
+            startIndexCounter +
+            (endSelectionIndex > startSelectionIndex ? startSelectionIndex : endSelectionIndex);
+          endIndexCounter =
+            endIndexCounter +
+            (endSelectionIndex > startSelectionIndex ? endSelectionIndex : startSelectionIndex);
+          wasStartIndexFound = true;
+          wasEndIndexFound = true;
         }
+        // else {
+        //   chunkNotMatchHandler(chunk);
+        // }
+        // }
 
         // Selection STARTED here, did NOT FINISH here
+        // if (
+        //   chunk.textContent === onMouseDownTargetText &&
+        //   chunk.textContent !== onMouseUpTargetText
+        // ) {
         if (
-          chunk.textContent === onMouseDownTargetText &&
-          chunk.textContent !== onMouseUpTargetText
+          // startSelectionId === chunk.id
+          startSelectionId === chunk.id &&
+          endSelectionId !== chunk.id
         ) {
-          if (startSelectionId === chunk.id) {
-            startIndexCounter = startIndexCounter + startSelection;
-            endIndexCounter = !wasEndIndexFound
-              ? endIndexCounter + chunk.textContent.length
-              : endIndexCounter;
-            wasStartIndexFound = true;
-          } else {
-            chunkNotMatchHandler(chunk);
-          }
+          startIndexCounter = startIndexCounter + startSelectionIndex;
+          endIndexCounter = !wasEndIndexFound
+            ? endIndexCounter + chunk.textContent.length
+            : endIndexCounter;
+          wasStartIndexFound = true;
         }
+        // else {
+        //   chunkNotMatchHandler(chunk);
+        // }
+        // }
 
         // Selection did NOT START here, FINISHED here
+        // if (
+        //   chunk.textContent !== onMouseDownTargetText &&
+        //   chunk.textContent === onMouseUpTargetText
+        // ) {
         if (
-          chunk.textContent !== onMouseDownTargetText &&
-          chunk.textContent === onMouseUpTargetText
+          // endSelectionId === chunk.id
+          startSelectionId !== chunk.id &&
+          endSelectionId === chunk.id
         ) {
-          if (endSelectionId === chunk.id) {
-            startIndexCounter = !wasStartIndexFound
-              ? startIndexCounter + chunk.textContent.length
-              : startIndexCounter;
-            endIndexCounter = endIndexCounter + endSelection;
-            wasEndIndexFound = true;
-          } else {
-            chunkNotMatchHandler(chunk);
-          }
+          startIndexCounter = !wasStartIndexFound
+            ? startIndexCounter + chunk.textContent.length
+            : startIndexCounter;
+          endIndexCounter = endIndexCounter + endSelectionIndex;
+          wasEndIndexFound = true;
         }
+        // else {
+        //   chunkNotMatchHandler(chunk);
+        // }
+        // }
       });
 
       startIndex =
@@ -125,8 +135,8 @@ export const addHighlight = (
           : startIndexCounter;
     } else {
       startIndex =
-        startSelection < endSelection ? startSelection : endSelection;
-      endIndex = startSelection < endSelection ? endSelection : startSelection;
+        startSelectionIndex < endSelectionIndex ? startSelectionIndex : endSelectionIndex;
+      endIndex = startSelectionIndex < endSelectionIndex ? endSelectionIndex : startSelectionIndex;
     }
 
     const newHighlight = {

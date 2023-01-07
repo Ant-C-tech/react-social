@@ -16,6 +16,8 @@ export const addNote = (
     keywords,
   );
   const noteIndexInParent = window.getSelection().anchorOffset;
+  const noteParentText = window.getSelection().anchorNode.textContent;
+  console.log('noteParentText', noteParentText);
 
   let noteIndex;
 
@@ -24,7 +26,6 @@ export const addNote = (
       // Target part always have not more than one level of nested children
       window.getSelection().anchorNode.parentElement.parentElement.children,
     );
-    const onMouseDownTargetText = window.getSelection().anchorNode.textContent;
 
     const parentId = window.getSelection().anchorNode.parentElement.id;
 
@@ -38,17 +39,34 @@ export const addNote = (
     };
 
     arrayOfChunks.forEach((chunk) => {
-      if (chunk.textContent !== onMouseDownTargetText) {
-        // If note should be not within this chunk
-        chunkNotMatchHandler(chunk);
+      const text = chunk.textContent;
+
+      if (parentId === chunk.id) {
+        const isNoteIndexNeedCorrection =
+          noteIndexInParent !== text.length &&
+          noteIndexInParent !== 0 &&
+          text[noteIndexInParent] !== ' ';
+
+        const isNoteWithinLastWord =
+          text
+            .split('')
+            .splice(noteIndexInParent, text.split('').length - 1)
+            .indexOf(' ') === -1;
+
+        const correction =
+          isNoteIndexNeedCorrection && !isNoteWithinLastWord
+            ? text
+                .split('')
+                .splice(noteIndexInParent, text.split('').length - 1)
+                .indexOf(' ')
+            : isNoteIndexNeedCorrection && isNoteWithinLastWord
+            ? text.length - noteIndexInParent
+            : 0;
+
+        noteIndexCounter = noteIndexCounter + noteIndexInParent + correction;
+        wasNoteIndexFound = true;
       } else {
-        if (parentId === chunk.id) {
-          // Double check if we have several highlights with exactly the same text
-          noteIndexCounter = noteIndexCounter + noteIndexInParent;
-          wasNoteIndexFound = true;
-        } else {
-          chunkNotMatchHandler(chunk);
-        }
+        chunkNotMatchHandler(chunk);
       }
     });
     noteIndex = noteIndexCounter;
@@ -58,7 +76,7 @@ export const addNote = (
 
   const newNote = {
     noteIndex: noteIndex,
-    noteId: uuid()
+    noteId: uuid(),
   };
 
   setFavoriteNews(

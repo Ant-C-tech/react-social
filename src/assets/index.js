@@ -1,5 +1,6 @@
 export const makeNoteIcon = require('./document.png');
 export const noteIcon = require('./reminder.png');
+export const stickyNoteIcon = require('./sticky-note.png');
 export const highlightToolsIcon = require('./stationery.png');
 export const eraserIcon = require('./eraser-svgrepo-com.png');
 export const hintIcon = require('./idea.png');

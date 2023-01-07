@@ -1,7 +1,7 @@
 import './styles.css';
 import {
   makeNoteIcon,
-  noteIcon,
+  stickyNoteIcon,
   highlightToolsIcon,
   eraserIcon,
 } from '@assets';
@@ -64,7 +64,7 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
           onClick={() => {
             setActiveTool('note-creator' === activeTool ? '' : 'note-creator');
           }}
-          buttonImageIcon={noteIcon}
+          buttonImageIcon={stickyNoteIcon}
         />
       </div>
     </>

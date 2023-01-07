@@ -52,18 +52,14 @@ export const getEditedHtmlStructure = (
             className={highlight.highlighter}
             key={uuid()}
           >
-            {notes
-              ? getHtmlStructureWithNotes(
-                  highlight.startIndex,
-                  highlight.endIndex,
-                  initialTextArray
-                    .slice(highlight.startIndex, highlight.endIndex)
-                    .join(''),
-                  notes,
-                ).map((nodeElement) => nodeElement)
-              : initialTextArray
-                  .slice(highlight.startIndex, highlight.endIndex)
-                  .join('')}
+            {getHtmlStructureWithNotes(
+              highlight.startIndex,
+              highlight.endIndex,
+              initialTextArray
+                .slice(highlight.startIndex, highlight.endIndex)
+                .join(''),
+              notes,
+            )}
           </span>,
         );
         endOfPrevHighlightForParsing = highlight.endIndex;
@@ -120,6 +116,10 @@ export const getEditedHtmlStructure = (
 
     return editedHtmlStructure;
   } else {
-    return initialText;
+    return [
+      <span id={uuid()} key={uuid()}>
+        {initialText}
+      </span>,
+    ];
   }
 };

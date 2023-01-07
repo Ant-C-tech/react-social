@@ -318,11 +318,14 @@
   width: 32px;
   height: 32px;
   border: 1px solid #323e42;
-  border-radius: 5px;
+  /* border: none; */
+  /* border-radius: 5px; */
+  border-radius: 50%;
+  /* background-color: #eaeaea; */
   background-color: #eaeaea;
   cursor: pointer;
   box-shadow: 5px 5px 4px -2px #718b93;
-  background-image: url('./assets/reminder.png');
+  background-image: url('./assets/sticky-note.png');
   background-size: 75%;
   background-position: center;
   background-repeat: no-repeat;
@@ -331,6 +334,6 @@
 
 .note:hover,
 .note:focus-visible {
-  border: 1px solid #e0004d;
+  /* border: 1px solid #e0004d; */
   box-shadow: 0px 0px 0px 0px #718b93;
 }
