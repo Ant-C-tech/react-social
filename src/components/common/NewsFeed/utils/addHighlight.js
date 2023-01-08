@@ -1,6 +1,11 @@
 import uuid from 'react-uuid';
-import { addNewHighlightToArrayOfHighlights } from '../NewsCard/utils/addNewHighlightToArrayOfHighlights';
-import { getIndexOfTargetNews, getIsHighlightWithinTargetPart } from './';
+// import { addNewHighlightToArrayOfHighlights } from './addNewHighlightToArrayOfHighlights';
+import {
+  getArrayOfChunksOfTargetPart,
+  getIndexOfTargetNews,
+  getIsTargetPartAlreadyHighlighted,
+  updateFavoriteNewsWithNewHighlight,
+} from './';
 
 export const addHighlight = (
   favoriteNews,
@@ -13,9 +18,6 @@ export const addHighlight = (
   const indexOfTargetNews = getIndexOfTargetNews(favoriteNews, link);
 
   if (window.getSelection().toString().length > 0 && activeTool) {
-    // const onMouseDownTargetText = window.getSelection().anchorNode.textContent;
-    // const onMouseUpTargetText = window.getSelection().focusNode.textContent;
-
     const startSelectionIndex = window.getSelection().anchorOffset;
     const startSelectionId = window.getSelection().anchorNode.parentElement.id;
     const endSelectionIndex = window.getSelection().focusOffset;
@@ -24,18 +26,15 @@ export const addHighlight = (
     let startIndex;
     let endIndex;
 
-    const isHighlightWithinTargetPart = getIsHighlightWithinTargetPart(
+    const isTargetPartAlreadyHighlighted = getIsTargetPartAlreadyHighlighted(
       favoriteNews,
       indexOfTargetNews,
       targetPart,
       keywords,
     );
 
-    if (isHighlightWithinTargetPart) {
-      const arrayOfChunks = Array.prototype.slice.call(
-        // Target part always have not more than one level of nested children
-        window.getSelection().anchorNode.parentElement.parentElement.children,
-      );
+    if (isTargetPartAlreadyHighlighted) {
+      const arrayOfChunksOfTargetPart = getArrayOfChunksOfTargetPart();
 
       let startIndexCounter = 0;
       let endIndexCounter = 0;
@@ -51,78 +50,45 @@ export const addHighlight = (
           : endIndexCounter;
       };
 
-      arrayOfChunks.forEach((chunk) => {
+      arrayOfChunksOfTargetPart.forEach((chunk) => {
         // Selection did NOT START here, did NOT FINISH here
-        if (
-          // chunk.textContent !== onMouseDownTargetText &&
-          // chunk.textContent !== onMouseUpTargetText
-          startSelectionId !== chunk.id &&
-          endSelectionId !== chunk.id
-        ) {
+        if (startSelectionId !== chunk.id && endSelectionId !== chunk.id) {
           chunkNotMatchHandler(chunk);
         }
 
         // Selection STARTED here, FINISHED here
-        // if (
-        //   chunk.textContent === onMouseDownTargetText &&
-        //   chunk.textContent === onMouseUpTargetText
-        // ) {
         if (startSelectionId === chunk.id && endSelectionId === chunk.id) {
           startIndexCounter =
             startIndexCounter +
-            (endSelectionIndex > startSelectionIndex ? startSelectionIndex : endSelectionIndex);
+            (endSelectionIndex > startSelectionIndex
+              ? startSelectionIndex
+              : endSelectionIndex);
           endIndexCounter =
             endIndexCounter +
-            (endSelectionIndex > startSelectionIndex ? endSelectionIndex : startSelectionIndex);
+            (endSelectionIndex > startSelectionIndex
+              ? endSelectionIndex
+              : startSelectionIndex);
           wasStartIndexFound = true;
           wasEndIndexFound = true;
         }
-        // else {
-        //   chunkNotMatchHandler(chunk);
-        // }
-        // }
 
         // Selection STARTED here, did NOT FINISH here
-        // if (
-        //   chunk.textContent === onMouseDownTargetText &&
-        //   chunk.textContent !== onMouseUpTargetText
-        // ) {
-        if (
-          // startSelectionId === chunk.id
-          startSelectionId === chunk.id &&
-          endSelectionId !== chunk.id
-        ) {
+        if (startSelectionId === chunk.id && endSelectionId !== chunk.id) {
           startIndexCounter = startIndexCounter + startSelectionIndex;
           endIndexCounter = !wasEndIndexFound
             ? endIndexCounter + chunk.textContent.length
             : endIndexCounter;
           wasStartIndexFound = true;
         }
-        // else {
-        //   chunkNotMatchHandler(chunk);
-        // }
-        // }
 
         // Selection did NOT START here, FINISHED here
-        // if (
-        //   chunk.textContent !== onMouseDownTargetText &&
-        //   chunk.textContent === onMouseUpTargetText
-        // ) {
-        if (
-          // endSelectionId === chunk.id
-          startSelectionId !== chunk.id &&
-          endSelectionId === chunk.id
-        ) {
+        if (startSelectionId !== chunk.id && endSelectionId === chunk.id) {
           startIndexCounter = !wasStartIndexFound
             ? startIndexCounter + chunk.textContent.length
             : startIndexCounter;
           endIndexCounter = endIndexCounter + endSelectionIndex;
           wasEndIndexFound = true;
         }
-        // else {
-        //   chunkNotMatchHandler(chunk);
-        // }
-        // }
       });
 
       startIndex =
@@ -135,8 +101,13 @@ export const addHighlight = (
           : startIndexCounter;
     } else {
       startIndex =
-        startSelectionIndex < endSelectionIndex ? startSelectionIndex : endSelectionIndex;
-      endIndex = startSelectionIndex < endSelectionIndex ? endSelectionIndex : startSelectionIndex;
+        startSelectionIndex < endSelectionIndex
+          ? startSelectionIndex
+          : endSelectionIndex;
+      endIndex =
+        startSelectionIndex < endSelectionIndex
+          ? endSelectionIndex
+          : startSelectionIndex;
     }
 
     const newHighlight = {
@@ -146,24 +117,32 @@ export const addHighlight = (
       id: uuid(),
     };
 
-    setFavoriteNews(
-      favoriteNews.map((currentFavoriteNews, currentFavoriteNewsIndex) => {
-        if (currentFavoriteNewsIndex === indexOfTargetNews) {
-          !currentFavoriteNews.highlights &&
-            (currentFavoriteNews['highlights'] = {});
-          !currentFavoriteNews.highlights[targetPart] &&
-            (currentFavoriteNews.highlights[targetPart] = []);
+    // setFavoriteNews(
+    //   favoriteNews.map((currentFavoriteNews, currentFavoriteNewsIndex) => {
+    //     if (currentFavoriteNewsIndex === indexOfTargetNews) {
+    //       !currentFavoriteNews.highlights &&
+    //         (currentFavoriteNews['highlights'] = {});
+    //       !currentFavoriteNews.highlights[targetPart] &&
+    //         (currentFavoriteNews.highlights[targetPart] = []);
 
-          currentFavoriteNews.highlights[targetPart] =
-            addNewHighlightToArrayOfHighlights(
-              currentFavoriteNews.highlights[targetPart],
-              newHighlight,
-            );
-          return currentFavoriteNews;
-        } else {
-          return currentFavoriteNews;
-        }
-      }),
+    //       currentFavoriteNews.highlights[targetPart] =
+    //         addNewHighlightToArrayOfHighlights(
+    //           currentFavoriteNews.highlights[targetPart],
+    //           newHighlight,
+    //         );
+    //       return currentFavoriteNews;
+    //     } else {
+    //       return currentFavoriteNews;
+    //     }
+    //   }),
+    // );
+
+    updateFavoriteNewsWithNewHighlight(
+      favoriteNews,
+      setFavoriteNews,
+      indexOfTargetNews,
+      targetPart,
+      newHighlight,
     );
   }
 };

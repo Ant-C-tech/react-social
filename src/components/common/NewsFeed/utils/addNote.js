@@ -1,5 +1,11 @@
 import uuid from 'react-uuid';
-import { getIndexOfTargetNews, getIsHighlightWithinTargetPart } from './';
+import {
+  getArrayOfChunksOfTargetPart,
+  getIndexOfTargetNews,
+  getIsTargetPartAlreadyHighlighted,
+  // addNewHighlightToArrayOfHighlights,
+  updateFavoriteNewsWithNewHighlight,
+} from './';
 
 export const addNote = (
   favoriteNews,
@@ -9,23 +15,19 @@ export const addNote = (
   targetPart,
 ) => {
   const indexOfTargetNews = getIndexOfTargetNews(favoriteNews, link);
-  const isHighlightWithinTargetPart = getIsHighlightWithinTargetPart(
+  const isTargetPartAlreadyHighlighted = getIsTargetPartAlreadyHighlighted(
     favoriteNews,
     indexOfTargetNews,
     targetPart,
     keywords,
   );
   const noteIndexInParent = window.getSelection().anchorOffset;
-  const noteParentText = window.getSelection().anchorNode.textContent;
-  console.log('noteParentText', noteParentText);
+  // const noteParentText = window.getSelection().anchorNode.textContent;
 
   let noteIndex;
 
-  if (isHighlightWithinTargetPart) {
-    const arrayOfChunks = Array.prototype.slice.call(
-      // Target part always have not more than one level of nested children
-      window.getSelection().anchorNode.parentElement.parentElement.children,
-    );
+  if (isTargetPartAlreadyHighlighted) {
+    const arrayOfChunksOfTargetPart = getArrayOfChunksOfTargetPart();
 
     const parentId = window.getSelection().anchorNode.parentElement.id;
 
@@ -38,7 +40,7 @@ export const addNote = (
         : noteIndexCounter;
     };
 
-    arrayOfChunks.forEach((chunk) => {
+    arrayOfChunksOfTargetPart.forEach((chunk) => {
       const text = chunk.textContent;
 
       if (parentId === chunk.id) {
@@ -78,6 +80,38 @@ export const addNote = (
     noteIndex: noteIndex,
     noteId: uuid(),
   };
+
+  const highlightsOfTargetPart =
+    favoriteNews[indexOfTargetNews].highlights[targetPart];
+  highlightsOfTargetPart.forEach((highlight) => {
+    if (
+      highlight.startIndex < newNote.noteIndex &&
+      highlight.endIndex > newNote.noteIndex
+    ) {
+      [
+        {
+          highlighter: highlight.highlighter,
+          startIndex: highlight.startIndex,
+          endIndex: newNote.noteIndex,
+          id: uuid(),
+        },
+        {
+          highlighter: highlight.highlighter,
+          startIndex: newNote.noteIndex,
+          endIndex: highlight.endIndex,
+          id: uuid(),
+        },
+      ].forEach((newHighlight) => {
+        updateFavoriteNewsWithNewHighlight(
+          favoriteNews,
+          setFavoriteNews,
+          indexOfTargetNews,
+          targetPart,
+          newHighlight,
+        );
+      });
+    }
+  });
 
   setFavoriteNews(
     favoriteNews.map((currentFavoriteNews, currentFavoriteNewsIndex) => {

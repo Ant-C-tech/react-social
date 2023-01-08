@@ -1,9 +1,6 @@
 import uuid from 'react-uuid';
-import {
-  addNewHighlightToArrayOfHighlights,
-  getHtmlStructureWithNotes,
-  getSearchResults,
-} from './';
+import { addNewHighlightToArrayOfHighlights } from '../../utils';
+import { getHtmlStructureWithNotes, getSearchResults } from './';
 
 export const getEditedHtmlStructure = (
   initialText,
@@ -46,20 +43,16 @@ export const getEditedHtmlStructure = (
 
     sortedHighlights.forEach((highlight, index) => {
       if (highlight.startIndex === 0) {
+        //Target part starts from highlight
         editedHtmlStructure.push(
           <span
             id={highlight.id}
             className={highlight.highlighter}
             key={uuid()}
           >
-            {getHtmlStructureWithNotes(
-              highlight.startIndex,
-              highlight.endIndex,
-              initialTextArray
-                .slice(highlight.startIndex, highlight.endIndex)
-                .join(''),
-              notes,
-            )}
+            {initialTextArray
+              .slice(highlight.startIndex, highlight.endIndex)
+              .join('')}
           </span>,
         );
         endOfPrevHighlightForParsing = highlight.endIndex;
@@ -68,11 +61,17 @@ export const getEditedHtmlStructure = (
         highlight.startIndex !== endOfPrevHighlightForParsing
       ) {
         editedHtmlStructure.push(
-          <span id={uuid()} key={uuid()}>
-            {initialTextArray
-              .slice(endOfPrevHighlightForParsing, highlight.startIndex)
-              .join('')}
-          </span>,
+          getHtmlStructureWithNotes(
+            notes,
+            initialTextArray,
+            endOfPrevHighlightForParsing,
+            highlight.startIndex,
+          ),
+          // <span id={uuid()} key={uuid()}>
+          //   {initialTextArray
+          //     .slice(endOfPrevHighlightForParsing, highlight.startIndex)
+          //     .join('')}
+          // </span>,
         );
         editedHtmlStructure.push(
           <span
@@ -100,16 +99,37 @@ export const getEditedHtmlStructure = (
         );
         endOfPrevHighlightForParsing = highlight.endIndex;
       }
+
+      notes &&
+        notes.forEach((note) => {
+          if (note.noteIndex === endOfPrevHighlightForParsing) {
+            editedHtmlStructure.push(
+              <button
+                className='note'
+                id={note.noteId}
+                key={note.noteId}
+              ></button>,
+            );
+          }
+        });
+
+      // if it is the last highlight
       if (
         index === sortedHighlights.length - 1 &&
         highlight.endIndex !== initialTextArray.length
       ) {
         editedHtmlStructure.push(
-          <span id={uuid()} key={uuid()}>
-            {initialTextArray
-              .slice(highlight.endIndex, initialTextArray.length)
-              .join('')}
-          </span>,
+          getHtmlStructureWithNotes(
+            notes,
+            initialTextArray,
+            highlight.endIndex,
+            initialTextArray.length,
+          ),
+          // <span id={uuid()} key={uuid()}>
+          //   {initialTextArray
+          //     .slice(highlight.endIndex, initialTextArray.length)
+          //     .join('')}
+          // </span>,
         );
       }
     });
