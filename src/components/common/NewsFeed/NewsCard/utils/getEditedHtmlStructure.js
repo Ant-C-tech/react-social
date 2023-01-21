@@ -43,7 +43,7 @@ export const getEditedHtmlStructure = (
 
     sortedHighlights.forEach((highlight, index) => {
       if (highlight.startIndex === 0) {
-        //Target part starts from highlight
+        //Highlight starts from beginning of text
         editedHtmlStructure.push(
           <span
             id={highlight.id}
@@ -60,6 +60,7 @@ export const getEditedHtmlStructure = (
         highlight.startIndex !== 0 &&
         highlight.startIndex !== endOfPrevHighlightForParsing
       ) {
+        //Highlight starts NOT from beginning of text and NOT from beginning of previous highlight
         editedHtmlStructure.push(
           getHtmlStructureWithNotes(
             notes,
@@ -86,6 +87,7 @@ export const getEditedHtmlStructure = (
         );
         endOfPrevHighlightForParsing = highlight.endIndex;
       } else {
+        //Highlight starts from beginning of previous highlight
         editedHtmlStructure.push(
           <span
             className={highlight.highlighter}
@@ -100,18 +102,19 @@ export const getEditedHtmlStructure = (
         endOfPrevHighlightForParsing = highlight.endIndex;
       }
 
-      notes &&
-        notes.forEach((note) => {
-          if (note.noteIndex === endOfPrevHighlightForParsing) {
-            editedHtmlStructure.push(
-              <button
-                className='note'
-                id={note.noteId}
-                key={note.noteId}
-              ></button>,
-            );
-          }
-        });
+      // WHY DO WE NEED THIS?
+      // notes &&
+      //   notes.forEach((note) => {
+      //     if (note.noteIndex === endOfPrevHighlightForParsing) {
+      //       editedHtmlStructure.push(
+      //         <button
+      //           className='note'
+      //           id={note.noteId}
+      //           key={note.noteId}
+      //         ></button>,
+      //       );
+      //     }
+      //   });
 
       // if it is the last highlight
       if (

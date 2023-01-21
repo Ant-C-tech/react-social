@@ -14,7 +14,13 @@ export const getHtmlStructureWithNotes = (
   let indexCounter = startIndex;
 
   if (notes) {
-    notes.forEach((note, index) => {
+    const sortedNotes = notes.sort(
+      (note1, note2) => {
+        return note1.noteIndex - note2.noteIndex;
+      },
+    );
+
+    sortedNotes.forEach((note, index) => {
       if (note.noteIndex > startIndex && note.noteIndex < endIndex) {
         htmlStructureArray.push(
           <span id={uuid()} key={uuid()}>
