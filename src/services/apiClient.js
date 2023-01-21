@@ -12,7 +12,10 @@ export const apiClient = (requestParams) => {
         connectionCustomError.message = 'Internet Disconnected';
         return Promise.reject(connectionCustomError);
       }
-      if (config.params.apikey?.length !== 40) {
+      if (
+        config.params.apikey?.length < 40 ||
+        config.params.apikey?.length > 41
+      ) {
         const apiKeyCustomError = new Error();
         apiKeyCustomError.message = 'API Key Error';
         return Promise.reject(apiKeyCustomError);

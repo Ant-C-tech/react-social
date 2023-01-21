@@ -8,10 +8,12 @@ export const getNews = (
   keyword,
   nextPage,
 ) => {
-  const params = {
+  const params = nextPage ? {
     apikey: apiKey,
     page: nextPage,
-  };
+  } : {
+    apikey: apiKey,
+  }
 
   if (selectedCountries[0] !== 'all') params.country = selectedCountries.join();
   if (selectedCategories[0] !== 'all')
