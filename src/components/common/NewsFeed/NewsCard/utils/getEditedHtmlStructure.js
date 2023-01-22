@@ -98,18 +98,18 @@ export const getEditedHtmlStructure = (
       }
 
       // ADDING NOTES INSIDE THE HIGHLIGHTS
-      // notes &&
-      //   notes.forEach((note) => {
-      //     if (note.noteIndex === endOfPrevHighlightForParsing) {
-      //       editedHtmlStructure.push(
-      //         <button
-      //           className='note'
-      //           id={note.noteId}
-      //           key={note.noteId}
-      //         ></button>,
-      //       );
-      //     }
-      //   });
+      notes &&
+        notes.forEach((note) => {
+          if (note.noteIndex === endOfPrevHighlightForParsing) {
+            editedHtmlStructure.push(
+              <button
+                className='note'
+                id={note.noteId}
+                key={note.noteId}
+              ></button>,
+            );
+          }
+        });
 
       // if it is the last highlight
       if (

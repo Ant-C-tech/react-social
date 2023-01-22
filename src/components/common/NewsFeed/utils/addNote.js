@@ -3,7 +3,6 @@ import {
   getArrayOfChunksOfTargetPart,
   getIndexOfTargetNews,
   getIsTargetPartAlreadyHighlighted,
-  // addNewHighlightToArrayOfHighlights,
   updateFavoriteNewsWithNewHighlight,
   getIsTargetPartAlreadyHasNotes,
 } from './';
@@ -54,7 +53,6 @@ export const addNote = (
   );
 
   const noteIndexInParent = window.getSelection().anchorOffset;
-  // const noteParentText = window.getSelection().anchorNode.textContent;
 
   let noteIndex;
 
@@ -93,38 +91,40 @@ export const addNote = (
     noteId: uuid(),
   };
 
-  // ADD AFTER HANDLING NOTES FOR HIGHLIGHTS
-  // const highlightsOfTargetPart =
-  //   favoriteNews[indexOfTargetNews].highlights[targetPart];
-  // highlightsOfTargetPart.forEach((highlight) => {
-  //   if (
-  //     highlight.startIndex < newNote.noteIndex &&
-  //     highlight.endIndex > newNote.noteIndex
-  //   ) {
-  //     [
-  //       {
-  //         highlighter: highlight.highlighter,
-  //         startIndex: highlight.startIndex,
-  //         endIndex: newNote.noteIndex,
-  //         id: uuid(),
-  //       },
-  //       {
-  //         highlighter: highlight.highlighter,
-  //         startIndex: newNote.noteIndex,
-  //         endIndex: highlight.endIndex,
-  //         id: uuid(),
-  //       },
-  //     ].forEach((newHighlight) => {
-  //       updateFavoriteNewsWithNewHighlight(
-  //         favoriteNews,
-  //         setFavoriteNews,
-  //         indexOfTargetNews,
-  //         targetPart,
-  //         newHighlight,
-  //       );
-  //     });
-  //   }
-  // });
+ // Update highlights if new note is inside of existing highlight
+  if (isTargetPartAlreadyHighlighted) {
+    const highlightsOfTargetPart =
+      favoriteNews[indexOfTargetNews].highlights[targetPart];
+    highlightsOfTargetPart.forEach((highlight) => {
+      if (
+        highlight.startIndex < newNote.noteIndex &&
+        highlight.endIndex > newNote.noteIndex
+      ) {
+        [
+          {
+            highlighter: highlight.highlighter,
+            startIndex: highlight.startIndex,
+            endIndex: newNote.noteIndex,
+            id: uuid(),
+          },
+          {
+            highlighter: highlight.highlighter,
+            startIndex: newNote.noteIndex,
+            endIndex: highlight.endIndex,
+            id: uuid(),
+          },
+        ].forEach((newHighlight) => {
+          updateFavoriteNewsWithNewHighlight(
+            favoriteNews,
+            setFavoriteNews,
+            indexOfTargetNews,
+            targetPart,
+            newHighlight,
+          );
+        });
+      }
+    });
+  }
 
   setFavoriteNews(
     favoriteNews.map((currentFavoriteNews, currentFavoriteNewsIndex) => {

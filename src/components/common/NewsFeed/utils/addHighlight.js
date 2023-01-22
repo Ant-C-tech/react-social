@@ -5,6 +5,7 @@ import {
   getIndexOfTargetNews,
   getIsTargetPartAlreadyHighlighted,
   updateFavoriteNewsWithNewHighlight,
+  getIsTargetPartAlreadyHasNotes,
 } from './';
 
 export const addHighlight = (
@@ -32,8 +33,13 @@ export const addHighlight = (
       targetPart,
       keywords,
     );
+    const isTargetPartAlreadyHasNotes = getIsTargetPartAlreadyHasNotes(
+      favoriteNews,
+      indexOfTargetNews,
+      targetPart,
+    );
 
-    if (isTargetPartAlreadyHighlighted) {
+    if (isTargetPartAlreadyHighlighted || isTargetPartAlreadyHasNotes) {
       const arrayOfChunksOfTargetPart = getArrayOfChunksOfTargetPart();
 
       let startIndexCounter = 0;
@@ -117,6 +123,57 @@ export const addHighlight = (
       id: uuid(),
     };
 
+    // Update newHighlight if it covers already existing notes
+    if (isTargetPartAlreadyHasNotes) {
+      const notesOfTargetPart =
+        favoriteNews[indexOfTargetNews].notes[targetPart];
+      const notesWithinNewHighlight = notesOfTargetPart.filter((note) => {
+        return (
+          note.noteIndex >= newHighlight.startIndex &&
+          note.noteIndex <= newHighlight.endIndex
+        );
+      });
+
+      const arrayOfNewHighlights = [];
+      let indexCounter = newHighlight.startIndex;
+
+      notesWithinNewHighlight.forEach((note, index) => {
+        arrayOfNewHighlights.push({
+          highlighter: newHighlight.highlighter,
+          startIndex: indexCounter,
+          endIndex: note.noteIndex,
+          id: uuid(),
+        });
+        indexCounter = note.noteIndex;
+        if (index === notesWithinNewHighlight.length - 1) {
+          arrayOfNewHighlights.push({
+            highlighter: newHighlight.highlighter,
+            startIndex: note.noteIndex,
+            endIndex: newHighlight.endIndex,
+            id: uuid(),
+          });
+        }
+      });
+
+      arrayOfNewHighlights.forEach((newHighlightFromArrayOfNewHighlights) => {
+        updateFavoriteNewsWithNewHighlight(
+          favoriteNews,
+          setFavoriteNews,
+          indexOfTargetNews,
+          targetPart,
+          newHighlightFromArrayOfNewHighlights,
+        );
+      });
+    } else {
+      updateFavoriteNewsWithNewHighlight(
+        favoriteNews,
+        setFavoriteNews,
+        indexOfTargetNews,
+        targetPart,
+        newHighlight,
+      );
+    }
+
     // setFavoriteNews(
     //   favoriteNews.map((currentFavoriteNews, currentFavoriteNewsIndex) => {
     //     if (currentFavoriteNewsIndex === indexOfTargetNews) {
@@ -136,13 +193,5 @@ export const addHighlight = (
     //     }
     //   }),
     // );
-
-    updateFavoriteNewsWithNewHighlight(
-      favoriteNews,
-      setFavoriteNews,
-      indexOfTargetNews,
-      targetPart,
-      newHighlight,
-    );
   }
 };
