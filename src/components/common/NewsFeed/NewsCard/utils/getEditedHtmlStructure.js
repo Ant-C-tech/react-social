@@ -68,11 +68,6 @@ export const getEditedHtmlStructure = (
             endOfPrevHighlightForParsing,
             highlight.startIndex,
           ),
-          // <span id={uuid()} key={uuid()}>
-          //   {initialTextArray
-          //     .slice(endOfPrevHighlightForParsing, highlight.startIndex)
-          //     .join('')}
-          // </span>,
         );
         editedHtmlStructure.push(
           <span
@@ -102,7 +97,7 @@ export const getEditedHtmlStructure = (
         endOfPrevHighlightForParsing = highlight.endIndex;
       }
 
-      // WHY DO WE NEED THIS?
+      // ADDING NOTES INSIDE THE HIGHLIGHTS
       // notes &&
       //   notes.forEach((note) => {
       //     if (note.noteIndex === endOfPrevHighlightForParsing) {
@@ -128,11 +123,6 @@ export const getEditedHtmlStructure = (
             highlight.endIndex,
             initialTextArray.length,
           ),
-          // <span id={uuid()} key={uuid()}>
-          //   {initialTextArray
-          //     .slice(highlight.endIndex, initialTextArray.length)
-          //     .join('')}
-          // </span>,
         );
       }
     });
@@ -140,9 +130,15 @@ export const getEditedHtmlStructure = (
     return editedHtmlStructure;
   } else {
     return [
-      <span id={uuid()} key={uuid()}>
-        {initialText}
-      </span>,
+      getHtmlStructureWithNotes(
+        notes,
+        initialTextArray,
+        0,
+        initialTextArray.length,
+      ),
+      // <span id={uuid()} key={uuid()}>
+      //   {initialText}
+      // </span>,
     ];
   }
 };

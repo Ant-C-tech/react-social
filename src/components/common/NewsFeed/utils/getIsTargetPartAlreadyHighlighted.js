@@ -1,7 +1,7 @@
 export const getIsTargetPartAlreadyHighlighted = (favoriteNews, indexOfTargetNews,targetPart, keywords ) => {
-  const isHighlightWithinTargetPart =
+  const isHighlightsWithinTargetPart =
     (favoriteNews[indexOfTargetNews].highlights &&
       favoriteNews[indexOfTargetNews].highlights[targetPart]) ||
     keywords[0].length > 0;
-  return isHighlightWithinTargetPart;
+  return isHighlightsWithinTargetPart;
 };
