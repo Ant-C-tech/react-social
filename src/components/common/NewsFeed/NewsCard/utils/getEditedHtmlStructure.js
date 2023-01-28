@@ -1,4 +1,3 @@
-import uuid from 'react-uuid';
 import { addNewHighlightToArrayOfHighlights } from '../../utils';
 import { getHtmlStructureWithNotes, getSearchResults } from './';
 
@@ -30,9 +29,9 @@ export const getEditedHtmlStructure = (
   }
 
   // Get edited HTML structure
-  let editedHtmlStructure = [];
-  let endOfPrevHighlightForParsing = 0;
+  const editedHtmlStructure = [];
   const initialTextArray = initialText.split('');
+  let endOfPrevHighlightForParsing = 0;
 
   if (highlightsAndSearchResults.length > 0) {
     const sortedHighlights = highlightsAndSearchResults.sort(
@@ -45,15 +44,13 @@ export const getEditedHtmlStructure = (
       if (highlight.startIndex === 0) {
         //Highlight starts from beginning of text
         editedHtmlStructure.push(
-          <span
-            id={highlight.id}
-            className={highlight.highlighter}
-            key={uuid()}
-          >
-            {initialTextArray
-              .slice(highlight.startIndex, highlight.endIndex)
-              .join('')}
-          </span>,
+          getHtmlStructureWithNotes(
+            notes,
+            initialTextArray,
+            highlight.startIndex,
+            highlight.endIndex,
+            highlight.highlighter,
+          ),
         );
         endOfPrevHighlightForParsing = highlight.endIndex;
       } else if (
@@ -70,46 +67,28 @@ export const getEditedHtmlStructure = (
           ),
         );
         editedHtmlStructure.push(
-          <span
-            id={highlight.id}
-            className={highlight.highlighter}
-            key={uuid()}
-          >
-            {initialTextArray
-              .slice(highlight.startIndex, highlight.endIndex)
-              .join('')}
-          </span>,
+          getHtmlStructureWithNotes(
+            notes,
+            initialTextArray,
+            highlight.startIndex,
+            highlight.endIndex,
+            highlight.highlighter,
+          ),
         );
         endOfPrevHighlightForParsing = highlight.endIndex;
       } else {
         //Highlight starts from beginning of previous highlight
         editedHtmlStructure.push(
-          <span
-            className={highlight.highlighter}
-            id={highlight.id}
-            key={uuid()}
-          >
-            {initialTextArray
-              .slice(highlight.startIndex, highlight.endIndex)
-              .join('')}
-          </span>,
+          getHtmlStructureWithNotes(
+            notes,
+            initialTextArray,
+            highlight.startIndex,
+            highlight.endIndex,
+            highlight.highlighter,
+          ),
         );
         endOfPrevHighlightForParsing = highlight.endIndex;
       }
-
-      // ADDING NOTES INSIDE THE HIGHLIGHTS
-      notes &&
-        notes.forEach((note) => {
-          if (note.noteIndex === endOfPrevHighlightForParsing) {
-            editedHtmlStructure.push(
-              <button
-                className='note'
-                id={note.noteId}
-                key={note.noteId}
-              ></button>,
-            );
-          }
-        });
 
       // if it is the last highlight
       if (
@@ -136,9 +115,6 @@ export const getEditedHtmlStructure = (
         0,
         initialTextArray.length,
       ),
-      // <span id={uuid()} key={uuid()}>
-      //   {initialText}
-      // </span>,
     ];
   }
 };

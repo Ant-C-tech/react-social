@@ -1,4 +1,3 @@
-import React from 'react';
 import uuid from 'react-uuid';
 
 export const getHtmlStructureWithNotes = (
@@ -6,6 +5,7 @@ export const getHtmlStructureWithNotes = (
   initialTextArray,
   startIndex,
   endIndex,
+  highlighter = null,
 ) => {
   const htmlStructureArray = [];
   let indexCounter = startIndex;
@@ -16,13 +16,13 @@ export const getHtmlStructureWithNotes = (
         return note1.noteIndex - note2.noteIndex;
       })
       .filter((note) => {
-        return note.noteIndex >= startIndex && note.noteIndex <= endIndex;
+        return note.noteIndex > startIndex && note.noteIndex <= endIndex;
       });
 
     notesWithinThisChunk.length !== 0 &&
       notesWithinThisChunk.forEach((note, index) => {
         htmlStructureArray.push(
-          <span id={uuid()} key={uuid()}>
+          <span id={uuid()} key={uuid()} className={highlighter && highlighter}>
             {initialTextArray.slice(indexCounter, note.noteIndex).join('')}
           </span>,
         );
@@ -31,9 +31,16 @@ export const getHtmlStructureWithNotes = (
         );
         indexCounter = note.noteIndex;
 
-        if (index === notesWithinThisChunk.length - 1) {
+        if (
+          index === notesWithinThisChunk.length - 1 &&
+          indexCounter !== endIndex
+        ) {
           htmlStructureArray.push(
-            <span id={uuid()} key={uuid()}>
+            <span
+              id={uuid()}
+              key={uuid()}
+              className={highlighter && highlighter}
+            >
               {initialTextArray.slice(indexCounter, endIndex).join('')}
             </span>,
           );
@@ -43,10 +50,11 @@ export const getHtmlStructureWithNotes = (
 
   if (htmlStructureArray.length === 0 || notes.length === 0) {
     htmlStructureArray.push(
-      <span id={uuid()} key={uuid()}>
+      <span id={uuid()} key={uuid()} className={highlighter && highlighter}>
         {initialTextArray.slice(startIndex, endIndex).join('')}
       </span>,
     );
   }
+
   return htmlStructureArray;
 };

@@ -3,8 +3,8 @@ import {
   getArrayOfChunksOfTargetPart,
   getIndexOfTargetNews,
   getIsTargetPartAlreadyHighlighted,
-  updateFavoriteNewsWithNewHighlight,
   getIsTargetPartAlreadyHasNotes,
+  updateFavoriteNewsWithNewNote,
 } from './';
 
 const getCorrection = (noteIndexInParent, text) => {
@@ -91,53 +91,11 @@ export const addNote = (
     noteId: uuid(),
   };
 
- // Update highlights if new note is inside of existing highlight
-  if (isTargetPartAlreadyHighlighted) {
-    const highlightsOfTargetPart =
-      favoriteNews[indexOfTargetNews].highlights[targetPart];
-    highlightsOfTargetPart.forEach((highlight) => {
-      if (
-        highlight.startIndex < newNote.noteIndex &&
-        highlight.endIndex > newNote.noteIndex
-      ) {
-        [
-          {
-            highlighter: highlight.highlighter,
-            startIndex: highlight.startIndex,
-            endIndex: newNote.noteIndex,
-            id: uuid(),
-          },
-          {
-            highlighter: highlight.highlighter,
-            startIndex: newNote.noteIndex,
-            endIndex: highlight.endIndex,
-            id: uuid(),
-          },
-        ].forEach((newHighlight) => {
-          updateFavoriteNewsWithNewHighlight(
-            favoriteNews,
-            setFavoriteNews,
-            indexOfTargetNews,
-            targetPart,
-            newHighlight,
-          );
-        });
-      }
-    });
-  }
-
-  setFavoriteNews(
-    favoriteNews.map((currentFavoriteNews, currentFavoriteNewsIndex) => {
-      if (currentFavoriteNewsIndex === indexOfTargetNews) {
-        !currentFavoriteNews.notes && (currentFavoriteNews['notes'] = {});
-        !currentFavoriteNews.notes[targetPart] &&
-          (currentFavoriteNews.notes[targetPart] = []);
-
-        currentFavoriteNews.notes[targetPart].push(newNote);
-        return currentFavoriteNews;
-      } else {
-        return currentFavoriteNews;
-      }
-    }),
+  updateFavoriteNewsWithNewNote(
+    favoriteNews,
+    setFavoriteNews,
+    indexOfTargetNews,
+    targetPart,
+    newNote,
   );
 };

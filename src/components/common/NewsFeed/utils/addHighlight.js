@@ -1,5 +1,4 @@
 import uuid from 'react-uuid';
-// import { addNewHighlightToArrayOfHighlights } from './addNewHighlightToArrayOfHighlights';
 import {
   getArrayOfChunksOfTargetPart,
   getIndexOfTargetNews,
@@ -19,13 +18,18 @@ export const addHighlight = (
   const indexOfTargetNews = getIndexOfTargetNews(favoriteNews, link);
 
   if (window.getSelection().toString().length > 0 && activeTool) {
+    const isSelectionEndsOnNote =
+      window.getSelection().focusNode.classList &&
+      window.getSelection().focusNode.classList[0] &&
+      window.getSelection().focusNode.classList[0] === 'note';
+
+    let startIndex;
+    let endIndex;
+
     const startSelectionIndex = window.getSelection().anchorOffset;
     const startSelectionId = window.getSelection().anchorNode.parentElement.id;
     const endSelectionIndex = window.getSelection().focusOffset;
     const endSelectionId = window.getSelection().focusNode.parentElement.id;
-
-    let startIndex;
-    let endIndex;
 
     const isTargetPartAlreadyHighlighted = getIsTargetPartAlreadyHighlighted(
       favoriteNews,
@@ -43,69 +47,107 @@ export const addHighlight = (
       const arrayOfChunksOfTargetPart = getArrayOfChunksOfTargetPart();
 
       let startIndexCounter = 0;
-      let endIndexCounter = 0;
       let wasStartIndexFound = false;
-      let wasEndIndexFound = false;
 
-      const chunkNotMatchHandler = (chunk) => {
-        startIndexCounter = !wasStartIndexFound
-          ? startIndexCounter + chunk.textContent.length
-          : startIndexCounter;
-        endIndexCounter = !wasEndIndexFound
-          ? endIndexCounter + chunk.textContent.length
-          : endIndexCounter;
-      };
+      //First Case - Selection ends on note
+      if (isSelectionEndsOnNote) {
+        const endSelectionNoteId = window.getSelection().focusNode.id;
+        let endSelectionNoteIndex;
+        favoriteNews[indexOfTargetNews].notes[targetPart].forEach((note) => {
+          if (note.noteId === endSelectionNoteId) {
+            endSelectionNoteIndex = note.noteIndex;
+          }
+        });
 
-      arrayOfChunksOfTargetPart.forEach((chunk) => {
-        // Selection did NOT START here, did NOT FINISH here
-        if (startSelectionId !== chunk.id && endSelectionId !== chunk.id) {
-          chunkNotMatchHandler(chunk);
-        }
+        arrayOfChunksOfTargetPart.forEach((chunk) => {
+          // Selection did NOT START here
+          if (startSelectionId !== chunk.id) {
+            startIndexCounter = !wasStartIndexFound
+              ? startIndexCounter + chunk.textContent.length
+              : startIndexCounter;
+          }
 
-        // Selection STARTED here, FINISHED here
-        if (startSelectionId === chunk.id && endSelectionId === chunk.id) {
-          startIndexCounter =
-            startIndexCounter +
-            (endSelectionIndex > startSelectionIndex
-              ? startSelectionIndex
-              : endSelectionIndex);
-          endIndexCounter =
-            endIndexCounter +
-            (endSelectionIndex > startSelectionIndex
-              ? endSelectionIndex
-              : startSelectionIndex);
-          wasStartIndexFound = true;
-          wasEndIndexFound = true;
-        }
+          // Selection STARTED here
+          if (startSelectionId === chunk.id) {
+            startIndexCounter = startIndexCounter + startSelectionIndex;
+            wasStartIndexFound = true;
+          }
+        });
 
-        // Selection STARTED here, did NOT FINISH here
-        if (startSelectionId === chunk.id && endSelectionId !== chunk.id) {
-          startIndexCounter = startIndexCounter + startSelectionIndex;
-          endIndexCounter = !wasEndIndexFound
-            ? endIndexCounter + chunk.textContent.length
-            : endIndexCounter;
-          wasStartIndexFound = true;
-        }
+        startIndex =
+          endSelectionNoteIndex > startIndexCounter
+            ? startIndexCounter
+            : endSelectionNoteIndex;
+        endIndex =
+          endSelectionNoteIndex > startIndexCounter
+            ? endSelectionNoteIndex
+            : startIndexCounter;
+      } else {
+        //Second Case - Selection didn't end on note
+        let endIndexCounter = 0;
+        let wasEndIndexFound = false;
 
-        // Selection did NOT START here, FINISHED here
-        if (startSelectionId !== chunk.id && endSelectionId === chunk.id) {
+        const chunkNotMatchHandler = (chunk) => {
           startIndexCounter = !wasStartIndexFound
             ? startIndexCounter + chunk.textContent.length
             : startIndexCounter;
-          endIndexCounter = endIndexCounter + endSelectionIndex;
-          wasEndIndexFound = true;
-        }
-      });
+          endIndexCounter = !wasEndIndexFound
+            ? endIndexCounter + chunk.textContent.length
+            : endIndexCounter;
+        };
 
-      startIndex =
-        endIndexCounter > startIndexCounter
-          ? startIndexCounter
-          : endIndexCounter;
-      endIndex =
-        endIndexCounter > startIndexCounter
-          ? endIndexCounter
-          : startIndexCounter;
+        arrayOfChunksOfTargetPart.forEach((chunk) => {
+          // Selection did NOT START here, did NOT FINISH here
+          if (startSelectionId !== chunk.id && endSelectionId !== chunk.id) {
+            chunkNotMatchHandler(chunk);
+          }
+
+          // Selection STARTED here, FINISHED here
+          if (startSelectionId === chunk.id && endSelectionId === chunk.id) {
+            startIndexCounter =
+              startIndexCounter +
+              (endSelectionIndex > startSelectionIndex
+                ? startSelectionIndex
+                : endSelectionIndex);
+            endIndexCounter =
+              endIndexCounter +
+              (endSelectionIndex > startSelectionIndex
+                ? endSelectionIndex
+                : startSelectionIndex);
+            wasStartIndexFound = true;
+            wasEndIndexFound = true;
+          }
+
+          // Selection STARTED here, did NOT FINISH here
+          if (startSelectionId === chunk.id && endSelectionId !== chunk.id) {
+            startIndexCounter = startIndexCounter + startSelectionIndex;
+            endIndexCounter = !wasEndIndexFound
+              ? endIndexCounter + chunk.textContent.length
+              : endIndexCounter;
+            wasStartIndexFound = true;
+          }
+
+          // Selection did NOT START here, FINISHED here
+          if (startSelectionId !== chunk.id && endSelectionId === chunk.id) {
+            startIndexCounter = !wasStartIndexFound
+              ? startIndexCounter + chunk.textContent.length
+              : startIndexCounter;
+            endIndexCounter = endIndexCounter + endSelectionIndex;
+            wasEndIndexFound = true;
+          }
+        });
+
+        startIndex =
+          endIndexCounter > startIndexCounter
+            ? startIndexCounter
+            : endIndexCounter;
+        endIndex =
+          endIndexCounter > startIndexCounter
+            ? endIndexCounter
+            : startIndexCounter;
+      }
     } else {
+      //No highlights and notes on this part of the news
       startIndex =
         startSelectionIndex < endSelectionIndex
           ? startSelectionIndex
@@ -123,75 +165,12 @@ export const addHighlight = (
       id: uuid(),
     };
 
-    // Update newHighlight if it covers already existing notes
-    if (isTargetPartAlreadyHasNotes) {
-      const notesOfTargetPart =
-        favoriteNews[indexOfTargetNews].notes[targetPart];
-      const notesWithinNewHighlight = notesOfTargetPart.filter((note) => {
-        return (
-          note.noteIndex >= newHighlight.startIndex &&
-          note.noteIndex <= newHighlight.endIndex
-        );
-      });
-
-      const arrayOfNewHighlights = [];
-      let indexCounter = newHighlight.startIndex;
-
-      notesWithinNewHighlight.forEach((note, index) => {
-        arrayOfNewHighlights.push({
-          highlighter: newHighlight.highlighter,
-          startIndex: indexCounter,
-          endIndex: note.noteIndex,
-          id: uuid(),
-        });
-        indexCounter = note.noteIndex;
-        if (index === notesWithinNewHighlight.length - 1) {
-          arrayOfNewHighlights.push({
-            highlighter: newHighlight.highlighter,
-            startIndex: note.noteIndex,
-            endIndex: newHighlight.endIndex,
-            id: uuid(),
-          });
-        }
-      });
-
-      arrayOfNewHighlights.forEach((newHighlightFromArrayOfNewHighlights) => {
-        updateFavoriteNewsWithNewHighlight(
-          favoriteNews,
-          setFavoriteNews,
-          indexOfTargetNews,
-          targetPart,
-          newHighlightFromArrayOfNewHighlights,
-        );
-      });
-    } else {
-      updateFavoriteNewsWithNewHighlight(
-        favoriteNews,
-        setFavoriteNews,
-        indexOfTargetNews,
-        targetPart,
-        newHighlight,
-      );
-    }
-
-    // setFavoriteNews(
-    //   favoriteNews.map((currentFavoriteNews, currentFavoriteNewsIndex) => {
-    //     if (currentFavoriteNewsIndex === indexOfTargetNews) {
-    //       !currentFavoriteNews.highlights &&
-    //         (currentFavoriteNews['highlights'] = {});
-    //       !currentFavoriteNews.highlights[targetPart] &&
-    //         (currentFavoriteNews.highlights[targetPart] = []);
-
-    //       currentFavoriteNews.highlights[targetPart] =
-    //         addNewHighlightToArrayOfHighlights(
-    //           currentFavoriteNews.highlights[targetPart],
-    //           newHighlight,
-    //         );
-    //       return currentFavoriteNews;
-    //     } else {
-    //       return currentFavoriteNews;
-    //     }
-    //   }),
-    // );
+    updateFavoriteNewsWithNewHighlight(
+      favoriteNews,
+      setFavoriteNews,
+      indexOfTargetNews,
+      targetPart,
+      newHighlight,
+    );
   }
 };
