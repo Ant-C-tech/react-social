@@ -21,7 +21,7 @@ export const addHighlight = (
     const isSelectionEndsOnNote =
       window.getSelection().focusNode.classList &&
       window.getSelection().focusNode.classList[0] &&
-      window.getSelection().focusNode.classList[0] === 'note';
+      window.getSelection().focusNode.classList[0] === 'button';
 
     let startIndex;
     let endIndex;

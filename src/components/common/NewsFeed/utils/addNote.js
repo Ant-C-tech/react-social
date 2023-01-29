@@ -38,6 +38,9 @@ export const addNote = (
   keywords,
   link,
   targetPart,
+  textOfNoteCard,
+  setTextOfNoteCard,
+  setActiveTool
 ) => {
   const indexOfTargetNews = getIndexOfTargetNews(favoriteNews, link);
   const isTargetPartAlreadyHighlighted = getIsTargetPartAlreadyHighlighted(
@@ -89,6 +92,7 @@ export const addNote = (
   const newNote = {
     noteIndex: noteIndex,
     noteId: uuid(),
+    noteText: textOfNoteCard,
   };
 
   updateFavoriteNewsWithNewNote(
@@ -98,4 +102,7 @@ export const addNote = (
     targetPart,
     newNote,
   );
+
+  setTextOfNoteCard('');
+  setActiveTool('');
 };

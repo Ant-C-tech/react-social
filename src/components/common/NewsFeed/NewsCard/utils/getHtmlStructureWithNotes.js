@@ -1,4 +1,6 @@
 import uuid from 'react-uuid';
+import { stickyNoteIcon } from '@assets';
+import { Button } from '@common';
 
 export const getHtmlStructureWithNotes = (
   notes,
@@ -27,7 +29,16 @@ export const getHtmlStructureWithNotes = (
           </span>,
         );
         htmlStructureArray.push(
-          <button id={note.noteId} key={note.noteId} className='note'></button>,
+          // <button id={note.noteId} key={note.noteId} className='note'></button>,
+          <Button
+            id={note.noteId}
+            key={note.noteId}
+            onClick={() => {
+              alert('Note clicked');
+            }}
+            buttonImageIcon={stickyNoteIcon}
+            inline={true}
+          />,
         );
         indexCounter = note.noteIndex;
 

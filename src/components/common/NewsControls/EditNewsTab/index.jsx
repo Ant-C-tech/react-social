@@ -8,10 +8,11 @@ import {
 
 import { HIGHLIGHTERS } from './constants';
 
-import { Button } from '@common/Button/';
+import { Button, TextArea } from '@common/';
 
 export const EditNewsTab = ({ editNewsTabProps }) => {
-  const { activeTool, setActiveTool } = editNewsTabProps;
+  const { activeTool, setActiveTool, textOfNoteCard, setTextOfNoteCard } =
+    editNewsTabProps;
 
   return (
     <>
@@ -21,9 +22,9 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
         alt='#'
         aria-hidden={true}
       />
-      <h3 className='edit-news-tab-title'>
+      <h4 className='edit-news-tab-title'>
         Do You want to highlight some text or remove some existing highlight?
-      </h3>
+      </h4>
 
       <div className='edit-news-tab-control-toolbar'>
         {HIGHLIGHTERS.map((highlighter, index) => {
@@ -56,7 +57,7 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
         alt='#'
         aria-hidden={true}
       />
-      <h3 className='edit-news-tab-title'>Do you want to create some note?</h3>
+      <h4 className='edit-news-tab-title'>Do you want to create some note?</h4>
       <div className='edit-news-tab-control'>
         <Button
           text='Create Note'
@@ -67,6 +68,11 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
           buttonImageIcon={stickyNoteIcon}
         />
       </div>
+      {'note-creator' === activeTool && (
+        <div className='edit-news-tab-control'>
+          <TextArea text={textOfNoteCard} setText={setTextOfNoteCard} />
+        </div>
+      )}
     </>
   );
 };

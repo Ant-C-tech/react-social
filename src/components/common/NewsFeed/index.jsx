@@ -27,6 +27,9 @@ export const NewsFeed = ({
   setNeedScroll,
   message,
   activeTool,
+  setActiveTool,
+  textOfNoteCard,
+  setTextOfNoteCard,
 }) => {
   const currentRef = useRef(null);
 
@@ -85,6 +88,9 @@ export const NewsFeed = ({
                     keywords,
                     link,
                     targetPart,
+                    textOfNoteCard,
+                    setTextOfNoteCard,
+                    setActiveTool
                   );
                 }}
               />
