@@ -8,10 +8,11 @@ import {
 
 import { HIGHLIGHTERS } from './constants';
 
-import { Button, TextArea } from '@common/';
+import { Button } from '@common/';
+import { NoteTextArea } from './NoteTextArea';
 
 export const EditNewsTab = ({ editNewsTabProps }) => {
-  const { activeTool, setActiveTool, textOfNoteCard, setTextOfNoteCard } =
+  const { activeTool, setActiveTool, textOfNoteCard, setTextOfNoteCard, setOpenNoteId } =
     editNewsTabProps;
 
   return (
@@ -35,6 +36,7 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
               active={name === activeTool}
               onClick={() => {
                 setActiveTool(name === activeTool ? '' : name);
+                setOpenNoteId('')
               }}
               buttonImageIcon={icon}
               tooltipText={tooltipText}
@@ -45,6 +47,7 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
           active={'eraser' === activeTool}
           onClick={() => {
             setActiveTool('eraser' === activeTool ? '' : 'eraser');
+            setOpenNoteId('');
           }}
           buttonImageIcon={eraserIcon}
           tooltipText='Remove an Existing Highlight'
@@ -64,13 +67,14 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
           active={'note-creator' === activeTool}
           onClick={() => {
             setActiveTool('note-creator' === activeTool ? '' : 'note-creator');
+            setOpenNoteId('');
           }}
           buttonImageIcon={stickyNoteIcon}
         />
       </div>
       {'note-creator' === activeTool && (
         <div className='edit-news-tab-control'>
-          <TextArea text={textOfNoteCard} setText={setTextOfNoteCard} />
+          <NoteTextArea text={textOfNoteCard} setText={setTextOfNoteCard} />
         </div>
       )}
     </>

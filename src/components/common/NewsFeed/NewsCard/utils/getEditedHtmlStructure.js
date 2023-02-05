@@ -6,6 +6,9 @@ export const getEditedHtmlStructure = (
   highlights,
   notes,
   keywords,
+  openNoteId,
+  setOpenNoteId,
+  setActiveTool,
 ) => {
   let highlightsAndSearchResults = [];
   const searchResults =
@@ -49,6 +52,9 @@ export const getEditedHtmlStructure = (
             initialTextArray,
             highlight.startIndex,
             highlight.endIndex,
+            openNoteId,
+            setOpenNoteId,
+            setActiveTool,
             highlight.highlighter,
           ),
         );
@@ -64,6 +70,9 @@ export const getEditedHtmlStructure = (
             initialTextArray,
             endOfPrevHighlightForParsing,
             highlight.startIndex,
+            openNoteId,
+            setOpenNoteId,
+            setActiveTool,
           ),
         );
         editedHtmlStructure.push(
@@ -72,6 +81,9 @@ export const getEditedHtmlStructure = (
             initialTextArray,
             highlight.startIndex,
             highlight.endIndex,
+            openNoteId,
+            setOpenNoteId,
+            setActiveTool,
             highlight.highlighter,
           ),
         );
@@ -84,6 +96,9 @@ export const getEditedHtmlStructure = (
             initialTextArray,
             highlight.startIndex,
             highlight.endIndex,
+            openNoteId,
+            setOpenNoteId,
+            setActiveTool,
             highlight.highlighter,
           ),
         );
@@ -101,6 +116,9 @@ export const getEditedHtmlStructure = (
             initialTextArray,
             highlight.endIndex,
             initialTextArray.length,
+            openNoteId,
+            setOpenNoteId,
+            setActiveTool,
           ),
         );
       }
@@ -114,6 +132,9 @@ export const getEditedHtmlStructure = (
         initialTextArray,
         0,
         initialTextArray.length,
+        openNoteId,
+        setOpenNoteId,
+        setActiveTool,
       ),
     ];
   }

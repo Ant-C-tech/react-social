@@ -1,26 +1,20 @@
 import './styles.css';
 
-import uuid from 'react-uuid';
-
 export const Button = ({
   text,
   active,
-  id = uuid(),
   onClick,
   buttonImageIcon,
   buttonComponentIcon,
   tooltipText,
-  inline = false,
 }) => {
   const Icon = buttonComponentIcon;
 
   return (
     <button
-      id={id}
       className={`button
 		${!text ? 'button-without-text' : ''}
-		${active ? 'button-active' : ''}
-    ${inline ? 'inline-button' : ''}`}
+		${active ? 'button-active' : ''}`}
       onClick={onClick}
       title={tooltipText}
     >

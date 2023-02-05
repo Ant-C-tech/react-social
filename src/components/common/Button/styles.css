@@ -58,17 +58,3 @@
 .button-text {
   margin-left: 10px;
 }
-
-.inline-button {
-  display: inline-flex;
-  width: 32px;
-  height: 32px;
-  min-height: 32px;
-  background-color: #eaeaea;
-  border-radius: 50%;
-}
-
-.inline-button .button-image-icon {
-  width: 75%;
-  margin-bottom: 0;
-}

@@ -1,9 +1,9 @@
 import './styles.css';
 
-export const TextArea = ({ text, setText }) => {
+export const TextArea = ({ text, setText, label }) => {
   return (
-    <label className='text-area-label'>
-      Create your note card and add it to the news:
+    <>
+      <label className='text-area-label'>{label}</label>
       <textarea
         className='text-area-field'
         name='note text'
@@ -12,6 +12,6 @@ export const TextArea = ({ text, setText }) => {
         value={text}
         onChange={(event) => setText(event.target.value)}
       />
-    </label>
+    </>
   );
 };

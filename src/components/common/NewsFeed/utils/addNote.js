@@ -40,7 +40,7 @@ export const addNote = (
   targetPart,
   textOfNoteCard,
   setTextOfNoteCard,
-  setActiveTool
+  setActiveTool,
 ) => {
   const indexOfTargetNews = getIndexOfTargetNews(favoriteNews, link);
   const isTargetPartAlreadyHighlighted = getIsTargetPartAlreadyHighlighted(
@@ -56,6 +56,12 @@ export const addNote = (
   );
 
   const noteIndexInParent = window.getSelection().anchorOffset;
+
+  //Need to check this logic
+  const wasClickOnOtherNote =
+    window.getSelection().focusNode.classList &&
+    window.getSelection().focusNode.classList[0] &&
+    window.getSelection().focusNode.classList[0] === 'note-text-area';
 
   let noteIndex;
 
@@ -95,13 +101,15 @@ export const addNote = (
     noteText: textOfNoteCard,
   };
 
-  updateFavoriteNewsWithNewNote(
-    favoriteNews,
-    setFavoriteNews,
-    indexOfTargetNews,
-    targetPart,
-    newNote,
-  );
+  if (!wasClickOnOtherNote) {
+    updateFavoriteNewsWithNewNote(
+      favoriteNews,
+      setFavoriteNews,
+      indexOfTargetNews,
+      targetPart,
+      newNote,
+    );
+  }
 
   setTextOfNoteCard('');
   setActiveTool('');

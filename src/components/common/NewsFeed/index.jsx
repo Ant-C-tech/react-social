@@ -30,6 +30,8 @@ export const NewsFeed = ({
   setActiveTool,
   textOfNoteCard,
   setTextOfNoteCard,
+  openNoteId,
+  setOpenNoteId,
 }) => {
   const currentRef = useRef(null);
 
@@ -65,6 +67,9 @@ export const NewsFeed = ({
                 keywords={keywords}
                 activeTool={activeTool}
                 isFavorite={getIsFavorite(favoriteNews, news.link)}
+                openNoteId={openNoteId}
+                setOpenNoteId={setOpenNoteId}
+                setActiveTool={setActiveTool}
                 addToFavorite={() => {
                   addToFavorite(favoriteNews, setFavoriteNews, news);
                 }}
@@ -90,7 +95,7 @@ export const NewsFeed = ({
                     targetPart,
                     textOfNoteCard,
                     setTextOfNoteCard,
-                    setActiveTool
+                    setActiveTool,
                   );
                 }}
               />

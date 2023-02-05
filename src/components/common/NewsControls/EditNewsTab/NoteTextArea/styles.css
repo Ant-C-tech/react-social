@@ -1,0 +1,28 @@
+.note-text-area {
+  width: 90%;
+}
+
+.note-text-area .text-area-label {
+  width: 100%;
+}
+
+.note-text-area .text-area-field {
+  width: 100%;
+
+  border: none;
+  border-radius: 0;
+  color: #3a4f7a;
+
+  background-color: #f7eca0;
+  box-shadow: 0px 0px 25px -5px #718b93;
+}
+
+.note-text-area .text-area-field:hover,
+.note-text-area .text-area-field:focus {
+  box-shadow: 0px 0px 10px -5px #718b93;
+}
+
+.note-text-area .text-area-field::-webkit-scrollbar,
+.note-text-area .text-area-field::-webkit-scrollbar-thumb {
+  border: 4px solid #f7eca0;
+}

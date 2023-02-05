@@ -25,6 +25,9 @@ export const NewsCard = ({
   keywords,
   activeTool,
   isFavorite,
+  openNoteId,
+  setOpenNoteId,
+  setActiveTool,
   addToFavorite,
   removeFromFavorite,
   addHighlight,
@@ -46,7 +49,7 @@ export const NewsCard = ({
     category,
     language,
     highlights,
-    notes
+    notes,
   } = news;
 
   return (
@@ -97,6 +100,9 @@ export const NewsCard = ({
                 highlights && highlights['title'],
                 notes && notes['title'],
                 keywords,
+                openNoteId,
+                setOpenNoteId,
+                setActiveTool,
               )
             ) : null}
           </h2>
@@ -154,6 +160,9 @@ export const NewsCard = ({
               highlights && highlights['description'],
               notes && notes['description'],
               keywords,
+              openNoteId,
+              setOpenNoteId,
+              setActiveTool,
             )
           ) : null}
         </p>
@@ -180,6 +189,9 @@ export const NewsCard = ({
                 highlights && highlights['content'],
                 notes && notes['content'],
                 keywords,
+                openNoteId,
+                setOpenNoteId,
+                setActiveTool,
               )
             ) : null}
           </p>

@@ -49,6 +49,7 @@ export const FavoriteNews = () => {
   const [keyword, setKeyword] = useState('');
   const [activeTool, setActiveTool] = useState('');
   const [textOfNoteCard, setTextOfNoteCard] = useState('');
+  const [openNoteId, setOpenNoteId] = useState('');
 
   const newsForPage = 10;
 
@@ -216,6 +217,8 @@ export const FavoriteNews = () => {
             setActiveTool={setActiveTool}
             textOfNoteCard={textOfNoteCard}
             setTextOfNoteCard={setTextOfNoteCard}
+            openNoteId={openNoteId}
+            setOpenNoteId={setOpenNoteId}
           />
         }
       </Content>
@@ -269,6 +272,7 @@ export const FavoriteNews = () => {
               setActiveTool={setActiveTool}
               textOfNoteCard={textOfNoteCard}
               setTextOfNoteCard={setTextOfNoteCard}
+              setOpenNoteId={setOpenNoteId}
             />
           )
         }

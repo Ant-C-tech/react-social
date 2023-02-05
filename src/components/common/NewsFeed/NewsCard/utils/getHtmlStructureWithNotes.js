@@ -1,12 +1,14 @@
 import uuid from 'react-uuid';
-import { stickyNoteIcon } from '@assets';
-import { Button } from '@common';
+import { NoteButton } from '../NoteButton';
 
 export const getHtmlStructureWithNotes = (
   notes,
   initialTextArray,
   startIndex,
   endIndex,
+  openNoteId,
+  setOpenNoteId,
+  setActiveTool,
   highlighter = null,
 ) => {
   const htmlStructureArray = [];
@@ -29,15 +31,15 @@ export const getHtmlStructureWithNotes = (
           </span>,
         );
         htmlStructureArray.push(
-          // <button id={note.noteId} key={note.noteId} className='note'></button>,
-          <Button
+          <NoteButton
             id={note.noteId}
             key={note.noteId}
+            noteText={note.noteText}
+            isOpen={openNoteId === note.noteId}
             onClick={() => {
-              alert('Note clicked');
+              setActiveTool('');
+              setOpenNoteId(note.noteId);
             }}
-            buttonImageIcon={stickyNoteIcon}
-            inline={true}
           />,
         );
         indexCounter = note.noteIndex;
