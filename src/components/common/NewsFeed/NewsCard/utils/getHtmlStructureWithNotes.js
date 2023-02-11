@@ -9,6 +9,7 @@ export const getHtmlStructureWithNotes = (
   openNoteId,
   setOpenNoteId,
   setActiveTool,
+  newsCardRef,
   highlighter = null,
 ) => {
   const htmlStructureArray = [];
@@ -40,6 +41,7 @@ export const getHtmlStructureWithNotes = (
               setActiveTool('');
               setOpenNoteId(note.noteId);
             }}
+            newsCardRef={newsCardRef}
           />,
         );
         indexCounter = note.noteIndex;

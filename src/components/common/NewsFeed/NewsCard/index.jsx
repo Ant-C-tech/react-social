@@ -10,7 +10,7 @@ import {
   hideFullTextButtonIcon,
 } from '@assets';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Highlighter from 'react-highlight-words';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -33,6 +33,8 @@ export const NewsCard = ({
   addHighlight,
   addNote,
 }) => {
+  const newsCardRef = useRef();
+
   const [isContentShown, setIsContentShown] = useState(false);
 
   const {
@@ -53,7 +55,7 @@ export const NewsCard = ({
   } = news;
 
   return (
-    <article className='news-card'>
+    <article className='news-card' ref={newsCardRef}>
       <header className='news-card-header'>
         {category && (
           <div className='news-card-category'>
@@ -103,6 +105,7 @@ export const NewsCard = ({
                 openNoteId,
                 setOpenNoteId,
                 setActiveTool,
+                newsCardRef,
               )
             ) : null}
           </h2>
@@ -163,6 +166,7 @@ export const NewsCard = ({
               openNoteId,
               setOpenNoteId,
               setActiveTool,
+              newsCardRef,
             )
           ) : null}
         </p>
@@ -192,6 +196,7 @@ export const NewsCard = ({
                 openNoteId,
                 setOpenNoteId,
                 setActiveTool,
+                newsCardRef,
               )
             ) : null}
           </p>

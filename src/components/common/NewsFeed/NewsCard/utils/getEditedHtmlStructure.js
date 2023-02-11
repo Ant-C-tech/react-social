@@ -9,6 +9,7 @@ export const getEditedHtmlStructure = (
   openNoteId,
   setOpenNoteId,
   setActiveTool,
+  newsCardRef,
 ) => {
   let highlightsAndSearchResults = [];
   const searchResults =
@@ -55,6 +56,7 @@ export const getEditedHtmlStructure = (
             openNoteId,
             setOpenNoteId,
             setActiveTool,
+            newsCardRef,
             highlight.highlighter,
           ),
         );
@@ -73,6 +75,7 @@ export const getEditedHtmlStructure = (
             openNoteId,
             setOpenNoteId,
             setActiveTool,
+            newsCardRef,
           ),
         );
         editedHtmlStructure.push(
@@ -84,6 +87,7 @@ export const getEditedHtmlStructure = (
             openNoteId,
             setOpenNoteId,
             setActiveTool,
+            newsCardRef,
             highlight.highlighter,
           ),
         );
@@ -99,6 +103,7 @@ export const getEditedHtmlStructure = (
             openNoteId,
             setOpenNoteId,
             setActiveTool,
+            newsCardRef,
             highlight.highlighter,
           ),
         );
@@ -119,6 +124,7 @@ export const getEditedHtmlStructure = (
             openNoteId,
             setOpenNoteId,
             setActiveTool,
+            newsCardRef,
           ),
         );
       }
@@ -135,6 +141,7 @@ export const getEditedHtmlStructure = (
         openNoteId,
         setOpenNoteId,
         setActiveTool,
+        newsCardRef,
       ),
     ];
   }
