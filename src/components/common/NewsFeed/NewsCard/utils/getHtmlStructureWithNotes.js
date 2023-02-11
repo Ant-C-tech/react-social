@@ -26,7 +26,7 @@ export const getHtmlStructureWithNotes = (
     notesWithinThisChunk.length !== 0 &&
       notesWithinThisChunk.forEach((note, index) => {
         htmlStructureArray.push(
-          <span id={uuid()} key={uuid()} className={highlighter && highlighter}>
+          <span id={uuid()} key={uuid()} className={highlighter ? highlighter : ''}>
             {initialTextArray.slice(indexCounter, note.noteIndex).join('')}
           </span>,
         );
@@ -52,7 +52,7 @@ export const getHtmlStructureWithNotes = (
             <span
               id={uuid()}
               key={uuid()}
-              className={highlighter && highlighter}
+              className={highlighter ? highlighter : ''}
             >
               {initialTextArray.slice(indexCounter, endIndex).join('')}
             </span>,
@@ -63,7 +63,7 @@ export const getHtmlStructureWithNotes = (
 
   if (htmlStructureArray.length === 0 || notes.length === 0) {
     htmlStructureArray.push(
-      <span id={uuid()} key={uuid()} className={highlighter && highlighter}>
+      <span id={uuid()} key={uuid()} className={highlighter ? highlighter : ''}>
         {initialTextArray.slice(startIndex, endIndex).join('')}
       </span>,
     );
