@@ -11,7 +11,7 @@
   border-radius: 5px;
   border-color: #323e42;
 
-  font-family: 'Indie Flower', cursive;
+  font-family: Amatic SC, cursive;
   font-size: 20px;
   color: #323e42;
   font-weight: bold;
@@ -36,8 +36,8 @@
   max-width: calc(100% - 100px);
   min-width: calc(100% - 100px);
 
-  font-family: 'Indie Flower', cursive;
-  font-size: 18px;
+  font-family: Amatic SC, cursive;
+  font-size: 20px;
 
   border: none;
 }
@@ -60,5 +60,6 @@
 }
 
 .input-component-clear-button-icon {
-  color: #323e42;
+  width: 30px;
+  cursor: pointer;
 }

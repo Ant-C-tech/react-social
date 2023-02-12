@@ -1,9 +1,10 @@
 import './styles.css';
+import { exitIcon } from '@assets';
 
 import { useState } from 'react';
 
 import { DebounceInput } from 'react-debounce-input';
-import { BackspaceTwoTone } from '@material-ui/icons';
+// import { BackspaceTwoTone } from '@material-ui/icons';
 
 export const InputComponent = ({
   type,
@@ -39,7 +40,13 @@ export const InputComponent = ({
             setValue('');
           }}
         >
-          <BackspaceTwoTone className='input-component-clear-button-icon' />
+          {/* <BackspaceTwoTone className='input-component-clear-button-icon' /> */}
+          <img
+            src={exitIcon}
+            className='input-component-clear-button-icon'
+            alt='#'
+            aria-hidden={true}
+          />
         </button>
       )}
     </div>
