@@ -1,0 +1,24 @@
+.controlbar {
+  position: relative;
+  z-index: 10;
+
+  flex: 2;
+  height: calc(100vh - 70px);
+
+  padding: 15px;
+
+  position: relative;
+  z-index: 10;
+
+  background: #eaeaea;
+  box-shadow: -7px 15px 7px -5px #718b93;
+
+  overflow-y: auto;
+
+  color: rgba(50, 62, 66, 0);
+  transition: color 0.3s ease;
+}
+
+.controlbar:hover {
+  color: rgba(50, 62, 66, 0.6);
+}

@@ -1,0 +1,22 @@
+.nothing-was-found-prompt {
+  text-align: left;
+  margin: 10px 20px;
+}
+
+.nothing-was-found-prompt-title {
+  margin: 10px 0;
+  font-weight: normal;
+}
+
+.nothing-was-found-prompt-list {
+  list-style-type: none;
+}
+
+.nothing-was-found-prompt-item {
+  margin-bottom: 8px;
+}
+
+.nothing-was-found-prompt-country-flag,
+.nothing-was-found-prompt-language-icon {
+  margin: 0 10px;
+}
