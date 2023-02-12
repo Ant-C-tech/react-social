@@ -98,6 +98,8 @@ export const NewsFeed = ({
                     setActiveTool,
                   );
                 }}
+                favoriteNews={favoriteNews}
+                setFavoriteNews={setFavoriteNews}
               />
               {indexOfCurrentNews === newsSet.length - 1 && (
                 <Waypoint

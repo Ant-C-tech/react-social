@@ -44,3 +44,4 @@ export const sportsIcon = require('./sports.png');
 export const technologyIcon = require('./cyborg.png');
 export const topIcon = require('./award.png');
 export const fingerPrintIcon = require('./fingerprint.png');
+export const exitIcon = require('./exit.png');

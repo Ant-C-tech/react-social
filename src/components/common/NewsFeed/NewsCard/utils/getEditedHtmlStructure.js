@@ -10,6 +10,8 @@ export const getEditedHtmlStructure = (
   setOpenNoteId,
   setActiveTool,
   newsCardRef,
+  favoriteNews,
+  setFavoriteNews,
 ) => {
   let highlightsAndSearchResults = [];
   const searchResults =
@@ -57,6 +59,8 @@ export const getEditedHtmlStructure = (
             setOpenNoteId,
             setActiveTool,
             newsCardRef,
+            favoriteNews,
+            setFavoriteNews,
             highlight.highlighter,
           ),
         );
@@ -76,6 +80,8 @@ export const getEditedHtmlStructure = (
             setOpenNoteId,
             setActiveTool,
             newsCardRef,
+            favoriteNews,
+            setFavoriteNews,
           ),
         );
         editedHtmlStructure.push(
@@ -88,6 +94,8 @@ export const getEditedHtmlStructure = (
             setOpenNoteId,
             setActiveTool,
             newsCardRef,
+            favoriteNews,
+            setFavoriteNews,
             highlight.highlighter,
           ),
         );
@@ -104,6 +112,8 @@ export const getEditedHtmlStructure = (
             setOpenNoteId,
             setActiveTool,
             newsCardRef,
+            favoriteNews,
+            setFavoriteNews,
             highlight.highlighter,
           ),
         );
@@ -125,6 +135,8 @@ export const getEditedHtmlStructure = (
             setOpenNoteId,
             setActiveTool,
             newsCardRef,
+            favoriteNews,
+            setFavoriteNews,
           ),
         );
       }
@@ -142,6 +154,8 @@ export const getEditedHtmlStructure = (
         setOpenNoteId,
         setActiveTool,
         newsCardRef,
+        favoriteNews,
+        setFavoriteNews,
       ),
     ];
   }

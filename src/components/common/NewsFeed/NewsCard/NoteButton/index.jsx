@@ -4,10 +4,18 @@ import { stickyNoteIcon } from '@assets';
 import { useRef, useState } from 'react';
 import { NoteCard } from './NoteCard';
 
-export const NoteButton = ({ id, noteText, isOpen, onClick, newsCardRef }) => {
+export const NoteButton = ({
+  id,
+  noteText,
+  isOpen,
+  setActiveTool,
+  setOpenNoteId,
+  newsCardRef,
+  favoriteNews,
+  setFavoriteNews,
+}) => {
   const noteButtonRef = useRef();
 
-  const [noteButtonActive, setNoteButtonActive] = useState(false);
   const [noteCardLeft, setNoteCardLeft] = useState(0);
 
   const getNoteCardPosition = () => {
@@ -20,16 +28,30 @@ export const NoteButton = ({ id, noteText, isOpen, onClick, newsCardRef }) => {
   };
 
   return (
-    <button
+    <span
+      role='button'
+      tabIndex={0}
       id={id}
       className={`button button-without-text note-button ${
-        noteButtonActive ? 'button-active' : ''
+        isOpen ? 'button-active' : ''
       }`}
       ref={noteButtonRef}
       onClick={() => {
-        onClick();
-        setNoteButtonActive(true);
+        setActiveTool('');
+        setOpenNoteId(id);
         getNoteCardPosition();
+      }}
+      onKeyUp={(event) => {
+        if (event.key === 'Enter') {
+          setActiveTool('');
+          setOpenNoteId(id);
+          getNoteCardPosition();
+        } else if (event.key === 'Escape') {
+          setOpenNoteId('');
+        } else if (event.key === 'Tab') {
+          event.stopPropagation();
+          event.preventDefault();
+        }
       }}
     >
       <img
@@ -38,7 +60,15 @@ export const NoteButton = ({ id, noteText, isOpen, onClick, newsCardRef }) => {
         alt='#'
         aria-hidden={true}
       />
-      {isOpen && <NoteCard noteText={noteText} noteCardLeft={noteCardLeft} />}
-    </button>
+      {isOpen && (
+        <NoteCard
+          noteText={noteText}
+          noteCardLeft={noteCardLeft}
+          favoriteNews={favoriteNews}
+          setFavoriteNews={setFavoriteNews}
+          id={id}
+        />
+      )}
+    </span>
   );
 };

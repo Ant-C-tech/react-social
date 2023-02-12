@@ -32,6 +32,8 @@ export const NewsCard = ({
   removeFromFavorite,
   addHighlight,
   addNote,
+  favoriteNews,
+  setFavoriteNews,
 }) => {
   const newsCardRef = useRef();
 
@@ -55,7 +57,23 @@ export const NewsCard = ({
   } = news;
 
   return (
-    <article className='news-card' ref={newsCardRef}>
+    <article
+      className='news-card'
+      ref={newsCardRef}
+      onClick={(event) => {
+        if (
+          createdFor === 'favorite news' &&
+          !event.target.classList.contains('note-card') &&
+          !event.target.classList.contains('note-card-text') &&
+          !event.target.classList.contains('text-area-field') &&
+          !event.target.classList.contains('note-button-icon') &&
+          !event.target.classList.contains('note-button') &&
+          !event.target.classList.contains('note-card-control')
+        ) {
+          setOpenNoteId('');
+        }
+      }}
+    >
       <header className='news-card-header'>
         {category && (
           <div className='news-card-category'>
@@ -106,6 +124,8 @@ export const NewsCard = ({
                 setOpenNoteId,
                 setActiveTool,
                 newsCardRef,
+                favoriteNews,
+                setFavoriteNews,
               )
             ) : null}
           </h2>
@@ -167,6 +187,8 @@ export const NewsCard = ({
               setOpenNoteId,
               setActiveTool,
               newsCardRef,
+              favoriteNews,
+              setFavoriteNews,
             )
           ) : null}
         </p>
@@ -197,6 +219,8 @@ export const NewsCard = ({
                 setOpenNoteId,
                 setActiveTool,
                 newsCardRef,
+                favoriteNews,
+                setFavoriteNews,
               )
             ) : null}
           </p>

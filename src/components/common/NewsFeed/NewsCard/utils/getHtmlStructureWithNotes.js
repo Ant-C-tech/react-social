@@ -10,6 +10,8 @@ export const getHtmlStructureWithNotes = (
   setOpenNoteId,
   setActiveTool,
   newsCardRef,
+  favoriteNews,
+  setFavoriteNews,
   highlighter = null,
 ) => {
   const htmlStructureArray = [];
@@ -27,7 +29,11 @@ export const getHtmlStructureWithNotes = (
     notesWithinThisChunk.length !== 0 &&
       notesWithinThisChunk.forEach((note, index) => {
         htmlStructureArray.push(
-          <span id={uuid()} key={uuid()} className={highlighter ? highlighter : ''}>
+          <span
+            id={uuid()}
+            key={uuid()}
+            className={highlighter ? highlighter : ''}
+          >
             {initialTextArray.slice(indexCounter, note.noteIndex).join('')}
           </span>,
         );
@@ -37,11 +43,11 @@ export const getHtmlStructureWithNotes = (
             key={note.noteId}
             noteText={note.noteText}
             isOpen={openNoteId === note.noteId}
-            onClick={() => {
-              setActiveTool('');
-              setOpenNoteId(note.noteId);
-            }}
+            setActiveTool={setActiveTool}
+            setOpenNoteId={setOpenNoteId}
             newsCardRef={newsCardRef}
+            favoriteNews={favoriteNews}
+            setFavoriteNews={setFavoriteNews}
           />,
         );
         indexCounter = note.noteIndex;
