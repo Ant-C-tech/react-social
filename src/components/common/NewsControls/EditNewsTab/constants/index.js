@@ -1,15 +1,41 @@
-import greenHighlighterIcon from '@assets/highlighter-svgrepo-com-green.svg';
-import blueHighlighterIcon from '@assets/highlighter-svgrepo-com-blue.svg';
-import orangeHighlighterIcon from '@assets/highlighter-svgrepo-com-orange.svg';
-import pinkHighlighterIcon from '@assets/highlighter-svgrepo-com-pink.svg';
-import purpleHighlighterIcon from '@assets/highlighter-svgrepo-com-purple.svg';
-import yellowHighlighterIcon from '@assets/highlighter-svgrepo-com-yellow.svg';
+import {
+  yellowHighlighterIcon,
+  purpleHighlighterIcon,
+  pinkHighlighterIcon,
+  orangeHighlighterIcon,
+  blueHighlighterIcon,
+  greenHighlighterIcon,
+} from '@assets';
 
- export const HIGHLIGHTERS = [
-    { name: 'green-highlighter', icon: greenHighlighterIcon },
-    { name: 'yellow-highlighter', icon: yellowHighlighterIcon },
-    { name: 'orange-highlighter', icon: orangeHighlighterIcon },
-    { name: 'pink-highlighter', icon: pinkHighlighterIcon },
-    { name: 'purple-highlighter', icon: purpleHighlighterIcon },
-    { name: 'blue-highlighter', icon: blueHighlighterIcon },
-  ];
+export const HIGHLIGHTERS = [
+  {
+    name: 'green-highlighter',
+    icon: greenHighlighterIcon,
+    tooltipText: 'Green Highlighter',
+  },
+  {
+    name: 'yellow-highlighter',
+    icon: yellowHighlighterIcon,
+    tooltipText: 'Yellow Highlighter',
+  },
+  {
+    name: 'orange-highlighter',
+    icon: orangeHighlighterIcon,
+    tooltipText: 'Orange Highlighter',
+  },
+  {
+    name: 'pink-highlighter',
+    icon: pinkHighlighterIcon,
+    tooltipText: 'Pink Highlighter',
+  },
+  {
+    name: 'purple-highlighter',
+    icon: purpleHighlighterIcon,
+    tooltipText: 'Purple Highlighter',
+  },
+  {
+    name: 'blue-highlighter',
+    icon: blueHighlighterIcon,
+    tooltipText: 'Blue Highlighter',
+  },
+];

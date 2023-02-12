@@ -1,7 +1,5 @@
 import './styles.css';
-
-import addIcon from '@assets/add.png';
-import removeIcon from '@assets/bin.png';
+import { addIcon, removeIcon } from '@assets';
 
 import {
   addSelectWithNotSelectedValue,

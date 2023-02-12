@@ -1,7 +1,5 @@
 import './styles.css';
-
-import chatsIcon from '@assets/comment.png';
-import eventsIcon from '@assets/calendar.png';
+import { chatsIcon, eventsIcon } from '@assets';
 
 import {
   MeetingRoomTwoTone,

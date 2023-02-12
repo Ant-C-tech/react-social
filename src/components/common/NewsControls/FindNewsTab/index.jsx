@@ -1,11 +1,13 @@
 import './styles.css';
 
-import magnifyingGlass from '@assets/magnifying-glass.png';
-import hintIcon from '@assets/idea.png';
-import countriesIcon from '@assets/globe.png';
-import categoriesIcon from '@assets/compass.png';
-import languagesIcon from '@assets/languages.png';
-import keywordsIcon from '@assets/keyword.png';
+import {
+  searchIcon,
+  hintIcon,
+  countriesIcon,
+  categoriesIcon,
+  languagesIcon,
+  keywordsIcon,
+} from '@assets';
 
 import {
   WORLD_COUNTRY_NAMES,
@@ -135,7 +137,7 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
           placeholder={'Keyword...'}
           value={keyword}
           setValue={setKeyword}
-          icon={magnifyingGlass}
+          icon={searchIcon}
         />
       </>
 

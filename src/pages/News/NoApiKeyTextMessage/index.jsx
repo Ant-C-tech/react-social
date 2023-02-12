@@ -1,6 +1,5 @@
 import './style.css';
-
-import originalSourceIcon from '@assets/footprint.png';
+import { originalSourceIcon } from '@assets';
 
 import { CustomLink } from '@common';
 

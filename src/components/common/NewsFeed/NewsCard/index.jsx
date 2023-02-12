@@ -1,22 +1,23 @@
 import './styles.css';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import {
+  playVideoIcon,
+  newsIcon,
+  originalSourceIcon,
+  addToFavoriteButtonIcon,
+  removeIcon,
+  readMoreButtonIcon,
+  hideFullTextButtonIcon,
+} from '@assets';
 
-import playVideoIcon from '@assets/clapperboard.png';
-import newsIcon from '@assets/newspaper.png';
-import originalSourceIcon from '@assets/footprint.png';
-import addToFavoriteButtonIcon from '@assets/inbox.png';
-import removeFromFavoriteButtonIcon from '@assets/bin.png';
-import readMoreButtonIcon from '@assets/book-pages.png';
-import hideFullTextButtonIcon from '@assets/book.png';
-
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Highlighter from 'react-highlight-words';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { CustomLink } from '@common/CustomLink/';
 import { Button } from '@common/Button/';
 
-import { getHighlightedStructure } from './utils/getHighlightedStructure';
+import { getEditedHtmlStructure } from './utils';
 
 export const NewsCard = ({
   createdFor,
@@ -24,10 +25,18 @@ export const NewsCard = ({
   keywords,
   activeTool,
   isFavorite,
+  openNoteId,
+  setOpenNoteId,
+  setActiveTool,
   addToFavorite,
   removeFromFavorite,
   addHighlight,
+  addNote,
+  favoriteNews,
+  setFavoriteNews,
 }) => {
+  const newsCardRef = useRef();
+
   const [isContentShown, setIsContentShown] = useState(false);
 
   const {
@@ -44,10 +53,27 @@ export const NewsCard = ({
     category,
     language,
     highlights,
+    notes,
   } = news;
 
   return (
-    <article className='news-card'>
+    <article
+      className='news-card'
+      ref={newsCardRef}
+      onClick={(event) => {
+        if (
+          createdFor === 'favorite news' &&
+          !event.target.classList.contains('note-card') &&
+          !event.target.classList.contains('note-card-text') &&
+          !event.target.classList.contains('text-area-field') &&
+          !event.target.classList.contains('note-button-icon') &&
+          !event.target.classList.contains('note-button') &&
+          !event.target.classList.contains('note-card-control')
+        ) {
+          setOpenNoteId('');
+        }
+      }}
+    >
       <header className='news-card-header'>
         {category && (
           <div className='news-card-category'>
@@ -76,7 +102,9 @@ export const NewsCard = ({
           <h2
             className={`news-card-content-title-text cursor-${activeTool}`}
             onMouseUp={() => {
-              addHighlight(link, 'title');
+              activeTool !== 'note-creator'
+                ? addHighlight(link, 'title')
+                : addNote(link, 'title');
             }}
           >
             {createdFor === 'news' ? (
@@ -87,10 +115,17 @@ export const NewsCard = ({
                 textToHighlight={title || ''}
               />
             ) : title ? (
-              getHighlightedStructure(
+              getEditedHtmlStructure(
                 title,
                 highlights && highlights['title'],
+                notes && notes['title'],
                 keywords,
+                openNoteId,
+                setOpenNoteId,
+                setActiveTool,
+                newsCardRef,
+                favoriteNews,
+                setFavoriteNews,
               )
             ) : null}
           </h2>
@@ -130,7 +165,9 @@ export const NewsCard = ({
         <p
           className={`news-card-description cursor-${activeTool}`}
           onMouseUp={() => {
-            addHighlight(link, 'description');
+            activeTool !== 'note-creator'
+              ? addHighlight(link, 'description')
+              : addNote(link, 'description');
           }}
         >
           {createdFor === 'news' ? (
@@ -141,10 +178,17 @@ export const NewsCard = ({
               textToHighlight={description || ''}
             />
           ) : description ? (
-            getHighlightedStructure(
+            getEditedHtmlStructure(
               description,
               highlights && highlights['description'],
+              notes && notes['description'],
               keywords,
+              openNoteId,
+              setOpenNoteId,
+              setActiveTool,
+              newsCardRef,
+              favoriteNews,
+              setFavoriteNews,
             )
           ) : null}
         </p>
@@ -153,7 +197,9 @@ export const NewsCard = ({
           <p
             className={`news-card-full-text cursor-${activeTool}`}
             onMouseUp={() => {
-              addHighlight(link, 'content');
+              activeTool !== 'note-creator'
+                ? addHighlight(link, 'content')
+                : addNote(link, 'content');
             }}
           >
             {createdFor === 'news' ? (
@@ -164,10 +210,17 @@ export const NewsCard = ({
                 textToHighlight={content || ''}
               />
             ) : content ? (
-              getHighlightedStructure(
+              getEditedHtmlStructure(
                 content,
                 highlights && highlights['content'],
+                notes && notes['content'],
                 keywords,
+                openNoteId,
+                setOpenNoteId,
+                setActiveTool,
+                newsCardRef,
+                favoriteNews,
+                setFavoriteNews,
               )
             ) : null}
           </p>
@@ -208,11 +261,7 @@ export const NewsCard = ({
             onClick={() => {
               isFavorite ? removeFromFavorite() : addToFavorite();
             }}
-            buttonImageIcon={
-              isFavorite
-                ? removeFromFavoriteButtonIcon
-                : addToFavoriteButtonIcon
-            }
+            buttonImageIcon={isFavorite ? removeIcon : addToFavoriteButtonIcon}
           />
         </div>
       </div>

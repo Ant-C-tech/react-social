@@ -9,12 +9,8 @@ import {
   getIsFavorite,
   addToFavorite,
   removeFromFavorite,
+  addNote,
 } from './utils';
-
-// import { getIsFavorite } from '@utils/newsFeed/getIsFavorite';
-// import { addToFavorite } from '@utils/newsFeed/addToFavorite';
-// import { removeFromFavorite } from '@utils/newsFeed/removeFromFavorite';
-// import { addHighlight } from '@utils/newsFeed/addHighlight';
 
 import { NewsCard } from './NewsCard';
 import { NewsCardSkeleton } from './NewsCardSkeleton';
@@ -31,6 +27,11 @@ export const NewsFeed = ({
   setNeedScroll,
   message,
   activeTool,
+  setActiveTool,
+  textOfNoteCard,
+  setTextOfNoteCard,
+  openNoteId,
+  setOpenNoteId,
 }) => {
   const currentRef = useRef(null);
 
@@ -41,6 +42,8 @@ export const NewsFeed = ({
       setNeedScroll(false);
     }
   }, [needScroll, setNeedScroll]);
+
+  console.log(favoriteNews);
 
   return (
     <section className='news-feed'>
@@ -64,6 +67,9 @@ export const NewsFeed = ({
                 keywords={keywords}
                 activeTool={activeTool}
                 isFavorite={getIsFavorite(favoriteNews, news.link)}
+                openNoteId={openNoteId}
+                setOpenNoteId={setOpenNoteId}
+                setActiveTool={setActiveTool}
                 addToFavorite={() => {
                   addToFavorite(favoriteNews, setFavoriteNews, news);
                 }}
@@ -80,6 +86,20 @@ export const NewsFeed = ({
                     targetPart,
                   );
                 }}
+                addNote={(link, targetPart) => {
+                  addNote(
+                    favoriteNews,
+                    setFavoriteNews,
+                    keywords,
+                    link,
+                    targetPart,
+                    textOfNoteCard,
+                    setTextOfNoteCard,
+                    setActiveTool,
+                  );
+                }}
+                favoriteNews={favoriteNews}
+                setFavoriteNews={setFavoriteNews}
               />
               {indexOfCurrentNews === newsSet.length - 1 && (
                 <Waypoint

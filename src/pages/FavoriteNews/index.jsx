@@ -14,9 +14,7 @@ import {
 } from './utils';
 
 import { ControlBar, Content } from '@sections';
-
 import { NewsControls, NewsFeed, NothingWasFoundMessage } from '@common';
-
 import { NoFavoriteNewsMessage } from './NoFavoriteNewsMessage';
 
 export const FavoriteNews = () => {
@@ -50,6 +48,8 @@ export const FavoriteNews = () => {
 
   const [keyword, setKeyword] = useState('');
   const [activeTool, setActiveTool] = useState('');
+  const [textOfNoteCard, setTextOfNoteCard] = useState('');
+  const [openNoteId, setOpenNoteId] = useState('');
 
   const newsForPage = 10;
 
@@ -214,6 +214,11 @@ export const FavoriteNews = () => {
               ) : null
             }
             activeTool={activeTool}
+            setActiveTool={setActiveTool}
+            textOfNoteCard={textOfNoteCard}
+            setTextOfNoteCard={setTextOfNoteCard}
+            openNoteId={openNoteId}
+            setOpenNoteId={setOpenNoteId}
           />
         }
       </Content>
@@ -265,6 +270,9 @@ export const FavoriteNews = () => {
               isHighLightersBar={true}
               activeTool={activeTool}
               setActiveTool={setActiveTool}
+              textOfNoteCard={textOfNoteCard}
+              setTextOfNoteCard={setTextOfNoteCard}
+              setOpenNoteId={setOpenNoteId}
             />
           )
         }

@@ -1,4 +1,4 @@
-export const getUpdatedArrayOfHighlights = (highlights, newHighlight) => {
+export const addNewHighlightToArrayOfHighlights = (highlights, newHighlight) => {
   const additionalHighlight = {};
 
   const updatedArrayOfHighlights = highlights

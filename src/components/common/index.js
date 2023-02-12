@@ -10,3 +10,4 @@ export * from './NothingWasFoundMessage';
 export * from './SelectComponent';
 export * from './TabPanel';
 export * from './TabsControls';
+export * from './TextArea'

@@ -1,6 +1,6 @@
 .content-container {
   flex: 6;
-  height: calc(100vh - 75px);
+  height: calc(100vh - 70px);
 
   padding: 0 30px;
 }

@@ -1,14 +1,16 @@
-import businessIconSrc from '@assets/profit.png';
-import environmentIconSrc from '@assets/hill.png';
-import entertainmentIconSrc from '@assets/oscar.png';
-import foodIconSrc from '@assets/burger.png';
-import healthIconSrc from '@assets/blood-pressure.png';
-import politicsIconSrc from '@assets/court.png';
-import scienceIconSrc from '@assets/science.png';
-import sportsIconSrc from '@assets/sports.png';
-import technologyIconSrc from '@assets/cyborg.png';
-import topIconSrc from '@assets/award.png';
-import worldIconSrc from '@assets/globe.png';
+import {
+  businessIcon,
+  environmentIcon,
+  entertainmentIcon,
+  foodIcon,
+  healthIcon,
+  politicsIcon,
+  scienceIcon,
+  sportsIcon,
+  technologyIcon,
+  topIcon,
+  countriesIcon,
+} from '@assets';
 
 const defaultCategories = [
   'all',
@@ -27,17 +29,17 @@ const defaultCategories = [
 
 const iconsSrcs = [
   'all',
-  businessIconSrc,
-  entertainmentIconSrc,
-  environmentIconSrc,
-  foodIconSrc,
-  healthIconSrc,
-  politicsIconSrc,
-  scienceIconSrc,
-  sportsIconSrc,
-  technologyIconSrc,
-  topIconSrc,
-  worldIconSrc,
+  businessIcon,
+  entertainmentIcon,
+  environmentIcon,
+  foodIcon,
+  healthIcon,
+  politicsIcon,
+  scienceIcon,
+  sportsIcon,
+  technologyIcon,
+  topIcon,
+  countriesIcon,
 ];
 
 export const DEFAULT_CATEGORIES_AVAILABLE_FOR_FILTERING_NEWS = {};

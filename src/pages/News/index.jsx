@@ -1,4 +1,4 @@
-import fingerPrint from '@assets/fingerprint.png';
+import { fingerPrintIcon } from '@assets';
 
 import { useState, useEffect } from 'react';
 
@@ -26,7 +26,7 @@ import { NoApiKeyTextMessage } from './NoApiKeyTextMessage';
 export const News = () => {
   const [apiKey, setApiKey] = useLocalStorage('apiKey', '');
 
-  const [nextPage, setNextPage] = useState(0);
+  const [nextPage, setNextPage] = useState(null);
   const [totalResults, setTotalResults] = useState(1);
   const [needMoreNews, setNeedMoreNews] = useState(false);
   const [hasMoreNews, setHasMoreNews] = useState(true);
@@ -61,7 +61,7 @@ export const News = () => {
 
   useEffect(() => {
     setError('');
-    setNextPage(0);
+    setNextPage(null);
   }, [apiKey, selectedCountries]);
 
   useEffect(() => {
@@ -214,7 +214,7 @@ export const News = () => {
               placeholder={'Please, input your API key'}
               value={apiKey}
               setValue={setApiKey}
-              icon={fingerPrint}
+              icon={fingerPrintIcon}
             />
           </Message>
         )}

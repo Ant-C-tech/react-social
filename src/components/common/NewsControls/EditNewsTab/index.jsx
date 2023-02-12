@@ -1,14 +1,19 @@
 import './styles.css';
-import eraser from '@assets/eraser-svgrepo-com.svg';
-import highlightToolsIcon from '@assets/stationery.png';
-import eraseToolIcon from '@assets/bin.png';
+import {
+  makeNoteIcon,
+  stickyNoteIcon,
+  highlightToolsIcon,
+  eraserIcon,
+} from '@assets';
 
 import { HIGHLIGHTERS } from './constants';
 
-import { Button } from '@common/Button/';
+import { Button } from '@common/';
+import { NoteTextArea } from './NoteTextArea';
 
 export const EditNewsTab = ({ editNewsTabProps }) => {
-  const { activeTool, setActiveTool } = editNewsTabProps;
+  const { activeTool, setActiveTool, textOfNoteCard, setTextOfNoteCard, setOpenNoteId } =
+    editNewsTabProps;
 
   return (
     <>
@@ -18,43 +23,60 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
         alt='#'
         aria-hidden={true}
       />
-      <h3 className='edit-news-tab-title'>
-        Do You want to highlight something?
-      </h3>
+      <h4 className='edit-news-tab-title'>
+        Do You want to highlight some text or remove some existing highlight?
+      </h4>
+
       <div className='edit-news-tab-control-toolbar'>
         {HIGHLIGHTERS.map((highlighter, index) => {
-          const { name, icon } = highlighter;
+          const { name, icon, tooltipText } = highlighter;
           return (
             <Button
               key={index}
               active={name === activeTool}
               onClick={() => {
                 setActiveTool(name === activeTool ? '' : name);
+                setOpenNoteId('')
               }}
               buttonImageIcon={icon}
+              tooltipText={tooltipText}
             />
           );
         })}
-      </div>
-
-      <img
-        className='edit-news-tab-title-icon'
-        src={eraseToolIcon}
-        alt='#'
-        aria-hidden={true}
-      />
-      <h3 className='edit-news-tab-title'>
-        Do You want to delete some highlight?
-      </h3>
-      <div className='edit-news-tab-control-toolbar'>
         <Button
           active={'eraser' === activeTool}
           onClick={() => {
             setActiveTool('eraser' === activeTool ? '' : 'eraser');
+            setOpenNoteId('');
           }}
-          buttonImageIcon={eraser}
+          buttonImageIcon={eraserIcon}
+          tooltipText='Remove an Existing Highlight'
         />
       </div>
+
+      <img
+        className='edit-news-tab-title-icon'
+        src={makeNoteIcon}
+        alt='#'
+        aria-hidden={true}
+      />
+      <h4 className='edit-news-tab-title'>Do you want to create some note?</h4>
+      <div className='edit-news-tab-control'>
+        <Button
+          text='Create Note'
+          active={'note-creator' === activeTool}
+          onClick={() => {
+            setActiveTool('note-creator' === activeTool ? '' : 'note-creator');
+            setOpenNoteId('');
+          }}
+          buttonImageIcon={stickyNoteIcon}
+        />
+      </div>
+      {'note-creator' === activeTool && (
+        <div className='edit-news-tab-control'>
+          <NoteTextArea text={textOfNoteCard} setText={setTextOfNoteCard} />
+        </div>
+      )}
     </>
   );
 };
