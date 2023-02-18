@@ -19,7 +19,7 @@ export const NoteButton = ({
   const [noteCardLeft, setNoteCardLeft] = useState(0);
 
   const getNoteCardPosition = () => {
-    const noteCardWidth = 200;
+    const noteCardWidth = 220;
     const noteButtonX = noteButtonRef.current.offsetLeft;
     const newsCardWidth = newsCardRef.current.offsetWidth;
     const distanceToRightBorder = newsCardWidth - noteButtonX;

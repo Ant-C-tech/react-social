@@ -16,3 +16,16 @@
 .news-list-item {
   list-style-type: none;
 }
+
+@media screen and (max-width: 1000px) {
+  .news-feed {
+    height: calc(100vh - 130px);
+    padding: 15px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .news-feed {
+    height: calc(100vh - 190px);
+  }
+}

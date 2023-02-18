@@ -1,3 +1,15 @@
 .news-controls {
   max-width: calc(20vw - 50px);
 }
+
+@media screen and (max-width: 1100px) {
+  .news-controls {
+    max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .news-controls {
+    max-width: 100%;
+  }
+}

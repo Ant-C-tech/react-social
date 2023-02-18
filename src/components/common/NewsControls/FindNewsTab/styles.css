@@ -16,7 +16,7 @@
 .find-news-tab-keyword-input-title-wrapper {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-end;
+  align-items: flex-start;
   margin-bottom: 10px;
 }
 
@@ -28,4 +28,11 @@
 
 .find-news-tab-keyword-input-title {
   color: #3f3f3f;
+}
+
+@media screen and (max-width: 1300px) {
+  .find-news-tab-title,
+  .find-news-tab-keyword-input-title {
+    font-size: 18px;
+  }
 }

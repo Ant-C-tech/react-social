@@ -5,6 +5,7 @@ import {
   orangeHighlighterIcon,
   blueHighlighterIcon,
   greenHighlighterIcon,
+  eraserIcon,
 } from '@assets';
 
 export const HIGHLIGHTERS = [
@@ -37,5 +38,10 @@ export const HIGHLIGHTERS = [
     name: 'blue-highlighter',
     icon: blueHighlighterIcon,
     tooltipText: 'Blue Highlighter',
+  },
+  {
+    name: 'eraser',
+    icon: eraserIcon,
+    tooltipText: 'Remove an Existing Highlight',
   },
 ];

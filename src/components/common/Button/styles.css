@@ -29,6 +29,7 @@
 
 .button-without-text {
   width: 54px;
+  min-width: 25%;
   padding: 0;
 }
 
@@ -57,4 +58,30 @@
 
 .button-text {
   margin-left: 10px;
+}
+
+@media screen and (max-width: 1250px) {
+  .button {
+    width: 150px;
+  }
+
+  .button-without-text {
+    width: 75px;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .button-without-text {
+    width: 55px;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .button {
+    width: 130px;
+  }
+
+  .button-without-text {
+    width: 45px;
+  }
 }
