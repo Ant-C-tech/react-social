@@ -1,33 +1,33 @@
 .filter-item {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
-.filter-item-title-wrapper{
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  margin-bottom: 10px;
+.filter-item-title-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-bottom: 10px;
 }
 
 .filter-item-title {
-  color: #3f3f3f;
+    color: #3f3f3f;
 }
 
 .filter-item-title-icon {
-  display: block;
-  width: 38px;
-  margin-right: 10px;
+    display: block;
+    width: 38px;
+    margin-right: 10px;
 }
 
 .filter-item-controls {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 0 -5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 -5px;
 }
 
 @media screen and (max-width: 900px) {
-  .filter-item-title {
-    font-size: 18px;
-  }
+    .filter-item-title {
+        font-size: 18px;
+    }
 }

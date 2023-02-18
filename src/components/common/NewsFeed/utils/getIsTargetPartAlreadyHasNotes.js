@@ -1,10 +1,10 @@
 export const getIsTargetPartAlreadyHasNotes = (
-  favoriteNews,
-  indexOfTargetNews,
-  targetPart,
+    favoriteNews,
+    indexOfTargetNews,
+    targetPart
 ) => {
-  const isNotesWithinTargetPart =
-    favoriteNews[indexOfTargetNews].notes &&
-    favoriteNews[indexOfTargetNews].notes[targetPart];
-  return isNotesWithinTargetPart;
+    const isNotesWithinTargetPart =
+        favoriteNews[indexOfTargetNews].notes &&
+        favoriteNews[indexOfTargetNews].notes[targetPart];
+    return isNotesWithinTargetPart;
 };

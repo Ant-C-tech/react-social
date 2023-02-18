@@ -1,25 +1,24 @@
-
 .note-card-textarea .text-area-field {
-  width: 100%;
-  margin: 0;
-  padding: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 
-  border: none;
-  border-radius: 0;
-  color: #3a4f7a;
+    border: none;
+    border-radius: 0;
+    color: #3a4f7a;
 
-  background-color: #f7eca0;
-  font-family: 'Special Elite', cursive;
-  line-height: 1.5;
+    background-color: #f7eca0;
+    font-family: "Special Elite", cursive;
+    line-height: 1.5;
 }
 
 .note-card-textarea .text-area-field,
 .note-card-textarea .text-area-field:hover,
 .note-card-textarea .text-area-field:focus {
-  box-shadow: none;
+    box-shadow: none;
 }
 
 .note-card-textarea .text-area-field::-webkit-scrollbar,
 .note-card-textarea .text-area-field::-webkit-scrollbar-thumb {
-  border: 4px solid #f7eca0;
+    border: 4px solid #f7eca0;
 }

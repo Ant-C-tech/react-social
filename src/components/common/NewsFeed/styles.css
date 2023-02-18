@@ -1,31 +1,31 @@
 .news-feed {
-  flex: 8;
-  height: calc(100vh - 70px);
+    flex: 8;
+    height: calc(100vh - 70px);
 
-  padding: 15px 30px;
+    padding: 15px 30px;
 
-  overflow-y: auto;
-  color: rgba(50, 62, 66, 0);
-  transition: color 0.3s ease;
+    overflow-y: auto;
+    color: rgba(50, 62, 66, 0);
+    transition: color 0.3s ease;
 }
 
 .news-feed:hover {
-  color: rgba(50, 62, 66, 0.6);
+    color: rgba(50, 62, 66, 0.6);
 }
 
 .news-list-item {
-  list-style-type: none;
+    list-style-type: none;
 }
 
 @media screen and (max-width: 1000px) {
-  .news-feed {
-    height: calc(100vh - 130px);
-    padding: 15px;
-  }
+    .news-feed {
+        height: calc(100vh - 130px);
+        padding: 15px;
+    }
 }
 
 @media screen and (max-width: 750px) {
-  .news-feed {
-    height: calc(100vh - 190px);
-  }
+    .news-feed {
+        height: calc(100vh - 190px);
+    }
 }

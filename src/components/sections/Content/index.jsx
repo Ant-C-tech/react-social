@@ -1,9 +1,9 @@
-import './style.css';
+import "./style.css";
 
 export const Content = ({ children }) => {
-  return (
-    <>
-      <section className='content-container'>{children}</section>
-    </>
-  );
+    return (
+        <>
+            <section className="content-container">{children}</section>
+        </>
+    );
 };

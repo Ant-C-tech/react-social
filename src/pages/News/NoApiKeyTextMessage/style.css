@@ -1,54 +1,54 @@
 .no-api-key {
-  text-align: left;
+    text-align: left;
 }
 
 .no-api-key-title,
 .no-api-key-subtitle,
 .no-api-key-description-list {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 .no-api-key-icon {
-  width: 35px;
+    width: 35px;
 }
 
 .no-api-key-description-list {
-  margin-left: 15px;
+    margin-left: 15px;
 }
 
 .no-api-key-description-list-item {
-  margin-bottom: 5px;
+    margin-bottom: 5px;
 }
 
 .link-add-text {
-  margin-left: 15px;
+    margin-left: 15px;
 
-  line-height: 1;
-  vertical-align: middle;
-  white-space: nowrap;
+    line-height: 1;
+    vertical-align: middle;
+    white-space: nowrap;
 }
 
 .hover-underline {
-  display: inline-flex;
-  align-items: flex-end;
+    display: inline-flex;
+    align-items: flex-end;
 
-  position: relative;
-  bottom: -5px;
+    position: relative;
+    bottom: -5px;
 
-  font-weight: bold;
-  text-transform: uppercase;
+    font-weight: bold;
+    text-transform: uppercase;
 }
 
 .hover-underline:after {
-  width: 0;
-  height: 1px;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
 .hover-underline:hover:after,
 .hover-underline:focus:after,
 .hover-underline.active:after {
-  width: 100%;
+    width: 100%;
 }
