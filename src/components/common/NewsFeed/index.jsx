@@ -43,8 +43,6 @@ export const NewsFeed = ({
     }
   }, [needScroll, setNeedScroll]);
 
-  console.log(favoriteNews);
-
   return (
     <section className='news-feed'>
       {loading ? (

@@ -112,7 +112,7 @@
 .topbar-center-panel-notifications-image-icon {
   display: block;
   margin: 0 3px;
-  width: 38px
+  width: 38px;
 }
 
 .topbar-center-panel-notifications-badge {
@@ -206,28 +206,34 @@
 
   .topbar-left-panel {
     width: 100%;
+    height: auto;
     margin: 10px 50px;
   }
 
   .topbar-center-panel {
     width: calc(60% - 60px);
+    height: 45px;
     margin-left: 50px;
   }
 
   .topbar-right-panel {
     width: calc(40% - 60px);
+    height: 45px;
     margin-right: 50px;
   }
 }
 
 @media screen and (max-width: 750px) {
+  .topbar {
+    justify-content: center;
+  }
+
   .topbar-left-panel {
     margin: 10px 50px;
   }
 
   .topbar-center-panel,
   .topbar-right-panel {
-    width: 100%;
     margin: 10px 50px;
   }
 }

@@ -1,10 +1,5 @@
 import './styles.css';
-import {
-  makeNoteIcon,
-  stickyNoteIcon,
-  highlightToolsIcon,
-  eraserIcon,
-} from '@assets';
+import { makeNoteIcon, stickyNoteIcon, highlightToolsIcon } from '@assets';
 
 import { HIGHLIGHTERS } from './constants';
 
@@ -12,8 +7,13 @@ import { Button } from '@common/';
 import { NoteTextArea } from './NoteTextArea';
 
 export const EditNewsTab = ({ editNewsTabProps }) => {
-  const { activeTool, setActiveTool, textOfNoteCard, setTextOfNoteCard, setOpenNoteId } =
-    editNewsTabProps;
+  const {
+    activeTool,
+    setActiveTool,
+    textOfNoteCard,
+    setTextOfNoteCard,
+    setOpenNoteId,
+  } = editNewsTabProps;
 
   return (
     <>
@@ -36,22 +36,13 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
               active={name === activeTool}
               onClick={() => {
                 setActiveTool(name === activeTool ? '' : name);
-                setOpenNoteId('')
+                setOpenNoteId('');
               }}
               buttonImageIcon={icon}
               tooltipText={tooltipText}
             />
           );
         })}
-        <Button
-          active={'eraser' === activeTool}
-          onClick={() => {
-            setActiveTool('eraser' === activeTool ? '' : 'eraser');
-            setOpenNoteId('');
-          }}
-          buttonImageIcon={eraserIcon}
-          tooltipText='Remove an Existing Highlight'
-        />
       </div>
 
       <img

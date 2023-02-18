@@ -22,3 +22,35 @@
 .controlbar:hover {
   color: rgba(50, 62, 66, 0.6);
 }
+
+@media screen and (max-width: 1275px) {
+  .controlbar {
+    flex: auto;
+    width: 20%;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .controlbar {
+    width: 25%;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .controlbar {
+    width: 28%;
+    height: calc(100vh - 130px);
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .controlbar {
+    width: 32%;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .controlbar {
+    height: calc(100vh - 190px);
+  }
+}

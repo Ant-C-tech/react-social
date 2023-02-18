@@ -1,10 +1,10 @@
 import './app.css';
 
 import { useState } from 'react';
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import { TopBar, NavBar } from '@sections';
+import { Message } from '@common';
 
 import {
   News,
@@ -52,7 +52,13 @@ const App = () => {
   }
   // End of Mock data for contacts list
 
-  return (
+  const mediaMatch = window.matchMedia('(max-width: 720px)');
+
+  return mediaMatch.matches ? (
+    <Message type={'message-info'} title={'There is no mobile version of the application yet'}>
+      <p>We are really sorry about your unpleasant experience:(</p>
+    </Message>
+  ) : (
     <Router>
       <TopBar isAuthorized={isAuthorized} setIsAuthorized={setIsAuthorized} />
       <main className='container-flex'>

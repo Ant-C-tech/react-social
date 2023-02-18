@@ -313,3 +313,60 @@
   background-color: #e0004d;
   color: #fff;
 }
+
+@media screen and (max-width: 1275px) {
+  .news-card-link-add-text {
+    white-space: normal;
+  }
+
+  .news-card-category h3,
+  .news-card-country h3,
+  .news-card-content-title-text > span {
+    font-size: 20px;
+  }
+
+  .news-card-title-icon {
+    bottom: 0;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .news-card-controls {
+    flex-wrap: wrap;
+    align-items: stretch;
+  }
+
+  .news-card-link-hover-underline {
+    order: 3;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .news-card-date,
+  .news-card-creators {
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .news-card-controls {
+    justify-content: center;
+  }
+
+  .news-card-title-icon {
+    display: none;
+  }
+
+  .news-card-category h3,
+  .news-card-country h3,
+  .news-card-content-title-text > span {
+    font-size: 14px;
+  }
+
+  .news-card-date,
+  .news-card-creators {
+    font-size: 14px;
+  }
+}

@@ -25,3 +25,9 @@
   justify-content: center;
   margin: 0 -5px;
 }
+
+@media screen and (max-width: 900px) {
+  .filter-item-title {
+    font-size: 18px;
+  }
+}
