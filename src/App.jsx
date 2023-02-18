@@ -1,6 +1,6 @@
 import "./app.css";
 
-import { useState } from "react";
+import { React, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { TopBar, NavBar } from "@sections";
