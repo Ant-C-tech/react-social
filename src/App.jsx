@@ -32,6 +32,8 @@ const App = () => {
     const [isAuthorized, setIsAuthorized] = useState(false);
 
     // Mock data for contacts list
+
+    // eslint-disable-next-line no-undef
     const rug = require("random-username-generator");
     rug.setSeperator(" ");
 
