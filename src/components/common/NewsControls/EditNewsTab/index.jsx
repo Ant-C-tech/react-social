@@ -2,6 +2,7 @@ import "./styles.css";
 import { makeNoteIcon, stickyNoteIcon, highlightToolsIcon } from "@assets";
 
 import React from "react";
+import PropTypes from "prop-types";
 
 import { Button } from "@common/";
 import { NoteTextArea } from "./NoteTextArea";
@@ -16,7 +17,6 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
         setTextOfNoteCard,
         setOpenNoteId,
     } = editNewsTabProps;
-
     return (
         <>
             <img
@@ -80,4 +80,14 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
             )}
         </>
     );
+};
+
+EditNewsTab.propTypes = {
+    editNewsTabProps: PropTypes.shape({
+        activeTool: PropTypes.string.isRequired,
+        setActiveTool: PropTypes.func.isRequired,
+        textOfNoteCard: PropTypes.string.isRequired,
+        setTextOfNoteCard: PropTypes.func.isRequired,
+        setOpenNoteId: PropTypes.func.isRequired,
+    }),
 };
