@@ -2,6 +2,7 @@ import "./styles.css";
 
 import React from "react";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 import { Message, TabsControls, TabPanel } from "@common";
 
@@ -59,4 +60,32 @@ export const NewsControls = (newsControlProps) => {
             )}
         </section>
     );
+};
+
+NewsControls.propTypes = {
+    newsControlProps: PropTypes.shape({
+        news: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.string.isRequired,
+                title: PropTypes.string.isRequired,
+                description: PropTypes.string.isRequired,
+                url: PropTypes.string.isRequired,
+                urlToImage: PropTypes.string.isRequired,
+                publishedAt: PropTypes.string.isRequired,
+                content: PropTypes.string.isRequired,
+                source: PropTypes.shape({
+                    id: PropTypes.string.isRequired,
+                    name: PropTypes.string.isRequired,
+                }).isRequired,
+                category: PropTypes.string.isRequired,
+                language: PropTypes.string.isRequired,
+                country: PropTypes.string.isRequired,
+            }).isRequired
+        ).isRequired,
+        error: PropTypes.string,
+        loading: PropTypes.bool.isRequired,
+        isHighLightersBar: PropTypes.bool.isRequired,
+        setActiveTool: PropTypes.func.isRequired,
+        setKeyword: PropTypes.func.isRequired,
+    }),
 };

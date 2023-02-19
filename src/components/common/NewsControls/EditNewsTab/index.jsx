@@ -84,10 +84,10 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
 
 EditNewsTab.propTypes = {
     editNewsTabProps: PropTypes.shape({
-        activeTool: PropTypes.string.isRequired,
-        setActiveTool: PropTypes.func.isRequired,
-        textOfNoteCard: PropTypes.string.isRequired,
-        setTextOfNoteCard: PropTypes.func.isRequired,
-        setOpenNoteId: PropTypes.func.isRequired,
+        activeTool: PropTypes.string, //undefine on the news page
+        setActiveTool: PropTypes.func, //undefine on the news page
+        textOfNoteCard: PropTypes.string, //undefine on the news page
+        setTextOfNoteCard: PropTypes.func, //undefine on the news page
+        setOpenNoteId: PropTypes.func, //undefine on the news page
     }),
 };
