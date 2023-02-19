@@ -31,7 +31,7 @@ export const NoApiKeyTextMessage = () => {
             </p>
             <ul className="no-api-key-description-list">
                 <li className="no-api-key-description-list-item">
-                    Click to the "GET API KEY" button.
+                    Click to the &quot;GET API KEY&quot; button.
                 </li>
                 <li className="no-api-key-description-list-item">
                     Then input your data and sign up.
@@ -43,11 +43,11 @@ export const NoApiKeyTextMessage = () => {
                     Login with your email and password.
                 </li>
                 <li className="no-api-key-description-list-item">
-                    Click on your profile and choose "Dashboard".
+                    Click on your profile and choose &quot;Dashboard&quot;.
                 </li>
                 <li className="no-api-key-description-list-item">
-                    Chose tab "API Key" and copy your API key (it should looks
-                    like pub_7326b2c6fa87e39fae652402g354001d0bq8).
+                    Chose tab &quot;API Key&quot; and copy your API key (it
+                    should looks like pub_7326b2c6fa87e39fae652402g354001d0bq8).
                 </li>
                 <li className="no-api-key-description">
                     Now, please paste your API key into the field below and you
