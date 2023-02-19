@@ -2,9 +2,9 @@ import "./styles.css";
 import { addIcon, removeIcon } from "@assets";
 
 import React from "react";
+import PropTypes from "prop-types";
 
-import { SelectComponent } from "@common/SelectComponent";
-import { Button } from "@common/Button/";
+import { SelectComponent, Button } from "@common";
 
 import {
     addSelectWithNotSelectedValue,
@@ -101,4 +101,19 @@ export const FilterItem = ({
             </div>
         </div>
     );
+};
+
+FilterItem.propTypes = {
+    title: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+    selectedItems: PropTypes.array.isRequired,
+    setSelectedItems: PropTypes.func.isRequired,
+    itemsAvailableForFilterNews: PropTypes.array.isRequired,
+    minItemsAvailableForFilterNews: PropTypes.number.isRequired,
+    maxItemsAvailableForFilterNews: PropTypes.number.isRequired,
+    labelOptionForItems: PropTypes.object, // null for category
+    labelIconOptionsForItems: PropTypes.object.isRequired,
+    addButtonText: PropTypes.string.isRequired,
+    removeButtonText: PropTypes.string.isRequired,
+    loading: PropTypes.bool.isRequired,
 };
