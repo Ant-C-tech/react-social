@@ -1,6 +1,7 @@
 import "./styles.css";
 
 import React from "react";
+import PropTypes from "prop-types";
 import IconButton from "@material-ui/core/IconButton";
 
 export const IconButtonComponent = ({ children, onClick }) => (
@@ -12,3 +13,8 @@ export const IconButtonComponent = ({ children, onClick }) => (
         {children}
     </IconButton>
 );
+
+IconButtonComponent.propTypes = {
+    children: PropTypes.node.isRequired,
+    onClick: PropTypes.func.isRequired,
+};
