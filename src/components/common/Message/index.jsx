@@ -20,7 +20,8 @@ export const Message = ({ type, title, children }) => {
 };
 
 Message.propTypes = {
-    type: PropTypes.oneOf(["error", "warning", "info"]).isRequired,
+    type: PropTypes.oneOf(["message-error", "message-warning", "message-info"])
+        .isRequired,
     title: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
 };
