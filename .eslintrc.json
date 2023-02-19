@@ -10,5 +10,9 @@
         "sourceType": "module"
     },
     "plugins": ["react"],
-    "rules": {}
+    "rules": {
+        "no-extra-semi": 0,
+        "no-mixed-spaces-and-tabs": 0,
+        "no-unexpected-multiline": 0
+    }
 }
