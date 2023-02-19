@@ -1,32 +1,35 @@
-import { getNewsFilteredByCountry } from './getNewsFilteredByCountry';
-import { getNewsFilteredByKeyword } from './getNewsFilteredByKeyword';
-import { getNewsFilteredByLanguage } from './getNewsFilteredByLanguage';
+import { getNewsFilteredByCountry } from "./getNewsFilteredByCountry";
+import { getNewsFilteredByKeyword } from "./getNewsFilteredByKeyword";
+import { getNewsFilteredByLanguage } from "./getNewsFilteredByLanguage";
 
 export const getCategoriesAvailableForFilterFavoriteNews = (
-  favoriteNews,
-  selectedCountries,
-  selectedLanguages,
-  keyword='',
+    favoriteNews,
+    selectedCountries,
+    selectedLanguages,
+    keyword = ""
 ) => {
-  const newsFilteredByCountry =
-    selectedCountries[0] === 'all'
-      ? favoriteNews
-      : getNewsFilteredByCountry(favoriteNews, selectedCountries);
+    const newsFilteredByCountry =
+        selectedCountries[0] === "all"
+            ? favoriteNews
+            : getNewsFilteredByCountry(favoriteNews, selectedCountries);
 
-  const newsFilteredByLanguage =
-    selectedLanguages[0] === 'all'
-      ? newsFilteredByCountry
-      : getNewsFilteredByLanguage(newsFilteredByCountry, selectedLanguages);
+    const newsFilteredByLanguage =
+        selectedLanguages[0] === "all"
+            ? newsFilteredByCountry
+            : getNewsFilteredByLanguage(
+                  newsFilteredByCountry,
+                  selectedLanguages
+              );
 
-  const newsFilteredByKeyword =
-    keyword.length === 0
-      ? newsFilteredByLanguage
-      : getNewsFilteredByKeyword(newsFilteredByLanguage, keyword);
+    const newsFilteredByKeyword =
+        keyword.length === 0
+            ? newsFilteredByLanguage
+            : getNewsFilteredByKeyword(newsFilteredByLanguage, keyword);
 
-  const favoriteNewsCategories = [];
-  newsFilteredByKeyword.forEach(({ category }) => {
-    favoriteNewsCategories.push(...category);
-  });
+    const favoriteNewsCategories = [];
+    newsFilteredByKeyword.forEach(({ category }) => {
+        favoriteNewsCategories.push(...category);
+    });
 
-  return ['all', ...[...new Set(favoriteNewsCategories)]];
+    return ["all", ...[...new Set(favoriteNewsCategories)]];
 };

@@ -1,39 +1,39 @@
 import {
-  getCountriesAvailableForFilterFavoriteNews,
-  getCategoriesAvailableForFilterFavoriteNews,
-  getLanguagesAvailableForFilterFavoriteNews,
-} from './';
+    getCountriesAvailableForFilterFavoriteNews,
+    getCategoriesAvailableForFilterFavoriteNews,
+    getLanguagesAvailableForFilterFavoriteNews,
+} from "./";
 
 export const updateAvailableParametersForFiltering = (
-  news,
-  selectedCountries,
-  selectedCategories,
-  selectedLanguages,
-  setCountriesAvailableForFilterFavoriteNews,
-  setCategoriesAvailableForFilterFavoriteNews,
-  setLanguagesAvailableForFilterFavoriteNews,
+    news,
+    selectedCountries,
+    selectedCategories,
+    selectedLanguages,
+    setCountriesAvailableForFilterFavoriteNews,
+    setCategoriesAvailableForFilterFavoriteNews,
+    setLanguagesAvailableForFilterFavoriteNews
 ) => {
-  setCountriesAvailableForFilterFavoriteNews(
-    getCountriesAvailableForFilterFavoriteNews(
-      news,
-      selectedCategories,
-      selectedLanguages,
-    ),
-  );
+    setCountriesAvailableForFilterFavoriteNews(
+        getCountriesAvailableForFilterFavoriteNews(
+            news,
+            selectedCategories,
+            selectedLanguages
+        )
+    );
 
-  setCategoriesAvailableForFilterFavoriteNews(
-    getCategoriesAvailableForFilterFavoriteNews(
-      news,
-      selectedCountries,
-      selectedLanguages,
-    ),
-  );
+    setCategoriesAvailableForFilterFavoriteNews(
+        getCategoriesAvailableForFilterFavoriteNews(
+            news,
+            selectedCountries,
+            selectedLanguages
+        )
+    );
 
-  setLanguagesAvailableForFilterFavoriteNews(
-    getLanguagesAvailableForFilterFavoriteNews(
-      news,
-      selectedCountries,
-      selectedCategories,
-    ),
-  );
+    setLanguagesAvailableForFilterFavoriteNews(
+        getLanguagesAvailableForFilterFavoriteNews(
+            news,
+            selectedCountries,
+            selectedCategories
+        )
+    );
 };

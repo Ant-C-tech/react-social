@@ -1,14 +1,14 @@
-import { DEFAULT_CATEGORIES_AVAILABLE_FOR_FILTERING_NEWS } from '@constants';
+import { DEFAULT_CATEGORIES_AVAILABLE_FOR_FILTERING_NEWS } from "@constants";
 
 export const getActualizatedCategoriesObject = (
-  categoriesAvailableForFilterFavoriteNews,
+    categoriesAvailableForFilterFavoriteNews
 ) => {
-  const ActualizatedCategoriesObject = {};
+    const ActualizatedCategoriesObject = {};
 
-  categoriesAvailableForFilterFavoriteNews.forEach((category) => {
-    ActualizatedCategoriesObject[category] =
-      DEFAULT_CATEGORIES_AVAILABLE_FOR_FILTERING_NEWS[category];
-  });
+    categoriesAvailableForFilterFavoriteNews.forEach((category) => {
+        ActualizatedCategoriesObject[category] =
+            DEFAULT_CATEGORIES_AVAILABLE_FOR_FILTERING_NEWS[category];
+    });
 
-  return ActualizatedCategoriesObject;
+    return ActualizatedCategoriesObject;
 };

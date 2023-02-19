@@ -1,87 +1,87 @@
 .button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-  width: 180px;
-  min-height: 50px;
+    width: 180px;
+    min-height: 50px;
 
-  margin: 0 5px 15px;
-  padding: 8px 16px;
+    margin: 0 5px 15px;
+    padding: 8px 16px;
 
-  line-height: 1rem;
-  font-family: 'Indie Flower', cursive;
-  font-size: 18px;
-  font-weight: bold;
-  color: #323e42;
+    line-height: 1rem;
+    font-family: "Indie Flower", cursive;
+    font-size: 18px;
+    font-weight: bold;
+    color: #323e42;
 
-  background: #fff;
-  border: 1px solid;
-  border-color: #323e42;
-  border-radius: 3px;
+    background: #fff;
+    border: 1px solid;
+    border-color: #323e42;
+    border-radius: 3px;
 
-  cursor: pointer;
+    cursor: pointer;
 
-  box-shadow: 12px 15px 10px -5px #718b93;
+    box-shadow: 12px 15px 10px -5px #718b93;
 
-  transition: box-shadow ease-in-out 0.2s, color ease-in-out 0.2s;
+    transition: box-shadow ease-in-out 0.2s, color ease-in-out 0.2s;
 }
 
 .button-without-text {
-  width: 54px;
-  min-width: 25%;
-  padding: 0;
+    width: 54px;
+    min-width: 25%;
+    padding: 0;
 }
 
 .button:hover,
 .button:focus-visible,
 .button-active {
-  color: #e0004d;
-  border-color: #e0004d;
+    color: #e0004d;
+    border-color: #e0004d;
 
-  outline: none;
+    outline: none;
 
-  box-shadow: 0px 0px 0px 0px #718b93;
+    box-shadow: 0px 0px 0px 0px #718b93;
 }
 
 .button-component-icon {
-  display: block;
-  margin-right: 8px;
-  margin-bottom: 8px;
+    display: block;
+    margin-right: 8px;
+    margin-bottom: 8px;
 }
 
 .button-image-icon {
-  display: block;
-  width: 35px;
-  margin-bottom: 5px;
+    display: block;
+    width: 35px;
+    margin-bottom: 5px;
 }
 
 .button-text {
-  margin-left: 10px;
+    margin-left: 10px;
 }
 
 @media screen and (max-width: 1250px) {
-  .button {
-    width: 150px;
-  }
+    .button {
+        width: 150px;
+    }
 
-  .button-without-text {
-    width: 75px;
-  }
+    .button-without-text {
+        width: 75px;
+    }
 }
 
 @media screen and (max-width: 1050px) {
-  .button-without-text {
-    width: 55px;
-  }
+    .button-without-text {
+        width: 55px;
+    }
 }
 
 @media screen and (max-width: 1000px) {
-  .button {
-    width: 130px;
-  }
+    .button {
+        width: 130px;
+    }
 
-  .button-without-text {
-    width: 45px;
-  }
+    .button-without-text {
+        width: 45px;
+    }
 }

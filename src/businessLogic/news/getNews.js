@@ -1,30 +1,33 @@
-import { apiClient } from '@services/apiClient';
+import { apiClient } from "@services/apiClient";
 
 export const getNews = (
-  apiKey,
-  selectedCountries,
-  selectedCategories,
-  selectedLanguages,
-  keyword,
-  nextPage,
+    apiKey,
+    selectedCountries,
+    selectedCategories,
+    selectedLanguages,
+    keyword,
+    nextPage
 ) => {
-  const params = nextPage ? {
-    apikey: apiKey,
-    page: nextPage,
-  } : {
-    apikey: apiKey,
-  }
+    const params = nextPage
+        ? {
+              apikey: apiKey,
+              page: nextPage,
+          }
+        : {
+              apikey: apiKey,
+          };
 
-  if (selectedCountries[0] !== 'all') params.country = selectedCountries.join();
-  if (selectedCategories[0] !== 'all')
-    params.category = selectedCategories.join();
-  if (selectedLanguages[0] !== 'all')
-    params.language = selectedLanguages.join();
-  if (keyword !== '') params.q = keyword;
+    if (selectedCountries[0] !== "all")
+        params.country = selectedCountries.join();
+    if (selectedCategories[0] !== "all")
+        params.category = selectedCategories.join();
+    if (selectedLanguages[0] !== "all")
+        params.language = selectedLanguages.join();
+    if (keyword !== "") params.q = keyword;
 
-  return apiClient({
-    method: 'get',
-    baseURL: 'https://newsdata.io/api/1/news',
-    params: params,
-  })();
+    return apiClient({
+        method: "get",
+        baseURL: "https://newsdata.io/api/1/news",
+        params: params,
+    })();
 };

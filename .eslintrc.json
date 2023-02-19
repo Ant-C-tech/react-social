@@ -1,0 +1,26 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
+    "overrides": [],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": ["react"],
+    "rules": {
+        "no-extra-semi": 0,
+        "no-mixed-spaces-and-tabs": 0,
+        "no-unexpected-multiline": 0
+    }
+}

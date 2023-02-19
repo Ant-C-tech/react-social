@@ -1,19 +1,19 @@
 .custom-link {
-  position: relative;
-  margin: 0 7px;
+    position: relative;
+    margin: 0 7px;
 
-  font-family: 'Amatic SC', cursive;
-  font-weight: bold;
-  font-size: 25px;
+    font-family: "Amatic SC", cursive;
+    font-weight: bold;
+    font-size: 25px;
 }
 
 .custom-link:after {
-  position: absolute;
-  content: '';
-  background-color: #e0004d;
-  transition: width ease-in-out 0.3s, height ease-in-out 0.3s;
+    position: absolute;
+    content: "";
+    background-color: #e0004d;
+    transition: width ease-in-out 0.3s, height ease-in-out 0.3s;
 }
 
 .custom-link:focus {
-  outline: none;
+    outline: none;
 }
