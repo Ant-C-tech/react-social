@@ -1,5 +1,6 @@
 import "./styles.css";
 
+import React from "react";
 import { useState } from "react";
 
 import { NoteCardControl } from "./NoteCardControl";

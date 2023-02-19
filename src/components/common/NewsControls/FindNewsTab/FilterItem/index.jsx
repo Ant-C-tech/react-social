@@ -1,15 +1,17 @@
 import "./styles.css";
 import { addIcon, removeIcon } from "@assets";
 
+import React from "react";
+
+import { SelectComponent } from "@common/SelectComponent";
+import { Button } from "@common/Button/";
+
 import {
     addSelectWithNotSelectedValue,
     getNotSelectedItems,
     removeLastSelect,
     updateSelectedItems,
 } from "./utils";
-
-import { SelectComponent } from "@common/SelectComponent";
-import { Button } from "@common/Button/";
 
 export const FilterItem = ({
     title,

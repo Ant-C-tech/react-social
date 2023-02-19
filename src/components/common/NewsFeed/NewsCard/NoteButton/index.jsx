@@ -1,6 +1,8 @@
 import "./styles.css";
+
 import { stickyNoteIcon } from "@assets";
 
+import React from "react";
 import { useRef, useState } from "react";
 import { NoteCard } from "./NoteCard";
 

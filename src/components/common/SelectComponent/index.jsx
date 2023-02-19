@@ -1,6 +1,7 @@
 import "./styles.css";
 import { newsIcon } from "@assets";
 
+import React from "react";
 import { useState, useEffect } from "react";
 
 import Select from "react-select";

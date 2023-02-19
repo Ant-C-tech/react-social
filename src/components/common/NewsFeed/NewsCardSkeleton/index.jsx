@@ -1,6 +1,7 @@
 import "./styles.css";
 import "react-loading-skeleton/dist/skeleton.css";
 
+import React from "react";
 import Skeleton from "react-loading-skeleton";
 
 export const NewsCardSkeleton = ({ skeletons }) => {

@@ -1,5 +1,6 @@
 import "./styles.css";
 
+import React from "react";
 import { useEffect } from "react";
 import { TextArea } from "@common";
 

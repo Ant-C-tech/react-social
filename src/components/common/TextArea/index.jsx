@@ -1,5 +1,7 @@
 import "./styles.css";
 
+import React from "react";
+
 export const TextArea = ({ text, setText, rows = 6, label }) => {
     return (
         <>

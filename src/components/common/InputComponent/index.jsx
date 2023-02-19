@@ -1,5 +1,6 @@
 import "./styles.css";
 
+import React from "react";
 import { useState } from "react";
 
 import { DebounceInput } from "react-debounce-input";

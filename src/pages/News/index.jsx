@@ -1,5 +1,6 @@
 import { fingerPrintIcon } from "@assets";
 
+import React from "react";
 import { useState, useEffect } from "react";
 
 import { getNews } from "../../businessLogic/news/getNews";

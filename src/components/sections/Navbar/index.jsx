@@ -15,12 +15,12 @@ import {
     contactsButtonIcon,
 } from "@assets";
 
+import React from "react";
 import { useState } from "react";
 
 import { BigHead } from "@bigheads/core";
 
-import { CustomLink } from "@common/CustomLink/";
-import { Button } from "@common/Button";
+import { CustomLink, Button } from "@common";
 
 const navBarItemsConfig = [
     {

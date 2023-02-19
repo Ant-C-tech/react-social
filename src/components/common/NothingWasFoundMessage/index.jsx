@@ -1,5 +1,7 @@
 import "./styles.css";
-import { Message } from "@common/Message/";
+
+import React from "react";
+import { Message } from "@common";
 
 export const NothingWasFoundMessage = ({
     countriesForPrompt = [],

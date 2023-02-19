@@ -1,3 +1,5 @@
+import React from "react";
+
 export const TabPanel = (props) => {
     const { children, value, index, ...other } = props;
 

@@ -1,10 +1,9 @@
 import "./styles.css";
 
+import React from "react";
 import { useState } from "react";
 
-import { Message } from "@common/Message/";
-import { TabsControls } from "@common/TabsControls";
-import { TabPanel } from "@common/TabPanel";
+import { Message, TabsControls, TabPanel } from "@common";
 
 import { createErrorMessage } from "./utils/createErrorMessage";
 

@@ -1,6 +1,9 @@
 import "./styles.css";
 import { hintIcon } from "@assets";
 
+import React from "react";
+// import PropTypes from "prop-types";
+
 export const Message = ({ type, title, children }) => {
     return (
         <article className={`${type} message`}>
@@ -15,3 +18,9 @@ export const Message = ({ type, title, children }) => {
         </article>
     );
 };
+
+// Message.propTypes = {
+//     type: PropTypes.string,
+//     title: PropTypes.string,
+//     children: PropTypes.any,
+// };

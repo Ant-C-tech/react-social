@@ -16,6 +16,7 @@
         "axios": "^0.27.2",
         "country-data": "^0.0.31",
         "nth-check": "^2.1.1",
+        "prop-types": "^15.8.1",
         "random-username-generator": "^1.0.4",
         "react": "^17.0.2",
         "react-debounce-input": "^3.2.5",

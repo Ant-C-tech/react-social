@@ -10,6 +10,7 @@ import {
     hideFullTextButtonIcon,
 } from "@assets";
 
+import React from "react";
 import { useState, useRef } from "react";
 import Highlighter from "react-highlight-words";
 

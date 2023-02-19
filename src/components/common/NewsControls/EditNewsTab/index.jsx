@@ -1,10 +1,12 @@
 import "./styles.css";
 import { makeNoteIcon, stickyNoteIcon, highlightToolsIcon } from "@assets";
 
-import { HIGHLIGHTERS } from "./constants";
+import React from "react";
 
 import { Button } from "@common/";
 import { NoteTextArea } from "./NoteTextArea";
+
+import { HIGHLIGHTERS } from "./constants";
 
 export const EditNewsTab = ({ editNewsTabProps }) => {
     const {

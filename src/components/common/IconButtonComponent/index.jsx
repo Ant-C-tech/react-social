@@ -1,5 +1,6 @@
 import "./styles.css";
 
+import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 
 export const IconButtonComponent = ({ children, onClick }) => (

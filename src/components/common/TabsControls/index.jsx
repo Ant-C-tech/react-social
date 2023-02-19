@@ -1,3 +1,4 @@
+import React from "react";
 import { StyledTabs } from "./StyledTabs";
 import { StyledTab } from "./StyledTab";
 

@@ -1,6 +1,8 @@
 import "./style.css";
 import { originalSourceIcon } from "@assets";
 
+import React from "react";
+
 import { CustomLink } from "@common";
 
 export const NoApiKeyTextMessage = () => {

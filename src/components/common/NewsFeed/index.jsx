@@ -1,5 +1,6 @@
 import "./styles.css";
 
+import React from "react";
 import { useEffect, useRef } from "react";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { Waypoint } from "react-waypoint";

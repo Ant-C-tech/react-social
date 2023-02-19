@@ -1,3 +1,5 @@
+import React from "react";
+
 import { ControlBar, Content } from "@sections";
 import { Message } from "@common";
 
