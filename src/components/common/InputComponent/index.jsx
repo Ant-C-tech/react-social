@@ -2,14 +2,13 @@ import "./styles.css";
 
 import React from "react";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 import { DebounceInput } from "react-debounce-input";
 import { BackspaceTwoTone } from "@material-ui/icons";
 
 export const InputComponent = ({
     type,
-    minLength,
-    debounceTimeout,
     placeholder,
     value,
     setValue,
@@ -22,8 +21,8 @@ export const InputComponent = ({
             <img className="input-icon" src={icon} alt="#" aria-hidden={true} />
             <DebounceInput
                 type={type}
-                minLength={minLength}
-                debounceTimeout={debounceTimeout}
+                minLength={2}
+                debounceTimeout={1000}
                 placeholder={placeholder}
                 value={value}
                 onChange={(event) => {
@@ -45,4 +44,12 @@ export const InputComponent = ({
             )}
         </div>
     );
+};
+
+InputComponent.propTypes = {
+    type: PropTypes.string.isRequired,
+    placeholder: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    setValue: PropTypes.func.isRequired,
+    icon: PropTypes.string.isRequired,
 };

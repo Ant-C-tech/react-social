@@ -216,8 +216,6 @@ export const News = () => {
                         <NoApiKeyTextMessage />
                         <InputComponent
                             type="text"
-                            minLength={2}
-                            debounceTimeout={1000}
                             placeholder={"Please, input your API key"}
                             value={apiKey}
                             setValue={setApiKey}

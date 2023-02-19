@@ -140,8 +140,6 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
                 </div>
                 <InputComponent
                     type="text"
-                    minLength={2}
-                    debounceTimeout={1000}
                     placeholder={"Keyword..."}
                     value={keyword}
                     setValue={setKeyword}
