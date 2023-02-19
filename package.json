@@ -38,7 +38,8 @@
         "test": "react-app-rewired test",
         "prettier:check": "npx prettier --check .",
         "prettier:fix": "npx prettier --write .",
-        "lint": "npx eslint ."
+        "lint": "npx eslint .",
+        "prepare": "husky install"
     },
     "eslintConfig": {
         "extends": [
@@ -58,12 +59,20 @@
             "last 1 safari version"
         ]
     },
+    "lint-staged": {
+        "*.{css,less,scss,html,json,jsx,js}": [
+            "prettier --write ."
+        ],
+        "*.js": "eslint --fix"
+    },
     "devDependencies": {
         "@apideck/better-ajv-errors": "^0.3.6",
         "eslint": "^8.34.0",
         "eslint-config-prettier": "^8.6.0",
         "eslint-plugin-react": "^7.32.2",
         "gh-pages": "^3.2.3",
+        "husky": "^8.0.0",
+        "lint-staged": "^13.1.2",
         "postcss-normalize": "^10.0.1",
         "prettier": "^2.8.4",
         "react-app-rewired": "^2.2.1",
