@@ -1,6 +1,7 @@
 import "./styles.css";
 
 import React from "react";
+import PropTypes from "prop-types";
 
 export const Button = ({
     text,
@@ -32,4 +33,13 @@ export const Button = ({
             {text && <span className="button-text">{text}</span>}
         </button>
     );
+};
+
+Button.propTypes = {
+    text: PropTypes.string,
+    active: PropTypes.bool,
+    onClick: PropTypes.func.isRequired,
+    buttonImageIcon: PropTypes.string,
+    buttonComponentIcon: PropTypes.elementType,
+    tooltipText: PropTypes.string,
 };
