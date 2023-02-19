@@ -24,7 +24,6 @@ export const NoApiKeyTextMessage = () => {
                         </>
                     }
                     href="https://newsdata.io/"
-                    target="_blank"
                     modification="hover-underline"
                     active=""
                 />

@@ -159,7 +159,6 @@ export const NewsCard = ({
                             </>
                         }
                         href={video_url}
-                        target="_blank"
                         modification="news-card-hover-left-line"
                         active=""
                     />

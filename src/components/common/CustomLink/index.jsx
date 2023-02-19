@@ -2,14 +2,9 @@ import "./styles.css";
 
 import React from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
+import PropTypes from "prop-types";
 
-export const CustomLink = ({
-    type,
-    content,
-    href,
-    modification,
-    target = "_blank",
-}) => {
+export const CustomLink = ({ type, content, href, modification }) => {
     let resolved = useResolvedPath(href);
     let match = useMatch({ path: resolved.pathname, end: true });
 
@@ -17,7 +12,7 @@ export const CustomLink = ({
         <a
             className={`custom-link ${modification}`}
             href={href}
-            target={target}
+            target="_blank"
             rel="noopener noreferrer"
         >
             {content}
@@ -30,4 +25,13 @@ export const CustomLink = ({
             {content}
         </Link>
     );
+};
+
+CustomLink.propTypes = {
+    type: PropTypes.oneOf(["internal", "external"]).isRequired,
+    content: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+        .isRequired,
+    href: PropTypes.string.isRequired,
+    modification: PropTypes.string,
+    target: PropTypes.string,
 };
