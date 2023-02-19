@@ -38,7 +38,7 @@
         "test": "react-app-rewired test",
         "prettier:check": "npx prettier --check .",
         "prettier:fix": "npx prettier --write .",
-        "lint": "eslint \"**/*.js\" --max-warnings=0",
+        "lint": "eslint \"**/*.js\" --max-warnings=0 --max-errors=0",
         "prepare": "husky install"
     },
     "eslintConfig": {
