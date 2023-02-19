@@ -3,9 +3,17 @@
         "browser": true,
         "es2021": true
     },
-    "extends": ["eslint:recommended", "plugin:react/jsx-runtime", "prettier"],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    },
+    "extends": ["eslint:recommended", "plugin:react/recommended", "prettier"],
     "overrides": [],
     "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
