@@ -2,7 +2,7 @@ import "./styles.css";
 import { hintIcon } from "@assets";
 
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 export const Message = ({ type, title, children }) => {
     return (
@@ -19,8 +19,8 @@ export const Message = ({ type, title, children }) => {
     );
 };
 
-// Message.propTypes = {
-//     type: PropTypes.string,
-//     title: PropTypes.string,
-//     children: PropTypes.any,
-// };
+Message.propTypes = {
+    type: PropTypes.oneOf(["error", "warning", "info"]).isRequired,
+    title: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
+};
