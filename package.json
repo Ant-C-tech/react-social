@@ -47,6 +47,11 @@
             "react-app/jest"
         ]
     },
+    "config": {
+        "commitizen": {
+            "path": "./node_modules/cz-conventional-changelog"
+        }
+    },
     "browserslist": {
         "production": [
             ">0.2%",
@@ -67,6 +72,10 @@
     },
     "devDependencies": {
         "@apideck/better-ajv-errors": "^0.3.6",
+        "@commitlint/cli": "^17.4.4",
+        "@commitlint/config-conventional": "^17.4.4",
+        "commitizen": "^4.3.0",
+        "cz-conventional-changelog": "^3.3.0",
         "eslint": "^8.34.0",
         "eslint-config-prettier": "^8.6.0",
         "eslint-plugin-react": "^7.32.2",
