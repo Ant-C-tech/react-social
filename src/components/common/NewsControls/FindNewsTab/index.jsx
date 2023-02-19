@@ -1,6 +1,7 @@
 import "./styles.css";
 
 import React from "react";
+import PropTypes from "prop-types";
 
 import {
     searchIcon,
@@ -148,4 +149,30 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
             </>
         </>
     );
+};
+
+FindNewsTab.propTypes = {
+    findNewsTabProps: PropTypes.shape({
+        selectedCountries: PropTypes.arrayOf(PropTypes.string).isRequired,
+        setSelectedCountries: PropTypes.func.isRequired,
+        selectedCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
+        setSelectedCategories: PropTypes.func.isRequired,
+        selectedLanguages: PropTypes.arrayOf(PropTypes.string).isRequired,
+        setSelectedLanguages: PropTypes.func.isRequired,
+        keyword: PropTypes.string.isRequired,
+        setKeyword: PropTypes.func.isRequired,
+        loading: PropTypes.bool.isRequired,
+        countriesAvailableForFilterNews: PropTypes.arrayOf(PropTypes.string)
+            .isRequired,
+        minCountriesAvailableForFilterNews: PropTypes.number.isRequired,
+        maxCountriesAvailableForFilterNews: PropTypes.number.isRequired,
+        categoriesAvailableForFilterNews: PropTypes.objectOf(PropTypes.node)
+            .isRequired,
+        minCategoriesAvailableForFilterNews: PropTypes.number.isRequired,
+        maxCategoriesAvailableForFilterNews: PropTypes.number.isRequired,
+        languagesAvailableForFilterNews: PropTypes.objectOf(PropTypes.string)
+            .isRequired,
+        minLanguagesAvailableForFilterNews: PropTypes.number.isRequired,
+        maxLanguagesAvailableForFilterNews: PropTypes.number.isRequired,
+    }),
 };
