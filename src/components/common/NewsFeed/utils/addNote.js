@@ -116,5 +116,5 @@ export const addNote = (
     }
 
     setTextOfNoteCard("");
-    setActiveTool("");
+    setActiveTool(null);
 };

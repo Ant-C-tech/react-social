@@ -4,8 +4,6 @@ import { useState, useEffect } from "react";
 import { useLocalStorage } from "@hooks/useLocalStorage";
 
 import {
-    getActualizatedCategoriesObject,
-    getLanguagesObject,
     getFilteredNews,
     updateAvailableParametersForFiltering,
     getNewsFilteredByKeyword,
@@ -48,7 +46,7 @@ export const FavoriteNews = () => {
     ] = useState([]);
 
     const [keyword, setKeyword] = useState("");
-    const [activeTool, setActiveTool] = useState("");
+    const [activeTool, setActiveTool] = useState(null);
     const [textOfNoteCard, setTextOfNoteCard] = useState("");
     const [openNoteId, setOpenNoteId] = useState("");
 
@@ -240,6 +238,7 @@ export const FavoriteNews = () => {
                         setTextOfNoteCard={setTextOfNoteCard}
                         openNoteId={openNoteId}
                         setOpenNoteId={setOpenNoteId}
+                        createdFor="favorite news"
                     />
                 }
             </Content>
@@ -267,45 +266,54 @@ export const FavoriteNews = () => {
                             maxCountriesAvailableForFilterNews={
                                 countriesAvailableForFilterFavoriteNews.length -
                                     1 >
-                                maxParametersLength
+                                    maxParametersLength ||
+                                //First render
+                                countriesAvailableForFilterFavoriteNews.length ===
+                                    0
                                     ? maxParametersLength
                                     : countriesAvailableForFilterFavoriteNews.length -
                                       1
                             }
-                            categoriesAvailableForFilterNews={getActualizatedCategoriesObject(
+                            categoriesAvailableForFilterNews={
                                 categoriesAvailableForFilterFavoriteNews
-                            )}
+                            }
                             minCategoriesAvailableForFilterNews={
                                 minParametersLength
                             }
                             maxCategoriesAvailableForFilterNews={
                                 categoriesAvailableForFilterFavoriteNews.length -
                                     1 >
-                                maxParametersLength
+                                    maxParametersLength ||
+                                //First render
+                                categoriesAvailableForFilterFavoriteNews.length ===
+                                    0
                                     ? maxParametersLength
                                     : categoriesAvailableForFilterFavoriteNews.length -
                                       1
                             }
-                            languagesAvailableForFilterNews={getLanguagesObject(
+                            languagesAvailableForFilterNews={
                                 languagesAvailableForFilterFavoriteNews
-                            )}
+                            }
                             minLanguagesAvailableForFilterNews={
                                 minParametersLength
                             }
                             maxLanguagesAvailableForFilterNews={
                                 languagesAvailableForFilterFavoriteNews.length -
                                     1 >
-                                maxParametersLength
+                                    maxParametersLength ||
+                                //First render
+                                languagesAvailableForFilterFavoriteNews.length ===
+                                    0
                                     ? maxParametersLength
                                     : languagesAvailableForFilterFavoriteNews.length -
                                       1
                             }
-                            isHighLightersBar={true}
                             activeTool={activeTool}
                             setActiveTool={setActiveTool}
                             textOfNoteCard={textOfNoteCard}
                             setTextOfNoteCard={setTextOfNoteCard}
                             setOpenNoteId={setOpenNoteId}
+                            createdFor="favorite news"
                         />
                     )
                 }

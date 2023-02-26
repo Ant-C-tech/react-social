@@ -1,14 +1,14 @@
 import { DEFAULT_CATEGORIES_AVAILABLE_FOR_FILTERING_NEWS } from "@constants";
 
-export const getActualizatedCategoriesObject = (
+export const getCategoriesObjectWithIcons = (
     categoriesAvailableForFilterFavoriteNews
 ) => {
-    const ActualizatedCategoriesObject = {};
+    const actualizatedCategoriesObject = {};
 
     categoriesAvailableForFilterFavoriteNews.forEach((category) => {
-        ActualizatedCategoriesObject[category] =
+        actualizatedCategoriesObject[category] =
             DEFAULT_CATEGORIES_AVAILABLE_FOR_FILTERING_NEWS[category];
     });
 
-    return ActualizatedCategoriesObject;
+    return actualizatedCategoriesObject;
 };

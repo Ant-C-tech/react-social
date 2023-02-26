@@ -4,19 +4,18 @@ import { makeNoteIcon, stickyNoteIcon, highlightToolsIcon } from "@assets";
 import React from "react";
 import PropTypes from "prop-types";
 
+import { HIGHLIGHTERS } from "@constants";
+
 import { Button } from "@common/";
 import { NoteTextArea } from "./NoteTextArea";
 
-import { HIGHLIGHTERS } from "./constants";
-
-export const EditNewsTab = ({ editNewsTabProps }) => {
-    const {
-        activeTool,
-        setActiveTool,
-        textOfNoteCard,
-        setTextOfNoteCard,
-        setOpenNoteId,
-    } = editNewsTabProps;
+export const EditNewsTab = ({
+    activeTool,
+    setActiveTool,
+    textOfNoteCard,
+    setTextOfNoteCard,
+    setOpenNoteId,
+}) => {
     return (
         <>
             <img
@@ -38,7 +37,9 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
                             key={index}
                             active={name === activeTool}
                             onClick={() => {
-                                setActiveTool(name === activeTool ? "" : name);
+                                setActiveTool(
+                                    name === activeTool ? null : name
+                                );
                                 setOpenNoteId("");
                             }}
                             buttonImageIcon={icon}
@@ -83,11 +84,12 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
 };
 
 EditNewsTab.propTypes = {
-    editNewsTabProps: PropTypes.shape({
-        activeTool: PropTypes.string, //undefine on the news page
-        setActiveTool: PropTypes.func, //undefine on the news page
-        textOfNoteCard: PropTypes.string, //undefine on the news page
-        setTextOfNoteCard: PropTypes.func, //undefine on the news page
-        setOpenNoteId: PropTypes.func, //undefine on the news page
-    }),
+    activeTool: PropTypes.oneOf([
+        ...HIGHLIGHTERS.map((highlighter) => highlighter.name),
+        "note-creator",
+    ]),
+    setActiveTool: PropTypes.func.isRequired,
+    textOfNoteCard: PropTypes.string.isRequired,
+    setTextOfNoteCard: PropTypes.func.isRequired,
+    setOpenNoteId: PropTypes.func.isRequired,
 };

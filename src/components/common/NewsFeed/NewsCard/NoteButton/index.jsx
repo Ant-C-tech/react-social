@@ -39,13 +39,13 @@ export const NoteButton = ({
             }`}
             ref={noteButtonRef}
             onClick={() => {
-                setActiveTool("");
+                setActiveTool(null);
                 setOpenNoteId(id);
                 getNoteCardPosition();
             }}
             onKeyUp={(event) => {
                 if (event.key === "Enter") {
-                    setActiveTool("");
+                    setActiveTool(null);
                     setOpenNoteId(id);
                     getNoteCardPosition();
                 } else if (event.key === "Escape") {

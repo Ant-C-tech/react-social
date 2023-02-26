@@ -11,8 +11,8 @@ export const NoteCardTextArea = ({ text, setText }) => {
     }, []);
 
     return (
-        <div className="note-card-textarea">
+        <span className="note-card-textarea">
             <TextArea text={text} setText={setText} rows={4} />
-        </div>
+        </span>
     );
 };

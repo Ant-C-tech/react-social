@@ -90,7 +90,7 @@
     text-transform: uppercase;
 }
 
-.news-card-content-title-text > span {
+.news-card-content-title-text > span:not(.button) {
     padding-top: 5px;
 }
 

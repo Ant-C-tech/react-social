@@ -3,31 +3,55 @@ import "./styles.css";
 import React from "react";
 import { useState } from "react";
 import PropTypes from "prop-types";
+import requiredIf from "react-required-if";
+
+import {
+    DEFAULT_CATEGORIES_NAMES,
+    WORLD_COUNTRIES_CODE_NAME_DATA,
+    DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS,
+    HIGHLIGHTERS,
+} from "@constants";
 
 import { Message, TabsControls, TabPanel } from "@common";
-
-import { createErrorMessage } from "./utils/createErrorMessage";
-
+import { createErrorMessage } from "./utils";
 import { FindNewsTab } from "./FindNewsTab";
 import { EditNewsTab } from "./EditNewsTab";
 
-export const NewsControls = (newsControlProps) => {
-    const {
-        news,
-        error,
-        loading,
-        isHighLightersBar,
-        setActiveTool,
-        setKeyword,
-    } = newsControlProps;
-
+export const NewsControls = ({
+    news,
+    error,
+    loading,
+    selectedCountries,
+    setSelectedCountries,
+    selectedCategories,
+    setSelectedCategories,
+    selectedLanguages,
+    setSelectedLanguages,
+    keyword,
+    setKeyword,
+    countriesAvailableForFilterNews,
+    minCountriesAvailableForFilterNews,
+    maxCountriesAvailableForFilterNews,
+    categoriesAvailableForFilterNews,
+    minCategoriesAvailableForFilterNews,
+    maxCategoriesAvailableForFilterNews,
+    languagesAvailableForFilterNews,
+    minLanguagesAvailableForFilterNews,
+    maxLanguagesAvailableForFilterNews,
+    activeTool,
+    setActiveTool,
+    textOfNoteCard,
+    setTextOfNoteCard,
+    setOpenNoteId,
+    createdFor,
+}) => {
     const errorMessage = error && createErrorMessage(news, error);
 
     const [currentTab, setCurrentTab] = useState(0);
 
     const changeTab = (_event, newTab) => {
         setCurrentTab(newTab);
-        setActiveTool("");
+        setActiveTool(null);
         setKeyword("");
     };
 
@@ -40,7 +64,7 @@ export const NewsControls = (newsControlProps) => {
             ) : (
                 !loading && (
                     <>
-                        {isHighLightersBar && (
+                        {createdFor === "favorite news" && (
                             <TabsControls
                                 tabs={["Find news", "Edit news"]}
                                 currentTab={currentTab}
@@ -49,12 +73,57 @@ export const NewsControls = (newsControlProps) => {
                         )}
 
                         <TabPanel value={currentTab} index={0}>
-                            <FindNewsTab findNewsTabProps={newsControlProps} />
+                            <FindNewsTab
+                                loading={loading}
+                                selectedCountries={selectedCountries}
+                                setSelectedCountries={setSelectedCountries}
+                                selectedCategories={selectedCategories}
+                                setSelectedCategories={setSelectedCategories}
+                                selectedLanguages={selectedLanguages}
+                                setSelectedLanguages={setSelectedLanguages}
+                                keyword={keyword}
+                                setKeyword={setKeyword}
+                                countriesAvailableForFilterNews={
+                                    countriesAvailableForFilterNews
+                                }
+                                minCountriesAvailableForFilterNews={
+                                    minCountriesAvailableForFilterNews
+                                }
+                                maxCountriesAvailableForFilterNews={
+                                    maxCountriesAvailableForFilterNews
+                                }
+                                categoriesAvailableForFilterNews={
+                                    categoriesAvailableForFilterNews
+                                }
+                                minCategoriesAvailableForFilterNews={
+                                    minCategoriesAvailableForFilterNews
+                                }
+                                maxCategoriesAvailableForFilterNews={
+                                    maxCategoriesAvailableForFilterNews
+                                }
+                                languagesAvailableForFilterNews={
+                                    languagesAvailableForFilterNews
+                                }
+                                minLanguagesAvailableForFilterNews={
+                                    minLanguagesAvailableForFilterNews
+                                }
+                                maxLanguagesAvailableForFilterNews={
+                                    maxLanguagesAvailableForFilterNews
+                                }
+                                createdFor={createdFor}
+                            />
                         </TabPanel>
-
-                        <TabPanel value={currentTab} index={1}>
-                            <EditNewsTab editNewsTabProps={newsControlProps} />
-                        </TabPanel>
+                        {createdFor === "favorite news" && (
+                            <TabPanel value={currentTab} index={1}>
+                                <EditNewsTab
+                                    activeTool={activeTool}
+                                    setActiveTool={setActiveTool}
+                                    textOfNoteCard={textOfNoteCard}
+                                    setTextOfNoteCard={setTextOfNoteCard}
+                                    setOpenNoteId={setOpenNoteId}
+                                />
+                            </TabPanel>
+                        )}
                     </>
                 )
             )}
@@ -63,29 +132,211 @@ export const NewsControls = (newsControlProps) => {
 };
 
 NewsControls.propTypes = {
-    newsControlProps: PropTypes.shape({
-        news: PropTypes.arrayOf(
-            PropTypes.shape({
-                id: PropTypes.string.isRequired,
-                title: PropTypes.string.isRequired,
-                description: PropTypes.string.isRequired,
-                url: PropTypes.string.isRequired,
-                urlToImage: PropTypes.string.isRequired,
-                publishedAt: PropTypes.string.isRequired,
-                content: PropTypes.string.isRequired,
-                source: PropTypes.shape({
-                    id: PropTypes.string.isRequired,
-                    name: PropTypes.string.isRequired,
-                }).isRequired,
-                category: PropTypes.string.isRequired,
-                language: PropTypes.string.isRequired,
-                country: PropTypes.string.isRequired,
-            }).isRequired
-        ).isRequired,
-        error: PropTypes.string,
-        loading: PropTypes.bool.isRequired,
-        isHighLightersBar: PropTypes.bool.isRequired,
-        setActiveTool: PropTypes.func.isRequired,
-        setKeyword: PropTypes.func.isRequired,
-    }),
+    news: PropTypes.arrayOf(
+        PropTypes.exact({
+            category: PropTypes.arrayOf(
+                PropTypes.oneOf(DEFAULT_CATEGORIES_NAMES)
+            ).isRequired,
+            content: PropTypes.string.isRequired,
+            country: PropTypes.arrayOf(
+                PropTypes.oneOf(
+                    Object.values(WORLD_COUNTRIES_CODE_NAME_DATA).map(
+                        (countryName) => {
+                            // Some capitalize countries from API
+                            if (
+                                countryName === "Nepal" ||
+                                countryName === "Oman"
+                            ) {
+                                return countryName;
+                            } else {
+                                return countryName.toLowerCase();
+                            }
+                        }
+                    )
+                )
+            ).isRequired,
+            creator: PropTypes.arrayOf(PropTypes.string),
+            description: PropTypes.string,
+            highlights: PropTypes.exact({
+                content: PropTypes.arrayOf(
+                    PropTypes.exact({
+                        endIndex: PropTypes.number.isRequired,
+                        highlighter: PropTypes.oneOf(
+                            HIGHLIGHTERS.map((highlighter) => highlighter.name)
+                        ).isRequired,
+                        id: PropTypes.string.isRequired,
+                        startIndex: PropTypes.number.isRequired,
+                    })
+                ),
+                description: PropTypes.arrayOf(
+                    PropTypes.exact({
+                        endIndex: PropTypes.number.isRequired,
+                        highlighter: PropTypes.oneOf(
+                            HIGHLIGHTERS.map((highlighter) => highlighter.name)
+                        ).isRequired,
+                        id: PropTypes.string.isRequired,
+                        startIndex: PropTypes.number.isRequired,
+                    })
+                ),
+                title: PropTypes.arrayOf(
+                    PropTypes.exact({
+                        endIndex: PropTypes.number.isRequired,
+                        highlighter: PropTypes.oneOf(
+                            HIGHLIGHTERS.map((highlighter) => highlighter.name)
+                        ).isRequired,
+                        id: PropTypes.string.isRequired,
+                        startIndex: PropTypes.number.isRequired,
+                    })
+                ),
+            }),
+            image_url: PropTypes.string,
+            keywords: PropTypes.arrayOf(PropTypes.string),
+            language: PropTypes.string.isRequired,
+            link: PropTypes.string.isRequired,
+            notes: PropTypes.exact({
+                content: PropTypes.arrayOf(
+                    PropTypes.exact({
+                        noteId: PropTypes.string.isRequired,
+                        noteIndex: PropTypes.number.isRequired,
+                        noteText: PropTypes.string.isRequired,
+                    })
+                ),
+                description: PropTypes.arrayOf(
+                    PropTypes.exact({
+                        noteId: PropTypes.string.isRequired,
+                        noteIndex: PropTypes.number.isRequired,
+                        noteText: PropTypes.string.isRequired,
+                    })
+                ),
+                title: PropTypes.arrayOf(
+                    PropTypes.exact({
+                        noteId: PropTypes.string.isRequired,
+                        noteIndex: PropTypes.number.isRequired,
+                        noteText: PropTypes.string.isRequired,
+                    })
+                ),
+            }),
+            pubDate: PropTypes.string.isRequired,
+            source_id: PropTypes.string.isRequired,
+            title: PropTypes.string.isRequired,
+            video_url: PropTypes.string,
+        }).isRequired
+    ).isRequired,
+
+    error: PropTypes.string,
+    loading: PropTypes.bool.isRequired,
+    selectedCountries: PropTypes.arrayOf(
+        PropTypes.oneOf(["all", ...Object.keys(WORLD_COUNTRIES_CODE_NAME_DATA)])
+    ).isRequired,
+    setSelectedCountries: PropTypes.func.isRequired,
+    selectedCategories: PropTypes.arrayOf(
+        PropTypes.oneOf(DEFAULT_CATEGORIES_NAMES)
+    ).isRequired,
+    setSelectedCategories: PropTypes.func.isRequired,
+    selectedLanguages: PropTypes.arrayOf(
+        PropTypes.oneOf(
+            Object.keys(DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS)
+        )
+    ).isRequired,
+    setSelectedLanguages: PropTypes.func.isRequired,
+    keyword: PropTypes.string.isRequired,
+    setKeyword: PropTypes.func.isRequired,
+    countriesAvailableForFilterNews: PropTypes.arrayOf(
+        PropTypes.oneOf(["all", ...Object.keys(WORLD_COUNTRIES_CODE_NAME_DATA)])
+    ).isRequired,
+    minCountriesAvailableForFilterNews: function (
+        props,
+        propName,
+        componentName
+    ) {
+        if (props[propName] !== 1) {
+            return new Error(
+                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+            );
+        }
+    },
+    maxCountriesAvailableForFilterNews: function (
+        props,
+        propName,
+        componentName
+    ) {
+        if (props[propName] < 1 || props[propName] > 5) {
+            return new Error(
+                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+            );
+        }
+    },
+    categoriesAvailableForFilterNews: PropTypes.arrayOf(
+        PropTypes.oneOf(DEFAULT_CATEGORIES_NAMES)
+    ).isRequired,
+    minCategoriesAvailableForFilterNews: function (
+        props,
+        propName,
+        componentName
+    ) {
+        if (props[propName] !== 1) {
+            return new Error(
+                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+            );
+        }
+    },
+    maxCategoriesAvailableForFilterNews: function (
+        props,
+        propName,
+        componentName
+    ) {
+        if (props[propName] < 1 || props[propName] > 5) {
+            return new Error(
+                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+            );
+        }
+    },
+    languagesAvailableForFilterNews: PropTypes.arrayOf(
+        PropTypes.oneOf(
+            Object.keys(DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS)
+        )
+    ).isRequired,
+    minLanguagesAvailableForFilterNews: function (
+        props,
+        propName,
+        componentName
+    ) {
+        if (props[propName] !== 1) {
+            return new Error(
+                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+            );
+        }
+    },
+    maxLanguagesAvailableForFilterNews: function (
+        props,
+        propName,
+        componentName
+    ) {
+        if (props[propName] < 1 || props[propName] > 5) {
+            return new Error(
+                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+            );
+        }
+    },
+    activeTool: PropTypes.oneOf([
+        ...HIGHLIGHTERS.map((highlighter) => highlighter.name),
+        "note-creator",
+    ]),
+    setActiveTool: requiredIf(
+        PropTypes.func,
+        (props) => props.createdFor !== "news"
+    ),
+    textOfNoteCard: requiredIf(
+        PropTypes.string,
+        (props) => props.createdFor !== "news"
+    ),
+    setTextOfNoteCard: requiredIf(
+        PropTypes.func,
+        (props) => props.createdFor !== "news"
+    ),
+    setOpenNoteId: requiredIf(
+        PropTypes.func,
+        (props) => props.createdFor !== "news"
+    ),
+    createdFor: PropTypes.oneOf(["favorite news", "news"]).isRequired,
 };

@@ -6,10 +6,10 @@ import { useState, useEffect } from "react";
 import { getNews } from "../../businessLogic/news/getNews";
 import { useLocalStorage } from "@hooks/useLocalStorage";
 
-import { DEFAULT_COUNTRIES_AVAILABLE_FOR_FILTERING_NEWS } from "./constants";
 import {
-    DEFAULT_CATEGORIES_AVAILABLE_FOR_FILTERING_NEWS,
+    DEFAULT_CATEGORIES_NAMES,
     DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS,
+    WORLD_COUNTRIES_CODE_NAME_DATA,
 } from "@constants";
 
 import { ControlBar, Content } from "@sections";
@@ -206,7 +206,7 @@ export const News = () => {
                                 <NothingWasFoundMessage />
                             ) : null
                         }
-                        activeTool={null}
+                        createdFor="news"
                     />
                 ) : (
                     <Message
@@ -239,9 +239,10 @@ export const News = () => {
                             keyword={keyword}
                             setKeyword={setKeyword}
                             loading={loading}
-                            countriesAvailableForFilterNews={
-                                DEFAULT_COUNTRIES_AVAILABLE_FOR_FILTERING_NEWS
-                            }
+                            countriesAvailableForFilterNews={[
+                                "all",
+                                ...Object.keys(WORLD_COUNTRIES_CODE_NAME_DATA),
+                            ]}
                             minCountriesAvailableForFilterNews={
                                 minParametersLength
                             }
@@ -249,7 +250,7 @@ export const News = () => {
                                 maxParametersLength
                             }
                             categoriesAvailableForFilterNews={
-                                DEFAULT_CATEGORIES_AVAILABLE_FOR_FILTERING_NEWS
+                                DEFAULT_CATEGORIES_NAMES
                             }
                             minCategoriesAvailableForFilterNews={
                                 minParametersLength
@@ -257,16 +258,16 @@ export const News = () => {
                             maxCategoriesAvailableForFilterNews={
                                 maxParametersLength
                             }
-                            languagesAvailableForFilterNews={
+                            languagesAvailableForFilterNews={Object.keys(
                                 DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS
-                            }
+                            )}
                             minLanguagesAvailableForFilterNews={
                                 minParametersLength
                             }
                             maxLanguagesAvailableForFilterNews={
                                 maxParametersLength
                             }
-                            isHighLightersBar={false}
+                            createdFor="news"
                         />
                     )
                 }

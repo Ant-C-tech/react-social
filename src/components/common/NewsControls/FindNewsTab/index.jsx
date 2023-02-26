@@ -13,36 +13,40 @@ import {
 } from "@assets";
 
 import {
-    WORLD_COUNTRY_NAMES,
+    WORLD_COUNTRIES_CODE_NAME_DATA,
     WORLD_COUNTRY_FLAGS,
     WORLD_COUNTRY_FLAGS_BY_LANGUAGE_CODE,
+    DEFAULT_CATEGORIES_NAMES,
+    DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS,
 } from "@constants";
 
 import { InputComponent } from "@common/InputComponent/";
 import { FilterItem } from "./FilterItem";
+import {
+    getCategoriesObjectWithIcons,
+    getLanguagesObjectWithLabels,
+} from "../utils";
 
-export const FindNewsTab = ({ findNewsTabProps }) => {
-    const {
-        selectedCountries,
-        setSelectedCountries,
-        selectedCategories,
-        setSelectedCategories,
-        selectedLanguages,
-        setSelectedLanguages,
-        keyword,
-        setKeyword,
-        loading,
-        countriesAvailableForFilterNews,
-        minCountriesAvailableForFilterNews,
-        maxCountriesAvailableForFilterNews,
-        categoriesAvailableForFilterNews,
-        minCategoriesAvailableForFilterNews,
-        maxCategoriesAvailableForFilterNews,
-        languagesAvailableForFilterNews,
-        minLanguagesAvailableForFilterNews,
-        maxLanguagesAvailableForFilterNews,
-    } = findNewsTabProps;
-
+export const FindNewsTab = ({
+    loading,
+    selectedCountries,
+    setSelectedCountries,
+    selectedCategories,
+    setSelectedCategories,
+    selectedLanguages,
+    setSelectedLanguages,
+    keyword,
+    setKeyword,
+    countriesAvailableForFilterNews,
+    minCountriesAvailableForFilterNews,
+    maxCountriesAvailableForFilterNews,
+    categoriesAvailableForFilterNews,
+    minCategoriesAvailableForFilterNews,
+    maxCategoriesAvailableForFilterNews,
+    languagesAvailableForFilterNews,
+    minLanguagesAvailableForFilterNews,
+    maxLanguagesAvailableForFilterNews,
+}) => {
     const filterItemsConfig = [
         {
             title: "Selected country:",
@@ -52,7 +56,7 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
             itemsAvailableForFilterNews: countriesAvailableForFilterNews,
             minItemsAvailableForFilterNews: minCountriesAvailableForFilterNews,
             maxItemsAvailableForFilterNews: maxCountriesAvailableForFilterNews,
-            labelOptionForItems: WORLD_COUNTRY_NAMES,
+            labelOptionForItems: WORLD_COUNTRIES_CODE_NAME_DATA,
             labelIconOptionsForItems: WORLD_COUNTRY_FLAGS,
             addButtonText: "Add More Countries",
             removeButtonText: "Remove Country",
@@ -62,13 +66,13 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
             icon: categoriesIcon,
             selectedItems: selectedCategories,
             setSelectedItems: setSelectedCategories,
-            itemsAvailableForFilterNews: Object.keys(
-                categoriesAvailableForFilterNews
-            ),
+            itemsAvailableForFilterNews: categoriesAvailableForFilterNews,
             minItemsAvailableForFilterNews: minCategoriesAvailableForFilterNews,
             maxItemsAvailableForFilterNews: maxCategoriesAvailableForFilterNews,
             labelOptionForItems: null,
-            labelIconOptionsForItems: categoriesAvailableForFilterNews,
+            labelIconOptionsForItems: getCategoriesObjectWithIcons(
+                categoriesAvailableForFilterNews
+            ),
             addButtonText: "Add More Categories",
             removeButtonText: "Remove Category",
         },
@@ -77,12 +81,12 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
             icon: languagesIcon,
             selectedItems: selectedLanguages,
             setSelectedItems: setSelectedLanguages,
-            itemsAvailableForFilterNews: Object.keys(
-                languagesAvailableForFilterNews
-            ),
+            itemsAvailableForFilterNews: languagesAvailableForFilterNews,
             minItemsAvailableForFilterNews: minLanguagesAvailableForFilterNews,
             maxItemsAvailableForFilterNews: maxLanguagesAvailableForFilterNews,
-            labelOptionForItems: languagesAvailableForFilterNews,
+            labelOptionForItems: getLanguagesObjectWithLabels(
+                languagesAvailableForFilterNews
+            ),
             labelIconOptionsForItems: WORLD_COUNTRY_FLAGS_BY_LANGUAGE_CODE,
             addButtonText: "Add More Languages",
             removeButtonText: "Remove Language",
@@ -104,12 +108,15 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
             {filterItemsConfig.map((filterItem, index) => (
                 <FilterItem
                     key={index}
+                    loading={loading}
                     title={filterItem.title}
                     icon={filterItem.icon}
                     selectedItems={filterItem.selectedItems}
                     setSelectedItems={filterItem.setSelectedItems}
                     itemsAvailableForFilterNews={
-                        filterItem.itemsAvailableForFilterNews
+                        filterItem.itemsAvailableForFilterNews.length !== 0
+                            ? filterItem.itemsAvailableForFilterNews
+                            : ["all"]
                     }
                     minItemsAvailableForFilterNews={
                         filterItem.minItemsAvailableForFilterNews
@@ -123,7 +130,6 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
                     }
                     addButtonText={filterItem.addButtonText}
                     removeButtonText={filterItem.removeButtonText}
-                    loading={loading}
                 />
             ))}
 
@@ -152,27 +158,98 @@ export const FindNewsTab = ({ findNewsTabProps }) => {
 };
 
 FindNewsTab.propTypes = {
-    findNewsTabProps: PropTypes.shape({
-        selectedCountries: PropTypes.arrayOf(PropTypes.string).isRequired,
-        setSelectedCountries: PropTypes.func.isRequired,
-        selectedCategories: PropTypes.arrayOf(PropTypes.string).isRequired,
-        setSelectedCategories: PropTypes.func.isRequired,
-        selectedLanguages: PropTypes.arrayOf(PropTypes.string).isRequired,
-        setSelectedLanguages: PropTypes.func.isRequired,
-        keyword: PropTypes.string.isRequired,
-        setKeyword: PropTypes.func.isRequired,
-        loading: PropTypes.bool.isRequired,
-        countriesAvailableForFilterNews: PropTypes.arrayOf(PropTypes.string)
-            .isRequired,
-        minCountriesAvailableForFilterNews: PropTypes.number.isRequired,
-        maxCountriesAvailableForFilterNews: PropTypes.number.isRequired,
-        categoriesAvailableForFilterNews: PropTypes.objectOf(PropTypes.node)
-            .isRequired,
-        minCategoriesAvailableForFilterNews: PropTypes.number.isRequired,
-        maxCategoriesAvailableForFilterNews: PropTypes.number.isRequired,
-        languagesAvailableForFilterNews: PropTypes.objectOf(PropTypes.string)
-            .isRequired,
-        minLanguagesAvailableForFilterNews: PropTypes.number.isRequired,
-        maxLanguagesAvailableForFilterNews: PropTypes.number.isRequired,
-    }),
+    loading: PropTypes.bool.isRequired,
+    selectedCountries: PropTypes.arrayOf(
+        PropTypes.oneOf(["all", ...Object.keys(WORLD_COUNTRIES_CODE_NAME_DATA)])
+    ).isRequired,
+    setSelectedCountries: PropTypes.func.isRequired,
+    selectedCategories: PropTypes.arrayOf(
+        PropTypes.oneOf(DEFAULT_CATEGORIES_NAMES)
+    ).isRequired,
+    setSelectedCategories: PropTypes.func.isRequired,
+    selectedLanguages: PropTypes.arrayOf(
+        PropTypes.oneOf(
+            Object.keys(DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS)
+        )
+    ).isRequired,
+    setSelectedLanguages: PropTypes.func.isRequired,
+    keyword: PropTypes.string.isRequired,
+    setKeyword: PropTypes.func.isRequired,
+    countriesAvailableForFilterNews: PropTypes.arrayOf(
+        PropTypes.oneOf(["all", ...Object.keys(WORLD_COUNTRIES_CODE_NAME_DATA)])
+    ).isRequired,
+    minCountriesAvailableForFilterNews: function (
+        props,
+        propName,
+        componentName
+    ) {
+        if (props[propName] !== 1) {
+            return new Error(
+                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+            );
+        }
+    },
+    maxCountriesAvailableForFilterNews: function (
+        props,
+        propName,
+        componentName
+    ) {
+        if (props[propName] < 1 || props[propName] > 5) {
+            return new Error(
+                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+            );
+        }
+    },
+    categoriesAvailableForFilterNews: PropTypes.arrayOf(
+        PropTypes.oneOf(DEFAULT_CATEGORIES_NAMES)
+    ).isRequired,
+    minCategoriesAvailableForFilterNews: function (
+        props,
+        propName,
+        componentName
+    ) {
+        if (props[propName] !== 1) {
+            return new Error(
+                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+            );
+        }
+    },
+    maxCategoriesAvailableForFilterNews: function (
+        props,
+        propName,
+        componentName
+    ) {
+        if (props[propName] < 1 || props[propName] > 5) {
+            return new Error(
+                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+            );
+        }
+    },
+    languagesAvailableForFilterNews: PropTypes.arrayOf(
+        PropTypes.oneOf(
+            Object.keys(DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS)
+        )
+    ).isRequired,
+    minLanguagesAvailableForFilterNews: function (
+        props,
+        propName,
+        componentName
+    ) {
+        if (props[propName] !== 1) {
+            return new Error(
+                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+            );
+        }
+    },
+    maxLanguagesAvailableForFilterNews: function (
+        props,
+        propName,
+        componentName
+    ) {
+        if (props[propName] < 1 || props[propName] > 5) {
+            return new Error(
+                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
+            );
+        }
+    },
 };

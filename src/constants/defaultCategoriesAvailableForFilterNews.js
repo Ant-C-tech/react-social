@@ -13,20 +13,7 @@ import {
     countriesIcon,
 } from "@assets";
 
-const defaultCategories = [
-    "all",
-    "business",
-    "entertainment",
-    "environment",
-    "food",
-    "health",
-    "politics",
-    "science",
-    "sports",
-    "technology",
-    "top",
-    "world",
-];
+import { DEFAULT_CATEGORIES_NAMES } from "./defaultCategoriesNames";
 
 const iconsSrcs = [
     "all",
@@ -45,7 +32,7 @@ const iconsSrcs = [
 
 export const DEFAULT_CATEGORIES_AVAILABLE_FOR_FILTERING_NEWS = {};
 
-defaultCategories.forEach((category, index) => {
+DEFAULT_CATEGORIES_NAMES.forEach((category, index) => {
     const Icon = () => (
         <img
             src={iconsSrcs[index]}

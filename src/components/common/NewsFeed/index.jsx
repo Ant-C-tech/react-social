@@ -33,6 +33,7 @@ export const NewsFeed = ({
     setTextOfNoteCard,
     openNoteId,
     setOpenNoteId,
+    createdFor,
 }) => {
     const currentRef = useRef(null);
 
@@ -65,11 +66,7 @@ export const NewsFeed = ({
                             }
                         >
                             <NewsCard
-                                createdFor={
-                                    activeTool === null
-                                        ? "news"
-                                        : "favorite news"
-                                }
+                                createdFor={createdFor}
                                 news={news}
                                 keywords={keywords}
                                 activeTool={activeTool}
