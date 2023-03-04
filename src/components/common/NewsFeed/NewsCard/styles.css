@@ -244,6 +244,7 @@
     margin-bottom: 20px;
 
     line-height: 30px;
+    word-break: break-all;
 
     border-bottom: 1px solid #323e42;
 }

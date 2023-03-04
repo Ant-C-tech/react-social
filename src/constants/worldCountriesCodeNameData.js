@@ -21,6 +21,7 @@ export const WORLD_COUNTRIES_CODE_NAME_DATA = {
     ci: "Côte d Ivoire",
     cu: "Cuba",
     cz: "Czech republic",
+    hr: "Croatia",
     dk: "Denmark",
     do: "Dominican republic",
     cd: "DR Congo",

@@ -8,6 +8,7 @@ import {
     WORLD_COUNTRIES_CODE_NAME_DATA,
     DEFAULT_CATEGORIES_NAMES,
     DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS,
+    COUNTRIES_DATA,
 } from "@constants";
 
 import {
@@ -33,8 +34,6 @@ export const FilterItem = ({
     addButtonText,
     removeButtonText,
 }) => {
-    // console.log("labelOptionForItems", labelOptionForItems);
-    // console.log("labelIconOptionsForItems", labelIconOptionsForItems);
     return (
         <div className="filter-item">
             <div className="filter-item-title-wrapper">
@@ -129,7 +128,7 @@ FilterItem.propTypes = {
     setSelectedItems: PropTypes.func.isRequired,
     itemsAvailableForFilterNews: PropTypes.arrayOf(
         PropTypes.oneOf([
-            ...Object.keys(WORLD_COUNTRIES_CODE_NAME_DATA),
+            ...Object.keys(COUNTRIES_DATA),
             ...DEFAULT_CATEGORIES_NAMES,
             ...Object.keys(DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS),
         ])

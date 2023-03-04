@@ -7,9 +7,9 @@ import requiredIf from "react-required-if";
 
 import {
     DEFAULT_CATEGORIES_NAMES,
-    WORLD_COUNTRIES_CODE_NAME_DATA,
     DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS,
     HIGHLIGHTERS,
+    COUNTRIES_DATA,
 } from "@constants";
 
 import { Message, TabsControls, TabPanel } from "@common";
@@ -137,22 +137,34 @@ NewsControls.propTypes = {
             category: PropTypes.arrayOf(
                 PropTypes.oneOf(DEFAULT_CATEGORIES_NAMES)
             ).isRequired,
-            content: PropTypes.string.isRequired,
+            content: PropTypes.string,
             country: PropTypes.arrayOf(
                 PropTypes.oneOf(
-                    Object.values(WORLD_COUNTRIES_CODE_NAME_DATA).map(
-                        (countryName) => {
-                            // Some capitalize countries from API
-                            if (
-                                countryName === "Nepal" ||
-                                countryName === "Oman"
-                            ) {
-                                return countryName;
-                            } else {
-                                return countryName.toLowerCase();
-                            }
+                    Object.values(COUNTRIES_DATA).map((countryData) => {
+                        // Some specific cases from API
+                        switch (countryData.name) {
+                            case "Nepal":
+                            case "Oman":
+                            case "Croatia":
+                            case "DR Congo":
+                            case "Guatemala":
+                            case "Luxembourg":
+                            case "Panama":
+                            case "Sri Lanka":
+                            case "Vietnam":
+                            case "Libya":
+                            case "Uruguay":
+                                return countryData.name;
+                            case "Burkina Faso":
+                                return "burkina fasco";
+                            case "Costa Rica":
+                                return "costa Rica";
+                            case "Côte d'Ivoire":
+                                return "côte d'Ivoire";
+                            default:
+                                return countryData.name.toLowerCase();
                         }
-                    )
+                    })
                 )
             ).isRequired,
             creator: PropTypes.arrayOf(PropTypes.string),
@@ -226,7 +238,7 @@ NewsControls.propTypes = {
     error: PropTypes.string,
     loading: PropTypes.bool.isRequired,
     selectedCountries: PropTypes.arrayOf(
-        PropTypes.oneOf(["all", ...Object.keys(WORLD_COUNTRIES_CODE_NAME_DATA)])
+        PropTypes.oneOf([...Object.keys(COUNTRIES_DATA)])
     ).isRequired,
     setSelectedCountries: PropTypes.func.isRequired,
     selectedCategories: PropTypes.arrayOf(
@@ -242,7 +254,7 @@ NewsControls.propTypes = {
     keyword: PropTypes.string.isRequired,
     setKeyword: PropTypes.func.isRequired,
     countriesAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf(["all", ...Object.keys(WORLD_COUNTRIES_CODE_NAME_DATA)])
+        PropTypes.oneOf([...Object.keys(COUNTRIES_DATA)])
     ).isRequired,
     minCountriesAvailableForFilterNews: function (
         props,

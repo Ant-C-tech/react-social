@@ -18,6 +18,7 @@ import {
     WORLD_COUNTRY_FLAGS_BY_LANGUAGE_CODE,
     DEFAULT_CATEGORIES_NAMES,
     DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS,
+    COUNTRIES_DATA,
 } from "@constants";
 
 import { InputComponent } from "@common/InputComponent/";
@@ -160,7 +161,7 @@ export const FindNewsTab = ({
 FindNewsTab.propTypes = {
     loading: PropTypes.bool.isRequired,
     selectedCountries: PropTypes.arrayOf(
-        PropTypes.oneOf(["all", ...Object.keys(WORLD_COUNTRIES_CODE_NAME_DATA)])
+        PropTypes.oneOf([...Object.keys(COUNTRIES_DATA)])
     ).isRequired,
     setSelectedCountries: PropTypes.func.isRequired,
     selectedCategories: PropTypes.arrayOf(
@@ -176,7 +177,7 @@ FindNewsTab.propTypes = {
     keyword: PropTypes.string.isRequired,
     setKeyword: PropTypes.func.isRequired,
     countriesAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf(["all", ...Object.keys(WORLD_COUNTRIES_CODE_NAME_DATA)])
+        PropTypes.oneOf([...Object.keys(COUNTRIES_DATA)])
     ).isRequired,
     minCountriesAvailableForFilterNews: function (
         props,

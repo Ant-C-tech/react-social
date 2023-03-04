@@ -5,3 +5,4 @@ export * from "./worldCountryFlags";
 export * from "./worldCountryFlagsByLanguageCode";
 export * from "./defaultCategoriesNames";
 export * from "./highlighters";
+export * from "./countriesData";

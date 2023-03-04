@@ -1,9 +1,5 @@
+import { COUNTRIES_DATA } from "@constants";
 import { getCountryCodesByNames } from "@utils/getCountryCodesByNames";
-
-import {
-    WORLD_COUNTRIES_CODE_NAME_DATA,
-    WORLD_COUNTRY_FLAGS,
-} from "@constants";
 
 export const getCountriesForPrompt = (newsForPrompt) => {
     const countryCodesForPrompt = [];
@@ -17,8 +13,8 @@ export const getCountriesForPrompt = (newsForPrompt) => {
     const countriesForPrompt = uniqCountryCodesForPrompt.map((country) => {
         const countryCode = getCountryCodesByNames([country]);
         return [
-            WORLD_COUNTRY_FLAGS[countryCode],
-            WORLD_COUNTRIES_CODE_NAME_DATA[countryCode],
+            COUNTRIES_DATA[countryCode].flag,
+            COUNTRIES_DATA[countryCode].name,
         ];
     });
     return countriesForPrompt;

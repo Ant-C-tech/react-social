@@ -100,7 +100,7 @@ export const SelectComponent = ({
             value={getValue(value)}
             isSearchable={isSearchable}
             hideSelectedOptions={true}
-            filterOption={customFilter}
+            // filterOption={customFilter}
             theme={(theme) => selectTheme(theme)}
             className={`select ${isFocused ? "select-with-focus" : ""}`}
             onChange={onChange}

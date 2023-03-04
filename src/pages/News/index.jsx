@@ -9,7 +9,8 @@ import { useLocalStorage } from "@hooks/useLocalStorage";
 import {
     DEFAULT_CATEGORIES_NAMES,
     DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS,
-    WORLD_COUNTRIES_CODE_NAME_DATA,
+    // WORLD_COUNTRIES_CODE_NAME_DATA,
+    COUNTRIES_DATA,
 } from "@constants";
 
 import { ControlBar, Content } from "@sections";
@@ -240,8 +241,7 @@ export const News = () => {
                             setKeyword={setKeyword}
                             loading={loading}
                             countriesAvailableForFilterNews={[
-                                "all",
-                                ...Object.keys(WORLD_COUNTRIES_CODE_NAME_DATA),
+                                ...Object.keys(COUNTRIES_DATA),
                             ]}
                             minCountriesAvailableForFilterNews={
                                 minParametersLength
