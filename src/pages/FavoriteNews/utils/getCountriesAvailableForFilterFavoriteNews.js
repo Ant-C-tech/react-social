@@ -1,7 +1,10 @@
-import { getCountryCodesByNames } from "@utils/getCountryCodesByNames";
-import { getNewsFilteredByCategory } from "./getNewsFilteredByCategory";
-import { getNewsFilteredByKeyword } from "./getNewsFilteredByKeyword";
-import { getNewsFilteredByLanguage } from "./getNewsFilteredByLanguage";
+import { COUNTRIES_DATA } from "@constants";
+import {
+    getNewsFilteredByCategory,
+    getNewsFilteredByKeyword,
+    getNewsFilteredByLanguage,
+    getCodesByNames,
+} from "./";
 
 export const getCountriesAvailableForFilterFavoriteNews = (
     favoriteNews,
@@ -35,5 +38,8 @@ export const getCountriesAvailableForFilterFavoriteNews = (
     const uniqueFavoriteNewsCountryNames = [
         ...new Set(favoriteNewsCountryNames),
     ];
-    return ["all", ...getCountryCodesByNames(uniqueFavoriteNewsCountryNames)];
+    return [
+        "all",
+        ...getCodesByNames(COUNTRIES_DATA, uniqueFavoriteNewsCountryNames),
+    ];
 };

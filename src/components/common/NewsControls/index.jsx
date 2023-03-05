@@ -6,14 +6,14 @@ import PropTypes from "prop-types";
 import requiredIf from "react-required-if";
 
 import {
-    DEFAULT_CATEGORIES_NAMES,
-    DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS,
-    HIGHLIGHTERS,
     COUNTRIES_DATA,
+    CATEGORIES_DATA,
+    LANGUAGES_DATA,
+    HIGHLIGHTERS,
 } from "@constants";
 
 import { Message, TabsControls, TabPanel } from "@common";
-import { createErrorMessage } from "./utils";
+import { createErrorMessage } from "./utils/createErrorMessage";
 import { FindNewsTab } from "./FindNewsTab";
 import { EditNewsTab } from "./EditNewsTab";
 
@@ -135,7 +135,7 @@ NewsControls.propTypes = {
     news: PropTypes.arrayOf(
         PropTypes.exact({
             category: PropTypes.arrayOf(
-                PropTypes.oneOf(DEFAULT_CATEGORIES_NAMES)
+                PropTypes.oneOf(Object.keys(CATEGORIES_DATA))
             ).isRequired,
             content: PropTypes.string,
             country: PropTypes.arrayOf(
@@ -176,7 +176,7 @@ NewsControls.propTypes = {
                         highlighter: PropTypes.oneOf(
                             HIGHLIGHTERS.map((highlighter) => highlighter.name)
                         ).isRequired,
-                        id: PropTypes.string.isRequired,
+                        id: PropTypes.string,
                         startIndex: PropTypes.number.isRequired,
                     })
                 ),
@@ -186,7 +186,7 @@ NewsControls.propTypes = {
                         highlighter: PropTypes.oneOf(
                             HIGHLIGHTERS.map((highlighter) => highlighter.name)
                         ).isRequired,
-                        id: PropTypes.string.isRequired,
+                        id: PropTypes.string,
                         startIndex: PropTypes.number.isRequired,
                     })
                 ),
@@ -196,7 +196,7 @@ NewsControls.propTypes = {
                         highlighter: PropTypes.oneOf(
                             HIGHLIGHTERS.map((highlighter) => highlighter.name)
                         ).isRequired,
-                        id: PropTypes.string.isRequired,
+                        id: PropTypes.string,
                         startIndex: PropTypes.number.isRequired,
                     })
                 ),
@@ -238,23 +238,21 @@ NewsControls.propTypes = {
     error: PropTypes.string,
     loading: PropTypes.bool.isRequired,
     selectedCountries: PropTypes.arrayOf(
-        PropTypes.oneOf([...Object.keys(COUNTRIES_DATA)])
+        PropTypes.oneOf(Object.keys(COUNTRIES_DATA))
     ).isRequired,
     setSelectedCountries: PropTypes.func.isRequired,
     selectedCategories: PropTypes.arrayOf(
-        PropTypes.oneOf(DEFAULT_CATEGORIES_NAMES)
+        PropTypes.oneOf(Object.keys(CATEGORIES_DATA))
     ).isRequired,
     setSelectedCategories: PropTypes.func.isRequired,
     selectedLanguages: PropTypes.arrayOf(
-        PropTypes.oneOf(
-            Object.keys(DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS)
-        )
+        PropTypes.oneOf(Object.keys(LANGUAGES_DATA))
     ).isRequired,
     setSelectedLanguages: PropTypes.func.isRequired,
     keyword: PropTypes.string.isRequired,
     setKeyword: PropTypes.func.isRequired,
     countriesAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf([...Object.keys(COUNTRIES_DATA)])
+        PropTypes.oneOf(Object.keys(COUNTRIES_DATA))
     ).isRequired,
     minCountriesAvailableForFilterNews: function (
         props,
@@ -272,14 +270,14 @@ NewsControls.propTypes = {
         propName,
         componentName
     ) {
-        if (props[propName] < 1 || props[propName] > 5) {
+        if (props[propName] < 0 || props[propName] > 5) {
             return new Error(
                 `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
             );
         }
     },
     categoriesAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf(DEFAULT_CATEGORIES_NAMES)
+        PropTypes.oneOf(Object.keys(CATEGORIES_DATA))
     ).isRequired,
     minCategoriesAvailableForFilterNews: function (
         props,
@@ -297,16 +295,14 @@ NewsControls.propTypes = {
         propName,
         componentName
     ) {
-        if (props[propName] < 1 || props[propName] > 5) {
+        if (props[propName] < 0 || props[propName] > 5) {
             return new Error(
                 `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
             );
         }
     },
     languagesAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf(
-            Object.keys(DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS)
-        )
+        PropTypes.oneOf(Object.keys(LANGUAGES_DATA))
     ).isRequired,
     minLanguagesAvailableForFilterNews: function (
         props,
@@ -324,7 +320,7 @@ NewsControls.propTypes = {
         propName,
         componentName
     ) {
-        if (props[propName] < 1 || props[propName] > 5) {
+        if (props[propName] < 0 || props[propName] > 5) {
             return new Error(
                 `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
             );

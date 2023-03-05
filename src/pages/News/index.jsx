@@ -6,15 +6,9 @@ import { useState, useEffect } from "react";
 import { getNews } from "../../businessLogic/news/getNews";
 import { useLocalStorage } from "@hooks/useLocalStorage";
 
-import {
-    DEFAULT_CATEGORIES_NAMES,
-    DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS,
-    // WORLD_COUNTRIES_CODE_NAME_DATA,
-    COUNTRIES_DATA,
-} from "@constants";
+import { COUNTRIES_DATA, CATEGORIES_DATA, LANGUAGES_DATA } from "@constants";
 
 import { ControlBar, Content } from "@sections";
-
 import {
     NewsFeed,
     NewsControls,
@@ -22,7 +16,6 @@ import {
     InputComponent,
     NothingWasFoundMessage,
 } from "@common";
-
 import { NoApiKeyTextMessage } from "./NoApiKeyTextMessage";
 
 export const News = () => {
@@ -240,18 +233,18 @@ export const News = () => {
                             keyword={keyword}
                             setKeyword={setKeyword}
                             loading={loading}
-                            countriesAvailableForFilterNews={[
-                                ...Object.keys(COUNTRIES_DATA),
-                            ]}
+                            countriesAvailableForFilterNews={Object.keys(
+                                COUNTRIES_DATA
+                            )}
                             minCountriesAvailableForFilterNews={
                                 minParametersLength
                             }
                             maxCountriesAvailableForFilterNews={
                                 maxParametersLength
                             }
-                            categoriesAvailableForFilterNews={
-                                DEFAULT_CATEGORIES_NAMES
-                            }
+                            categoriesAvailableForFilterNews={Object.keys(
+                                CATEGORIES_DATA
+                            )}
                             minCategoriesAvailableForFilterNews={
                                 minParametersLength
                             }
@@ -259,7 +252,7 @@ export const News = () => {
                                 maxParametersLength
                             }
                             languagesAvailableForFilterNews={Object.keys(
-                                DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS
+                                LANGUAGES_DATA
                             )}
                             minLanguagesAvailableForFilterNews={
                                 minParametersLength

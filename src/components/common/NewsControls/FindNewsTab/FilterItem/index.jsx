@@ -4,12 +4,7 @@ import { addIcon, removeIcon } from "@assets";
 import React from "react";
 import PropTypes from "prop-types";
 
-import {
-    WORLD_COUNTRIES_CODE_NAME_DATA,
-    DEFAULT_CATEGORIES_NAMES,
-    DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS,
-    COUNTRIES_DATA,
-} from "@constants";
+import { COUNTRIES_DATA, CATEGORIES_DATA, LANGUAGES_DATA } from "@constants";
 
 import {
     addSelectWithNotSelectedValue,
@@ -29,8 +24,7 @@ export const FilterItem = ({
     itemsAvailableForFilterNews,
     minItemsAvailableForFilterNews,
     maxItemsAvailableForFilterNews,
-    labelOptionForItems,
-    labelIconOptionsForItems,
+    labelData,
     addButtonText,
     removeButtonText,
 }) => {
@@ -57,8 +51,7 @@ export const FilterItem = ({
                     <SelectComponent
                         key={index}
                         valueOptions={availableItems}
-                        labelOptions={labelOptionForItems}
-                        labelIconOptions={labelIconOptionsForItems}
+                        labelData={labelData}
                         defaultValue={item}
                         onChange={({ value }) => {
                             if (!loading) {
@@ -70,7 +63,6 @@ export const FilterItem = ({
                                 );
                             }
                         }}
-                        isSearchable={true}
                     />
                 );
             })}
@@ -120,17 +112,17 @@ FilterItem.propTypes = {
     icon: PropTypes.string.isRequired,
     selectedItems: PropTypes.arrayOf(
         PropTypes.oneOf([
-            ...Object.keys(WORLD_COUNTRIES_CODE_NAME_DATA),
-            ...DEFAULT_CATEGORIES_NAMES,
-            ...Object.keys(DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS),
+            ...Object.keys(COUNTRIES_DATA),
+            ...Object.keys(CATEGORIES_DATA),
+            ...Object.keys(LANGUAGES_DATA),
         ])
     ).isRequired,
     setSelectedItems: PropTypes.func.isRequired,
     itemsAvailableForFilterNews: PropTypes.arrayOf(
         PropTypes.oneOf([
             ...Object.keys(COUNTRIES_DATA),
-            ...DEFAULT_CATEGORIES_NAMES,
-            ...Object.keys(DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS),
+            ...Object.keys(CATEGORIES_DATA),
+            ...Object.keys(LANGUAGES_DATA),
         ])
     ).isRequired,
     minItemsAvailableForFilterNews: function (props, propName, componentName) {
@@ -147,9 +139,11 @@ FilterItem.propTypes = {
             );
         }
     },
-
-    labelOptionForItems: PropTypes.object, // null for category
-    labelIconOptionsForItems: PropTypes.object.isRequired,
+    labelData: PropTypes.oneOf([
+        COUNTRIES_DATA,
+        CATEGORIES_DATA,
+        LANGUAGES_DATA,
+    ]).isRequired,
     addButtonText: PropTypes.string.isRequired,
     removeButtonText: PropTypes.string.isRequired,
 };

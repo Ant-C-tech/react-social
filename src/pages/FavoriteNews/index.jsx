@@ -3,13 +3,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useLocalStorage } from "@hooks/useLocalStorage";
 
+import { COUNTRIES_DATA, CATEGORIES_DATA, LANGUAGES_DATA } from "@constants";
+
 import {
     getFilteredNews,
     updateAvailableParametersForFiltering,
     getNewsFilteredByKeyword,
-    getCountriesForPrompt,
-    getCategoriesForPrompt,
-    getLanguagesForPrompt,
+    getDataForPrompt,
+    // getCategoriesForPrompt,
 } from "./utils";
 
 import { ControlBar, Content } from "@sections";
@@ -220,14 +221,20 @@ export const FavoriteNews = () => {
                                 <NoFavoriteNewsMessage />
                             ) : newsToShow.length === 0 ? (
                                 <NothingWasFoundMessage
-                                    countriesForPrompt={getCountriesForPrompt(
-                                        newsForPrompt
+                                    countriesForPrompt={getDataForPrompt(
+                                        COUNTRIES_DATA,
+                                        newsForPrompt,
+                                        "country"
                                     )}
-                                    categoriesForPrompt={getCategoriesForPrompt(
-                                        newsForPrompt
+                                    categoriesForPrompt={getDataForPrompt(
+                                        CATEGORIES_DATA,
+                                        newsForPrompt,
+                                        "category"
                                     )}
-                                    languagesForPrompt={getLanguagesForPrompt(
-                                        newsForPrompt
+                                    languagesForPrompt={getDataForPrompt(
+                                        LANGUAGES_DATA,
+                                        newsForPrompt,
+                                        "language"
                                     )}
                                 />
                             ) : null

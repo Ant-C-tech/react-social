@@ -12,21 +12,10 @@ import {
     keywordsIcon,
 } from "@assets";
 
-import {
-    WORLD_COUNTRIES_CODE_NAME_DATA,
-    WORLD_COUNTRY_FLAGS,
-    WORLD_COUNTRY_FLAGS_BY_LANGUAGE_CODE,
-    DEFAULT_CATEGORIES_NAMES,
-    DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS,
-    COUNTRIES_DATA,
-} from "@constants";
+import { COUNTRIES_DATA, CATEGORIES_DATA, LANGUAGES_DATA } from "@constants";
 
 import { InputComponent } from "@common/InputComponent/";
 import { FilterItem } from "./FilterItem";
-import {
-    getCategoriesObjectWithIcons,
-    getLanguagesObjectWithLabels,
-} from "../utils";
 
 export const FindNewsTab = ({
     loading,
@@ -57,8 +46,7 @@ export const FindNewsTab = ({
             itemsAvailableForFilterNews: countriesAvailableForFilterNews,
             minItemsAvailableForFilterNews: minCountriesAvailableForFilterNews,
             maxItemsAvailableForFilterNews: maxCountriesAvailableForFilterNews,
-            labelOptionForItems: WORLD_COUNTRIES_CODE_NAME_DATA,
-            labelIconOptionsForItems: WORLD_COUNTRY_FLAGS,
+            labelData: COUNTRIES_DATA,
             addButtonText: "Add More Countries",
             removeButtonText: "Remove Country",
         },
@@ -70,10 +58,7 @@ export const FindNewsTab = ({
             itemsAvailableForFilterNews: categoriesAvailableForFilterNews,
             minItemsAvailableForFilterNews: minCategoriesAvailableForFilterNews,
             maxItemsAvailableForFilterNews: maxCategoriesAvailableForFilterNews,
-            labelOptionForItems: null,
-            labelIconOptionsForItems: getCategoriesObjectWithIcons(
-                categoriesAvailableForFilterNews
-            ),
+            labelData: CATEGORIES_DATA,
             addButtonText: "Add More Categories",
             removeButtonText: "Remove Category",
         },
@@ -85,10 +70,7 @@ export const FindNewsTab = ({
             itemsAvailableForFilterNews: languagesAvailableForFilterNews,
             minItemsAvailableForFilterNews: minLanguagesAvailableForFilterNews,
             maxItemsAvailableForFilterNews: maxLanguagesAvailableForFilterNews,
-            labelOptionForItems: getLanguagesObjectWithLabels(
-                languagesAvailableForFilterNews
-            ),
-            labelIconOptionsForItems: WORLD_COUNTRY_FLAGS_BY_LANGUAGE_CODE,
+            labelData: LANGUAGES_DATA,
             addButtonText: "Add More Languages",
             removeButtonText: "Remove Language",
         },
@@ -125,10 +107,7 @@ export const FindNewsTab = ({
                     maxItemsAvailableForFilterNews={
                         filterItem.maxItemsAvailableForFilterNews
                     }
-                    labelOptionForItems={filterItem.labelOptionForItems}
-                    labelIconOptionsForItems={
-                        filterItem.labelIconOptionsForItems
-                    }
+                    labelData={filterItem.labelData}
                     addButtonText={filterItem.addButtonText}
                     removeButtonText={filterItem.removeButtonText}
                 />
@@ -161,23 +140,21 @@ export const FindNewsTab = ({
 FindNewsTab.propTypes = {
     loading: PropTypes.bool.isRequired,
     selectedCountries: PropTypes.arrayOf(
-        PropTypes.oneOf([...Object.keys(COUNTRIES_DATA)])
+        PropTypes.oneOf(Object.keys(COUNTRIES_DATA))
     ).isRequired,
     setSelectedCountries: PropTypes.func.isRequired,
     selectedCategories: PropTypes.arrayOf(
-        PropTypes.oneOf(DEFAULT_CATEGORIES_NAMES)
+        PropTypes.oneOf(Object.keys(CATEGORIES_DATA))
     ).isRequired,
     setSelectedCategories: PropTypes.func.isRequired,
     selectedLanguages: PropTypes.arrayOf(
-        PropTypes.oneOf(
-            Object.keys(DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS)
-        )
+        PropTypes.oneOf(Object.keys(LANGUAGES_DATA))
     ).isRequired,
     setSelectedLanguages: PropTypes.func.isRequired,
     keyword: PropTypes.string.isRequired,
     setKeyword: PropTypes.func.isRequired,
     countriesAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf([...Object.keys(COUNTRIES_DATA)])
+        PropTypes.oneOf(Object.keys(COUNTRIES_DATA))
     ).isRequired,
     minCountriesAvailableForFilterNews: function (
         props,
@@ -202,7 +179,7 @@ FindNewsTab.propTypes = {
         }
     },
     categoriesAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf(DEFAULT_CATEGORIES_NAMES)
+        PropTypes.oneOf(Object.keys(CATEGORIES_DATA))
     ).isRequired,
     minCategoriesAvailableForFilterNews: function (
         props,
@@ -227,9 +204,7 @@ FindNewsTab.propTypes = {
         }
     },
     languagesAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf(
-            Object.keys(DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS)
-        )
+        PropTypes.oneOf(Object.keys(LANGUAGES_DATA))
     ).isRequired,
     minLanguagesAvailableForFilterNews: function (
         props,

@@ -1,48 +1,25 @@
 import "./styles.css";
-import { newsIcon } from "@assets";
 
 import React from "react";
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
+import PropTypes from "prop-types";
 import Select from "react-select";
 
 import { selectStyles } from "./selectStyles";
 import { selectTheme } from "./selectTheme";
 
+import { COUNTRIES_DATA, CATEGORIES_DATA, LANGUAGES_DATA } from "@constants";
+
 export const SelectComponent = ({
     valueOptions,
-    labelOptions = null,
-    labelIconOptions = null,
+    labelData,
     defaultValue,
     onChange,
-    isSearchable,
 }) => {
     const [isFocused, setIsFocused] = useState(false);
-    const [value, setValue] = useState();
 
-    useEffect(() => {
-        setValue(defaultValue);
-    }, [defaultValue]);
-
-    const AllIcon = () => (
-        <img
-            src={newsIcon}
-            alt="#"
-            style={{
-                width: "45px",
-                paddingRight: "10px",
-                objectFit: "contain",
-            }}
-            aria-hidden={true}
-        />
-    );
-
-    const getIcon = (item) => {
-        return item === "all" ? (
-            <AllIcon />
-        ) : labelIconOptions ? (
-            labelIconOptions[item]
-        ) : null;
+    const getIcon = (currentOption) => {
+        return labelData[currentOption].icon;
     };
 
     const options = valueOptions.map((currentOption) => {
@@ -52,16 +29,11 @@ export const SelectComponent = ({
                 <span className="select-option-item">
                     <span>{getIcon(currentOption)} </span>
                     <span className="select-option-item-text">
-                        {labelOptions && currentOption !== "all"
-                            ? labelOptions[currentOption]
-                            : currentOption}
+                        {labelData[currentOption].name}
                     </span>
                 </span>
             ),
-            filterData:
-                labelOptions && currentOption !== "all"
-                    ? labelOptions[currentOption]
-                    : currentOption,
+            filterData: labelData[currentOption].name,
         };
     });
 
@@ -69,7 +41,7 @@ export const SelectComponent = ({
         if (
             option.data.filterData
                 .toLowerCase()
-                .includes(searchText.toLowerCase())
+                .startsWith(searchText.toLowerCase())
         ) {
             return true;
         } else {
@@ -84,9 +56,7 @@ export const SelectComponent = ({
                 <span className="select-value">
                     {getIcon(value)}{" "}
                     <span className="select-value-text">
-                        {labelOptions && value !== "all"
-                            ? labelOptions[value]
-                            : value}
+                        {labelData[value].name}
                     </span>
                 </span>
             ),
@@ -97,10 +67,10 @@ export const SelectComponent = ({
         <Select
             options={options}
             styles={selectStyles}
-            value={getValue(value)}
-            isSearchable={isSearchable}
+            value={getValue(defaultValue)}
+            isSearchable={true}
             hideSelectedOptions={true}
-            // filterOption={customFilter}
+            filterOption={customFilter}
             theme={(theme) => selectTheme(theme)}
             className={`select ${isFocused ? "select-with-focus" : ""}`}
             onChange={onChange}
@@ -108,4 +78,25 @@ export const SelectComponent = ({
             onBlur={() => setIsFocused(false)}
         />
     );
+};
+
+SelectComponent.propTypes = {
+    valueOptions: PropTypes.arrayOf(
+        PropTypes.oneOf([
+            ...Object.keys(COUNTRIES_DATA),
+            ...Object.keys(CATEGORIES_DATA),
+            ...Object.keys(LANGUAGES_DATA),
+        ])
+    ).isRequired,
+    labelData: PropTypes.oneOf([
+        COUNTRIES_DATA,
+        CATEGORIES_DATA,
+        LANGUAGES_DATA,
+    ]).isRequired,
+    defaultValue: PropTypes.oneOf([
+        ...Object.keys(COUNTRIES_DATA),
+        ...Object.keys(CATEGORIES_DATA),
+        ...Object.keys(LANGUAGES_DATA),
+    ]).isRequired,
+    onChange: PropTypes.func.isRequired,
 };

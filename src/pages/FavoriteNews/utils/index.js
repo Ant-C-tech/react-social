@@ -8,6 +8,5 @@ export * from "./getNewsFilteredByLanguage";
 export * from "./getNewsSortByDate";
 export * from "./getFilteredNews";
 export * from "./updateAvailableParametersForFiltering";
-export * from "./getCountriesForPrompt";
-export * from "./getCategoriesForPrompt";
-export * from "./getLanguagesForPrompt";
+export * from "./getDataForPrompt";
+export * from "./getCodesByNames";

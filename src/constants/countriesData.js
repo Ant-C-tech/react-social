@@ -1,430 +1,430 @@
 export const COUNTRIES_DATA = {
     all: {
         name: "All",
-        flag: "🌎",
+        icon: "🌎",
     },
     dz: {
         name: "Algeria",
-        flag: "🇩🇿",
+        icon: "🇩🇿",
     },
     ao: {
         name: "Angola",
-        flag: "🇦🇴",
+        icon: "🇦🇴",
     },
     ar: {
         name: "Argentina",
-        flag: "🇦🇷",
+        icon: "🇦🇷",
     },
     au: {
         name: "Australia",
-        flag: "🇦🇺",
+        icon: "🇦🇺",
     },
     at: {
         name: "Austria",
-        flag: "🇦🇹",
+        icon: "🇦🇹",
     },
     az: {
         name: "Azerbaijan",
-        flag: "🇦🇿",
+        icon: "🇦🇿",
     },
     bd: {
         name: "Bangladesh",
-        flag: "🇧🇩",
+        icon: "🇧🇩",
     },
     by: {
         name: "Belarus",
-        flag: "🇧🇾",
+        icon: "🇧🇾",
     },
     be: {
         name: "Belgium",
-        flag: "🇧🇪",
+        icon: "🇧🇪",
     },
     bo: {
         name: "Bolivia",
-        flag: "🇧🇴",
+        icon: "🇧🇴",
     },
     br: {
         name: "Brazil",
-        flag: "🇧🇷",
+        icon: "🇧🇷",
     },
     bg: {
         name: "Bulgaria",
-        flag: "🇧🇬",
+        icon: "🇧🇬",
     },
     bf: {
         name: "Burkina Faso",
-        flag: "🇧🇫",
+        icon: "🇧🇫",
     },
     cm: {
         name: "Cameroon",
-        flag: "🇨🇲",
+        icon: "🇨🇲",
     },
     ca: {
         name: "Canada",
-        flag: "🇨🇦",
+        icon: "🇨🇦",
     },
     cl: {
         name: "Chile",
-        flag: "🇨🇱",
+        icon: "🇨🇱",
     },
     cn: {
         name: "China",
-        flag: "🇨🇳",
+        icon: "🇨🇳",
     },
     co: {
         name: "Colombia",
-        flag: "🇨🇴",
+        icon: "🇨🇴",
     },
     cr: {
         name: "Costa Rica",
-        flag: "🇨🇷",
+        icon: "🇨🇷",
     },
     ci: {
         name: "Côte d'Ivoire",
-        flag: "🇨🇮",
+        icon: "🇨🇮",
     },
     cu: {
         name: "Cuba",
-        flag: "🇨🇺",
+        icon: "🇨🇺",
     },
     cz: {
         name: "Czech republic",
-        flag: "🇨🇿",
+        icon: "🇨🇿",
     },
     hr: {
         name: "Croatia",
-        flag: "🇭🇷",
+        icon: "🇭🇷",
     },
     dk: {
         name: "Denmark",
-        flag: "🇩🇰",
+        icon: "🇩🇰",
     },
     do: {
         name: "Dominican republic",
-        flag: "🇩🇴",
+        icon: "🇩🇴",
     },
     cd: {
         name: "DR Congo",
-        flag: "🇨🇩",
+        icon: "🇨🇩",
     },
     ec: {
         name: "Ecuador",
-        flag: "🇪🇨",
+        icon: "🇪🇨",
     },
     eg: {
         name: "Egypt",
-        flag: "🇪🇬",
+        icon: "🇪🇬",
     },
     ee: {
         name: "Estonia",
-        flag: "🇪🇪",
+        icon: "🇪🇪",
     },
     et: {
         name: "Ethiopia",
-        flag: "🇪🇹",
+        icon: "🇪🇹",
     },
     fi: {
         name: "Finland",
-        flag: "🇫🇮",
+        icon: "🇫🇮",
     },
     fr: {
         name: "France",
-        flag: "🇫🇷",
+        icon: "🇫🇷",
     },
     de: {
         name: "Germany",
-        flag: "🇩🇪",
+        icon: "🇩🇪",
     },
     gh: {
         name: "Ghana",
-        flag: "🇬🇭",
+        icon: "🇬🇭",
     },
     gr: {
         name: "Greece",
-        flag: "🇬🇷",
+        icon: "🇬🇷",
     },
     gt: {
         name: "Guatemala",
-        flag: "🇬🇹",
+        icon: "🇬🇹",
     },
     hk: {
         name: "Hong kong",
-        flag: "🇭🇰",
+        icon: "🇭🇰",
     },
     hu: {
         name: "Hungary",
-        flag: "🇭🇺",
+        icon: "🇭🇺",
     },
     in: {
         name: "India",
-        flag: "🇮🇳",
+        icon: "🇮🇳",
     },
     id: {
         name: "Indonesia",
-        flag: "🇮🇩",
+        icon: "🇮🇩",
     },
     iq: {
         name: "Iraq",
-        flag: "🇮🇶",
+        icon: "🇮🇶",
     },
     ie: {
         name: "Ireland",
-        flag: "🇮🇪",
+        icon: "🇮🇪",
     },
     il: {
         name: "Israel",
-        flag: "🇮🇱",
+        icon: "🇮🇱",
     },
     it: {
         name: "Italy",
-        flag: "🇮🇹",
+        icon: "🇮🇹",
     },
     jp: {
         name: "Japan",
-        flag: "🇯🇵",
+        icon: "🇯🇵",
     },
     jo: {
         name: "Jordan",
-        flag: "🇯🇴",
+        icon: "🇯🇴",
     },
     kz: {
         name: "Kazakhstan",
-        flag: "🇰🇿",
+        icon: "🇰🇿",
     },
     ke: {
         name: "Kenya",
-        flag: "🇰🇪",
+        icon: "🇰🇪",
     },
     kw: {
         name: "Kuwait",
-        flag: "🇰🇼",
+        icon: "🇰🇼",
     },
     lv: {
         name: "Latvia",
-        flag: "🇱🇻",
+        icon: "🇱🇻",
     },
     lb: {
         name: "Lebanon",
-        flag: "🇱🇧",
+        icon: "🇱🇧",
     },
     ly: {
         name: "Libya",
-        flag: "🇱🇾",
+        icon: "🇱🇾",
     },
     lt: {
         name: "Lithuania",
-        flag: "🇱🇹",
+        icon: "🇱🇹",
     },
     lu: {
         name: "Luxembourg",
-        flag: "🇱🇺",
+        icon: "🇱🇺",
     },
     mg: {
         name: "Madagascar",
-        flag: "🇲🇬",
+        icon: "🇲🇬",
     },
     mw: {
         name: "Malawi",
-        flag: "🇲🇼",
+        icon: "🇲🇼",
     },
     my: {
         name: "Malaysia",
-        flag: "🇲🇾",
+        icon: "🇲🇾",
     },
     ml: {
         name: "Mali",
-        flag: "🇲🇱",
+        icon: "🇲🇱",
     },
     mx: {
         name: "Mexico",
-        flag: "🇲🇽",
+        icon: "🇲🇽",
     },
     ma: {
         name: "Morocco",
-        flag: "🇲🇦",
+        icon: "🇲🇦",
     },
     mz: {
         name: "Mozambique",
-        flag: "🇲🇿",
+        icon: "🇲🇿",
     },
     mm: {
         name: "Myanmar",
-        flag: "🇲🇲",
+        icon: "🇲🇲",
     },
     np: {
         name: "Nepal",
-        flag: "🇳🇵",
+        icon: "🇳🇵",
     },
     nl: {
         name: "Netherland",
-        flag: "🇳🇱",
+        icon: "🇳🇱",
     },
     nz: {
         name: "New Zealand",
-        flag: "🇳🇿",
+        icon: "🇳🇿",
     },
     ng: {
         name: "Nigeria",
-        flag: "🇳🇬",
+        icon: "🇳🇬",
     },
     kp: {
         name: "North Korea",
-        flag: "🇰🇵",
+        icon: "🇰🇵",
     },
     no: {
         name: "Norway",
-        flag: "🇳🇴",
+        icon: "🇳🇴",
     },
     om: {
         name: "Oman",
-        flag: "🇴🇲",
+        icon: "🇴🇲",
     },
     pk: {
         name: "Pakistan",
-        flag: "🇵🇰",
+        icon: "🇵🇰",
     },
     pa: {
         name: "Panama",
-        flag: "🇵🇦",
+        icon: "🇵🇦",
     },
     py: {
         name: "Paraguay",
-        flag: "🇵🇾",
+        icon: "🇵🇾",
     },
     pe: {
         name: "Peru",
-        flag: "🇵🇪",
+        icon: "🇵🇪",
     },
     ph: {
         name: "Philippines",
-        flag: "🇵🇭",
+        icon: "🇵🇭",
     },
     pl: {
         name: "Poland",
-        flag: "🇵🇱",
+        icon: "🇵🇱",
     },
     pt: {
         name: "Portugal",
-        flag: "🇵🇹",
+        icon: "🇵🇹",
     },
     pr: {
         name: "Puerto Rico",
-        flag: "🇵🇷",
+        icon: "🇵🇷",
     },
     ro: {
         name: "Romania",
-        flag: "🇷🇴",
+        icon: "🇷🇴",
     },
     ru: {
         name: "Russia",
-        flag: "🇷🇺",
+        icon: "🇷🇺",
     },
     sa: {
         name: "Saudi Arabia",
-        flag: "🇸🇦",
+        icon: "🇸🇦",
     },
     sn: {
         name: "Senegal",
-        flag: "🇸🇳",
+        icon: "🇸🇳",
     },
     rs: {
         name: "Serbia",
-        flag: "🇷🇸",
+        icon: "🇷🇸",
     },
     sg: {
         name: "Singapore",
-        flag: "🇸🇬",
+        icon: "🇸🇬",
     },
     sk: {
         name: "Slovakia",
-        flag: "🇸🇰",
+        icon: "🇸🇰",
     },
     si: {
         name: "Slovenia",
-        flag: "🇸🇮",
+        icon: "🇸🇮",
     },
     so: {
         name: "Somalia",
-        flag: "🇸🇴",
+        icon: "🇸🇴",
     },
     za: {
         name: "South Africa",
-        flag: "🇿🇦",
+        icon: "🇿🇦",
     },
     kr: {
         name: "South Korea",
-        flag: "🇰🇷",
+        icon: "🇰🇷",
     },
     es: {
         name: "Spain",
-        flag: "🇪🇸",
+        icon: "🇪🇸",
     },
     lk: {
         name: "Sri Lanka",
-        flag: "🇱🇰",
+        icon: "🇱🇰",
     },
     sd: {
         name: "Sudan",
-        flag: "🇸🇩",
+        icon: "🇸🇩",
     },
     se: {
         name: "Sweden",
-        flag: "🇸🇪",
+        icon: "🇸🇪",
     },
     ch: {
         name: "Switzerland",
-        flag: "🇨🇭",
+        icon: "🇨🇭",
     },
     tw: {
         name: "Taiwan",
-        flag: "🇹🇼",
+        icon: "🇹🇼",
     },
     tz: {
         name: "Tanzania",
-        flag: "🇹🇿",
+        icon: "🇹🇿",
     },
     th: {
         name: "Thailand",
-        flag: "🇹🇭",
+        icon: "🇹🇭",
     },
     tr: {
         name: "Turkey",
-        flag: "🇹🇷",
+        icon: "🇹🇷",
     },
     ug: {
         name: "Uganda",
-        flag: "🇺🇬",
+        icon: "🇺🇬",
     },
     uy: {
         name: "Uruguay",
-        flag: "🇺🇾",
+        icon: "🇺🇾",
     },
     ua: {
         name: "Ukraine",
-        flag: "🇺🇦",
+        icon: "🇺🇦",
     },
     ae: {
         name: "United Arab Emirates",
-        flag: "🇦🇪",
+        icon: "🇦🇪",
     },
     gb: {
         name: "United Kingdom",
-        flag: "🇬🇧",
+        icon: "🇬🇧",
     },
     us: {
         name: "United States of America",
-        flag: "🇺🇸",
+        icon: "🇺🇸",
     },
     ve: {
         name: "Venezuela",
-        flag: "🇻🇪",
+        icon: "🇻🇪",
     },
     vi: {
         name: "Vietnam",
-        flag: "🇻🇳",
+        icon: "🇻🇳",
     },
     zm: {
         name: "Zambia",
-        flag: "🇿🇲",
+        icon: "🇿🇲",
     },
 };
