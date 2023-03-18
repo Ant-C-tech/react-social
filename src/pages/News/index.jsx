@@ -209,7 +209,6 @@ export const News = () => {
                     >
                         <NoApiKeyTextMessage />
                         <InputComponent
-                            type="text"
                             placeholder={"Please, input your API key"}
                             value={apiKey}
                             setValue={setApiKey}

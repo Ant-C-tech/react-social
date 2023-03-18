@@ -126,7 +126,6 @@ export const FindNewsTab = ({
                     </h4>
                 </div>
                 <InputComponent
-                    type="text"
                     placeholder={"Keyword..."}
                     value={keyword}
                     setValue={setKeyword}
