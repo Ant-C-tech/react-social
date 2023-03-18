@@ -4,23 +4,15 @@ import React from "react";
 import { Link, useMatch, useResolvedPath } from "react-router-dom";
 import PropTypes from "prop-types";
 
-export const CustomLink = ({ type, content, href, modification }) => {
+export const CustomLink = ({ type, content, href, hover }) => {
     let resolved = useResolvedPath(href);
     let match = useMatch({ path: resolved.pathname, end: true });
 
-    return type === "external" ? (
-        <a
-            className={`custom-link ${modification}`}
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-            {content}
-        </a>
-    ) : (
+    return (
         <Link
-            className={`custom-link ${modification} ${match ? "active" : ""}`}
+            className={`custom-link ${hover} ${match ? "active" : ""}`}
             to={href}
+            target={type === "external" ? "_blank" : "_self"}
         >
             {content}
         </Link>
@@ -29,9 +21,8 @@ export const CustomLink = ({ type, content, href, modification }) => {
 
 CustomLink.propTypes = {
     type: PropTypes.oneOf(["internal", "external"]).isRequired,
-    content: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
-        .isRequired,
+    content: PropTypes.node.isRequired,
     href: PropTypes.string.isRequired,
-    modification: PropTypes.string,
+    hover: PropTypes.oneOf(["underline", "left-line"]).isRequired,
     target: PropTypes.string,
 };

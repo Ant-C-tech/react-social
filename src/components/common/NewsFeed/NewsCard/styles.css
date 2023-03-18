@@ -11,14 +11,11 @@
     font-family: "Special Elite", cursive;
 }
 
-.news-card-icon {
+.news-card-title-icon {
     display: block;
     width: 38px;
     height: 38px;
     margin: 0 10px;
-}
-
-.news-card-title-icon {
     position: relative;
     bottom: 10px;
 }
@@ -264,6 +261,8 @@
     margin-bottom: 15px;
     padding-bottom: 10px;
     border-bottom: 1px solid #323e42;
+
+    font-size: 25px;
 }
 
 .news-card-footer {

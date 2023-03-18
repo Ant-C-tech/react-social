@@ -148,7 +148,6 @@ export const NewsCard = ({
                         content={
                             <>
                                 <img
-                                    className="news-card-icon"
                                     src={playVideoIcon}
                                     alt="#"
                                     aria-hidden={true}
@@ -159,7 +158,7 @@ export const NewsCard = ({
                             </>
                         }
                         href={video_url}
-                        modification="news-card-hover-left-line"
+                        hover="left-line"
                         active=""
                     />
                 )}
@@ -249,7 +248,6 @@ export const NewsCard = ({
                         content={
                             <>
                                 <img
-                                    className="news-card-icon"
                                     src={originalSourceIcon}
                                     alt="#"
                                     aria-hidden={true}
@@ -261,7 +259,7 @@ export const NewsCard = ({
                         }
                         href={link}
                         target="_blank"
-                        modification="news-card-link-hover-underline"
+                        hover="underline"
                         active=""
                     />
                     <Button

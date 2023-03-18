@@ -15,7 +15,6 @@ export const NoApiKeyTextMessage = () => {
                     content={
                         <>
                             <img
-                                className="no-api-key-icon"
                                 src={originalSourceIcon}
                                 alt="#"
                                 aria-hidden={true}
@@ -24,7 +23,7 @@ export const NoApiKeyTextMessage = () => {
                         </>
                     }
                     href="https://newsdata.io/"
-                    modification="hover-underline"
+                    hover="underline"
                     active=""
                 />
             </p>

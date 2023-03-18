@@ -32,20 +32,21 @@
 .logo {
     display: flex;
     position: relative;
+    top: -2px;
     left: 20px;
 
-    bottom: 0 !important;
-    margin: 0 !important;
+    bottom: 0;
+    margin: 0;
 
     align-items: center;
 
-    font-size: 40px !important;
+    font-size: 30px;
     font-weight: bold;
 }
 
 .logo:before {
     position: absolute;
-    top: 3px;
+    top: 2px;
     left: -50px;
     content: "";
     width: 38px;
@@ -55,31 +56,6 @@
     background-repeat: no-repeat;
     background-position: 0 50%;
     background-size: cover;
-}
-
-.topbar-hover-underline {
-    display: inline-flex;
-    align-items: flex-end;
-
-    position: relative;
-    bottom: -5px;
-
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.topbar-hover-underline:after {
-    width: 0;
-    height: 1px;
-    bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 0);
-}
-
-.topbar-hover-underline:hover:after,
-.topbar-hover-underline:focus:after,
-.topbar-hover-underline.active:after {
-    width: 100%;
 }
 
 .topbar-center-panel {
@@ -93,6 +69,8 @@
     margin: 10px 10px 15px;
     padding: 0 30px;
 
+    font-size: 25px;
+
     border-radius: 25px;
 
     background: #eaeaea;
@@ -101,18 +79,12 @@
 }
 
 .topbar-links-wrapper {
-    padding-bottom: 5px;
+    display: flex;
 }
 
 .topbar-center-panel-notifications {
     display: flex;
     align-items: center;
-}
-
-.topbar-center-panel-notifications-image-icon {
-    display: block;
-    margin: 0 3px;
-    width: 38px;
 }
 
 .topbar-center-panel-notifications-badge {
@@ -134,28 +106,6 @@
     text-align: center;
 }
 
-.topbar-hover-left-line {
-    display: inline-flex;
-    align-items: center;
-
-    font-weight: bold;
-    text-transform: uppercase;
-}
-
-.topbar-hover-left-line:after {
-    width: 1px;
-    height: 0;
-    bottom: 50%;
-    left: -4px;
-    transform: translate(50%, 50%);
-}
-
-.topbar-hover-left-line:hover:after,
-.topbar-hover-left-line:focus:after,
-.topbar-hover-left-line.active:after {
-    height: 100%;
-}
-
 .topbar-right-panel {
     display: flex;
     align-items: center;
@@ -166,6 +116,8 @@
     height: 50px;
     margin: 10px 10px 15px;
     padding: 0 5px 0 30px;
+
+    font-size: 25px;
 
     background: #eaeaea;
     border-radius: 25px;

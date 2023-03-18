@@ -15,7 +15,6 @@ const topBarNotificationsConfig = [
     {
         type: "internal",
         iconImage: chatsIcon,
-        className: "topbar-center-panel-notifications-image-icon",
         title: "Chats notifications",
         path: "organizer/chats",
         messageCounter: "6",
@@ -23,7 +22,6 @@ const topBarNotificationsConfig = [
     {
         type: "internal",
         iconImage: eventsIcon,
-        className: "topbar-center-panel-notifications-image-icon",
         title: "Events notifications",
         path: "organizer/events",
         messageCounter: "2",
@@ -39,12 +37,14 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
     return (
         <header className="topbar">
             <div className="topbar-left-panel">
-                <CustomLink
-                    type="internal"
-                    content="OrganiZeR"
-                    href="organizer/"
-                    modification="logo topbar-hover-underline"
-                />
+                <div className="logo">
+                    <CustomLink
+                        type="internal"
+                        content={<>OrganiZeR</>}
+                        href="organizer/"
+                        hover="underline"
+                    />
+                </div>
             </div>
             <div className="topbar-center-panel">
                 <div className="topbar-links-wrapper">
@@ -52,28 +52,25 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
                         <CustomLink
                             key={index}
                             type={link.type}
-                            content={link.text}
+                            content={<>{link.text}</>}
                             href={link.path}
-                            modification="topbar-hover-underline"
+                            hover="underline"
                         />
                     ))}
                 </div>
                 <div className="topbar-center-panel-notifications">
                     {topBarNotificationsConfig.map(
                         (notificationLink, index) => {
-                            const Icon = notificationLink["icon"];
+                            // const Icon = notificationLink["icon"];
                             return (
                                 <CustomLink
                                     key={index}
                                     type={notificationLink.type}
                                     content={
                                         <>
-                                            {Icon && <Icon fontSize="large" />}
+                                            {/* {Icon && <Icon fontSize="large" />} */}
                                             {notificationLink.iconImage && (
                                                 <img
-                                                    className={
-                                                        notificationLink.className
-                                                    }
                                                     src={
                                                         notificationLink.iconImage
                                                     }
@@ -92,7 +89,7 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
                                         </>
                                     }
                                     href={notificationLink.path}
-                                    modification="topbar-hover-left-line"
+                                    hover="left-line"
                                 />
                             );
                         }
@@ -107,9 +104,9 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
                                 <CustomLink
                                     key={index}
                                     type={link.type}
-                                    content={link.text}
+                                    content={<>{link.text}</>}
                                     href={link.path}
-                                    modification="topbar-hover-underline"
+                                    hover="underline"
                                 />
                             )
                     )}
@@ -125,7 +122,7 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
                     type="internal"
                     content={<BigHead className="topbar-profile-image" />}
                     href="/profile"
-                    modification="topbar-hover-left-line"
+                    hover="left-line"
                 />
             </div>
         </header>

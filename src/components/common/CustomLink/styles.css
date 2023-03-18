@@ -1,10 +1,11 @@
 .custom-link {
     position: relative;
+    width: fit-content;
     margin: 0 7px;
 
     font-family: "Amatic SC", cursive;
     font-weight: bold;
-    font-size: 25px;
+    font-size: inherit;
 }
 
 .custom-link:after {
@@ -16,4 +17,56 @@
 
 .custom-link:focus {
     outline: none;
+}
+
+.custom-link img {
+    width: 30px;
+}
+
+.underline {
+    display: inline-flex;
+    align-items: flex-end;
+
+    bottom: -5px;
+
+    padding-bottom: 2px;
+
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.underline:after {
+    width: 0;
+    height: 1px;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.underline:hover:after,
+.underline:focus:after,
+.underline.active:after {
+    width: 100%;
+}
+
+.left-line {
+    display: flex;
+    align-items: center;
+
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.left-line:after {
+    width: 1px;
+    height: 0;
+    bottom: 50%;
+    left: -8px;
+    transform: translate(50%, 50%);
+}
+
+.left-line:hover:after,
+.left-line:focus:after,
+.left-line.active:after {
+    height: 100%;
 }
