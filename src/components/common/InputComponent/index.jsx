@@ -5,7 +5,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 
 import { DebounceInput } from "react-debounce-input";
-import { BackspaceTwoTone } from "@material-ui/icons";
+import { removeIcon } from "@assets";
 
 export const InputComponent = ({
     type,
@@ -39,7 +39,12 @@ export const InputComponent = ({
                         setValue("");
                     }}
                 >
-                    <BackspaceTwoTone className="input-component-clear-button-icon" />
+                    <img
+                        className="input-component-clear-button-icon"
+                        src={removeIcon}
+                        alt="#"
+                        aria-hidden={true}
+                    />
                 </button>
             )}
         </div>
