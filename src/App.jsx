@@ -31,7 +31,7 @@ import {
 
 const App = () => {
     // Mock authorization data
-    const [isAuthorized, setIsAuthorized] = useState(true);
+    const [isAuthorized, setIsAuthorized] = useState(false);
 
     // Mock data for contacts list
     const config = {

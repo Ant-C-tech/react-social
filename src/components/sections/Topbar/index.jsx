@@ -1,12 +1,10 @@
 import "./styles.css";
-import { chatsIcon, eventsIcon } from "@assets";
+import { chatsIcon, eventsIcon, exitIcon } from "@assets";
 
 import React from "react";
-
-import { MeetingRoomTwoTone } from "@material-ui/icons";
 import { BigHead } from "@bigheads/core";
 
-import { CustomLink, IconButtonComponent } from "@common";
+import { CustomLink, ButtonSmall } from "@common";
 
 const topBarCenterLinksConfig = [
     { type: "internal", text: "Settings", path: "organizer/settings" },
@@ -116,11 +114,10 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
                             )
                     )}
                     {isAuthorized && (
-                        <IconButtonComponent
+                        <ButtonSmall
+                            iconSrc={exitIcon}
                             onClick={() => setIsAuthorized(false)}
-                        >
-                            <MeetingRoomTwoTone fontSize="large" />
-                        </IconButtonComponent>
+                        />
                     )}
                 </div>
 

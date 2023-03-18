@@ -1,4 +1,4 @@
-.iconButtonComponent {
+.button-small {
     display: block;
     width: 40px;
     height: 40px;
@@ -9,13 +9,19 @@
     box-shadow: 5px 5px 5px -1px #718b93;
     background: #eaeaea !important;
 
+    border-radius: 50%;
+
     transition: box-shadow ease-in-out 0.2s, color ease-in-out 0.2s !important;
 }
 
-.iconButtonComponent:hover,
-.iconButtonComponent:focus {
+.button-small:hover,
+.button-small:focus {
     box-shadow: 0px 0px 0px 0px #718b93;
     color: #e0004d !important;
     border-color: #e0004d !important;
     background: #eaeaea !important;
+}
+
+.button-small-icon {
+    width: 30px;
 }
