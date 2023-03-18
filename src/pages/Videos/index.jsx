@@ -7,7 +7,7 @@ export const Videos = () => {
     return (
         <>
             <Content>
-                <Message type={"message-info"} title={"Videos"}>
+                <Message type={"message-warning"} title={"Videos"}>
                     <p>
                         Sorry, this functionality is in development at the
                         moment.

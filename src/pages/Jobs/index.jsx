@@ -7,7 +7,7 @@ export const Jobs = () => {
     return (
         <>
             <Content>
-                <Message type={"message-info"} title={"Jobs"}>
+                <Message type={"message-warning"} title={"Jobs"}>
                     <p>
                         Sorry, this functionality is in development at the
                         moment.

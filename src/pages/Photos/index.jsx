@@ -7,7 +7,7 @@ export const Photos = () => {
     return (
         <>
             <Content>
-                <Message type={"message-info"} title={"Photos"}>
+                <Message type={"message-warning"} title={"Photos"}>
                     <p>
                         Sorry, this functionality is in development at the
                         moment.

@@ -7,7 +7,7 @@ export const Help = () => {
     return (
         <>
             <Content>
-                <Message type={"message-info"} title={"Help"}>
+                <Message type={"message-warning"} title={"Help"}>
                     <p>
                         Sorry, this functionality is in development at the
                         moment.

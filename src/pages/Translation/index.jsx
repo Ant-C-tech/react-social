@@ -7,7 +7,7 @@ export const Translation = () => {
     return (
         <>
             <Content>
-                <Message type={"message-info"} title={"Translation"}>
+                <Message type={"message-warning"} title={"Translation"}>
                     <p>
                         Sorry, this functionality is in development at the
                         moment.

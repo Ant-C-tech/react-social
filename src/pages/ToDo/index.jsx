@@ -7,7 +7,7 @@ export const ToDo = () => {
     return (
         <>
             <Content>
-                <Message type={"message-info"} title={"ToDo"}>
+                <Message type={"message-warning"} title={"ToDo"}>
                     <p>
                         Sorry, this functionality is in development at the
                         moment.

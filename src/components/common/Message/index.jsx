@@ -1,15 +1,26 @@
 import "./styles.css";
-import { hintIcon } from "@assets";
+import { hintIcon, warningIcon, errorIcon } from "@assets";
 
 import React from "react";
 import PropTypes from "prop-types";
 
 export const Message = ({ type, title, children }) => {
+    const getIcon = (typeOfMessage) => {
+        switch (typeOfMessage) {
+            case "message-warning":
+                return warningIcon;
+            case "message-error":
+                return errorIcon;
+            default:
+                return hintIcon;
+        }
+    };
+
     return (
         <article className={`${type} message`}>
             <h2 className="message-title">{title}</h2>
             <img
-                src={hintIcon}
+                src={getIcon(type)}
                 className="message-icon"
                 alt="#"
                 aria-hidden={true}
@@ -20,7 +31,7 @@ export const Message = ({ type, title, children }) => {
 };
 
 Message.propTypes = {
-    type: PropTypes.oneOf(["message-error", "message-warning", "message-info"])
+    type: PropTypes.oneOf(["message-info", "message-warning", "message-error"])
         .isRequired,
     title: PropTypes.string.isRequired,
     children: PropTypes.node.isRequired,
