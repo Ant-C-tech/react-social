@@ -129,7 +129,7 @@ export const FindNewsTab = ({
                     placeholder={"Keyword..."}
                     value={keyword}
                     setValue={setKeyword}
-                    icon={searchIcon}
+                    iconSrc={searchIcon}
                 />
             </>
         </>

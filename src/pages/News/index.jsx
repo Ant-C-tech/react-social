@@ -212,7 +212,7 @@ export const News = () => {
                             placeholder={"Please, input your API key"}
                             value={apiKey}
                             setValue={setApiKey}
-                            icon={fingerPrintIcon}
+                            iconSrc={fingerPrintIcon}
                         />
                     </Message>
                 )}
