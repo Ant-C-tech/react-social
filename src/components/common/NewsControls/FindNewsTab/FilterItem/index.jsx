@@ -2,9 +2,14 @@ import "./styles.css";
 import { addIcon, removeIcon } from "@assets";
 
 import React from "react";
-import PropTypes from "prop-types";
+import { string, bool, func, arrayOf, oneOf } from "prop-types";
 
-import { COUNTRIES_DATA, CATEGORIES_DATA, LANGUAGES_DATA } from "@constants";
+import {
+    minFilterItemType,
+    maxFilterItemType,
+    selectOptionType,
+    selectLabelType,
+} from "@types";
 
 import {
     addSelectWithNotSelectedValue,
@@ -105,47 +110,19 @@ export const FilterItem = ({
 };
 
 FilterItem.propTypes = {
-    loading: PropTypes.bool.isRequired,
-    title: PropTypes.oneOf([
+    loading: bool.isRequired,
+    title: oneOf([
         "Selected country:",
         "Selected category:",
         "Selected languages:",
     ]),
-    icon: PropTypes.string.isRequired,
-    selectedItems: PropTypes.arrayOf(
-        PropTypes.oneOf([
-            ...Object.keys(COUNTRIES_DATA),
-            ...Object.keys(CATEGORIES_DATA),
-            ...Object.keys(LANGUAGES_DATA),
-        ])
-    ).isRequired,
-    setSelectedItems: PropTypes.func.isRequired,
-    itemsAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf([
-            ...Object.keys(COUNTRIES_DATA),
-            ...Object.keys(CATEGORIES_DATA),
-            ...Object.keys(LANGUAGES_DATA),
-        ])
-    ).isRequired,
-    minItemsAvailableForFilterNews: function (props, propName, componentName) {
-        if (props[propName] !== 1) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-            );
-        }
-    },
-    maxItemsAvailableForFilterNews: function (props, propName, componentName) {
-        if (props[propName] < 1 || props[propName] > 5) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-            );
-        }
-    },
-    labelData: PropTypes.oneOf([
-        COUNTRIES_DATA,
-        CATEGORIES_DATA,
-        LANGUAGES_DATA,
-    ]).isRequired,
-    addButtonText: PropTypes.string.isRequired,
-    removeButtonText: PropTypes.string.isRequired,
+    icon: string.isRequired,
+    selectedItems: arrayOf(selectOptionType).isRequired,
+    setSelectedItems: func.isRequired,
+    itemsAvailableForFilterNews: arrayOf(selectOptionType).isRequired,
+    minItemsAvailableForFilterNews: minFilterItemType,
+    maxItemsAvailableForFilterNews: maxFilterItemType,
+    labelData: selectLabelType.isRequired,
+    addButtonText: string.isRequired,
+    removeButtonText: string.isRequired,
 };

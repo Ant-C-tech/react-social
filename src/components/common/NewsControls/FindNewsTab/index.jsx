@@ -155,12 +155,12 @@ FindNewsTab.propTypes = {
     keyword: string.isRequired,
     setKeyword: func.isRequired,
     countriesAvailableForFilterNews: arrayOf(countryCodeType).isRequired,
-    minCountriesAvailableForFilterNews: minFilterItemType,
-    maxCountriesAvailableForFilterNews: maxFilterItemType,
+    minCountriesAvailableForFilterNews: minFilterItemType, //Conditional number, required
+    maxCountriesAvailableForFilterNews: maxFilterItemType, //Conditional number, required
     categoriesAvailableForFilterNews: arrayOf(categoryType).isRequired,
-    minCategoriesAvailableForFilterNews: minFilterItemType,
-    maxCategoriesAvailableForFilterNews: maxFilterItemType,
+    minCategoriesAvailableForFilterNews: minFilterItemType, //Conditional number, required
+    maxCategoriesAvailableForFilterNews: maxFilterItemType, //Conditional number, required
     languagesAvailableForFilterNews: arrayOf(languageCodeType).isRequired,
-    minLanguagesAvailableForFilterNews: minFilterItemType,
-    maxLanguagesAvailableForFilterNews: maxFilterItemType,
+    minLanguagesAvailableForFilterNews: minFilterItemType, //Conditional number, required
+    maxLanguagesAvailableForFilterNews: maxFilterItemType, //Conditional number, required
 };

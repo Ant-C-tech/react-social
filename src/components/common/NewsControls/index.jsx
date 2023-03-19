@@ -147,14 +147,14 @@ NewsControls.propTypes = {
     keyword: string.isRequired,
     setKeyword: func.isRequired,
     countriesAvailableForFilterNews: arrayOf(countryCodeType).isRequired,
-    minCountriesAvailableForFilterNews: minFilterItemType, // Conditional number
-    maxCountriesAvailableForFilterNews: maxFilterItemType, // Conditional number
+    minCountriesAvailableForFilterNews: minFilterItemType, // Conditional number, required
+    maxCountriesAvailableForFilterNews: maxFilterItemType, // Conditional number, required
     categoriesAvailableForFilterNews: arrayOf(categoryType).isRequired,
-    minCategoriesAvailableForFilterNews: minFilterItemType, // Conditional number
-    maxCategoriesAvailableForFilterNews: maxFilterItemType, // Conditional number
+    minCategoriesAvailableForFilterNews: minFilterItemType, // Conditional number, required
+    maxCategoriesAvailableForFilterNews: maxFilterItemType, // Conditional number, required
     languagesAvailableForFilterNews: arrayOf(languageCodeType).isRequired,
-    minLanguagesAvailableForFilterNews: minFilterItemType, // Conditional number
-    maxLanguagesAvailableForFilterNews: maxFilterItemType, // Conditional number
+    minLanguagesAvailableForFilterNews: minFilterItemType, // Conditional number, required
+    maxLanguagesAvailableForFilterNews: maxFilterItemType, // Conditional number, required
     activeTool: toolType,
     setActiveTool: requiredIf(func, (props) => props.createdFor !== "news"),
     textOfNoteCard: requiredIf(string, (props) => props.createdFor !== "news"),
