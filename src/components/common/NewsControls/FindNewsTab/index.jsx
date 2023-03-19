@@ -1,7 +1,7 @@
 import "./styles.css";
 
 import React from "react";
-import PropTypes from "prop-types";
+import { string, bool, func, arrayOf } from "prop-types";
 
 import {
     searchIcon,
@@ -11,6 +11,14 @@ import {
     languagesIcon,
     keywordsIcon,
 } from "@assets";
+
+import {
+    countryCodeType,
+    categoryType,
+    languageCodeType,
+    minFilterItemType,
+    maxFilterItemType,
+} from "@types";
 
 import { COUNTRIES_DATA, CATEGORIES_DATA, LANGUAGES_DATA } from "@constants";
 
@@ -137,94 +145,22 @@ export const FindNewsTab = ({
 };
 
 FindNewsTab.propTypes = {
-    loading: PropTypes.bool.isRequired,
-    selectedCountries: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.keys(COUNTRIES_DATA))
-    ).isRequired,
-    setSelectedCountries: PropTypes.func.isRequired,
-    selectedCategories: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.keys(CATEGORIES_DATA))
-    ).isRequired,
-    setSelectedCategories: PropTypes.func.isRequired,
-    selectedLanguages: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.keys(LANGUAGES_DATA))
-    ).isRequired,
-    setSelectedLanguages: PropTypes.func.isRequired,
-    keyword: PropTypes.string.isRequired,
-    setKeyword: PropTypes.func.isRequired,
-    countriesAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.keys(COUNTRIES_DATA))
-    ).isRequired,
-    minCountriesAvailableForFilterNews: function (
-        props,
-        propName,
-        componentName
-    ) {
-        if (props[propName] !== 1) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-            );
-        }
-    },
-    maxCountriesAvailableForFilterNews: function (
-        props,
-        propName,
-        componentName
-    ) {
-        if (props[propName] < 1 || props[propName] > 5) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-            );
-        }
-    },
-    categoriesAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.keys(CATEGORIES_DATA))
-    ).isRequired,
-    minCategoriesAvailableForFilterNews: function (
-        props,
-        propName,
-        componentName
-    ) {
-        if (props[propName] !== 1) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-            );
-        }
-    },
-    maxCategoriesAvailableForFilterNews: function (
-        props,
-        propName,
-        componentName
-    ) {
-        if (props[propName] < 1 || props[propName] > 5) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-            );
-        }
-    },
-    languagesAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.keys(LANGUAGES_DATA))
-    ).isRequired,
-    minLanguagesAvailableForFilterNews: function (
-        props,
-        propName,
-        componentName
-    ) {
-        if (props[propName] !== 1) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-            );
-        }
-    },
-    maxLanguagesAvailableForFilterNews: function (
-        props,
-        propName,
-        componentName
-    ) {
-        if (props[propName] < 1 || props[propName] > 5) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-            );
-        }
-    },
+    loading: bool.isRequired,
+    selectedCountries: arrayOf(countryCodeType).isRequired,
+    setSelectedCountries: func.isRequired,
+    selectedCategories: arrayOf(categoryType).isRequired,
+    setSelectedCategories: func.isRequired,
+    selectedLanguages: arrayOf(languageCodeType).isRequired,
+    setSelectedLanguages: func.isRequired,
+    keyword: string.isRequired,
+    setKeyword: func.isRequired,
+    countriesAvailableForFilterNews: arrayOf(countryCodeType).isRequired,
+    minCountriesAvailableForFilterNews: minFilterItemType,
+    maxCountriesAvailableForFilterNews: maxFilterItemType,
+    categoriesAvailableForFilterNews: arrayOf(categoryType).isRequired,
+    minCategoriesAvailableForFilterNews: minFilterItemType,
+    maxCategoriesAvailableForFilterNews: maxFilterItemType,
+    languagesAvailableForFilterNews: arrayOf(languageCodeType).isRequired,
+    minLanguagesAvailableForFilterNews: minFilterItemType,
+    maxLanguagesAvailableForFilterNews: maxFilterItemType,
 };
