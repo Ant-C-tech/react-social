@@ -2,9 +2,11 @@ import "./styles.css";
 import { makeNoteIcon, stickyNoteIcon, highlightToolsIcon } from "@assets";
 
 import React from "react";
-import PropTypes from "prop-types";
+import { string, func } from "prop-types";
 
 import { HIGHLIGHTERS } from "@constants";
+
+import { toolType } from "@types";
 
 import { Button, ButtonSmall } from "@common/";
 import { NoteTextArea } from "./NoteTextArea";
@@ -85,12 +87,9 @@ export const EditNewsTab = ({
 };
 
 EditNewsTab.propTypes = {
-    activeTool: PropTypes.oneOf([
-        ...HIGHLIGHTERS.map((highlighter) => highlighter.name),
-        "note-creator",
-    ]),
-    setActiveTool: PropTypes.func.isRequired,
-    textOfNoteCard: PropTypes.string.isRequired,
-    setTextOfNoteCard: PropTypes.func.isRequired,
-    setOpenNoteId: PropTypes.func.isRequired,
+    activeTool: toolType,
+    setActiveTool: func.isRequired,
+    textOfNoteCard: string.isRequired,
+    setTextOfNoteCard: func.isRequired,
+    setOpenNoteId: func.isRequired,
 };
