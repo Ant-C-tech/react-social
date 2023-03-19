@@ -12,6 +12,7 @@ module.exports = function (config, _env) {
         "@pages": resolve("src/pages"),
         "@services": resolve("src/services"),
         "@assets": resolve("src/assets"),
+        "@types": resolve("src/types"),
     });
 
     return config;

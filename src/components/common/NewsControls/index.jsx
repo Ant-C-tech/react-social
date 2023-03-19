@@ -2,15 +2,18 @@ import "./styles.css";
 
 import React from "react";
 import { useState } from "react";
-import PropTypes from "prop-types";
+import { string, bool, func, arrayOf, oneOf } from "prop-types";
 import requiredIf from "react-required-if";
 
 import {
-    COUNTRIES_DATA,
-    CATEGORIES_DATA,
-    LANGUAGES_DATA,
-    HIGHLIGHTERS,
-} from "@constants";
+    newsType,
+    countryCodeType,
+    categoryType,
+    languageCodeType,
+    minFilterItemType,
+    maxFilterItemType,
+    toolType,
+} from "@types";
 
 import { Message, TabsControls, TabPanel } from "@common";
 import { createErrorMessage } from "./utils/createErrorMessage";
@@ -132,219 +135,30 @@ export const NewsControls = ({
 };
 
 NewsControls.propTypes = {
-    news: PropTypes.arrayOf(
-        PropTypes.exact({
-            category: PropTypes.arrayOf(
-                PropTypes.oneOf(Object.keys(CATEGORIES_DATA))
-            ).isRequired,
-            content: PropTypes.string,
-            country: PropTypes.arrayOf(
-                PropTypes.oneOf(
-                    Object.values(COUNTRIES_DATA).map((countryData) => {
-                        // Some specific cases from API
-                        switch (countryData.name) {
-                            case "Nepal":
-                            case "Oman":
-                            case "Croatia":
-                            case "DR Congo":
-                            case "Guatemala":
-                            case "Luxembourg":
-                            case "Panama":
-                            case "Sri Lanka":
-                            case "Vietnam":
-                            case "Libya":
-                            case "Uruguay":
-                                return countryData.name;
-                            case "Burkina Faso":
-                                return "burkina fasco";
-                            case "Costa Rica":
-                                return "costa Rica";
-                            case "Côte d'Ivoire":
-                                return "côte d'Ivoire";
-                            default:
-                                return countryData.name.toLowerCase();
-                        }
-                    })
-                )
-            ).isRequired,
-            creator: PropTypes.arrayOf(PropTypes.string),
-            description: PropTypes.string,
-            highlights: PropTypes.exact({
-                content: PropTypes.arrayOf(
-                    PropTypes.exact({
-                        endIndex: PropTypes.number.isRequired,
-                        highlighter: PropTypes.oneOf(
-                            HIGHLIGHTERS.map((highlighter) => highlighter.name)
-                        ).isRequired,
-                        id: PropTypes.string,
-                        startIndex: PropTypes.number.isRequired,
-                    })
-                ),
-                description: PropTypes.arrayOf(
-                    PropTypes.exact({
-                        endIndex: PropTypes.number.isRequired,
-                        highlighter: PropTypes.oneOf(
-                            HIGHLIGHTERS.map((highlighter) => highlighter.name)
-                        ).isRequired,
-                        id: PropTypes.string,
-                        startIndex: PropTypes.number.isRequired,
-                    })
-                ),
-                title: PropTypes.arrayOf(
-                    PropTypes.exact({
-                        endIndex: PropTypes.number.isRequired,
-                        highlighter: PropTypes.oneOf(
-                            HIGHLIGHTERS.map((highlighter) => highlighter.name)
-                        ).isRequired,
-                        id: PropTypes.string,
-                        startIndex: PropTypes.number.isRequired,
-                    })
-                ),
-            }),
-            image_url: PropTypes.string,
-            keywords: PropTypes.arrayOf(PropTypes.string),
-            language: PropTypes.string.isRequired,
-            link: PropTypes.string.isRequired,
-            notes: PropTypes.exact({
-                content: PropTypes.arrayOf(
-                    PropTypes.exact({
-                        noteId: PropTypes.string.isRequired,
-                        noteIndex: PropTypes.number.isRequired,
-                        noteText: PropTypes.string.isRequired,
-                    })
-                ),
-                description: PropTypes.arrayOf(
-                    PropTypes.exact({
-                        noteId: PropTypes.string.isRequired,
-                        noteIndex: PropTypes.number.isRequired,
-                        noteText: PropTypes.string.isRequired,
-                    })
-                ),
-                title: PropTypes.arrayOf(
-                    PropTypes.exact({
-                        noteId: PropTypes.string.isRequired,
-                        noteIndex: PropTypes.number.isRequired,
-                        noteText: PropTypes.string.isRequired,
-                    })
-                ),
-            }),
-            pubDate: PropTypes.string.isRequired,
-            source_id: PropTypes.string.isRequired,
-            title: PropTypes.string.isRequired,
-            video_url: PropTypes.string,
-        }).isRequired
-    ).isRequired,
-
-    error: PropTypes.string,
-    loading: PropTypes.bool.isRequired,
-    selectedCountries: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.keys(COUNTRIES_DATA))
-    ).isRequired,
-    setSelectedCountries: PropTypes.func.isRequired,
-    selectedCategories: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.keys(CATEGORIES_DATA))
-    ).isRequired,
-    setSelectedCategories: PropTypes.func.isRequired,
-    selectedLanguages: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.keys(LANGUAGES_DATA))
-    ).isRequired,
-    setSelectedLanguages: PropTypes.func.isRequired,
-    keyword: PropTypes.string.isRequired,
-    setKeyword: PropTypes.func.isRequired,
-    countriesAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.keys(COUNTRIES_DATA))
-    ).isRequired,
-    minCountriesAvailableForFilterNews: function (
-        props,
-        propName,
-        componentName
-    ) {
-        if (props[propName] !== 1) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-            );
-        }
-    },
-    maxCountriesAvailableForFilterNews: function (
-        props,
-        propName,
-        componentName
-    ) {
-        if (props[propName] < 0 || props[propName] > 5) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-            );
-        }
-    },
-    categoriesAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.keys(CATEGORIES_DATA))
-    ).isRequired,
-    minCategoriesAvailableForFilterNews: function (
-        props,
-        propName,
-        componentName
-    ) {
-        if (props[propName] !== 1) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-            );
-        }
-    },
-    maxCategoriesAvailableForFilterNews: function (
-        props,
-        propName,
-        componentName
-    ) {
-        if (props[propName] < 0 || props[propName] > 5) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-            );
-        }
-    },
-    languagesAvailableForFilterNews: PropTypes.arrayOf(
-        PropTypes.oneOf(Object.keys(LANGUAGES_DATA))
-    ).isRequired,
-    minLanguagesAvailableForFilterNews: function (
-        props,
-        propName,
-        componentName
-    ) {
-        if (props[propName] !== 1) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-            );
-        }
-    },
-    maxLanguagesAvailableForFilterNews: function (
-        props,
-        propName,
-        componentName
-    ) {
-        if (props[propName] < 0 || props[propName] > 5) {
-            return new Error(
-                `Invalid prop ${propName} supplied to ${componentName}. Validation failed.`
-            );
-        }
-    },
-    activeTool: PropTypes.oneOf([
-        ...HIGHLIGHTERS.map((highlighter) => highlighter.name),
-        "note-creator",
-    ]),
-    setActiveTool: requiredIf(
-        PropTypes.func,
-        (props) => props.createdFor !== "news"
-    ),
-    textOfNoteCard: requiredIf(
-        PropTypes.string,
-        (props) => props.createdFor !== "news"
-    ),
-    setTextOfNoteCard: requiredIf(
-        PropTypes.func,
-        (props) => props.createdFor !== "news"
-    ),
-    setOpenNoteId: requiredIf(
-        PropTypes.func,
-        (props) => props.createdFor !== "news"
-    ),
-    createdFor: PropTypes.oneOf(["favorite news", "news"]).isRequired,
+    news: arrayOf(newsType).isRequired,
+    error: string,
+    loading: bool.isRequired,
+    selectedCountries: arrayOf(countryCodeType).isRequired,
+    setSelectedCountries: func.isRequired,
+    selectedCategories: arrayOf(categoryType).isRequired,
+    setSelectedCategories: func.isRequired,
+    selectedLanguages: arrayOf(languageCodeType).isRequired,
+    setSelectedLanguages: func.isRequired,
+    keyword: string.isRequired,
+    setKeyword: func.isRequired,
+    countriesAvailableForFilterNews: arrayOf(countryCodeType).isRequired,
+    minCountriesAvailableForFilterNews: minFilterItemType, // Conditional number
+    maxCountriesAvailableForFilterNews: maxFilterItemType, // Conditional number
+    categoriesAvailableForFilterNews: arrayOf(categoryType).isRequired,
+    minCategoriesAvailableForFilterNews: minFilterItemType, // Conditional number
+    maxCategoriesAvailableForFilterNews: maxFilterItemType, // Conditional number
+    languagesAvailableForFilterNews: arrayOf(languageCodeType).isRequired,
+    minLanguagesAvailableForFilterNews: minFilterItemType, // Conditional number
+    maxLanguagesAvailableForFilterNews: maxFilterItemType, // Conditional number
+    activeTool: toolType,
+    setActiveTool: requiredIf(func, (props) => props.createdFor !== "news"),
+    textOfNoteCard: requiredIf(string, (props) => props.createdFor !== "news"),
+    setTextOfNoteCard: requiredIf(func, (props) => props.createdFor !== "news"),
+    setOpenNoteId: requiredIf(func, (props) => props.createdFor !== "news"),
+    createdFor: oneOf(["favorite news", "news"]).isRequired,
 };
