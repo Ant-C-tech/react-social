@@ -233,13 +233,14 @@ export const NewsCard = ({
                             text={
                                 isContentShown ? "Hide full text" : "Read More"
                             }
-                            onClick={() =>
-                                setIsContentShown((prevState) => !prevState)
-                            }
-                            buttonImageIcon={
+                            buttonIconSrc={
                                 isContentShown
                                     ? hideFullTextButtonIcon
                                     : readMoreButtonIcon
+                            }
+                            active={false}
+                            onClick={() =>
+                                setIsContentShown((prevState) => !prevState)
                             }
                         />
                     )}
@@ -268,12 +269,13 @@ export const NewsCard = ({
                                 ? "Remove from favorite"
                                 : "Add to favorite"
                         }
+                        buttonIconSrc={
+                            isFavorite ? removeIcon : addToFavoriteButtonIcon
+                        }
+                        active={false}
                         onClick={() => {
                             isFavorite ? removeFromFavorite() : addToFavorite();
                         }}
-                        buttonImageIcon={
-                            isFavorite ? removeIcon : addToFavoriteButtonIcon
-                        }
                     />
                 </div>
             </div>

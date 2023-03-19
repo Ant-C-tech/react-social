@@ -113,6 +113,9 @@ export const TopBar = ({ isAuthorized, setIsAuthorized }) => {
                     {isAuthorized && (
                         <ButtonSmall
                             iconSrc={exitIcon}
+                            title={"Log out"}
+                            form="round"
+                            active={false}
                             onClick={() => setIsAuthorized(false)}
                         />
                     )}

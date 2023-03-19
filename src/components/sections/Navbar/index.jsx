@@ -134,8 +134,9 @@ export const NavBar = ({ contacts }) => {
             <hr className="navbar-divider" />
             <Button
                 text={isContactsShown ? "Hide Contacts" : "Show Contacts"}
+                buttonIconSrc={contactsButtonIcon}
+                active={false}
                 onClick={() => setIsContactsShown((prevState) => !prevState)}
-                buttonImageIcon={contactsButtonIcon}
             />
             {isContactsShown && (
                 <ul className="navbar-contacts">

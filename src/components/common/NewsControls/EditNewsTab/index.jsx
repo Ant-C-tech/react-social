@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 
 import { HIGHLIGHTERS } from "@constants";
 
-import { Button } from "@common/";
+import { Button, ButtonSmall } from "@common/";
 import { NoteTextArea } from "./NoteTextArea";
 
 export const EditNewsTab = ({
@@ -33,17 +33,18 @@ export const EditNewsTab = ({
                 {HIGHLIGHTERS.map((highlighter, index) => {
                     const { name, icon, tooltipText } = highlighter;
                     return (
-                        <Button
+                        <ButtonSmall
                             key={index}
-                            active={name === activeTool}
+                            iconSrc={icon}
+                            title={tooltipText}
+                            form="square"
+                            active={name === activeTool ? true : false}
                             onClick={() => {
                                 setActiveTool(
                                     name === activeTool ? null : name
                                 );
                                 setOpenNoteId("");
                             }}
-                            buttonImageIcon={icon}
-                            tooltipText={tooltipText}
                         />
                     );
                 })}
@@ -61,14 +62,14 @@ export const EditNewsTab = ({
             <div className="edit-news-tab-control">
                 <Button
                     text="Create Note"
-                    active={"note-creator" === activeTool}
+                    active={activeTool === "note-creator"}
                     onClick={() => {
                         setActiveTool(
                             "note-creator" === activeTool ? "" : "note-creator"
                         );
                         setOpenNoteId("");
                     }}
-                    buttonImageIcon={stickyNoteIcon}
+                    buttonIconSrc={stickyNoteIcon}
                 />
             </div>
             {"note-creator" === activeTool && (

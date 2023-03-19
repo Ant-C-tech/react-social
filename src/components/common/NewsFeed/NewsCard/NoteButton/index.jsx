@@ -34,7 +34,7 @@ export const NoteButton = ({
             role="button"
             tabIndex={0}
             id={id}
-            className={`button button-without-text note-button ${
+            className={`button-small note-button ${
                 isOpen ? "button-active" : ""
             }`}
             ref={noteButtonRef}

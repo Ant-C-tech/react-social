@@ -71,6 +71,8 @@ export const FilterItem = ({
                     selectedItems[0] !== "all" && (
                         <Button
                             text={addButtonText}
+                            buttonIconSrc={addIcon}
+                            active={false}
                             onClick={() => {
                                 if (!loading) {
                                     addSelectWithNotSelectedValue(
@@ -80,12 +82,13 @@ export const FilterItem = ({
                                     );
                                 }
                             }}
-                            buttonImageIcon={addIcon}
                         />
                     )}
                 {selectedItems.length !== minItemsAvailableForFilterNews && (
                     <Button
                         text={removeButtonText}
+                        buttonIconSrc={removeIcon}
+                        active={false}
                         onClick={() => {
                             if (!loading) {
                                 removeLastSelect(
@@ -94,7 +97,6 @@ export const FilterItem = ({
                                 );
                             }
                         }}
-                        buttonImageIcon={removeIcon}
                     />
                 )}
             </div>
