@@ -2,7 +2,7 @@ import "./styles.css";
 
 import React from "react";
 import { useEffect } from "react";
-import PropTypes from "prop-types";
+import { string, func } from "prop-types";
 
 import { TextArea } from "@common";
 
@@ -21,6 +21,6 @@ export const NoteTextArea = ({ text, setText }) => {
 };
 
 NoteTextArea.propTypes = {
-    text: PropTypes.string.isRequired,
-    setText: PropTypes.func.isRequired,
+    text: string.isRequired,
+    setText: func.isRequired,
 };
