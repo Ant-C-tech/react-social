@@ -1,4 +1,5 @@
 import React from "react";
+import { number, func, arrayOf, oneOf } from "prop-types";
 import { StyledTabs } from "./StyledTabs";
 import { StyledTab } from "./StyledTab";
 
@@ -9,6 +10,7 @@ export const TabsControls = ({ tabs, currentTab, changeTab }) => {
             "aria-controls": `tabpanel-${index}`,
         };
     };
+    console.log(tabs);
 
     return (
         <StyledTabs value={currentTab} onChange={changeTab} aria-label="tabs">
@@ -21,4 +23,10 @@ export const TabsControls = ({ tabs, currentTab, changeTab }) => {
             ))}
         </StyledTabs>
     );
+};
+
+TabsControls.propTypes = {
+    tabs: arrayOf(oneOf(["Find news", "Edit news"])).isRequired,
+    currentTab: number.isRequired,
+    changeTab: func.isRequired,
 };
