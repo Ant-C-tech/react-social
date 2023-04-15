@@ -1,9 +1,10 @@
 import { string, number, exact, arrayOf, oneOf } from "prop-types";
+import { categoryType } from "./categoryType";
 
-import { COUNTRIES_DATA, CATEGORIES_DATA, HIGHLIGHTERS } from "@constants";
+import { COUNTRIES_DATA, HIGHLIGHTERS } from "@constants";
 
 export const newsType = exact({
-    category: arrayOf(oneOf(Object.keys(CATEGORIES_DATA))).isRequired,
+    category: arrayOf(categoryType).isRequired,
     content: string,
     country: arrayOf(
         oneOf(
@@ -21,6 +22,12 @@ export const newsType = exact({
                     case "Vietnam":
                     case "Libya":
                     case "Uruguay":
+                    case "Bosnia And Herzegovina":
+                    case "Tunisia":
+                    case "Afghanistan":
+                    case "Zimbabwe":
+                    case "El Salvador":
+                    case "Montenegro":
                         return countryData.name;
                     case "Burkina Faso":
                         return "burkina fasco";

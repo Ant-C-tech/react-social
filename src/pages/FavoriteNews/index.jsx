@@ -210,7 +210,7 @@ export const FavoriteNews = () => {
                         newsSet={newsToShow}
                         favoriteNews={favoriteNews}
                         setFavoriteNews={setFavoriteNews}
-                        keywords={[keyword]}
+                        keyword={keyword}
                         startNews={startNews}
                         loading={false}
                         setNeedMoreNews={setNeedMoreNews}

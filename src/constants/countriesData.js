@@ -3,6 +3,10 @@ export const COUNTRIES_DATA = {
         name: "All",
         icon: "🌎",
     },
+    af: {
+        name: "Afghanistan",
+        icon: "🇦🇫",
+    },
     dz: {
         name: "Algeria",
         icon: "🇩🇿",
@@ -54,6 +58,10 @@ export const COUNTRIES_DATA = {
     bf: {
         name: "Burkina Faso",
         icon: "🇧🇫",
+    },
+    ba: {
+        name: "Bosnia And Herzegovina",
+        icon: "🇧🇦",
     },
     cm: {
         name: "Cameroon",
@@ -243,6 +251,10 @@ export const COUNTRIES_DATA = {
         name: "Morocco",
         icon: "🇲🇦",
     },
+    me: {
+        name: "Montenegro",
+        icon: "🇲🇪",
+    },
     mz: {
         name: "Mozambique",
         icon: "🇲🇿",
@@ -347,6 +359,10 @@ export const COUNTRIES_DATA = {
         name: "Somalia",
         icon: "🇸🇴",
     },
+    sv: {
+        name: "El Salvador",
+        icon: "🇸🇻",
+    },
     za: {
         name: "South Africa",
         icon: "🇿🇦",
@@ -387,6 +403,10 @@ export const COUNTRIES_DATA = {
         name: "Thailand",
         icon: "🇹🇭",
     },
+    tn: {
+        name: "Tunisia",
+        icon: "🇹🇳",
+    },
     tr: {
         name: "Turkey",
         icon: "🇹🇷",
@@ -422,6 +442,10 @@ export const COUNTRIES_DATA = {
     vi: {
         name: "Vietnam",
         icon: "🇻🇳",
+    },
+    zw: {
+        name: "Zimbabwe",
+        icon: "🇿🇼",
     },
     zm: {
         name: "Zambia",

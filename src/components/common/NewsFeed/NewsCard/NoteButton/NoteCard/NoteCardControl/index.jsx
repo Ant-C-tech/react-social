@@ -1,6 +1,7 @@
 import "./styles.css";
 
 import React from "react";
+import { string, func } from "prop-types";
 
 export const NoteCardControl = ({ text, onClick }) => {
     return (
@@ -8,4 +9,9 @@ export const NoteCardControl = ({ text, onClick }) => {
             {text}
         </button>
     );
+};
+
+NoteCardControl.propTypes = {
+    text: string.isRequired,
+    onClick: func.isRequired,
 };

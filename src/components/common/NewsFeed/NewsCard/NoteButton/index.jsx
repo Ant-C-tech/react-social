@@ -3,8 +3,19 @@ import "./styles.css";
 import { stickyNoteIcon } from "@assets";
 
 import React from "react";
+import {
+    string,
+    bool,
+    func,
+    arrayOf,
+    oneOfType,
+    instanceOf,
+    shape,
+} from "prop-types";
 import { useRef, useState } from "react";
+
 import { NoteCard } from "./NoteCard";
+import { newsType } from "@types";
 
 export const NoteButton = ({
     id,
@@ -73,4 +84,20 @@ export const NoteButton = ({
             )}
         </span>
     );
+};
+
+NoteButton.propTypes = {
+    id: string.isRequired,
+    noteText: string.isRequired,
+    isOpen: bool.isRequired,
+    setActiveTool: func.isRequired,
+    setOpenNoteId: func.isRequired,
+    newsCardRef: oneOfType([
+        // Either a function
+        func,
+        // Or the instance of a DOM native element (see the note about SSR)
+        shape({ current: instanceOf(Element) }),
+    ]),
+    favoriteNews: arrayOf(newsType).isRequired,
+    setFavoriteNews: func.isRequired,
 };

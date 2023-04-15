@@ -11,19 +11,23 @@ import {
 } from "@assets";
 
 import React from "react";
+import { string, bool, func, arrayOf, oneOf } from "prop-types";
 import { useState, useRef } from "react";
 import Highlighter from "react-highlight-words";
-
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import requiredIf from "react-required-if";
+
 import { CustomLink } from "@common/CustomLink/";
 import { Button } from "@common/Button/";
 
 import { getEditedHtmlStructure } from "./utils";
 
+import { newsType, toolType } from "@types";
+
 export const NewsCard = ({
     createdFor,
     news,
-    keywords,
+    keyword,
     activeTool,
     isFavorite,
     openNoteId,
@@ -111,7 +115,7 @@ export const NewsCard = ({
                         {createdFor === "news" ? (
                             <Highlighter
                                 highlightClassName="news-card-highlight"
-                                searchWords={keywords}
+                                searchWords={[keyword]}
                                 autoEscape={true}
                                 textToHighlight={title || ""}
                             />
@@ -120,7 +124,7 @@ export const NewsCard = ({
                                 title,
                                 highlights && highlights["title"],
                                 notes && notes["title"],
-                                keywords,
+                                [keyword],
                                 openNoteId,
                                 setOpenNoteId,
                                 setActiveTool,
@@ -174,7 +178,7 @@ export const NewsCard = ({
                     {createdFor === "news" ? (
                         <Highlighter
                             highlightClassName="news-card-highlight"
-                            searchWords={keywords}
+                            searchWords={[keyword]}
                             autoEscape={true}
                             textToHighlight={description || ""}
                         />
@@ -183,7 +187,7 @@ export const NewsCard = ({
                             description,
                             highlights && highlights["description"],
                             notes && notes["description"],
-                            keywords,
+                            [keyword],
                             openNoteId,
                             setOpenNoteId,
                             setActiveTool,
@@ -206,7 +210,7 @@ export const NewsCard = ({
                         {createdFor === "news" ? (
                             <Highlighter
                                 highlightClassName="news-card-highlight"
-                                searchWords={keywords}
+                                searchWords={[keyword]}
                                 autoEscape={true}
                                 textToHighlight={content || ""}
                             />
@@ -215,7 +219,7 @@ export const NewsCard = ({
                                 content,
                                 highlights && highlights["content"],
                                 notes && notes["content"],
-                                keywords,
+                                [keyword],
                                 openNoteId,
                                 setOpenNoteId,
                                 setActiveTool,
@@ -294,4 +298,21 @@ export const NewsCard = ({
             </footer>
         </article>
     );
+};
+
+NewsCard.propTypes = {
+    createdFor: oneOf(["favorite news", "news"]).isRequired,
+    news: newsType.isRequired,
+    keyword: string.isRequired,
+    activeTool: toolType,
+    isFavorite: bool.isRequired,
+    openNoteId: requiredIf(string, (props) => props.createdFor !== "news"),
+    setOpenNoteId: requiredIf(func, (props) => props.createdFor !== "news"),
+    setActiveTool: requiredIf(func, (props) => props.createdFor !== "news"),
+    addToFavorite: func.isRequired,
+    removeFromFavorite: func.isRequired,
+    addHighlight: requiredIf(func, (props) => props.createdFor !== "news"),
+    addNote: requiredIf(func, (props) => props.createdFor !== "news"),
+    favoriteNews: arrayOf(newsType).isRequired,
+    setFavoriteNews: func.isRequired,
 };

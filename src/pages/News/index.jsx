@@ -190,7 +190,7 @@ export const News = () => {
                         newsSet={news}
                         favoriteNews={favoriteNews}
                         setFavoriteNews={setFavoriteNews}
-                        keywords={[keyword]}
+                        keyword={keyword}
                         startNews={startNews}
                         setNeedMoreNews={setNeedMoreNews}
                         needScroll={needScroll}

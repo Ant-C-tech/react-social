@@ -2,8 +2,19 @@ import "./styles.css";
 
 import React from "react";
 import { useEffect, useRef } from "react";
+import {
+    string,
+    number,
+    bool,
+    func,
+    arrayOf,
+    element,
+    oneOf,
+} from "prop-types";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { Waypoint } from "react-waypoint";
+import requiredIf from "react-required-if";
+import { newsType, toolType } from "@types";
 
 import {
     addHighlight,
@@ -20,7 +31,7 @@ export const NewsFeed = ({
     newsSet,
     favoriteNews,
     setFavoriteNews,
-    keywords,
+    keyword,
     startNews,
     loading,
     setNeedMoreNews,
@@ -68,7 +79,7 @@ export const NewsFeed = ({
                             <NewsCard
                                 createdFor={createdFor}
                                 news={news}
-                                keywords={keywords}
+                                keyword={keyword}
                                 activeTool={activeTool}
                                 isFavorite={getIsFavorite(
                                     favoriteNews,
@@ -96,7 +107,7 @@ export const NewsFeed = ({
                                         favoriteNews,
                                         setFavoriteNews,
                                         activeTool,
-                                        keywords,
+                                        [keyword],
                                         link,
                                         targetPart
                                     );
@@ -105,7 +116,7 @@ export const NewsFeed = ({
                                     addNote(
                                         favoriteNews,
                                         setFavoriteNews,
-                                        keywords,
+                                        [keyword],
                                         link,
                                         targetPart,
                                         textOfNoteCard,
@@ -129,4 +140,24 @@ export const NewsFeed = ({
             )}
         </section>
     );
+};
+
+NewsFeed.propTypes = {
+    newsSet: arrayOf(newsType).isRequired,
+    favoriteNews: arrayOf(newsType).isRequired,
+    setFavoriteNews: func.isRequired,
+    keyword: string.isRequired,
+    startNews: number.isRequired,
+    loading: bool.isRequired,
+    setNeedMoreNews: func.isRequired,
+    needScroll: bool.isRequired,
+    setNeedScroll: func.isRequired,
+    message: element,
+    activeTool: toolType,
+    setActiveTool: requiredIf(func, (props) => props.createdFor !== "news"),
+    textOfNoteCard: requiredIf(string, (props) => props.createdFor !== "news"),
+    setTextOfNoteCard: requiredIf(func, (props) => props.createdFor !== "news"),
+    openNoteId: requiredIf(string, (props) => props.createdFor !== "news"),
+    setOpenNoteId: requiredIf(func, (props) => props.createdFor !== "news"),
+    createdFor: oneOf(["favorite news", "news"]).isRequired,
 };
