@@ -4,11 +4,16 @@
     justify-content: space-around;
     max-width: 90%;
     margin: 0 auto 15px;
-    padding-top: 15px;
+    padding: 15px;
 
     border-radius: 5px;
     background: #dce2e4;
     border: 1px solid #707070;
+}
+
+.edit-news-tab-control-toolbar > * {
+    width: calc(100% / 3 - 10px);
+    margin: 5px;
 }
 
 .edit-news-tab-control {

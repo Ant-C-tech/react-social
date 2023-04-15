@@ -2,6 +2,8 @@ import "./styles.css";
 
 import React from "react";
 import { useEffect } from "react";
+import { string, func } from "prop-types";
+
 import { TextArea } from "@common";
 
 export const NoteTextArea = ({ text, setText }) => {
@@ -16,4 +18,9 @@ export const NoteTextArea = ({ text, setText }) => {
             <TextArea text={text} setText={setText} />
         </div>
     );
+};
+
+NoteTextArea.propTypes = {
+    text: string.isRequired,
+    setText: func.isRequired,
 };

@@ -3,8 +3,19 @@ import "./styles.css";
 import { stickyNoteIcon } from "@assets";
 
 import React from "react";
+import {
+    string,
+    bool,
+    func,
+    arrayOf,
+    oneOfType,
+    instanceOf,
+    shape,
+} from "prop-types";
 import { useRef, useState } from "react";
+
 import { NoteCard } from "./NoteCard";
+import { newsType } from "@types";
 
 export const NoteButton = ({
     id,
@@ -34,18 +45,18 @@ export const NoteButton = ({
             role="button"
             tabIndex={0}
             id={id}
-            className={`button button-without-text note-button ${
+            className={`button-small note-button ${
                 isOpen ? "button-active" : ""
             }`}
             ref={noteButtonRef}
             onClick={() => {
-                setActiveTool("");
+                setActiveTool(null);
                 setOpenNoteId(id);
                 getNoteCardPosition();
             }}
             onKeyUp={(event) => {
                 if (event.key === "Enter") {
-                    setActiveTool("");
+                    setActiveTool(null);
                     setOpenNoteId(id);
                     getNoteCardPosition();
                 } else if (event.key === "Escape") {
@@ -73,4 +84,20 @@ export const NoteButton = ({
             )}
         </span>
     );
+};
+
+NoteButton.propTypes = {
+    id: string.isRequired,
+    noteText: string.isRequired,
+    isOpen: bool.isRequired,
+    setActiveTool: func.isRequired,
+    setOpenNoteId: func.isRequired,
+    newsCardRef: oneOfType([
+        // Either a function
+        func,
+        // Or the instance of a DOM native element (see the note about SSR)
+        shape({ current: instanceOf(Element) }),
+    ]),
+    favoriteNews: arrayOf(newsType).isRequired,
+    setFavoriteNews: func.isRequired,
 };

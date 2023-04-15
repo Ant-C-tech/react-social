@@ -3,6 +3,7 @@ import "./app.css";
 import React from "react";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { uniqueNamesGenerator, names, starWars } from "unique-names-generator";
 
 import { TopBar, NavBar } from "@sections";
 import { Message } from "@common";
@@ -33,25 +34,15 @@ const App = () => {
     const [isAuthorized, setIsAuthorized] = useState(false);
 
     // Mock data for contacts list
-
-    // eslint-disable-next-line no-undef
-    const rug = require("random-username-generator");
-    rug.setSeperator(" ");
-
-    const getRandomNameToUpper = () => {
-        const randomName = rug.generate();
-        return randomName
-            .split(" ")
-            .map((word) => {
-                return `${word[0].toUpperCase()}${word.slice(1)}`;
-            })
-            .join(" ");
+    const config = {
+        dictionaries: [names, starWars],
+        separator: " ",
     };
 
     const contactsCounter = 7;
     const contacts = [];
     for (let index = 0; index < contactsCounter; index++) {
-        contacts.push(getRandomNameToUpper());
+        contacts.push(uniqueNamesGenerator(config));
     }
     // End of Mock data for contacts list
 

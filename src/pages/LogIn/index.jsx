@@ -7,7 +7,7 @@ export const LogIn = () => {
     return (
         <>
             <Content>
-                <Message type={"message-info"} title={"LogIn"}>
+                <Message type={"message-warning"} title={"LogIn"}>
                     <p>
                         Sorry, this functionality is in development at the
                         moment.

@@ -1,6 +1,6 @@
 export * from "./Button";
 export * from "./CustomLink";
-export * from "./IconButtonComponent";
+export * from "./ButtonSmall";
 export * from "./InputComponent";
 export * from "./Message";
 export * from "./NewsControls";

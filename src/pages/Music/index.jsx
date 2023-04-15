@@ -7,7 +7,7 @@ export const Music = () => {
     return (
         <>
             <Content>
-                <Message type={"message-info"} title={"Music"}>
+                <Message type={"message-warning"} title={"Music"}>
                     <p>
                         Sorry, this functionality is in development at the
                         moment.

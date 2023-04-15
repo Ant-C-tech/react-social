@@ -2,28 +2,26 @@ import "./styles.css";
 
 import React from "react";
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 import { DebounceInput } from "react-debounce-input";
-import { BackspaceTwoTone } from "@material-ui/icons";
+import { removeIcon } from "@assets";
 
-export const InputComponent = ({
-    type,
-    minLength,
-    debounceTimeout,
-    placeholder,
-    value,
-    setValue,
-    icon,
-}) => {
+export const InputComponent = ({ placeholder, value, setValue, iconSrc }) => {
     const [isFocused, setIsFocused] = useState(false);
 
     return (
         <div className={`input-component ${isFocused ? "withFocus" : ""}`}>
-            <img className="input-icon" src={icon} alt="#" aria-hidden={true} />
+            <img
+                className="input-icon"
+                src={iconSrc}
+                alt="#"
+                aria-hidden={true}
+            />
             <DebounceInput
-                type={type}
-                minLength={minLength}
-                debounceTimeout={debounceTimeout}
+                type="text"
+                minLength={2}
+                debounceTimeout={1000}
                 placeholder={placeholder}
                 value={value}
                 onChange={(event) => {
@@ -40,9 +38,21 @@ export const InputComponent = ({
                         setValue("");
                     }}
                 >
-                    <BackspaceTwoTone className="input-component-clear-button-icon" />
+                    <img
+                        className="input-component-clear-button-icon"
+                        src={removeIcon}
+                        alt="#"
+                        aria-hidden={true}
+                    />
                 </button>
             )}
         </div>
     );
+};
+
+InputComponent.propTypes = {
+    placeholder: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    setValue: PropTypes.func.isRequired,
+    iconSrc: PropTypes.string.isRequired,
 };

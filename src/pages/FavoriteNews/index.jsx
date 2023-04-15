@@ -3,15 +3,14 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { useLocalStorage } from "@hooks/useLocalStorage";
 
+import { COUNTRIES_DATA, CATEGORIES_DATA, LANGUAGES_DATA } from "@constants";
+
 import {
-    getActualizatedCategoriesObject,
-    getLanguagesObject,
     getFilteredNews,
     updateAvailableParametersForFiltering,
     getNewsFilteredByKeyword,
-    getCountriesForPrompt,
-    getCategoriesForPrompt,
-    getLanguagesForPrompt,
+    getDataForPrompt,
+    // getCategoriesForPrompt,
 } from "./utils";
 
 import { ControlBar, Content } from "@sections";
@@ -48,7 +47,7 @@ export const FavoriteNews = () => {
     ] = useState([]);
 
     const [keyword, setKeyword] = useState("");
-    const [activeTool, setActiveTool] = useState("");
+    const [activeTool, setActiveTool] = useState(null);
     const [textOfNoteCard, setTextOfNoteCard] = useState("");
     const [openNoteId, setOpenNoteId] = useState("");
 
@@ -211,7 +210,7 @@ export const FavoriteNews = () => {
                         newsSet={newsToShow}
                         favoriteNews={favoriteNews}
                         setFavoriteNews={setFavoriteNews}
-                        keywords={[keyword]}
+                        keyword={keyword}
                         startNews={startNews}
                         loading={false}
                         setNeedMoreNews={setNeedMoreNews}
@@ -222,14 +221,20 @@ export const FavoriteNews = () => {
                                 <NoFavoriteNewsMessage />
                             ) : newsToShow.length === 0 ? (
                                 <NothingWasFoundMessage
-                                    countriesForPrompt={getCountriesForPrompt(
-                                        newsForPrompt
+                                    countriesForPrompt={getDataForPrompt(
+                                        COUNTRIES_DATA,
+                                        newsForPrompt,
+                                        "country"
                                     )}
-                                    categoriesForPrompt={getCategoriesForPrompt(
-                                        newsForPrompt
+                                    categoriesForPrompt={getDataForPrompt(
+                                        CATEGORIES_DATA,
+                                        newsForPrompt,
+                                        "category"
                                     )}
-                                    languagesForPrompt={getLanguagesForPrompt(
-                                        newsForPrompt
+                                    languagesForPrompt={getDataForPrompt(
+                                        LANGUAGES_DATA,
+                                        newsForPrompt,
+                                        "language"
                                     )}
                                 />
                             ) : null
@@ -240,6 +245,7 @@ export const FavoriteNews = () => {
                         setTextOfNoteCard={setTextOfNoteCard}
                         openNoteId={openNoteId}
                         setOpenNoteId={setOpenNoteId}
+                        createdFor="favorite news"
                     />
                 }
             </Content>
@@ -267,45 +273,54 @@ export const FavoriteNews = () => {
                             maxCountriesAvailableForFilterNews={
                                 countriesAvailableForFilterFavoriteNews.length -
                                     1 >
-                                maxParametersLength
+                                    maxParametersLength ||
+                                //First render
+                                countriesAvailableForFilterFavoriteNews.length ===
+                                    0
                                     ? maxParametersLength
                                     : countriesAvailableForFilterFavoriteNews.length -
                                       1
                             }
-                            categoriesAvailableForFilterNews={getActualizatedCategoriesObject(
+                            categoriesAvailableForFilterNews={
                                 categoriesAvailableForFilterFavoriteNews
-                            )}
+                            }
                             minCategoriesAvailableForFilterNews={
                                 minParametersLength
                             }
                             maxCategoriesAvailableForFilterNews={
                                 categoriesAvailableForFilterFavoriteNews.length -
                                     1 >
-                                maxParametersLength
+                                    maxParametersLength ||
+                                //First render
+                                categoriesAvailableForFilterFavoriteNews.length ===
+                                    0
                                     ? maxParametersLength
                                     : categoriesAvailableForFilterFavoriteNews.length -
                                       1
                             }
-                            languagesAvailableForFilterNews={getLanguagesObject(
+                            languagesAvailableForFilterNews={
                                 languagesAvailableForFilterFavoriteNews
-                            )}
+                            }
                             minLanguagesAvailableForFilterNews={
                                 minParametersLength
                             }
                             maxLanguagesAvailableForFilterNews={
                                 languagesAvailableForFilterFavoriteNews.length -
                                     1 >
-                                maxParametersLength
+                                    maxParametersLength ||
+                                //First render
+                                languagesAvailableForFilterFavoriteNews.length ===
+                                    0
                                     ? maxParametersLength
                                     : languagesAvailableForFilterFavoriteNews.length -
                                       1
                             }
-                            isHighLightersBar={true}
                             activeTool={activeTool}
                             setActiveTool={setActiveTool}
                             textOfNoteCard={textOfNoteCard}
                             setTextOfNoteCard={setTextOfNoteCard}
                             setOpenNoteId={setOpenNoteId}
+                            createdFor="favorite news"
                         />
                     )
                 }

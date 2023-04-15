@@ -27,20 +27,17 @@
     transition: box-shadow ease-in-out 0.2s, color ease-in-out 0.2s;
 }
 
-.button-without-text {
-    width: 54px;
-    min-width: 25%;
-    padding: 0;
-}
-
 .button:hover,
-.button:focus-visible,
 .button-active {
     color: #e0004d;
     border-color: #e0004d;
 
     outline: none;
+    box-shadow: 0px 0px 0px 0px #718b93;
+}
 
+.button:focus-visible {
+    outline: none;
     box-shadow: 0px 0px 0px 0px #718b93;
 }
 

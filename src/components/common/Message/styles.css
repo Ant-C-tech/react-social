@@ -40,3 +40,13 @@
 
     background-color: #fff4bd;
 }
+
+.message-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: #323e42;
+
+    background-color: #fad3e7;
+}

@@ -1,9 +1,11 @@
-import { getCountryCodesByNames } from "@utils/getCountryCodesByNames";
+import { COUNTRIES_DATA } from "@constants";
+import { getCodesByNames } from "./";
 
 export const getNewsFilteredByCountry = (news, selectedCountries) => {
     const newsFilteredByCountry = [];
     news.forEach((currentNews) => {
-        const currentFavoriteNewsCountryCodes = getCountryCodesByNames(
+        const currentFavoriteNewsCountryCodes = getCodesByNames(
+            COUNTRIES_DATA,
             currentNews.country
         );
         let isCurrentNewsMatchesToFilterParameters = false;

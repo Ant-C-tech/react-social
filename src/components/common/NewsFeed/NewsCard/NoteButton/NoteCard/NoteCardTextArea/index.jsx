@@ -1,6 +1,7 @@
 import "./styles.css";
 
 import React from "react";
+import { string, func } from "prop-types";
 import { useEffect } from "react";
 import { TextArea } from "@common";
 
@@ -11,8 +12,13 @@ export const NoteCardTextArea = ({ text, setText }) => {
     }, []);
 
     return (
-        <div className="note-card-textarea">
+        <span className="note-card-textarea">
             <TextArea text={text} setText={setText} rows={4} />
-        </div>
+        </span>
     );
+};
+
+NoteCardTextArea.propTypes = {
+    text: string.isRequired,
+    setText: func.isRequired,
 };

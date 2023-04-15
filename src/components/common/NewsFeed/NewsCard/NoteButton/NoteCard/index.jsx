@@ -1,12 +1,13 @@
 import "./styles.css";
 
 import React from "react";
+import { string, number, func, arrayOf } from "prop-types";
 import { useState } from "react";
 
 import { NoteCardControl } from "./NoteCardControl";
 import { NoteCardTextArea } from "./NoteCardTextArea";
-
 import { editNote, deleteNote } from "./utils";
+import { newsType } from "@types";
 
 export const NoteCard = ({
     noteText,
@@ -66,4 +67,12 @@ export const NoteCard = ({
             </span>
         </span>
     );
+};
+
+NoteCard.propTypes = {
+    noteText: string.isRequired,
+    noteCardLeft: number.isRequired,
+    favoriteNews: arrayOf(newsType).isRequired,
+    setFavoriteNews: func.isRequired,
+    id: string.isRequired,
 };

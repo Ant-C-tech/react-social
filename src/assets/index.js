@@ -45,3 +45,5 @@ export const technologyIcon = require("./cyborg.png");
 export const topIcon = require("./award.png");
 export const fingerPrintIcon = require("./fingerprint.png");
 export const exitIcon = require("./exit.png");
+export const warningIcon = require("./spam-alert.png");
+export const errorIcon = require("./skull.png");

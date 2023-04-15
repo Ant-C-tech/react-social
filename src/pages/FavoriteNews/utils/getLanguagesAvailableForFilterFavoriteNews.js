@@ -1,7 +1,10 @@
-import { getNewsFilteredByCategory } from "./getNewsFilteredByCategory";
-import { getNewsFilteredByCountry } from "./getNewsFilteredByCountry";
-import { getLanguageAbbreviationsByNames } from "./getLanguageAbbreviationsByNames";
-import { getNewsFilteredByKeyword } from "./getNewsFilteredByKeyword";
+import { LANGUAGES_DATA } from "@constants";
+import {
+    getNewsFilteredByCategory,
+    getNewsFilteredByCountry,
+    getNewsFilteredByKeyword,
+    getCodesByNames,
+} from "./";
 
 export const getLanguagesAvailableForFilterFavoriteNews = (
     favoriteNews,
@@ -36,6 +39,6 @@ export const getLanguagesAvailableForFilterFavoriteNews = (
 
     return [
         "all",
-        ...getLanguageAbbreviationsByNames(uniqueFavoriteNewsLanguages),
+        ...getCodesByNames(LANGUAGES_DATA, uniqueFavoriteNewsLanguages),
     ];
 };

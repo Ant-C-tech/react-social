@@ -1,12 +1,14 @@
 import "./styles.css";
 
 import React from "react";
+import { arrayOf, oneOf } from "prop-types";
+import { COUNTRIES_DATA, CATEGORIES_DATA, LANGUAGES_DATA } from "@constants";
 import { Message } from "@common";
 
 export const NothingWasFoundMessage = ({
-    countriesForPrompt = [],
-    categoriesForPrompt = [],
-    languagesForPrompt = [],
+    countriesForPrompt,
+    categoriesForPrompt,
+    languagesForPrompt,
 }) => {
     return (
         <Message
@@ -14,7 +16,7 @@ export const NothingWasFoundMessage = ({
             title="Nothing was found according to your request."
         >
             <p>Try to change your search parameters.</p>
-            {countriesForPrompt.length > 0 && (
+            {countriesForPrompt?.length > 0 && (
                 <div className="nothing-was-found-prompt">
                     <h3 className="nothing-was-found-prompt-title">
                         Recommended countries :
@@ -41,7 +43,7 @@ export const NothingWasFoundMessage = ({
                     </ul>
                 </div>
             )}
-            {categoriesForPrompt.length > 0 && (
+            {categoriesForPrompt?.length > 0 && (
                 <div className="nothing-was-found-prompt">
                     <h3 className="nothing-was-found-prompt-title">
                         Recommended categories :
@@ -68,7 +70,7 @@ export const NothingWasFoundMessage = ({
                     </ul>
                 </div>
             )}
-            {languagesForPrompt.length > 0 && (
+            {languagesForPrompt?.length > 0 && (
                 <div className="nothing-was-found-prompt">
                     <h3 className="nothing-was-found-prompt-title">
                         Recommended languages :
@@ -98,4 +100,23 @@ export const NothingWasFoundMessage = ({
             <p>Happy news!</p>
         </Message>
     );
+};
+
+NothingWasFoundMessage.propTypes = {
+    countriesForPrompt: arrayOf(
+        oneOf(Object.keys(COUNTRIES_DATA)),
+        oneOf(Object.values(COUNTRIES_DATA))
+    ),
+    categoriesForPrompt: arrayOf(
+        oneOf(
+            Object.values(CATEGORIES_DATA).map(
+                (categoryData) => categoryData.icon
+            )
+        ),
+        oneOf(Object.keys(CATEGORIES_DATA))
+    ),
+    languagesForPrompt: arrayOf(
+        oneOf(Object.keys(LANGUAGES_DATA)),
+        oneOf(Object.values(LANGUAGES_DATA))
+    ),
 };

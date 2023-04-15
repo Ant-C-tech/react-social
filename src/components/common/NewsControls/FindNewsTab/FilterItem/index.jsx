@@ -2,9 +2,14 @@ import "./styles.css";
 import { addIcon, removeIcon } from "@assets";
 
 import React from "react";
+import { string, bool, func, arrayOf, oneOf } from "prop-types";
 
-import { SelectComponent } from "@common/SelectComponent";
-import { Button } from "@common/Button/";
+import {
+    minFilterItemType,
+    maxFilterItemType,
+    selectOptionType,
+    selectLabelType,
+} from "@types";
 
 import {
     addSelectWithNotSelectedValue,
@@ -13,7 +18,10 @@ import {
     updateSelectedItems,
 } from "./utils";
 
+import { SelectComponent, Button } from "@common";
+
 export const FilterItem = ({
+    loading,
     title,
     icon,
     selectedItems,
@@ -21,11 +29,9 @@ export const FilterItem = ({
     itemsAvailableForFilterNews,
     minItemsAvailableForFilterNews,
     maxItemsAvailableForFilterNews,
-    labelOptionForItems,
-    labelIconOptionsForItems,
+    labelData,
     addButtonText,
     removeButtonText,
-    loading,
 }) => {
     return (
         <div className="filter-item">
@@ -50,8 +56,7 @@ export const FilterItem = ({
                     <SelectComponent
                         key={index}
                         valueOptions={availableItems}
-                        labelOptions={labelOptionForItems}
-                        labelIconOptions={labelIconOptionsForItems}
+                        labelData={labelData}
                         defaultValue={item}
                         onChange={({ value }) => {
                             if (!loading) {
@@ -63,7 +68,6 @@ export const FilterItem = ({
                                 );
                             }
                         }}
-                        isSearchable={true}
                     />
                 );
             })}
@@ -72,6 +76,8 @@ export const FilterItem = ({
                     selectedItems[0] !== "all" && (
                         <Button
                             text={addButtonText}
+                            buttonIconSrc={addIcon}
+                            active={false}
                             onClick={() => {
                                 if (!loading) {
                                     addSelectWithNotSelectedValue(
@@ -81,12 +87,13 @@ export const FilterItem = ({
                                     );
                                 }
                             }}
-                            buttonImageIcon={addIcon}
                         />
                     )}
                 {selectedItems.length !== minItemsAvailableForFilterNews && (
                     <Button
                         text={removeButtonText}
+                        buttonIconSrc={removeIcon}
+                        active={false}
                         onClick={() => {
                             if (!loading) {
                                 removeLastSelect(
@@ -95,10 +102,27 @@ export const FilterItem = ({
                                 );
                             }
                         }}
-                        buttonImageIcon={removeIcon}
                     />
                 )}
             </div>
         </div>
     );
+};
+
+FilterItem.propTypes = {
+    loading: bool.isRequired,
+    title: oneOf([
+        "Selected country:",
+        "Selected category:",
+        "Selected languages:",
+    ]),
+    icon: string.isRequired,
+    selectedItems: arrayOf(selectOptionType).isRequired,
+    setSelectedItems: func.isRequired,
+    itemsAvailableForFilterNews: arrayOf(selectOptionType).isRequired,
+    minItemsAvailableForFilterNews: minFilterItemType,
+    maxItemsAvailableForFilterNews: maxFilterItemType,
+    labelData: selectLabelType.isRequired,
+    addButtonText: string.isRequired,
+    removeButtonText: string.isRequired,
 };

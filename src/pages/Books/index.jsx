@@ -7,7 +7,7 @@ export const Books = () => {
     return (
         <>
             <Content>
-                <Message type={"message-info"} title={"Books"}>
+                <Message type={"message-warning"} title={"Books"}>
                     <p>
                         Sorry, this functionality is in development at the
                         moment.

@@ -2,21 +2,22 @@ import "./styles.css";
 import { makeNoteIcon, stickyNoteIcon, highlightToolsIcon } from "@assets";
 
 import React from "react";
+import { string, func } from "prop-types";
 
-import { Button } from "@common/";
+import { HIGHLIGHTERS } from "@constants";
+
+import { toolType } from "@types";
+
+import { Button, ButtonSmall } from "@common/";
 import { NoteTextArea } from "./NoteTextArea";
 
-import { HIGHLIGHTERS } from "./constants";
-
-export const EditNewsTab = ({ editNewsTabProps }) => {
-    const {
-        activeTool,
-        setActiveTool,
-        textOfNoteCard,
-        setTextOfNoteCard,
-        setOpenNoteId,
-    } = editNewsTabProps;
-
+export const EditNewsTab = ({
+    activeTool,
+    setActiveTool,
+    textOfNoteCard,
+    setTextOfNoteCard,
+    setOpenNoteId,
+}) => {
     return (
         <>
             <img
@@ -34,15 +35,18 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
                 {HIGHLIGHTERS.map((highlighter, index) => {
                     const { name, icon, tooltipText } = highlighter;
                     return (
-                        <Button
+                        <ButtonSmall
                             key={index}
-                            active={name === activeTool}
+                            iconSrc={icon}
+                            title={tooltipText}
+                            form="square"
+                            active={name === activeTool ? true : false}
                             onClick={() => {
-                                setActiveTool(name === activeTool ? "" : name);
+                                setActiveTool(
+                                    name === activeTool ? null : name
+                                );
                                 setOpenNoteId("");
                             }}
-                            buttonImageIcon={icon}
-                            tooltipText={tooltipText}
                         />
                     );
                 })}
@@ -60,14 +64,14 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
             <div className="edit-news-tab-control">
                 <Button
                     text="Create Note"
-                    active={"note-creator" === activeTool}
+                    active={activeTool === "note-creator"}
                     onClick={() => {
                         setActiveTool(
                             "note-creator" === activeTool ? "" : "note-creator"
                         );
                         setOpenNoteId("");
                     }}
-                    buttonImageIcon={stickyNoteIcon}
+                    buttonIconSrc={stickyNoteIcon}
                 />
             </div>
             {"note-creator" === activeTool && (
@@ -80,4 +84,12 @@ export const EditNewsTab = ({ editNewsTabProps }) => {
             )}
         </>
     );
+};
+
+EditNewsTab.propTypes = {
+    activeTool: toolType,
+    setActiveTool: func.isRequired,
+    textOfNoteCard: string.isRequired,
+    setTextOfNoteCard: func.isRequired,
+    setOpenNoteId: func.isRequired,
 };

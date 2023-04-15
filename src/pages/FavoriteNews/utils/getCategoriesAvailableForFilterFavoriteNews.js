@@ -1,6 +1,8 @@
-import { getNewsFilteredByCountry } from "./getNewsFilteredByCountry";
-import { getNewsFilteredByKeyword } from "./getNewsFilteredByKeyword";
-import { getNewsFilteredByLanguage } from "./getNewsFilteredByLanguage";
+import {
+    getNewsFilteredByCountry,
+    getNewsFilteredByKeyword,
+    getNewsFilteredByLanguage,
+} from "./";
 
 export const getCategoriesAvailableForFilterFavoriteNews = (
     favoriteNews,

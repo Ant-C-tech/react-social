@@ -1,6 +1,6 @@
 export const createErrorMessage = (news, error) => {
     const errorMessageTemplate = {
-        type: "message-warning",
+        type: "message-error",
         title: error,
         text: "",
     };

@@ -6,14 +6,9 @@ import { useState, useEffect } from "react";
 import { getNews } from "../../businessLogic/news/getNews";
 import { useLocalStorage } from "@hooks/useLocalStorage";
 
-import { DEFAULT_COUNTRIES_AVAILABLE_FOR_FILTERING_NEWS } from "./constants";
-import {
-    DEFAULT_CATEGORIES_AVAILABLE_FOR_FILTERING_NEWS,
-    DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS,
-} from "@constants";
+import { COUNTRIES_DATA, CATEGORIES_DATA, LANGUAGES_DATA } from "@constants";
 
 import { ControlBar, Content } from "@sections";
-
 import {
     NewsFeed,
     NewsControls,
@@ -21,7 +16,6 @@ import {
     InputComponent,
     NothingWasFoundMessage,
 } from "@common";
-
 import { NoApiKeyTextMessage } from "./NoApiKeyTextMessage";
 
 export const News = () => {
@@ -196,7 +190,7 @@ export const News = () => {
                         newsSet={news}
                         favoriteNews={favoriteNews}
                         setFavoriteNews={setFavoriteNews}
-                        keywords={[keyword]}
+                        keyword={keyword}
                         startNews={startNews}
                         setNeedMoreNews={setNeedMoreNews}
                         needScroll={needScroll}
@@ -206,7 +200,7 @@ export const News = () => {
                                 <NothingWasFoundMessage />
                             ) : null
                         }
-                        activeTool={null}
+                        createdFor="news"
                     />
                 ) : (
                     <Message
@@ -215,13 +209,10 @@ export const News = () => {
                     >
                         <NoApiKeyTextMessage />
                         <InputComponent
-                            type="text"
-                            minLength={2}
-                            debounceTimeout={1000}
                             placeholder={"Please, input your API key"}
                             value={apiKey}
                             setValue={setApiKey}
-                            icon={fingerPrintIcon}
+                            iconSrc={fingerPrintIcon}
                         />
                     </Message>
                 )}
@@ -241,34 +232,34 @@ export const News = () => {
                             keyword={keyword}
                             setKeyword={setKeyword}
                             loading={loading}
-                            countriesAvailableForFilterNews={
-                                DEFAULT_COUNTRIES_AVAILABLE_FOR_FILTERING_NEWS
-                            }
+                            countriesAvailableForFilterNews={Object.keys(
+                                COUNTRIES_DATA
+                            )}
                             minCountriesAvailableForFilterNews={
                                 minParametersLength
                             }
                             maxCountriesAvailableForFilterNews={
                                 maxParametersLength
                             }
-                            categoriesAvailableForFilterNews={
-                                DEFAULT_CATEGORIES_AVAILABLE_FOR_FILTERING_NEWS
-                            }
+                            categoriesAvailableForFilterNews={Object.keys(
+                                CATEGORIES_DATA
+                            )}
                             minCategoriesAvailableForFilterNews={
                                 minParametersLength
                             }
                             maxCategoriesAvailableForFilterNews={
                                 maxParametersLength
                             }
-                            languagesAvailableForFilterNews={
-                                DEFAULT_LANGUAGES_AVAILABLE_FOR_FILTERING_NEWS
-                            }
+                            languagesAvailableForFilterNews={Object.keys(
+                                LANGUAGES_DATA
+                            )}
                             minLanguagesAvailableForFilterNews={
                                 minParametersLength
                             }
                             maxLanguagesAvailableForFilterNews={
                                 maxParametersLength
                             }
-                            isHighLightersBar={false}
+                            createdFor="news"
                         />
                     )
                 }

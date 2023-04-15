@@ -7,7 +7,7 @@ export const Contacts = () => {
     return (
         <>
             <Content>
-                <Message type={"message-info"} title={"Contact"}>
+                <Message type={"message-warning"} title={"Contact"}>
                     <p>
                         Sorry, this functionality is in development at the
                         moment.

@@ -26,84 +26,72 @@ const navBarItemsConfig = [
     {
         type: "internal",
         iconImage: newsIcon,
-        className: "navbar-link-image-icon",
         path: "organizer/",
         text: "News",
     },
     {
         type: "internal",
         iconImage: addToFavoriteButtonIcon,
-        className: "navbar-link-image-icon",
         path: "organizer/favorite_news",
         text: "My Favorite News",
     },
     {
         type: "internal",
         iconImage: todoIcon,
-        className: "navbar-link-image-icon",
         path: "organizer/todo",
         text: "ToDo",
     },
     {
         type: "internal",
         iconImage: noteIcon,
-        className: "navbar-link-image-icon",
         path: "organizer/notes",
         text: "Notes",
     },
     {
         type: "internal",
         iconImage: eventsIcon,
-        className: "navbar-link-image-icon",
         path: "organizer/events",
         text: "Events",
     },
     {
         type: "internal",
         iconImage: translationIcon,
-        className: "navbar-link-image-icon",
         path: "organizer/translation",
         text: "Translation",
     },
     {
         type: "internal",
         iconImage: photosIcon,
-        className: "navbar-link-image-icon",
         path: "organizer/photos",
         text: "Photos",
     },
     {
         type: "internal",
         iconImage: videosIcon,
-        className: "navbar-link-image-icon",
         path: "organizer/videos",
         text: "Videos",
     },
     {
         type: "internal",
         iconImage: musicIcon,
-        className: "navbar-link-image-icon",
         path: "organizer/music",
         text: "Music",
     },
     {
         type: "internal",
         iconImage: jobsIcon,
-        className: "navbar-link-image-icon",
         path: "organizer/jobs",
         text: " Jobs",
     },
     {
         type: "internal",
         iconImage: booksIcon,
-        className: "navbar-link-image-icon",
         path: "organizer/books",
         text: " Books",
     },
     {
         type: "internal",
         iconImage: chatsIcon,
-        className: "navbar-link-image-icon",
         path: "organizer/chats",
         text: " Chats",
     },
@@ -126,7 +114,6 @@ export const NavBar = ({ contacts }) => {
                                         {/* {Icon && <Icon fontSize='large' />} */}
                                         {navItem.iconImage && (
                                             <img
-                                                className={navItem.className}
                                                 src={navItem.iconImage}
                                                 alt="#"
                                                 aria-hidden={true}
@@ -138,7 +125,7 @@ export const NavBar = ({ contacts }) => {
                                     </>
                                 }
                                 href={navItem.path}
-                                modification="navbar-hover-left-line"
+                                hover="left-line"
                             />
                         </li>
                     );
@@ -147,8 +134,9 @@ export const NavBar = ({ contacts }) => {
             <hr className="navbar-divider" />
             <Button
                 text={isContactsShown ? "Hide Contacts" : "Show Contacts"}
+                buttonIconSrc={contactsButtonIcon}
+                active={false}
                 onClick={() => setIsContactsShown((prevState) => !prevState)}
-                buttonImageIcon={contactsButtonIcon}
             />
             {isContactsShown && (
                 <ul className="navbar-contacts">
@@ -165,7 +153,7 @@ export const NavBar = ({ contacts }) => {
                                     </>
                                 }
                                 href={`organizer/contact/${index}`}
-                                modification="navbar-hover-left-line"
+                                hover="left-line"
                                 text={contact}
                             />
                         </li>
